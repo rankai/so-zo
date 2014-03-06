@@ -2,7 +2,7 @@
     <html>
     <head>
       <title>SoZo</title>
-
+      <!--
       <%= stylesheet_link_tag 	 "style" %>
       <%= stylesheet_link_tag	 "lightbox" %>
       <%= stylesheet_link_tag	 "bootstrap.min" %>
@@ -11,18 +11,16 @@
       <%= javascript_include_tag "https://code.jquery.com/jquery.js" %>
       <%= javascript_include_tag "bootstrap.min" %>
       <%= javascript_include_tag "modernizr.custom" %>
-      <%= csrf_meta_tags %>
-
-      <!--
-      <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-      <%= javascript_include_tag "application", "data-turbolinks-track" => true %>-->
+      <%= csrf_meta_tags %>-->
 
     </head>
     <body id="top">
     
     <%= render "home/nav" %>
-
+    <div class="contents">
     <div class="container">
+
+      
     	<div id="mainvisual">
         <%= image_tag("mainvisual.gif", alt: "main visual") %>
         	<!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />-->
@@ -313,4 +311,5 @@
     </div>	<!-- bottomfooter -->
 
     </div>	<!-- container -->
+  </div>
     </html>
