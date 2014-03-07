@@ -2,60 +2,25 @@
 <html>
 <head>
   <title>SoZo</title>
-  <!--<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %> 
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>-->
+  <!--<%= stylesheet_link_tag "application", media: "all" %> 
+  <%= javascript_include_tag "application" %>-->
 
   <%= stylesheet_link_tag    "style" %>
   <%= stylesheet_link_tag    "meny" %>
   <%= stylesheet_link_tag    "lightbox" %>
   <%= stylesheet_link_tag    "bootstrap.min" %>
-  <%= stylesheet_link_tag "font-awesome.min" %>
   <%= javascript_include_tag "jquery-1.10.2.min" %>
   <%= javascript_include_tag "lightbox-2.6.min" %>
   <%= javascript_include_tag "https://code.jquery.com/jquery.js" %>
   <%= javascript_include_tag "bootstrap.min" %>
   <%= javascript_include_tag "modernizr.custom" %>
   <%= javascript_include_tag "jquery.masonry.min" %>
-  <%= javascript_include_tag "jquery.popmenu.min" %>
   <%= javascript_include_tag "meny.min" %>
+  <%= javascript_include_tag "jquery.jqzoom-core" %>
+  <%= javascript_include_tag "jquery.jqzoom-core-pack" %>
+  <%= javascript_include_tag "szxue" %>
+
   <%= csrf_meta_tags %>
-
-  <script type="text/javascript">
-        $(function(){
-            $('#demo_box').popmenu({
-            'controller': 'true',
-            'width': '100%',
-            'background': '#34495e',
-            'focusColor': '#1abc9c',
-            'borderRadius': '10px',
-            'top': '0',
-            'left': '0',
-            'iconSize': '100px'
-            });
-        });
-  </script>
-
-  <style>
-        #container{
-            max-width: 480px;
-            width: 100%;
-            margin: 20px auto;
-        }
-        #demo_box{
-            width: 480px;
-        }
-        .fa{
-            font-size: 40px;
-            line-height: 70px;
-        }
-        .fa-bars{
-            color: #3498db;
-        }
-        pre{
-            font-family: Consolas,Liberation Mono,Courier,monospace;
-            font-size: 13px;
-        }
-  </style>
 
 </head>
 <body>

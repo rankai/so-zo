@@ -1,9 +1,15 @@
 SoZo::Application.routes.draw do
 
   devise_for :users
+
   get 'home/index'
-  get 'users/sign_in'
-  get 'users/sign_up'
+  get 'users/test'
+
+  resources :illustrations
+
+  resources :users do
+    resources :illustrations
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -20,7 +26,6 @@ SoZo::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
      resources :products
-     resources :illustrations
      resources :authors
      resources :templates
      resources :orders do

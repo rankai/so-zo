@@ -3,6 +3,9 @@
 
 /* Property */
 .clear{clear:both; margin:0; padding:0;}
+body {
+	background-color: white;
+}
 body, ul, li, ol,dl, dt, dd, h1, h2, h3, h4, img, p, em, strong{margin:0; padding:0; border:0; font-size:100%; line-height:normal; text-decoration:none; font-weight:normal; text-align:left; list-style:none;}
 body{font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;}
 a img{border:0;}

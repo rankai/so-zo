@@ -1,315 +1,513 @@
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>SoZo</title>
-      <!--
-      <%= stylesheet_link_tag 	 "style" %>
-      <%= stylesheet_link_tag	 "lightbox" %>
-      <%= stylesheet_link_tag	 "bootstrap.min" %>
-      <%= javascript_include_tag "jquery-1.10.2.min" %>
-      <%= javascript_include_tag "lightbox-2.6.min" %>
-      <%= javascript_include_tag "https://code.jquery.com/jquery.js" %>
-      <%= javascript_include_tag "bootstrap.min" %>
-      <%= javascript_include_tag "modernizr.custom" %>
-      <%= csrf_meta_tags %>-->
-
-    </head>
-    <body id="top">
-    
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      SoZo
+    </title>
+  </head>
+  <body id="top">
     <%= render "home/nav" %>
-    <div class="contents">
-    <div class="container">
-
-      
-    	<div id="mainvisual">
-        <%= image_tag("mainvisual.gif", alt: "main visual") %>
-        	<!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />-->
-        </div>	<!-- mainvisual -->
-        
-    <div class="col-sm-12 midashi"><p>スタッフの推しプ</p></div>
-
-    <div class="image-row">
-        <div class="image-set">
-
-    <div class="row" id="new">
-        <div class="col-sm-3">
-            <div class="graybox">
-              <p class="ribbon"><img src="/assets/new_ribbon.png" alt="" /></p>
-              <div class="imgarea">
-              <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set" title="作品"><img class="example-image" src="/assets/example1.gif" alt="" /></a>
-              <div class="price">￥１００</div>
-              </div>  <!-- imgarea -->
-              <p class="itemtitle">作品</p>
-              <p class="itemdetail">作品詳細</p>
-              </div>  <!-- graybox -->  
-          </div>  <!-- col3 -->
-
-        <div class="col-sm-3">
-            <div class="graybox">
-              <p class="ribbon"><img src="/assets/new_ribbon.png" alt="" /></p>
-              <div class="imgarea">
-              <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set" title="作品"><img class="example-image" src="/assets/example1.gif" alt="" /></a>
-              <div class="price">￥１００</div>
-              </div>  <!-- imgarea -->
-              <p class="itemtitle">作品</p>
-              <p class="itemdetail">作品詳細</p>
-              </div>  <!-- graybox -->  
-          </div>  <!-- col3 -->
-
-        <div class="col-sm-3">
-            <div class="graybox">
-              <p class="ribbon"><img src="/assets/new_ribbon.png" alt="" /></p>
-              <div class="imgarea">
-               <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set" title="作品"><img class="example-image" src="/assets/example1.gif" alt="" /></a>
-              <div class="price">￥１００</div>
-              </div>  <!-- imgarea -->
-              <p class="itemtitle">作品</p>
-              <p class="itemdetail">作品詳細</p>
-              </div>  <!-- graybox -->  
-          </div>  <!-- col3 -->
-
-        <div class="col-sm-3">
-            <div class="graybox">
-              <p class="ribbon"><img src="/assets/new_ribbon.png" alt="" /></p>
-              <div class="imgarea">
-              <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set" title="作品"><img class="example-image" src="/assets/example1.gif" alt="" /></a>
-              <div class="price">￥１００</div>
-              </div>  <!-- imgarea -->
-              <p class="itemtitle">作品</p>
-              <p class="itemdetail">作品詳細</p>
-              </div>  <!-- graybox -->  
-          </div>  <!-- col3 -->
-      </div>  <!-- row new -->
-        </div>  <!-- image set -->
-      </div>  <!-- image row -->
-
-
-       
-      <div class="col-sm-12 midashi"><p>作りたい商品を選</p></div>
-
-    <div class="row" id="make">
-
-      <div class="col-sm-4">
-        <div class="graybox">
-          <div class="overflow"><img alt="Example2" src="/assets/example2.gif" /></div>
-          <p>クッション</p> 
-        </div> <!-- graybox -->
-      </div> <!-- col-sm-4 -->
-
-     <div class="col-sm-4">
-        <div class="graybox">
-          <div class="overflow"><img alt="Example2" src="/assets/example2.gif" /></div>
-          <p>クッション</p> 
-        </div> <!-- graybox -->
-      </div> <!-- col-sm-4 -->
-
-       <div class="col-sm-4">
-        <div class="graybox">
-          <div class="overflow"><img alt="Example2" src="/assets/example2.gif" /></div>
-          <p>クッション</p> 
-        </div> <!-- graybox -->
-      </div> <!-- col-sm-4 -->
-
-    </div> <!-- row make -->
-
-        
-    <div class="col-sm-12 midashi"><p>スタッフの推しプ</p></div>
-        
-     <div class="image-row">
-      <div class="image-set">
-
-        <div class="row" id="new"> 
-          <div class="col-sm-3">
-            <div class="graybox">
-
-              <p class="ribbon">
-                <img alt="main visual" src="/assets/new_ribbon.png" />
-              </p> <!-- ribbon -->
-
-              <div class="imgarea">
-                <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif" title="『新生 軟式globe』"> 
-                        <img alt="main visual" class="example-image" src="/assets/example1.gif" />
-                      </a> <!-- example-image-link -->
-              <div class="price">￥2533</div>
-              </div> <!-- image area-->
-
-              <p class="itemtitle">『新生 軟式globe』</p>
-              <p class="itemdetail">2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画</p>
-            </div> <!-- graybox -->
-          </div> <!-- col-sm-3 -->
-
-          <div class="col-sm-3">
-            <div class="graybox">
-
-              <p class="ribbon">
-                <img alt="main visual" src="/assets/new_ribbon.png" />
-              </p> <!-- ribbon -->
-
-              <div class="imgarea">
-                <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif" title="『新生 軟式globe』"> 
-                        <img alt="main visual" class="example-image" src="/assets/example1.gif" />
-                      </a> <!-- example-image-link -->
-              <div class="price">￥2533</div>
-              </div> <!-- image area-->
-
-              <p class="itemtitle">『新生 軟式globe』</p>
-              <p class="itemdetail">2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画</p>
-            </div> <!-- graybox -->
-          </div> <!-- col-sm-3 -->
-
-        <div class="col-sm-3">
-            <div class="graybox">
-
-              <p class="ribbon">
-                <img alt="main visual" src="/assets/new_ribbon.png" />
-              </p> <!-- ribbon -->
-
-              <div class="imgarea">
-                <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif" title="『新生 軟式globe』"> 
-                        <img alt="main visual" class="example-image" src="/assets/example1.gif" />
-                      </a> <!-- example-image-link -->
-              <div class="price">￥2533</div>
-              </div> <!-- image area-->
-
-              <p class="itemtitle">『新生 軟式globe』</p>
-              <p class="itemdetail">2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画</p>
-            </div> <!-- graybox -->
-          </div> <!-- col-sm-3 -->
-
-           <div class="col-sm-3">
-              <div class="graybox">
-
-                <p class="ribbon">
-                  <img alt="main visual" src="/assets/new_ribbon.png" />
-                </p> <!-- ribbon -->
-
-                <div class="imgarea">
-                  <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif" title="『新生 軟式globe』"> 
-                          <img alt="main visual" class="example-image" src="/assets/example1.gif" />
-                        </a> <!-- example-image-link -->
-                <div class="price">￥2533</div>
-                </div> <!-- image area-->
-
-                <p class="itemtitle">『新生 軟式globe』</p>
-                <p class="itemdetail">2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画</p>
-              </div> <!-- graybox -->
-            </div> <!-- col-sm-3 -->
-
-          </div> <!-- row new -->
-        </div> <!-- image set -->
-      </div> <!-- image row -->
-
-
-
-
-    </div>	<!-- container -->
-
-
-    <div class="clear"></div>
-    <div class="container">
-    	<div class="row">
-    	    <div class="col-lg-9" id="footerbase">
-            	<p><span>最新の活動報告</span><br />
-    ああああああああああああああああああああああああああああああああああああああああああああああ<br />
-    いうおえいおうえお</p>
-            </div>	<!-- col9 -->
-    	    <div class="col-lg-3" id="footerleft">
-                <button type="button" class="btn btn-success btn-md" style="margin:35px auto auto 130px;">
-                  <span>詳細はこちら</span>
-                </button>
-            </div>	<!-- col3 -->
-    	</div>	<!-- row -->
-
-    <div id="company">
-    	<div class="row">
-        	<div class="col-lg-4">
-            <div>
-    			<img src="/assets/logo_gray.jpg" alt="" />
-            </div>
-            </div>	<!-- col4 -->
-            <div class="col-lg-6">
-            <div>
-            <p id="title">About US</p>
-            <p id="txt">
-    ２０１０年に結成しました。都内のカフェでのイベントや、野外フェスでのライブを中心に活動しています。音楽に乗せて詩を朗読すると言
+      <div class="contents">
+        <div class="container">
+          <div id="mainvisual">
+            <%= image_tag( "mainvisual.gif", alt: "main visual") %>
+              <!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />
+              -->
+          </div>
+          <!-- mainvisual -->
+          <div class="col-sm-12 midashi">
+            <p>
+              スタッフの推しプ
             </p>
-            </div>
-            </div>	<!-- col6 -->
-        </div>	<!-- row -->
-    </div>	<!-- company -->
-
-    <div id="grayfooter">
-        <div class="row">
-    		<div class="col-lg-5">
-                <div style="margin:25px auto auto 70px;">
-                    <p id="categorytitle">カテゴリから探す</p>
-                    <div class="categorylist">
-                    <ul>
-                        <li><a href="#">アート</a></li>
-                        <li><a href="#">あいうおえ</a></li>
-                        <li><a href="#">プロダクト</a></li>
-                        <li><a href="#">ジャーナリズム</a></li>
-                        <li><a href="#">写真</a></li>         
-                    </ul>
+          </div>
+          <div class="image-row">
+            <div class="image-set">
+              <div class="row" id="new">
+                <div class="col-sm-3">
+                  <div class="graybox">
+                    <p class="ribbon">
+                      <img src="/assets/new_ribbon.png" alt="" />
+                    </p>
+                    <div class="imgarea">
+                      <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
+                      title="作品">
+                        <img class="example-image" src="/assets/example1.gif" alt="" />
+                      </a>
+                      <div class="price">
+                        ￥１００
+                      </div>
                     </div>
-                    <div class="categorylist">
-                    <ul>
-                        <li><a href="#">アート</a></li>
-                        <li><a href="#">あいうおえ</a></li>
-                        <li><a href="#">プロダクト</a></li>
-                        <li><a href="#">ジャーナリズム</a></li>
-                        <li><a href="#">写真</a></li>         
-                    </ul>
-                    </div>    
-                    <div class="categorylist">
-                    <ul>
-                        <li><a href="#">アート</a></li>
-                        <li><a href="#">あいうおえ</a></li>
-                        <li><a href="#">プロダクト</a></li>
-                        <li><a href="#">ジャーナリズム</a></li>
-                        <li><a href="#">写真</a></li>         
-                    </ul>
-                    </div>    
-                    <div class="clear"></div> 
-                </div>       
-            </div>	<!-- col5 -->    
-        	<div class="col-sm-4" id="snslist">
-
-    	<div id="fb-root"></div>
-      <!--
-    	<script>(function(d, s, id) {
-    	  var js, fjs = d.getElementsByTagName(s)[0];
-    	  if (d.getElementById(id)) return;
-    	  js = d.createElement(s); js.id = id;
-    	  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
-    	  fjs.parentNode.insertBefore(js, fjs);
-    	}(document, 'script', 'facebook-jssdk'));</script>-->
-          <div id="sns">
-            <div id="twi" style="float:left;"> <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://sozo.d-siy.com" data-text="想像を創造するサイト「sO-Zo」" data-lang="ja" data-related="paddy_waseda">ツイート</a> 
-              <!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> -->
+                    <!-- imgarea -->
+                    <p class="itemtitle">
+                      作品
+                    </p>
+                    <p class="itemdetail">
+                      作品詳細
+                    </p>
+                  </div>
+                  <!-- graybox -->
+                </div>
+                <!-- col3 -->
+                <div class="col-sm-3">
+                  <div class="graybox">
+                    <p class="ribbon">
+                      <img src="/assets/new_ribbon.png" alt="" />
+                    </p>
+                    <div class="imgarea">
+                      <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
+                      title="作品">
+                        <img class="example-image" src="/assets/example1.gif" alt="" />
+                      </a>
+                      <div class="price">
+                        ￥１００
+                      </div>
+                    </div>
+                    <!-- imgarea -->
+                    <p class="itemtitle">
+                      作品
+                    </p>
+                    <p class="itemdetail">
+                      作品詳細
+                    </p>
+                  </div>
+                  <!-- graybox -->
+                </div>
+                <!-- col3 -->
+                <div class="col-sm-3">
+                  <div class="graybox">
+                    <p class="ribbon">
+                      <img src="/assets/new_ribbon.png" alt="" />
+                    </p>
+                    <div class="imgarea">
+                      <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
+                      title="作品">
+                        <img class="example-image" src="/assets/example1.gif" alt="" />
+                      </a>
+                      <div class="price">
+                        ￥１００
+                      </div>
+                    </div>
+                    <!-- imgarea -->
+                    <p class="itemtitle">
+                      作品
+                    </p>
+                    <p class="itemdetail">
+                      作品詳細
+                    </p>
+                  </div>
+                  <!-- graybox -->
+                </div>
+                <!-- col3 -->
+                <div class="col-sm-3">
+                  <div class="graybox">
+                    <p class="ribbon">
+                      <img src="/assets/new_ribbon.png" alt="" />
+                    </p>
+                    <div class="imgarea">
+                      <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
+                      title="作品">
+                        <img class="example-image" src="/assets/example1.gif" alt="" />
+                      </a>
+                      <div class="price">
+                        ￥１００
+                      </div>
+                    </div>
+                    <!-- imgarea -->
+                    <p class="itemtitle">
+                      作品
+                    </p>
+                    <p class="itemdetail">
+                      作品詳細
+                    </p>
+                  </div>
+                  <!-- graybox -->
+                </div>
+                <!-- col3 -->
+              </div>
+              <!-- row new -->
             </div>
-           <div class="fb-like" data-href="http://sozo.d-siy.com" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-          </div>	<!-- sns -->
-          <div class="clear"></div>
-               
-            </div>	<!-- col4 -->
-        </div>	<!-- row -->
+            <!-- image set -->
+          </div>
+          <!-- image row -->
+          <div class="col-sm-12 midashi">
+            <p>
+              作りたい商品を選
+            </p>
+          </div>
+          <div class="row" id="make">
+            <div class="col-sm-4">
+              <div class="graybox">
+                <div class="overflow">
+                  <img alt="Example2" src="/assets/example2.gif" />
+                </div>
+                <p>
+                  クッション
+                </p>
+              </div>
+              <!-- graybox -->
+            </div>
+            <!-- col-sm-4 -->
+            <div class="col-sm-4">
+              <div class="graybox">
+                <div class="overflow">
+                  <img alt="Example2" src="/assets/example2.gif" />
+                </div>
+                <p>
+                  クッション
+                </p>
+              </div>
+              <!-- graybox -->
+            </div>
+            <!-- col-sm-4 -->
+            <div class="col-sm-4">
+              <div class="graybox">
+                <div class="overflow">
+                  <img alt="Example2" src="/assets/example2.gif" />
+                </div>
+                <p>
+                  クッション
+                </p>
+              </div>
+              <!-- graybox -->
+            </div>
+            <!-- col-sm-4 -->
+          </div>
+          <!-- row make -->
+          <div class="col-sm-12 midashi">
+            <p>
+              スタッフの推しプ
+            </p>
+          </div>
+          <div class="image-row">
+            <div class="image-set">
+              <div class="row" id="new">
+                <div class="col-sm-3">
+                  <div class="graybox">
+                    <p class="ribbon">
+                      <img alt="main visual" src="/assets/new_ribbon.png" />
+                    </p>
+                    <!-- ribbon -->
+                    <div class="imgarea">
+                      <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif"
+                      title="『新生 軟式globe』">
+                        <img alt="main visual" class="example-image" src="/assets/example1.gif"
+                        />
+                      </a>
+                      <!-- example-image-link -->
+                      <div class="price">
+                        ￥2533
+                      </div>
+                    </div>
+                    <!-- image area-->
+                    <p class="itemtitle">
+                      『新生 軟式globe』
+                    </p>
+                    <p class="itemdetail">
+                      2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画
+                    </p>
+                  </div>
+                  <!-- graybox -->
+                </div>
+                <!-- col-sm-3 -->
+                <div class="col-sm-3">
+                  <div class="graybox">
+                    <p class="ribbon">
+                      <img alt="main visual" src="/assets/new_ribbon.png" />
+                    </p>
+                    <!-- ribbon -->
+                    <div class="imgarea">
+                      <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif"
+                      title="『新生 軟式globe』">
+                        <img alt="main visual" class="example-image" src="/assets/example1.gif"
+                        />
+                      </a>
+                      <!-- example-image-link -->
+                      <div class="price">
+                        ￥2533
+                      </div>
+                    </div>
+                    <!-- image area-->
+                    <p class="itemtitle">
+                      『新生 軟式globe』
+                    </p>
+                    <p class="itemdetail">
+                      2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画
+                    </p>
+                  </div>
+                  <!-- graybox -->
+                </div>
+                <!-- col-sm-3 -->
+                <div class="col-sm-3">
+                  <div class="graybox">
+                    <p class="ribbon">
+                      <img alt="main visual" src="/assets/new_ribbon.png" />
+                    </p>
+                    <!-- ribbon -->
+                    <div class="imgarea">
+                      <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif"
+                      title="『新生 軟式globe』">
+                        <img alt="main visual" class="example-image" src="/assets/example1.gif"
+                        />
+                      </a>
+                      <!-- example-image-link -->
+                      <div class="price">
+                        ￥2533
+                      </div>
+                    </div>
+                    <!-- image area-->
+                    <p class="itemtitle">
+                      『新生 軟式globe』
+                    </p>
+                    <p class="itemdetail">
+                      2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画
+                    </p>
+                  </div>
+                  <!-- graybox -->
+                </div>
+                <!-- col-sm-3 -->
+                <div class="col-sm-3">
+                  <div class="graybox">
+                    <p class="ribbon">
+                      <img alt="main visual" src="/assets/new_ribbon.png" />
+                    </p>
+                    <!-- ribbon -->
+                    <div class="imgarea">
+                      <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif"
+                      title="『新生 軟式globe』">
+                        <img alt="main visual" class="example-image" src="/assets/example1.gif"
+                        />
+                      </a>
+                      <!-- example-image-link -->
+                      <div class="price">
+                        ￥2533
+                      </div>
+                    </div>
+                    <!-- image area-->
+                    <p class="itemtitle">
+                      『新生 軟式globe』
+                    </p>
+                    <p class="itemdetail">
+                      2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画
+                    </p>
+                  </div>
+                  <!-- graybox -->
+                </div>
+                <!-- col-sm-3 -->
+              </div>
+              <!-- row new -->
+            </div>
+            <!-- image set -->
+          </div>
+          <!-- image row -->
+        </div>
+        <!-- container -->
+        <div class="clear">
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9" id="footerbase">
+              <p>
+                <span>
+                  最新の活動報告
+                </span>
+                <br />
+                ああああああああああああああああああああああああああああああああああああああああああああああ
+                <br />
+                いうおえいおうえお
+              </p>
+            </div>
+            <!-- col9 -->
+            <div class="col-lg-3" id="footerleft">
+              <button type="button" class="btn btn-success btn-md" style="margin:35px auto auto 130px;">
+                <span>
+                  詳細はこちら
+                </span>
+              </button>
+            </div>
+            <!-- col3 -->
+          </div>
+          <!-- row -->
+          <div id="company">
+            <div class="row">
+              <div class="col-lg-4">
+                <div>
+                  <img src="/assets/logo_gray.jpg" alt="" />
+                </div>
+              </div>
+              <!-- col4 -->
+              <div class="col-lg-6">
+                <div>
+                  <p id="title">
+                    About US
+                  </p>
+                  <p id="txt">
+                    ２０１０年に結成しました。都内のカフェでのイベントや、野外フェスでのライブを中心に活動しています。音楽に乗せて詩を朗読すると言
+                  </p>
+                </div>
+              </div>
+              <!-- col6 -->
+            </div>
+            <!-- row -->
+          </div>
+          <!-- company -->
+          <div id="grayfooter">
+            <div class="row">
+              <div class="col-lg-5">
+                <div style="margin:25px auto auto 70px;">
+                  <p id="categorytitle">
+                    カテゴリから探す
+                  </p>
+                  <div class="categorylist">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          アート
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          あいうおえ
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          プロダクト
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          ジャーナリズム
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          写真
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="categorylist">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          アート
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          あいうおえ
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          プロダクト
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          ジャーナリズム
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          写真
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="categorylist">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          アート
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          あいうおえ
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          プロダクト
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          ジャーナリズム
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          写真
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="clear">
+                  </div>
+                </div>
+              </div>
+              <!-- col5 -->
+              <div class="col-sm-4" id="snslist">
+                <div id="fb-root">
+                </div>
+                <!-- <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>-->
+                <div id="sns">
+                  <div id="twi" style="float:left;">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://sozo.d-siy.com"
+                    data-text="想像を創造するサイト「sO-Zo」" data-lang="ja" data-related="paddy_waseda">
+                      ツイート
+                    </a>
+                    <!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> -->
+                  </div>
+                  <div class="fb-like" data-href="http://sozo.d-siy.com" data-layout="button_count"
+                  data-action="like" data-show-faces="true" data-share="true">
+                  </div>
+                </div>
+                <!-- sns -->
+                <div class="clear">
+                </div>
+              </div>
+              <!-- col4 -->
+            </div>
+            <!-- row -->
+          </div>
+          <!-- grayfooter -->
+          <div id="bottomfooter">
+            <a href="#">
+              取引～～～～～
+            </a>
+            <a href="#">
+              ああああああ
+            </a>
+            <a href="#">
+              いうえおうおえ
+            </a>
+            <a href="#">
+              かきここかけ
+            </a>
+            <a href="#">
+              プライバシーポリシー
+            </a>
+            <a href="#">
+              お問合わせ
+            </a>
+            <div style="float:left;">
+              D＆SIY
+            </div>
+            <div class="clear">
+            </div>
+          </div>
+          <!-- bottomfooter -->
+        </div>
+        <!-- container -->
+      </div>
 
-    </div>	<!-- grayfooter -->
-    <div id="bottomfooter">
-    <a href="#">取引～～～～～</a>
-    <a href="#">ああああああ</a>
-    <a href="#">いうえおうおえ</a>
-    <a href="#">かきここかけ</a>
-    <a href="#">プライバシーポリシー</a>
-    <a href="#">お問合わせ</a>
-    <div style="float:left;">D＆SIY</div>
-    <div class="clear"></div>
-
-
-
-    </div>	<!-- bottomfooter -->
-
-    </div>	<!-- container -->
-  </div>
-    </html>
+</html>
