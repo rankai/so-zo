@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   has_many :illustraions
   #has_many :tags
   has_many :credit_cards
+  has_one :Occupation
 end

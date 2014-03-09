@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306022341) do
+ActiveRecord::Schema.define(version: 20140309040426) do
 
   create_table "credit_cards", force: true do |t|
     t.string   "card_no"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 20140306022341) do
   end
 
   add_index "illustrations", ["user_id"], name: "index_illustrations_on_user_id"
+
+  create_table "occupations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
 
   create_table "order_items", force: true do |t|
     t.string   "price"
@@ -94,7 +100,6 @@ ActiveRecord::Schema.define(version: 20140306022341) do
     t.string   "name",                                null: false
     t.string   "sex",                                 null: false
     t.text     "description"
-    t.string   "occupation"
     t.text     "motto"
     t.string   "photo"
     t.string   "phone"
@@ -108,6 +113,7 @@ ActiveRecord::Schema.define(version: 20140306022341) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "occupation_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

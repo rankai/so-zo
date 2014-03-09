@@ -2,13 +2,15 @@
 <html>
 <head>
   <title>SoZo</title>
-  <!--<%= stylesheet_link_tag "application", media: "all" %> 
-  <%= javascript_include_tag "application" %>-->
+  <!--<%= stylesheet_link_tag "application", media: "all" %>-->
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true  %>
+
 
   <%= stylesheet_link_tag    "style" %>
   <%= stylesheet_link_tag    "meny" %>
   <%= stylesheet_link_tag    "lightbox" %>
   <%= stylesheet_link_tag    "bootstrap.min" %>
+  <%= stylesheet_link_tag    "home" %>
   <%= javascript_include_tag "jquery-1.10.2.min" %>
   <%= javascript_include_tag "lightbox-2.6.min" %>
   <%= javascript_include_tag "https://code.jquery.com/jquery.js" %>
@@ -19,6 +21,7 @@
   <%= javascript_include_tag "jquery.jqzoom-core" %>
   <%= javascript_include_tag "jquery.jqzoom-core-pack" %>
   <%= javascript_include_tag "szxue" %>
+
 
   <%= csrf_meta_tags %>
 

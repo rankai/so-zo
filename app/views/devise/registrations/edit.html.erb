@@ -1,205 +1,184 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>So-Zo</title>
+<link rel="stylesheet" type="text/css" href="../assets/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/meny.css" />
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css" />
+</head> -->
+<%= stylesheet_link_tag "devise" %>
 <body id="top">
   <div class="contents">
     <%= render "home/nav" %>
+      <div style="height:76px">
+      </div>
       <div class="container">
         <div style="height:50px">
         </div>
-        <div id="sidernav" style="padding-top:0;">
-          <ul class="sider2">
-            <li>
-              <a href="###" class="nav-a">
-                个人情报
-              </a>
-            </li>
-            <li>
-              <a href="###" class="nav-b">
-                作 品
-              </a>
-            </li>
-            <li>
-              <a href="###" class="nav-c">
-                购 入
-              </a>
-            </li>
-            <li>
-              <a href="###" class="nav-d">
-                设 定
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!--sidernav end-->
-        <div class="r-box">
-          <div class="user-img">
-            <img src="../assets/demopage/image-11.jpg" />
-            <p style="text-align:center;">
-              <button type="button" class="btn default btn-mini buynow" style="width:80px; font-size:12px;">
-                更改头像
-              </button>
-            </p>
-          </div>
-          <div class="form-con">
-            <!-- <form action=""> -->
-            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-<div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true, class: "txt" %></div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
-
-              <p>
-                <label for="">
-                  名前
-                </label>
-                <input type="text" class="txt" value="" />
-              </p>
-              <p>
-                <label for="">
-                  I D
-                </label>
-                <input type="text" class="txt" value="" />
-              </p>
-              <p>
-                <label for="">
-                  一言
-                </label>
-                <input type="text" class="txt txt2" value="" />
-              </p>
-              <p>
-                SNS
-              </p>
-              <p>
-                <label for="">
-                  <img src="../assets/fn.png" />
-                </label>
-                <input type="text" class="txt" value="" />
-              </p>
-              <p>
-                <label for="">
-                  <img src="../assets/fn2.png" />
-                </label>
-                <input type="text" class="txt" value="" />
-              </p>
-              <p>
-                <label for="">
-                  <img src="../assets/fn3.png" />
-                </label>
-                <input type="text" class="txt" value="" />
-              </p>
-              <p>
-                <label for="">
-                  职业
-                </label>
-                <select name="" class="txt" style="border:1px solid #eee; padding:6px 10px; width:120px; border-radius:4px;">
-                  <option>
-                    学生
-                  </option>
-                </select>
-              </p>
-              <p>
-                标签
-              </p>
-              <div class="label-box" style="padding-top:0; position:relative; top:-10px;">
-                <a href="###" class="btn btn-success btn-mini">
-                  萌
-                </a>
-                <a href="###" class="btn btn-success btn-mini">
-                  可爱
-                </a>
-                <a href="###" class="btn btn-success btn-mini">
-                  赛高
-                </a>
-              </div>
-              <p>
-                <button type="button" class="btn btn-danger btn-lg buynow" style="width:128px; font-size:12px; margin-left:0; ">
-                  保存资料
+        <%= render "sider" %>
+          <div class="r-box">
+            <div class="user-img">
+              <img src="../assets/demopage/image-11.jpg" />
+              <p style="text-align:center;">
+                <button type="button" class="btn default btn-mini buynow" style="width:80px; font-size:12px;">
+                  更改头像
                 </button>
               </p>
-              <% end %>
-            <!-- </form> -->
+            </div>
+            <div class="form-con">
+              <!-- <form action=""> -->
+                <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+                <%= devise_error_messages! %>
+
+                <div><%= f.label :email %>
+                <%= f.email_field :email, :autofocus => true %></div><br />
+
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div><br />
+                <% end %>
+
+                <div><%= f.label :password do %>新密码<% end %>
+                 <%= f.password_field :password, :autocomplete => "off" %>
+               </div><br />
+
+                <!-- <i>
+                  (leave blank if you don't want to change it)
+                </i> -->
+
+                <div><%= f.label :password_confirmation do %>确认密码<% end %>
+                 <%= f.password_field :password_confirmation %>
+               </div><br />
+
+                <div><%= f.label :current_password do %>原密码<% end %><!--  <i>(we need your current password to confirm your changes)</i> 下来可以做tooltip-->
+                  <%= f.password_field :current_password %>
+                </div><br />
+                
+                <div>
+                    <%= f.label :name do %>姓名<% end %>
+                    <%= f.text_field :name %>
+                </div> <br />
+ 
+                <div>
+                    <%= f.label :sex do %>性别<% end %>
+                    <%= f.select(:sex, [['女', 'female'], ['男','male']]) %>
+                </div><br />
+
+                <div>
+                    <%= f.label :motto do %>格言<% end %>
+                    <%= f.text_area :motto %>
+                </div><br />
+
+                <div>
+                  <%= f.label :occupation_id do %>职业<% end %>
+                  <%= f.select(:occupation_id, [['学生',1],['作者',2],['画家',3],['白领',4]]) %>
+                </div><br />
+
+                  <p>
+                    标签
+                  </p>
+                  <div class="label-box" style="padding-top:0; position:relative; top:-10px;">
+                    <a href="###" class="btn btn-success btn-mini">
+                      萌
+                    </a>
+                    <a href="###" class="btn btn-success btn-mini">
+                      可爱
+                    </a>
+                    <a href="###" class="btn btn-success btn-mini">
+                      赛高
+                    </a>
+                  </div>
+
+                  <fieldset>
+                    <legend>联系信息</legend>
+                    <div>
+                      <%= f.label :phone do %>电话<% end %>
+                      <%= f.text_field :phone %>
+                    </div><br />
+
+                    <div>
+                      <%= f.label :address do %>地址<% end %>
+                      <%= f.text_area :address %>
+                    </div><br />
+                  </fieldset>
+
+                <!-- 使用Option Tags from a Collection of Arbitrary Objects来自动生成options -->
+
+                  <div>
+                    <%= f.submit "更新", class: "btn btn-danger btn-lg update"%>
+                  </div>
+                  <% end %>
+                    <!-- </form> -->
+            </div>
+            <!--form-con end-->
+           <!--  <h3>
+              Cancel my account
+            </h3>
+            <p>
+              Unhappy?
+              <%= button_to "Cancel my account", registration_path(resource_name), :data=>
+                { :confirm => "Are you sure?" }, :method => :delete %>
+            </p>
+            <%= link_to "Back", :back %> -->
           </div>
-          <!--form-con end-->
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
-
-<%= link_to "Back", :back %>
-
-        </div>
-        <div id="buystep" style=" clear:both;width:1140; overflow:hidden; margin:0 0 0 -15px;">
-          <h1 class="title2">
-            <span>
-              可选形式
-            </span>
-          </h1>
-          <ul class="works-list works-list2 works-list3">
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-10.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-9.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-10.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-9.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-10.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-9.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-9.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-10.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-9.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="###">
-                <img src="../assets/demopage/image-9.jpg" />
-              </a>
-            </li>
-          </ul>
-        </div>
+          <div id="buystep" style=" clear:both;width:1140; overflow:hidden; margin:0 0 0 -15px;">
+            <h1 class="title2">
+              <span>
+                可选形式
+              </span>
+            </h1>
+            <ul class="works-list works-list2 works-list3">
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-10.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-9.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-10.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-9.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-10.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-9.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-9.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-10.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-9.jpg" />
+                </a>
+              </li>
+              <li>
+                <a href="###">
+                  <img src="../assets/demopage/image-9.jpg" />
+                </a>
+              </li>
+            </ul>
+          </div>
       </div>
       <!-- container -->
       <div style="height:200px">
@@ -341,3 +320,5 @@
   </div>
   <!-- contents -->
 </body>
+
+</html>
