@@ -27,7 +27,10 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 #gem 'kaminari' # 分页
-gem 'devise'
+gem 'devise' # authentication
+gem 'cancan' # authorization based on roles
+gem 'rolify' # roles
+gem 'rails_admin'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

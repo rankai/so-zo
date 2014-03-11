@@ -3,6 +3,9 @@ class IllustrationsController < ApplicationController
 		#@illstrations = Illstration.all
 	end
 
+	def new 
+	end
+
 	def create
 		@illstration = Illstration.new(params[:illstration])
 		if @illstration.save

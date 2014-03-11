@@ -4,12 +4,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :devise_parameter_sanitizer, if: :devise_controller?
 
+
+  # cancan exception handle
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, alert: exception.message
+  end
+
+  # devise parameter sanitizer(strong parameters)
   protected
   def devise_parameter_sanitizer
   	#devise_parameter_sanitizer.for(:sign_up){|u| u.permit(:name, :sex, 
   	#	:email, :password, :password_confirmation, :phone, :address, :motto, :occupation_id)}
 	if resource_class == User
-		User::ParameterSanitizer.new(User, :user, params)
+		UserParameterSanitizer .new(User, :user, params)
 	else
 		super
 	end	
@@ -21,4 +28,14 @@ class ApplicationController < ActionController::Base
 
  # def after_sign_out_path_for(user)
   #end
+
+  def after_sign_in_path_for(resource)
+       #if resource.is_a?(User)
+         #if User.count == 1
+        #   resource.add_role 'admin'
+         #end
+         #resource
+       #end
+       root_path
+  end
 end
