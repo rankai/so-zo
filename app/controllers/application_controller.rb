@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
 
   # cancan exception handle
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, alert: exception.message
+    #redirect_to main_app.root_url, :alert => exception.message
+    render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
   end
 
   # devise parameter sanitizer(strong parameters)

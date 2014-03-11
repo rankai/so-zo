@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :confirmable, :lockable
 
   has_many :orders
-  has_many :illustraions
+  has_many :illustrations
   #has_many :tags
   has_many :credit_cards
   has_one :Occupation
