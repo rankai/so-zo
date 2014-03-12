@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309115527) do
+ActiveRecord::Schema.define(version: 20140311044757) do
 
   create_table "credit_cards", force: true do |t|
     t.string   "card_no"
@@ -69,15 +69,35 @@ ActiveRecord::Schema.define(version: 20140309115527) do
   create_table "product_templates", force: true do |t|
     t.string   "template_name"
     t.text     "description"
-    t.string   "template_path"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "template_category_id"
+    t.integer  "intial_X"
+    t.integer  "intial_Y"
+    t.integer  "size_W"
+    t.integer  "size_H"
+    t.string   "front_img_path"
+    t.string   "back_img_path"
+    t.string   "side_img_path"
   end
+
+  add_index "product_templates", ["template_category_id"], name: "index_product_templates_on_template_category_id"
 
   create_table "products", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "template_id"
+    t.integer  "illustration_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "position_X"
+    t.integer  "position_Y"
+    t.integer  "degree"
+    t.integer  "ill_size_W"
+    t.integer  "ill_size_H"
   end
+
+  add_index "products", ["template_id", "illustration_id"], name: "index_products_on_template_id_and_illustration_id"
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -93,6 +113,13 @@ ActiveRecord::Schema.define(version: 20140309115527) do
   create_table "tags", force: true do |t|
     t.string   "tag_name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "template_categories", force: true do |t|
+    t.string   "name"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

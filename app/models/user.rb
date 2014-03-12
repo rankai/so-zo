@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
   has_many :illustrations
   #has_many :tags
   has_many :credit_cards
-  has_one :Occupation
+  has_one :occupation
 end
