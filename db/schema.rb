@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311044757) do
+ActiveRecord::Schema.define(version: 20140312102018) do
+
+  create_table "albums", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "credit_cards", force: true do |t|
     t.string   "card_no"
@@ -31,10 +38,13 @@ ActiveRecord::Schema.define(version: 20140311044757) do
   create_table "illustrations", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "ill_path"
     t.datetime "created_at"
     t.integer  "user_id"
     t.datetime "updated_at"
+    t.string   "ill_image_file_name"
+    t.string   "ill_image_content_type"
+    t.integer  "ill_image_file_size"
+    t.datetime "ill_image_updated_at"
   end
 
   add_index "illustrations", ["user_id"], name: "index_illustrations_on_user_id"
@@ -66,6 +76,18 @@ ActiveRecord::Schema.define(version: 20140311044757) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
+  create_table "pictures", force: true do |t|
+    t.integer  "album_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  add_index "pictures", ["album_id"], name: "index_pictures_on_album_id"
+
   create_table "product_templates", force: true do |t|
     t.string   "template_name"
     t.text     "description"
@@ -76,9 +98,18 @@ ActiveRecord::Schema.define(version: 20140311044757) do
     t.integer  "intial_Y"
     t.integer  "size_W"
     t.integer  "size_H"
-    t.string   "front_img_path"
-    t.string   "back_img_path"
-    t.string   "side_img_path"
+    t.string   "front_image_file_name"
+    t.string   "front_image_content_type"
+    t.integer  "front_image_file_size"
+    t.datetime "front_image_updated_at"
+    t.string   "back_image_file_name"
+    t.string   "back_image_content_type"
+    t.integer  "back_image_file_size"
+    t.datetime "back_image_updated_at"
+    t.string   "side_image_file_name"
+    t.string   "side_image_content_type"
+    t.integer  "side_image_file_size"
+    t.datetime "side_image_updated_at"
   end
 
   add_index "product_templates", ["template_category_id"], name: "index_product_templates_on_template_category_id"
@@ -139,7 +170,6 @@ ActiveRecord::Schema.define(version: 20140311044757) do
     t.string   "sex",                                 null: false
     t.text     "description"
     t.text     "motto"
-    t.string   "photo"
     t.string   "phone"
     t.text     "address"
     t.string   "confirmation_token"
@@ -152,6 +182,10 @@ ActiveRecord::Schema.define(version: 20140311044757) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "occupation_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
