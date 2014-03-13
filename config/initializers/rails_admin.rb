@@ -36,4 +36,38 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  #for jcrop
+  config.model User do
+    configure :photo, :jcrop
+
+    #what edit will show
+    edit do
+      field :name
+      field :password
+      field :password_confirmation
+      field :sex
+      field :occupation
+      field :phone
+      field :address
+      field :motto
+      field :description
+      field :roles
+      field :photo do
+        jcrop_options aspectRatio: 500.0/320.0
+      end
+    end
+
+    # what list will show
+    list do
+      field :name
+      field :roles
+      field :sex
+      field :occupation
+      field :phone
+      field :address
+    end
+
+  end
+
 end

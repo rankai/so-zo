@@ -34,6 +34,8 @@ gem 'rails_admin'
 
 #file_upload
 gem 'paperclip', '~> 4.1.1'
+#image crop
+gem 'rails_admin_jcrop'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

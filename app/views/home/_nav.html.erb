@@ -21,10 +21,10 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
                 <div>
-                    <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white">
+                    <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" title="Some tooltip text!">
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
-                    <a href="<%= edit_user_registration_path %>" class="btn btn-success btn-md" role="button" style="color: white">
+                    <a href="<%= edit_user_registration_path %>" class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" title="User Center">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
                     <a href="<%= authors_path %>" class="btn btn-primary btn-md" role="button" style="color: white">
@@ -47,7 +47,7 @@
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="#">我的作品</a></li>
                                             <li><a href="#">我的订单</a></li>
-                                            <li><a href="#">个人主页</a></li>
+                                            <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>
                                             <li class="divider"></li>
                                             <li><!-- <a href="<%= destroy_user_session_path %>">退出</a> -->
                                                 <%= link_to "退出", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %>

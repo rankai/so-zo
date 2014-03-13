@@ -11,7 +11,7 @@ class Picture < ActiveRecord::Base
 	validates_attachment_content_type :file, :content_type => /\Aimage\/.*\Z/
 
 	def skip_for_audio
-		! %w(audio/ogg application/ogg).include?(asset_content_type)
+		! %w(audio/ogg application/ogg).include?(file_content_type)
 	end
 
 end

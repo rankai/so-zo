@@ -27,10 +27,18 @@
 
 </head>
 <body>
-	<!--
+  <% if notice %>
+    <div class="alert alert-warning alert-dismissable" style="text-align:right">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <!-- strong>Warning!</strong> Better check yourself, you're not looking too good. -->
+      <span><%= notice %></span>
+  <!--     <span><%= alert %></span> -->
+    </div>
+    <% end %>
+<!-- 	
 	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-	-->
+	<p class="alert"><%= alert %></p> -->
+	
 	<%= yield %>
 
 </body>

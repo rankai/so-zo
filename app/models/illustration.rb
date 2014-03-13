@@ -12,6 +12,6 @@ class Illustration < ActiveRecord::Base
 	validates_attachment_content_type :ill_image, :content_type => /\Aimage\/.*\Z/
 
 	def skip_for_audio
-		! %w(audio/ogg application/ogg).include?(asset_content_type)
+		! %w(audio/ogg application/ogg).include?(ill_image_content_type)
 	end
 end

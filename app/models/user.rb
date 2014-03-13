@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
 
-  has_many :orders
-  has_many :illustrations
+  has_many    :orders
+  has_many    :illustrations
   #has_many :tags
-  has_many :credit_cards
-  has_one  :occupation
+  has_many    :credit_cards
+  belongs_to  :occupation
 
   #has_attached_file :file, :styles => {:detailed => "1920x1920>", :thumb => "100x100>"}
   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -22,6 +22,6 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
   def skip_for_audio
-    ! %w(audio/ogg application/ogg).include?(asset_content_type)
+    ! %w(audio/ogg application/ogg).include?(photo_content_type)
   end
 end
