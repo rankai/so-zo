@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313040736) do
+ActiveRecord::Schema.define(version: 20140315041032) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
@@ -129,8 +129,6 @@ ActiveRecord::Schema.define(version: 20140313040736) do
   create_table "products", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "template_id"
-    t.integer  "illustration_id"
     t.string   "name"
     t.string   "description"
     t.integer  "position_X"
@@ -138,9 +136,16 @@ ActiveRecord::Schema.define(version: 20140313040736) do
     t.integer  "degree"
     t.integer  "ill_size_W"
     t.integer  "ill_size_H"
+    t.string   "product_image_file_name"
+    t.string   "product_image_content_type"
+    t.integer  "product_image_file_size"
+    t.datetime "product_image_updated_at"
+    t.integer  "price"
+    t.integer  "product_template_id"
+    t.integer  "illustration_id"
   end
 
-  add_index "products", ["template_id", "illustration_id"], name: "index_products_on_template_id_and_illustration_id"
+  add_index "products", ["product_template_id", "illustration_id"], name: "index_products_on_product_template_id_and_illustration_id"
 
   create_table "roles", force: true do |t|
     t.string   "name"

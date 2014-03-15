@@ -45,6 +45,7 @@
                                             <span class="glyphicon glyphicon-magnet" style="margin-right:5px"></span><span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
+                                            <li><a href="<%= new_illustration_path %>">上传作品</a/</li>
                                             <li><a href="#">我的作品</a></li>
                                             <li><a href="#">我的订单</a></li>
                                             <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>
@@ -56,12 +57,13 @@
                                     </div> <!-- btn-group -->
                                 </div> <!-- user-toggle -->
                             </div>
+
                         
-                        <p class="notice"></p>
+                        <!-- <p class="notice"></p> -->
                    <% else %>
                         <a href="<%= "users/sign_in" %>">登陆</a> |
                         <a href="<%= "users/sign_up" %>">注册</a>
-                        <p class="alert"></p>
+                       <!--  <p class="alert"></p> -->
                    <% end %>
                     <!--</div>-->	<!-- well -->
                 </div> <!-- login-panel -->
