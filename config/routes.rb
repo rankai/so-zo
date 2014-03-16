@@ -5,7 +5,26 @@ SoZo::Application.routes.draw do
 
   get 'home/index'
 
-  resources :illustrations
+
+  #------------------------------- illustrations ------------------------
+  
+  resources :users do
+      resources :illustrations, except:[:index] do
+        #get 'works', :on => :collection
+      end
+      resources :orders do
+        resources :items
+      end
+  end
+
+  get "users/:user_id/illustrations", :to => "illustrations#works"
+
+  resources :illustrations, only:[:index]
+
+  #------------------------------- illustrations ------------------------
+
+
+  #resources :illustrations
 
   #resources :users do
   #  resources :illustrations
@@ -30,12 +49,6 @@ SoZo::Application.routes.draw do
      end
      
      resources :authors
-     resources :templates
-     resources :orders do
-           resources :items
-     end
-     resources :cards
-     resources :photos
      resources :promtions
      resources :tags
 
@@ -81,4 +94,6 @@ SoZo::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get '*path' => proc { |env| Rails.env.development? ? (raise ActionController::RoutingError, %{No route matches "#{env["PATH_INFO"]}"}) : ApplicationController.action(:render_not_found).call(env) }
 end

@@ -8,15 +8,10 @@
             </h1>
             <div class="col-sm-1"></div>
                 <ul>
-                    <li><%= link_to "イラスト", illustrations_path, class: "menu" %></li>
-                    <li><%= link_to "商品", illustrations_path, class: "menu" %></li>
-                    <li><%= link_to "作者", illustrations_path, class: "menu" %></li>
-                    <li><%= link_to "ギャザリング", illustrations_path, class: "menu" %></li>
-                    <!--
-                    <li><a href="ill.html"><div class="menu">イラスト</div></a></li>
-                    <li><a href="item.html"><div class="menu">商品</div></a></li>
-                    <li><a href="designer.html"><div class="menu">作者</div></a></li>
-                    <li><a href="gathering.html"><div class="menu">ギャザリング</div></a></li>-->
+                        <li><%= link_to "イラスト", illustrations_path, class: "menu" %></li>
+                        <li><%= link_to "商品", illustrations_path, class: "menu" %></li>
+                        <li><%= link_to "作者", illustrations_path, class: "menu" %></li>
+                        <li><%= link_to "ギャザリング", illustrations_path, class: "menu" %></li>
                 </ul>
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
@@ -45,7 +40,7 @@
                                             <span class="glyphicon glyphicon-magnet" style="margin-right:5px"></span><span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="<%= new_illustration_path %>">上传作品</a/</li>
+                                            <li><a href="<%= new_user_illustration_path(current_user) %>">上传作品</a/</li>
                                             <li><a href="#">我的作品</a></li>
                                             <li><a href="#">我的订单</a></li>
                                             <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>

@@ -1,5 +1,12 @@
 class IllustrationsController < ApplicationController
+	before_filter :authenticate_user!, :except => [:index, :show]
+	
 	respond_to :json, :html, :js
+
+	# get personal works
+	def works
+		@illustrations = current_user.illustrations.all
+	end
 
 	def index
 		@illustrations = Illustration.all
@@ -12,7 +19,8 @@ class IllustrationsController < ApplicationController
 	end
 
 	def create
-		@illustration = Illustration.new(params[:illustration].permit(:name, :description, :ill_image))
+		# eatch illustration belongs to an user
+		@illustration = current_user.illustrations.create(params[:illustration].permit(:name, :description, :ill_image))
 		if @illustration.save
 
 			# should notice frontend
