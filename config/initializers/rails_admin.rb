@@ -69,7 +69,7 @@ RailsAdmin.config do |config|
     end
 
   end
-
+ #order fields
   config.model Product do
     edit do
       field :name

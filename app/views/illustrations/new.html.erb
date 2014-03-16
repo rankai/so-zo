@@ -1,180 +1,61 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<!--     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>
-            D＆SIY
-        </title>
-        <meta name="keywords" content="illustrations" />
-        <meta name="description" content="So-Zo powered by mointe" />
-    </head> -->
-    <body id="top">
-        <div class="contents">
-            <%= render "home/nav" %>
-                <div style="height:76px">
-                </div>
-                <div class="container">
-                    <%= render "home/upload" %>
-                        <div class="image-row">
-                            <div class="image-set">
-                                <div class="row" id="ill">
-                                    <div class="image-row">
-                                        <div class="image-set">
-                                            
-                                        </div>
-                                        <!-- row ill -->
-                                    </div>
-                                    <!-- image set -->
-                                </div>
-                                <!-- image row -->
-                            </div>
-                            <!-- container -->
-                            <div class="clear">
-                            </div>
-                            <div class="container">
-                                <div id="grayfooter">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <div style="margin:25px auto auto 70px;">
-                                                <p id="categorytitle">
-                                                    カテゴリから探す
-                                                </p>
-                                                <div class="categorylist">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">
-                                                                アート
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                あいうおえ
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                プロダクト
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                ジャーナリズム
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                写真
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="categorylist">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">
-                                                                アート
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                あいうおえ
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                プロダクト
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                ジャーナリズム
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                写真
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="categorylist">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">
-                                                                アート
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                あいうおえ
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                プロダクト
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                ジャーナリズム
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                写真
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="clear">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- col5 -->
-                                    </div>
-                                    <!-- row -->
-                                </div>
-                                <!-- grayfooter -->
-                                <div id="bottomfooter">
-                                    <a href="#">
-                                        取引～～～～～
-                                    </a>
-                                    <a href="#">
-                                        ああああああ
-                                    </a>
-                                    <a href="#">
-                                        いうえおうおえ
-                                    </a>
-                                    <a href="#">
-                                        かきここかけ
-                                    </a>
-                                    <a href="#">
-                                        プライバシーポリシー
-                                    </a>
-                                    <a href="#">
-                                        お問合わせ
-                                    </a>
-                                    <div style="float:left;">
-                                        D＆SIY
-                                    </div>
-                                    <div class="clear">
-                                    </div>
-                                </div>
-                                <!-- bottomfooter -->
-                            </div>
-                            <!-- container -->
-                        </div>
-                        <!-- contents -->
-                        <!--<script type="text/javascript">
-                        $(function() {
-                        var meny = Meny.create({
-                        menuElement:  $('.meny')[0],
-                        contentsElement:  $('.contents')[0]
-                        //            menuElement: document.querySelector( '.meny' ),
-                        //            contentsElement: document.querySelector( '.contents' )
-                        });
-                        });
-                        </script>-->
-    </body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // hide loading div
+        $("#loading").hide();
 
-<!-- </html>
+        var options = {
+            target: '#illustration_view',
+            success: function(data) {
+                $("#loading_msg").text("upload successfully, creating products");
+                $("#illustration_view").html(data);
+                preview_products();
+            }
+        };
+
+        $('#upload_pic').click(function() {
+            $("#loading_msg").text("uploading your work");
+            // show loading dive
+            $("#loading").show();
+            $("#upload_form").ajaxForm(options).submit();
+            return false;
+        });
+    });
+
+    var preview_products = function() {
+        var options = {
+            target: '#products_view',
+            url: '/products/preview',
+            data: {ill_id:$("#ill_id").val()},
+            success: function(data) {
+                console.log(data);
+                $("#loading").hide();
+                $("#products_view").html(data);
+            }
+        };
+        $.ajax(options);
+    }
+    </script>
+
+    <!--
+    # upload file
+    # upload success - > request preview products
+    # load products
+    # confirm products
+    # backend - save and clean products-->
+
+<body id="top">
+    <div class="contents">
+        <%= render "home/nav" %>
+            <div style="height:76px"></div>
+            <div class="container">
+                    <%= render "upload" %>
+                    <%= render "loading" %>
+                     <!-- test -->
+                    <div id="illustration_view">
+                    </div>
+                    <div id="products_view">
+                    </div>
+                    <div class="clear">
+                    </div>
+            </div>
+</body>
