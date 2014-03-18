@@ -7,6 +7,26 @@
 <link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css" />
 </head> -->
 <%= stylesheet_link_tag "devise" %>
+<script type="text/javascript"> 
+<!-- this would only work at chrome & firefox-->
+$(function() {
+    $("input[type='file").change(function(evt) {
+      var images = evt.target.files;
+      for(var i=0, f; f=images[i]; i++) {
+        if(!f.type.match('image.*')) {
+          continue;
+        }
+        var reader = new FileReader();
+        reader.onload = (function(file) {
+          return function(e) {
+            $(".user-img img").attr("src", e.target.result);
+          }
+        })(f);
+        reader.readAsDataURL(f);
+      }
+    });
+  })
+</script> 
 <body id="top">
   <div class="contents">
     <%= render "home/nav" %>
@@ -17,95 +37,97 @@
         </div>
         <%= render "sider" %>
           <div class="r-box">
-            <div class="user-img">
-              <img src="../assets/demopage/image-11.jpg" />
-              <p style="text-align:center;">
-                <button type="button" class="btn default btn-mini buynow" style="width:80px; font-size:12px;">
-                  更改头像
-                </button>
-              </p>
-            </div>
-            <div class="form-con">
-              <!-- <form action=""> -->
-                <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-                <%= devise_error_messages! %>
+            <!-- <form action=""> -->
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+            <%= devise_error_messages! %>
 
-                <div><%= f.label :email %>
-                <%= f.email_field :email, :autofocus => true %></div><br />
-
-                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div><br />
-                <% end %>
-
-                <div><%= f.label :password do %>新密码<% end %>
-                 <%= f.password_field :password, :autocomplete => "off" %>
-               </div><br />
-
-                <!-- <i>
-                  (leave blank if you don't want to change it)
-                </i> -->
-
-                <div><%= f.label :password_confirmation do %>确认密码<% end %>
-                 <%= f.password_field :password_confirmation %>
-               </div><br />
-
-                <div><%= f.label :current_password do %>原密码<% end %><!--  <i>(we need your current password to confirm your changes)</i> 下来可以做tooltip-->
-                  <%= f.password_field :current_password %>
-                </div><br />
-                
-                <div>
-                    <%= f.label :name do %>姓名<% end %>
-                    <%= f.text_field :name %>
-                </div> <br />
- 
-                <div>
-                    <%= f.label :sex do %>性别<% end %>
-                    <%= f.select(:sex, [['女', 'female'], ['男','male']]) %>
-                </div><br />
-
-                <div>
-                    <%= f.label :motto do %>格言<% end %>
-                    <%= f.text_area :motto %>
-                </div><br />
-
-                <div>
-                  <%= f.label :occupation_id do %>职业<% end %>
-                  <%= f.select(:occupation_id, [['学生',1],['作者',2],['画家',3],['白领',4]]) %>
-                </div><br />
-
-                  <p>
-                    标签
+                <div class="user-img">
+                  <!-- <img src="../assets/demopage/image-11.jpg" /> -->
+                  <%= image_tag current_user.photo.url(:medium), :width=>"192px", :height=>"197px" %>
+                  <p style="text-align:center;">
+                    <button type="button" class="btn default btn-mini buynow" style="width:80px; font-size:12px;position:relative;cursor:pointer">
+                      更改头像<%= f.file_field :photo, :style => "width:80px;height:30px;position:absolute;left:0;top:0;opacity:0;cursor:inherit" %>
+                    </button>
                   </p>
-                  <div class="label-box" style="padding-top:0; position:relative; top:-10px;">
-                    <a href="###" class="btn btn-success btn-mini">
-                      萌
-                    </a>
-                    <a href="###" class="btn btn-success btn-mini">
-                      可爱
-                    </a>
-                    <a href="###" class="btn btn-success btn-mini">
-                      赛高
-                    </a>
-                  </div>
+                </div>
+                <div class="form-con">
 
-                  <fieldset>
-                    <legend>联系信息</legend>
-                    <div>
-                      <%= f.label :phone do %>电话<% end %>
-                      <%= f.text_field :phone %>
-                    </div><br />
+                  <div><%= f.label :email %>
+                  <%= f.email_field :email, :autofocus => true %></div><br />
 
-                    <div>
-                      <%= f.label :address do %>地址<% end %>
-                      <%= f.text_area :address %>
-                    </div><br />
-                  </fieldset>
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div><br />
+                  <% end %>
 
-                <!-- 使用Option Tags from a Collection of Arbitrary Objects来自动生成options -->
+                  <div><%= f.label :password do %>新密码<% end %>
+                   <%= f.password_field :password, :autocomplete => "off" %>
+                 </div><br />
+
+                  <!-- <i>
+                    (leave blank if you don't want to change it)
+                  </i> -->
+
+                  <div><%= f.label :password_confirmation do %>确认密码<% end %>
+                   <%= f.password_field :password_confirmation %>
+                 </div><br />
+
+                  <div><%= f.label :current_password do %>原密码<% end %><!--  <i>(we need your current password to confirm your changes)</i> 下来可以做tooltip-->
+                    <%= f.password_field :current_password %>
+                  </div><br />
+                  
+                  <div>
+                      <%= f.label :name do %>姓名<% end %>
+                      <%= f.text_field :name %>
+                  </div> <br />
+   
+                  <div>
+                      <%= f.label :sex do %>性别<% end %>
+                      <%= f.select(:sex, [['女', 'female'], ['男','male']]) %>
+                  </div><br />
 
                   <div>
-                    <%= f.submit "更新", class: "btn btn-danger btn-lg update"%>
-                  </div>
+                      <%= f.label :motto do %>格言<% end %>
+                      <%= f.text_area :motto %>
+                  </div><br />
+
+                  <div>
+                    <%= f.label :occupation_id do %>职业<% end %>
+                    <%= f.select(:occupation_id, [['学生',1],['作者',2],['画家',3],['白领',4]]) %>
+                  </div><br />
+
+                    <p>
+                      标签
+                    </p>
+                    <div class="label-box" style="padding-top:0; position:relative; top:-10px;">
+                      <a href="###" class="btn btn-success btn-mini">
+                        萌
+                      </a>
+                      <a href="###" class="btn btn-success btn-mini">
+                        可爱
+                      </a>
+                      <a href="###" class="btn btn-success btn-mini">
+                        赛高
+                      </a>
+                    </div>
+
+                    <fieldset>
+                      <legend>联系信息</legend>
+                      <div>
+                        <%= f.label :phone do %>电话<% end %>
+                        <%= f.text_field :phone %>
+                      </div><br />
+
+                      <div>
+                        <%= f.label :address do %>地址<% end %>
+                        <%= f.text_area :address %>
+                      </div><br />
+                    </fieldset>
+
+                  <!-- 使用Option Tags from a Collection of Arbitrary Objects来自动生成options -->
+
+                    <div>
+                      <%= f.submit "更新", class: "btn btn-danger btn-lg update"%>
+                    </div>
                   <% end %>
                     <!-- </form> -->
             </div>

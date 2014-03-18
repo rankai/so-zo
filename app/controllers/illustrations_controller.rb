@@ -1,11 +1,18 @@
 class IllustrationsController < ApplicationController
-	before_filter :authenticate_user!, :except => [:index, :show]
+	before_filter :authenticate_user!, :except => [:index, :show, :top]
 	
 	respond_to :json, :html, :js
 
 	# get personal works
 	def works
 		@illustrations = current_user.illustrations.all
+	end
+
+	def top
+		#can specify top no
+		top = params["top"]
+		@illustrations = Illustration.last(3)
+		render partial: "top", object: @illustrations
 	end
 
 	def index

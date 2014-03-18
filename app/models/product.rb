@@ -48,6 +48,8 @@ class Product < ActiveRecord::Base
 				@product.illustration_id = illustration.id
 				@product.make_image(tmp_image_path)
 
+				system "rm -f tmp_image_path"
+
 				if @product.save
 					products_array.push(@product)
 				else

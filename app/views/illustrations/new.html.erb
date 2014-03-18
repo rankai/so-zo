@@ -1,24 +1,55 @@
+<%= stylesheet_link_tag "illustrations" %>
+
 <script type="text/javascript">
+
     $(document).ready(function() {
-        // hide loading div
-        $("#loading").hide();
+
+       $("#myModal").modal('show');
 
         var options = {
-            target: '#illustration_view',
+            dataType: 'html',
             success: function(data) {
-                $("#loading_msg").text("upload successfully, creating products");
                 $("#illustration_view").html(data);
+                $("#uploading").hide();
+                $("#making").show();
                 preview_products();
             }
         };
 
         $('#upload_pic').click(function() {
-            $("#loading_msg").text("uploading your work");
-            // show loading dive
-            $("#loading").show();
-            $("#upload_form").ajaxForm(options).submit();
-            return false;
+            $("#upload_form").ajaxForm(options).submit();  
+            $("#pre").hide();
+            $("#uploading").show();
+            $("#myModal").modal('hide');
         });
+
+        $('#myModal').on('hidden.bs.modal', function (e) {
+       
+        });
+
+        $("input[type='file']").change(function(evt) {
+            var files = evt.target.files;
+
+            for (var i = 0,
+            f; f = files[i]; i++) {
+
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+
+                var reader = new FileReader();
+
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        $("#list img").attr("src", e.target.result); //预览图片的位置  
+                        $("#pre").hide();               
+                    };
+                })(f);
+
+                reader.readAsDataURL(f);
+            }
+        });
+
     });
 
     var preview_products = function() {
@@ -27,15 +58,38 @@
             url: '/products/preview',
             data: {ill_id:$("#ill_id").val()},
             success: function(data) {
-                console.log(data);
-                $("#loading").hide();
+                $("#making").hide();
                 $("#products_view").html(data);
             }
         };
-        $.ajax(options);
-    }
-    </script>
 
+        $.ajax(options);
+
+        /*$('#products_view').waterfall({
+            itemCls: 'item',
+            fitWidth: true,
+            colWidth: 222,  
+            gutterWidth: 15,
+            gutterHeight: 15,
+            isFadeIn: true,
+            isAnimated: true,
+            checkImagesLoaded: false,
+            debug: true,
+            dataType: 'html',
+            path: function(page) {
+                return '/products/preview?' + 'ill_id=' + $("#ill_id").val();
+            }
+        });
+        $("#loading").hide();*/
+    };
+</script>
+
+<style type="text/css">
+    .col-sm-2 {
+        width: 20%;
+        margin-bottom: 10px;
+    }
+</style>
     <!--
     # upload file
     # upload success - > request preview products
@@ -46,16 +100,55 @@
 <body id="top">
     <div class="contents">
         <%= render "home/nav" %>
-            <div style="height:76px"></div>
-            <div class="container">
-                    <%= render "upload" %>
-                    <%= render "loading" %>
-                     <!-- test -->
-                    <div id="illustration_view">
-                    </div>
-                    <div id="products_view">
-                    </div>
-                    <div class="clear">
-                    </div>
+            <div style="height:76px">
             </div>
+            <div class="container">
+
+                        <div class="clear">
+                        </div>
+
+                        <%= render "upload" %>
+
+                        <div style="margin-top: 10px">
+                        <div class="left-cont">
+                            <div id="illustration_view" style="display:none">
+                            </div>
+                        </div>
+                        <div id="products_view" class="right-cont">
+                                <!--把图片资源添加到此处 例如： <div class="col-sm-2">
+                                <div class="graybox">
+                                <div class="imgarea">
+                                <a class="example-image-link" href="./img/example2.gif" data-lightbox="example-set" title="『新生 軟式globe』">
+                                <img class="example-image" src="./img/example2.gif" alt="" /></a>
+                                </div>
+                                <p class="itemtitle">『新生 軟式globe』</p>
+                                </div 
+                                </div>  
+                                -->
+                            <%= render "loading" %>
+                        </div>
+                        <!--products_view-->
+                        <div class="clear"></div>
+            </div><!--container-->
+
+    </div><!--contents-->
+
+    <script type="text/javascript">
+        $(function(){
+            // waterfall
+            var $container = $("#products_view");
+            $container.imagesLoaded(function() {
+                $container.masonry({
+                      itemSelector: '.col-sm-2',
+                      isAnimated: true, 
+                      animationOptions: {
+                        duration: 700,
+                        easing: 'linear',
+                        queue: false
+                      }              
+                   });
+            });
+        });
+    </script>
+
 </body>

@@ -1,24 +1,46 @@
-
-<!-- <div id="hidden_form" style="display:none"> -->
-<div id="hidden_form">
-    <%= form_for :illustration, url: user_illustrations_path(current_user), remote: true,  html: {display: 'none', id: 'upload_form'} do |f| %>
-      <div>
-          <%= f.label :ill_image do %>Choose your work<% end %>
-          <%= f.file_field :ill_image %>
-      </div><br />
-
-      <div>
-          <%= f.submit "Upload", :id => "upload_pic" %>
+<!-- Modal -->
+<div class="modal fade " id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title">
+          Upload your work
+        </h4>
       </div>
-
-    <% end %>
+      <div class="modal-body">
+        <p>
+          One fine bday&hellip;
+        </p>
+        <div id="list">
+          <img src="/assets/question_mark.jpg" width="200px" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= form_for :illustration, url: user_illustrations_path(current_user),
+        remote: true, html: {display: 'none', id: 'upload_form'} do |f| %>
+          <div class="upload" style="cursor:pointer">
+            <div class="uploading-text">
+              选择作品
+            </div>
+            <%= f.file_field :ill_image, :style=>
+              "width:140px;height:40px;position:absolute;left:0;top:0;opacity:0;cursor:inherit"
+              %>
+          </div>
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">
+            close
+          </button>
+          <!-- <button type="button" class="btn btn-primary" style="height:40px"
+          id="upload_button">上传作品</button> -->
+          <%= f.submit "上传作品", :id=>
+            "upload_pic", :class => "btn btn-primary", :style => "height:40px" %>
+            <% end %>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
 </div>
-
-
-<!-- <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-    <p class="help-block">Example block-level help text here.</p>
-</div> -->
-
-<!-- this way is not a friendly way, but I will try this before I go for other way -->
+<!-- /.modal -->

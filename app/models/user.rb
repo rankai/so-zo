@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   belongs_to  :occupation
 
   #has_attached_file :file, :styles => {:detailed => "1920x1920>", :thumb => "100x100>"}
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :photo, :styles => { :medium => "197x197>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   #not set path for every user
 
   # skip for audio

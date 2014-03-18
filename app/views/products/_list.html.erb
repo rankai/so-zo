@@ -1,103 +1,63 @@
 <!--<%= @products.size() %>-->
-<div class="image-row">
-	 <div class="image-set">
-	      <div class="row" id="ill">
-	          <div class="image-row">
-	              <div class="image-set">
+<% @products.each do |product| %>
+    <div class="col-sm-2">
+        <div class="graybox">
+            <div class="imgarea">
+                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
+                title="<%= product.name %>">
+                    <%= image_tag product.product_image.url(:thumb) %>
+                </a>
+            </div><!-- imgarea -->
+            <p class="itemtitle">
+                『<%= product.name %>』
+            </p>
+        </div><!-- graybox -->
+    </div><!-- col2 -->
 
-					<% @products.each do |product| %>
+    <!-- test for all -->
+    <div class="col-sm-2">
+        <div class="graybox">
+            <div class="imgarea">
+                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
+                title="<%= product.name %>">
+                    <%= image_tag product.product_image.url(:thumb) %>
+                </a>
+            </div><!-- imgarea -->
+            <p class="itemtitle">
+                『<%= product.name %>』
+            </p>
+        </div><!-- graybox -->
+    </div><!-- col2 -->
+    <div class="col-sm-2">
+        <div class="graybox">
+            <div class="imgarea">
+                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
+                title="<%= product.name %>">
+                    <%= image_tag product.product_image.url(:thumb) %>
+                </a>
+            </div><!-- imgarea -->
+            <p class="itemtitle">
+                『<%= product.name %>』
+            </p>
+        </div><!-- graybox -->
+    </div><!-- col2 -->
+    <div class="col-sm-2">
+        <div class="graybox">
+            <div class="imgarea">
+                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
+                title="<%= product.name %>">
+                    <%= image_tag product.product_image.url(:thumb) %>
+                </a>
+            </div><!-- imgarea -->
+            <p class="itemtitle">
+                『<%= product.name %>』
+            </p>
+        </div><!-- graybox -->
+    </div><!-- col2 -->
+<% end %>
 
-	                    <div class="col-sm-2">
-	                        <div class="graybox">
-	                            <div class="imgarea">
-	                                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
-	                                title="<%= product.name %>">
-	                                    <%= image_tag product.product_image.url(:thumb) %>
-	                                </a>
-	                            </div><!-- imgarea -->
-	                            <p class="itemtitle">
-	                                『<%= product.name %>』
-	                            </p>
-	                        </div><!-- graybox -->
-	                    </div><!-- col2 -->
+<!-- below all tests, should be removed after that-->
 
-	                    <!-- below all tests, should be removed after that-->
-
-	                    <div class="col-sm-2">
-	                        <div class="graybox">
-	                            <div class="imgarea">
-	                                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
-	                                title="<%= product.name %>">
-	                                    <%= image_tag product.product_image.url(:thumb) %>
-	                                </a>
-	                            </div><!-- imgarea -->
-	                            <p class="itemtitle">
-	                                『<%= product.name %>』
-	                            </p>
-	                        </div><!-- graybox -->
-	                    </div><!-- col2 -->
-
-
-	                    <div class="col-sm-2">
-	                        <div class="graybox">
-	                            <div class="imgarea">
-	                                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
-	                                title="<%= product.name %>">
-	                                    <%= image_tag product.product_image.url(:thumb) %>
-	                                </a>
-	                            </div><!-- imgarea -->
-	                            <p class="itemtitle">
-	                                『<%= product.name %>』
-	                            </p>
-	                        </div><!-- graybox -->
-	                    </div><!-- col2 -->
-
-	                    <div class="col-sm-2">
-	                        <div class="graybox">
-	                            <div class="imgarea">
-	                                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
-	                                title="<%= product.name %>">
-	                                    <%= image_tag product.product_image.url(:thumb) %>
-	                                </a>
-	                            </div><!-- imgarea -->
-	                            <p class="itemtitle">
-	                                『<%= product.name %>』
-	                            </p>
-	                        </div><!-- graybox -->
-	                    </div><!-- col2 -->
-
-	                    <div class="col-sm-2">
-	                        <div class="graybox">
-	                            <div class="imgarea">
-	                                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
-	                                title="<%= product.name %>">
-	                                    <%= image_tag product.product_image.url(:thumb) %>
-	                                </a>
-	                            </div><!-- imgarea -->
-	                            <p class="itemtitle">
-	                                『<%= product.name %>』
-	                            </p>
-	                        </div><!-- graybox -->
-	                    </div><!-- col2 -->
+<!-- test end -->
 
 
-	                    <div class="col-sm-2">
-	                        <div class="graybox">
-	                            <div class="imgarea">
-	                                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
-	                                title="<%= product.name %>">
-	                                    <%= image_tag product.product_image.url(:thumb) %>
-	                                </a>
-	                            </div><!-- imgarea -->
-	                            <p class="itemtitle">
-	                                『<%= product.name %>』
-	                            </p>
-	                        </div><!-- graybox -->
-	                    </div><!-- col2 -->
-
-					<% end %>
-
-	             </div><!-- row ill -->
-	       </div> <!-- image set -->
-	</div> <!-- image row -->
-</div>

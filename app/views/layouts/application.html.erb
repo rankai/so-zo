@@ -2,42 +2,39 @@
 <html>
 <head>
   <title>SoZo</title>
-  <!--<%= stylesheet_link_tag "application", media: "all" %>-->
+  
   <%= javascript_include_tag "application", "data-turbolinks-track" => true  %>
 
-
+  <%= stylesheet_link_tag    "reset" %>
   <%= stylesheet_link_tag    "style" %>
   <%= stylesheet_link_tag    "meny" %>
   <%= stylesheet_link_tag    "lightbox" %>
   <%= stylesheet_link_tag    "bootstrap.min" %>
   <%= stylesheet_link_tag    "home" %>
-<!--   <%= javascript_include_tag "jquery-1.10.2.min" %>
-  <%= javascript_include_tag "lightbox-2.6.min" %>
-  <%= javascript_include_tag "https://code.jquery.com/jquery.js" %>
-  <%= javascript_include_tag "bootstrap.min" %>
-  <%= javascript_include_tag "modernizr.custom" %>
-  <%= javascript_include_tag "jquery.masonry.min" %>
-  <%= javascript_include_tag "meny.min" %>
-  <%= javascript_include_tag "jquery.jqzoom-core" %>
-  <%= javascript_include_tag "jquery.jqzoom-core-pack" %>
-  <%= javascript_include_tag "szxue" %> -->
 
+  <!-- Bootstrap -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+  queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file://
+  -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+      </script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
+      </script>
+  <![endif]-->
 
   <%= csrf_meta_tags %>
 
 </head>
 <body>
+  
   <% if notice %>
     <div class="alert alert-warning alert-dismissable" style="text-align:right">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <!-- strong>Warning!</strong> Better check yourself, you're not looking too good. -->
       <span><%= notice %></span>
-  <!--     <span><%= alert %></span> -->
     </div>
     <% end %>
-<!-- 	
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p> -->
 
 	<%= yield %>
 

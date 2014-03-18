@@ -19,7 +19,11 @@ SoZo::Application.routes.draw do
 
   get "users/:user_id/illustrations", :to => "illustrations#works"
 
-  resources :illustrations, only:[:index]
+  resources :illustrations, only:[:index] do 
+    collection do
+      get 'top'
+    end
+  end
 
   #------------------------------- illustrations ------------------------
 

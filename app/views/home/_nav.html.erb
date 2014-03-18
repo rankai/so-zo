@@ -7,62 +7,75 @@
                 <!--<a href="index.html"><img src="./assets/logo.jpg" alt="" /></a>-->
             </h1>
             <div class="col-sm-1"></div>
-                <ul>
-                        <li><%= link_to "イラスト", illustrations_path, class: "menu" %></li>
-                        <li><%= link_to "商品", illustrations_path, class: "menu" %></li>
-                        <li><%= link_to "作者", illustrations_path, class: "menu" %></li>
-                        <li><%= link_to "ギャザリング", illustrations_path, class: "menu" %></li>
-                </ul>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-4">
-                <div>
-                    <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" title="Some tooltip text!">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                    <a href="<%= edit_user_registration_path %>" class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" title="User Center">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </a>
-                    <a href="<%= authors_path %>" class="btn btn-primary btn-md" role="button" style="color: white">
-                        <span class="glyphicon glyphicon-star"></span>
-                    </a>
-                    <a href="<%= authors_path %>" class="btn btn-warning btn-md" role="button" style="color: white">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                    </a>
-                </div>
-                <!--<div class="well well-sm" style="margin:3px;">-->
-               <div class="login-panel">
-                   <% if user_signed_in? %>
-                            <div class="user-info"> 
-                                <span style="float:left">您好：<%= current_user.name %></span>
-                                <div class="user-toggle">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                                            <span class="glyphicon glyphicon-magnet" style="margin-right:5px"></span><span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="<%= new_user_illustration_path(current_user) %>">上传作品</a/</li>
-                                            <li><a href="#">我的作品</a></li>
-                                            <li><a href="#">我的订单</a></li>
-                                            <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>
-                                            <li class="divider"></li>
-                                            <li><!-- <a href="<%= destroy_user_session_path %>">退出</a> -->
-                                                <%= link_to "退出", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                            </li>
-                                        </ul>
-                                    </div> <!-- btn-group -->
-                                </div> <!-- user-toggle -->
-                            </div>
+            <ul>
+                    <li><%= link_to "イラスト", illustrations_path, class: "menu" %></li>
+                    <li><%= link_to "商品", illustrations_path, class: "menu" %></li>
+                    <li><%= link_to "作者", illustrations_path, class: "menu" %></li>
+                    <li><%= link_to "ギャザリング", illustrations_path, class: "menu" %></li>
+            </ul>
 
-                        
-                        <!-- <p class="notice"></p> -->
-                   <% else %>
-                        <a href="<%= "users/sign_in" %>">登陆</a> |
-                        <a href="<%= "users/sign_up" %>">注册</a>
-                       <!--  <p class="alert"></p> -->
-                   <% end %>
-                    <!--</div>-->	<!-- well -->
-                </div> <!-- login-panel -->
-            </div>	<!-- col 4 -->
+            <div class="col-sm-1"></div>
+           
+            <div id="button_panel" style="position:relative;">
+                <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" title="Some tooltip text!">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+                <a href="<%= edit_user_registration_path %>" class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" title="User Center">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+                <a href="<%= authors_path %>" class="btn btn-primary btn-md" role="button" style="color: white">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+                <a href="<%= authors_path %>" class="btn btn-warning btn-md" role="button" style="color: white">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                </a>
+            </div>
+            <!--<div class="well well-sm" style="margin:3px;">-->
+           <div class="login-panel">
+               <% if user_signed_in? %>
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                $("#tougao").click(function() {
+                                    location.href="<%= new_user_illustration_path(current_user) %>";
+                                })
+                            });
+                        </script>
+
+                        <div class="user-info"> 
+                            <span style="float:left">您好：<%= current_user.name %></span>
+                            <div class="user-toggle">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-magnet" style="margin-right:5px"></span><span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<%= new_user_illustration_path(current_user) %>">上传作品</a/</li>
+                                        <li><a href="#">我的作品</a></li>
+                                        <li><a href="#">我的订单</a></li>
+                                        <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>
+                                        <li class="divider"></li>
+                                        <li><!-- <a href="<%= destroy_user_session_path %>">退出</a> -->
+                                            <%= link_to "退出", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+                                        </li>
+                                    </ul>
+                                </div> <!-- btn-group -->
+                            </div> <!-- user-toggle -->
+                        </div>
+
+                        <div class="user-gougao" style="margin-top:-15px">
+                            <button class="btn btn-danger" id="tougao" style="height:40px;">
+                                Upload Work
+                            </button>
+                        </div>        
+                    
+                    <!-- <p class="notice"></p> -->
+               <% else %>
+                    <a href="<%= "users/sign_in" %>">登陆</a> |
+                    <a href="<%= "users/sign_up" %>">注册</a>
+                   <!--  <p class="alert"></p> -->
+               <% end %>
+            </div> <!-- login-panel -->
             <div class="clear"></div>
         </div>	<!-- container -->
     </div>	<!-- nav -->
+
