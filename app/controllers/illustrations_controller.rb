@@ -10,8 +10,8 @@ class IllustrationsController < ApplicationController
 
 	def top
 		#can specify top no
-		top = params["top"]
-		@illustrations = Illustration.last(3)
+		top = params["top"].to_i
+		@illustrations = Illustration.last(top)
 		render partial: "top", object: @illustrations
 	end
 

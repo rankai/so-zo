@@ -3,9 +3,9 @@
     <div class="col-sm-2">
         <div class="graybox">
             <div class="imgarea">
-                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
+                <a class="example-image-link" href="<%= product.product_images.first.product_image.url(:large) %>" data-lightbox="example-set"
                 title="<%= product.name %>">
-                    <%= image_tag product.product_image.url(:thumb) %>
+                    <%= image_tag product.product_images.first.product_image.url(:thumb), alt: product.name %>
                 </a>
             </div><!-- imgarea -->
             <p class="itemtitle">
@@ -18,9 +18,9 @@
     <div class="col-sm-2">
         <div class="graybox">
             <div class="imgarea">
-                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
+                <a class="example-image-link" href="<%= product.product_images.first.product_image.url(:large) %>" data-lightbox="example-set"
                 title="<%= product.name %>">
-                    <%= image_tag product.product_image.url(:thumb) %>
+                    <%= image_tag product.product_images.first.product_image.url(:thumb), alt: product.name  %>
                 </a>
             </div><!-- imgarea -->
             <p class="itemtitle">
@@ -31,9 +31,9 @@
     <div class="col-sm-2">
         <div class="graybox">
             <div class="imgarea">
-                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
+                <a class="example-image-link" href="<%= product.product_images.first.product_image.url(:large) %>" data-lightbox="example-set"
                 title="<%= product.name %>">
-                    <%= image_tag product.product_image.url(:thumb) %>
+                    <%= image_tag product.product_images.first.product_image.url(:thumb), alt: product.name %>
                 </a>
             </div><!-- imgarea -->
             <p class="itemtitle">
@@ -41,19 +41,7 @@
             </p>
         </div><!-- graybox -->
     </div><!-- col2 -->
-    <div class="col-sm-2">
-        <div class="graybox">
-            <div class="imgarea">
-                <a class="example-image-link" href="<%= product.product_image.url(:large) %>" data-lightbox="example-set"
-                title="<%= product.name %>">
-                    <%= image_tag product.product_image.url(:thumb) %>
-                </a>
-            </div><!-- imgarea -->
-            <p class="itemtitle">
-                『<%= product.name %>』
-            </p>
-        </div><!-- graybox -->
-    </div><!-- col2 -->
+
 <% end %>
 
 <!-- below all tests, should be removed after that-->

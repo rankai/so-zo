@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade " id="myModal">
+<div class="modal fade modal-tougao" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,20 +7,23 @@
           &times;
         </button>
         <h4 class="modal-title">
-          Upload your work
+         上传您的大作
         </h4>
       </div>
+      <%= form_for :illustration, url: user_illustrations_path(current_user),
+        remote: true, html: {display: 'none', id: 'upload_form'} do |f| %>
       <div class="modal-body">
-        <p>
-          One fine bday&hellip;
-        </p>
         <div id="list">
           <img src="/assets/question_mark.jpg" width="200px" />
         </div>
+        <div class="des">
+          <%= f.label :name do %>作品名称:<% end %>
+          <%= f.text_field :name, size:"30", maxlength:"50" %>
+          <%= f.text_area :description, class: "form-control", rows: "3", onBlur: "if(this.innerHTML==''){this.innerHTML='填写作品描述......';this.style.color='#D1D1D1'}", onFocus: "if(this.innerHTML=='填写作品描述......'){this.innerHTML='';this.style.color='#000'}", value: "填写作品描述......" %>
+        </div>
       </div>
+      
       <div class="modal-footer">
-        <%= form_for :illustration, url: user_illustrations_path(current_user),
-        remote: true, html: {display: 'none', id: 'upload_form'} do |f| %>
           <div class="upload" style="cursor:pointer">
             <div class="uploading-text">
               选择作品

@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/rails/activerecord-session_store.git
+  revision: 55dc59aff9a1101c52004c0604bb88418624ba96
+  specs:
+    activerecord-session_store (0.1.0)
+      actionpack (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
+      railties (>= 4.0.0, < 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,6 +65,9 @@ GEM
     execjs (2.0.2)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
+    gon (5.0.4)
+      actionpack (>= 2.3.0)
+      json
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -175,9 +187,11 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  activerecord-session_store!
   cancan
   coffee-rails (~> 4.0.0)
   devise
+  gon
   jbuilder (~> 1.2)
   jquery-rails
   paperclip (~> 4.1.1)

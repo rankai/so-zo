@@ -37,6 +37,12 @@ gem 'paperclip', '~> 4.1.1'
 #image crop
 gem 'rails_admin_jcrop'
 
+#active_record_session
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
+# GOn
+gem 'gon'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

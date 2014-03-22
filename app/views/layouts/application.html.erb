@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>SoZo</title>
-  
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true  %>
 
+  <%= include_gon %>
+  <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    "reset" %>
   <%= stylesheet_link_tag    "style" %>
   <%= stylesheet_link_tag    "meny" %>

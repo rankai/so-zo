@@ -16,6 +16,25 @@
 	font-size:15px;
 	font-weight:800;
 }
+
+input{
+	border:1px solid #eee;
+}
+
+.des{
+	margin-left:5px;
+	margin-top:20px;
+}
+
+.des textarea{
+ 	color: #d1d1d1;
+} 
+
+#list {
+	text-align:center;
+}
+
+
 .inputstyle {
 	width:144px;
 	height:41px;
@@ -78,7 +97,6 @@
 }
 .right-cont {
 	padding:10px;
-	border:1px solid #eee;
 	width:100%;
 	min-height:600px;
 	margin:auto auto;
@@ -90,3 +108,4 @@
 	margin: 100px auto 0;
 	width:200px;
 }
+

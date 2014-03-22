@@ -73,15 +73,28 @@ RailsAdmin.config do |config|
   config.model Product do
     edit do
       field :name
-      field :illustration
-      field :product_template
       field :description
       field :price
-      field :position_X
-      field :position_Y
-      field :ill_size_W
-      field :ill_size_H
+      field :illustration
+      field :product_template
       field :product_image
+    end
+  end
+
+config.model ProductTemplate do
+    edit do
+      field :template_name
+      field :template_category
+      field :price
+      field :description
+      field :sizes
+      field :colors
+      field :head_image
+      field :head_image_mask
+      field :back_image
+      field :back_image_mask
+      field :side_image
+      field :side_image_mask
     end
   end
 

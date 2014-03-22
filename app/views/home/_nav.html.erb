@@ -33,24 +33,24 @@
             <!--<div class="well well-sm" style="margin:3px;">-->
            <div class="login-panel">
                <% if user_signed_in? %>
-                        <script type="text/javascript">
+                        <!--<script type="text/javascript">
                             $(document).ready(function() {
                                 $("#tougao").click(function() {
                                     location.href="<%= new_user_illustration_path(current_user) %>";
                                 })
                             });
-                        </script>
+                        </script>-->
 
                         <div class="user-info"> 
                             <span style="float:left">您好：<%= current_user.name %></span>
                             <div class="user-toggle">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                    <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">
                                         <span class="glyphicon glyphicon-magnet" style="margin-right:5px"></span><span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="<%= new_user_illustration_path(current_user) %>">上传作品</a/</li>
-                                        <li><a href="#">我的作品</a></li>
+                                        <li><a href="#">我的作品<span class="badge"><%= current_user.illustrations.count %></span></a></li>
                                         <li><a href="#">我的订单</a></li>
                                         <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>
                                         <li class="divider"></li>
@@ -60,12 +60,10 @@
                                     </ul>
                                 </div> <!-- btn-group -->
                             </div> <!-- user-toggle -->
-                        </div>
+                        </div><!-- user-info -->
 
-                        <div class="user-gougao" style="margin-top:-15px">
-                            <button class="btn btn-danger" id="tougao" style="height:40px;">
-                                Upload Work
-                            </button>
+                        <div class="user-tougao">
+                            <a href="<%= new_user_illustration_path(current_user) %>" class="btn-tougao" id="tougao">投稿</a>
                         </div>        
                     
                     <!-- <p class="notice"></p> -->
@@ -78,4 +76,3 @@
             <div class="clear"></div>
         </div>	<!-- container -->
     </div>	<!-- nav -->
-

@@ -1,16 +1,3 @@
-ul#thumblist{display:block;}
-ul#thumblist li{float:left;list-style:none;}
-ul#thumblist li a{display:block;border:1px solid #eee;}
-ul#thumblist li a.zoomThumbActive{
-    border:1px solid #F97570;
-}
-
-.jqzoom{
-
-	text-decoration:none;
-	float:left;
-}
-
 .zoomPad{
 	position:relative;
 	float:left;
@@ -47,16 +34,15 @@ ul#thumblist li a.zoomThumbActive{
 
 .zoomPup{
 	overflow:hidden;
-	background-color: #FFF; 
+	background-color: #FFF;
 	-moz-opacity:0.6;
 	opacity: 0.6;
 	filter: alpha(opacity = 60);
 	z-index:120;
 	position:absolute;
-	border:1px solid #eee;
+	border:1px solid #CCC;
   z-index:101;
   cursor:crosshair;
-  
 }
 
 .zoomOverlay{

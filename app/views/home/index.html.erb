@@ -4,16 +4,26 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
-      var options = {
+      var ill_options = {
               target: '#make',
               url: '/illustrations/top',
               data: {top:3},
               success: function(data) {
-                  $("#loading").hide();
                   $("#make").html(data);
               }
           };
-      $.ajax(options);
+      $.ajax(ill_options);
+
+      var product_options = {
+        target: "#products_latest_4",
+        url: '/products/top',
+        data: {top:4},
+        success:function(data) {
+          $("#products_latest_4").html(data);
+        }  
+      };
+
+      $.ajax(product_options);
    })    
   </script>
   </head>
@@ -36,105 +46,34 @@
             <div class="image-set">
               <div class="row" id="new">
 
-                <div class="col-sm-3">
-                  <div class="graybox">
-                    <p class="ribbon">
-                      <img src="/assets/new_ribbon.png" alt="" />
-                    </p>
-                    <div class="imgarea">
-                      <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
-                      title="作品">
-                        <img class="example-image" src="/assets/example1.gif" alt="" />
-                      </a>
-                      <div class="price">
-                        ￥１００
-                      </div>
-                    </div>
-                    <!-- imgarea -->
-                    <p class="itemtitle">
-                      作品
-                    </p>
-                    <p class="itemdetail">
-                      作品詳細
-                    </p>
-                  </div><!-- graybox -->
-                </div><!-- col3 -->
+                <% @products.each do |product| %>
 
-                <div class="col-sm-3">
-                  <div class="graybox">
-                    <p class="ribbon">
-                      <img src="/assets/new_ribbon.png" alt="" />
-                    </p>
-                    <div class="imgarea">
-                      <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
-                      title="作品">
-                        <img class="example-image" src="/assets/example1.gif" alt="" />
-                      </a>
-                      <div class="price">
-                        ￥１００
+                  <div class="col-sm-3">
+                    <div class="graybox">
+                      <p class="ribbon">
+                        <img src="/assets/new_ribbon.png" alt="" />
+                      </p>
+                      <div class="imgarea">
+                        <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
+                        title="作品">
+                          <img class="example-image" src="<%= product.product_images.first.product_image.url(:medium) %>" alt="" />
+                        </a>
+                        <div class="price">
+                          ￥<%= product.price %>
+                        </div>
                       </div>
-                    </div>
-                    <!-- imgarea -->
-                    <p class="itemtitle">
-                      作品
-                    </p>
-                    <p class="itemdetail">
-                      作品詳細
-                    </p>
-                  </div>
-                  <!-- graybox -->
-                </div>
-                <!-- col3 -->
-                <div class="col-sm-3">
-                  <div class="graybox">
-                    <p class="ribbon">
-                      <img src="/assets/new_ribbon.png" alt="" />
-                    </p>
-                    <div class="imgarea">
-                      <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
-                      title="作品">
-                        <img class="example-image" src="/assets/example1.gif" alt="" />
-                      </a>
-                      <div class="price">
-                        ￥１００
-                      </div>
-                    </div>
-                    <!-- imgarea -->
-                    <p class="itemtitle">
-                      作品
-                    </p>
-                    <p class="itemdetail">
-                      作品詳細
-                    </p>
-                  </div>
-                  <!-- graybox -->
-                </div>
-                <!-- col3 -->
-                <div class="col-sm-3">
-                  <div class="graybox">
-                    <p class="ribbon">
-                      <img src="/assets/new_ribbon.png" alt="" />
-                    </p>
-                    <div class="imgarea">
-                      <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
-                      title="作品">
-                        <img class="example-image" src="/assets/example1.gif" alt="" />
-                      </a>
-                      <div class="price">
-                        ￥１００
-                      </div>
-                    </div>
-                    <!-- imgarea -->
-                    <p class="itemtitle">
-                      作品
-                    </p>
-                    <p class="itemdetail">
-                      作品詳細
-                    </p>
-                  </div>
-                  <!-- graybox -->
-                </div>
-                <!-- col3 -->
+                      <!-- imgarea -->
+                      <p class="itemtitle">
+                        <%= product.name %>
+                      </p>
+                      <p class="itemdetail">
+                        <%= product.description %>
+                      </p>
+                    </div><!-- graybox -->
+                  </div><!-- col3 -->
+
+                <% end %>       
+
               </div>
               <!-- row new -->
             </div>
@@ -162,118 +101,11 @@
           <div class="image-row">
             <div class="image-set">
               <div class="row" id="new">
-                <div class="col-sm-3">
-                  <div class="graybox">
-                    <p class="ribbon">
-                      <img alt="main visual" src="/assets/new_ribbon.png" />
-                    </p>
-                    <!-- ribbon -->
-                    <div class="imgarea">
-                      <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif"
-                      title="『新生 軟式globe』">
-                        <img alt="main visual" class="example-image" src="/assets/example1.gif"
-                        />
-                      </a>
-                      <!-- example-image-link -->
-                      <div class="price">
-                        ￥2533
-                      </div>
-                    </div>
-                    <!-- image area-->
-                    <p class="itemtitle">
-                      『新生 軟式globe』
-                    </p>
-                    <p class="itemdetail">
-                      2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画
-                    </p>
-                  </div>
-                  <!-- graybox -->
+                
+                <div id="products_latest_4">
+
                 </div>
-                <!-- col-sm-3 -->
-                <div class="col-sm-3">
-                  <div class="graybox">
-                    <p class="ribbon">
-                      <img alt="main visual" src="/assets/new_ribbon.png" />
-                    </p>
-                    <!-- ribbon -->
-                    <div class="imgarea">
-                      <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif"
-                      title="『新生 軟式globe』">
-                        <img alt="main visual" class="example-image" src="/assets/example1.gif"
-                        />
-                      </a>
-                      <!-- example-image-link -->
-                      <div class="price">
-                        ￥2533
-                      </div>
-                    </div>
-                    <!-- image area-->
-                    <p class="itemtitle">
-                      『新生 軟式globe』
-                    </p>
-                    <p class="itemdetail">
-                      2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画
-                    </p>
-                  </div>
-                  <!-- graybox -->
-                </div>
-                <!-- col-sm-3 -->
-                <div class="col-sm-3">
-                  <div class="graybox">
-                    <p class="ribbon">
-                      <img alt="main visual" src="/assets/new_ribbon.png" />
-                    </p>
-                    <!-- ribbon -->
-                    <div class="imgarea">
-                      <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif"
-                      title="『新生 軟式globe』">
-                        <img alt="main visual" class="example-image" src="/assets/example1.gif"
-                        />
-                      </a>
-                      <!-- example-image-link -->
-                      <div class="price">
-                        ￥2533
-                      </div>
-                    </div>
-                    <!-- image area-->
-                    <p class="itemtitle">
-                      『新生 軟式globe』
-                    </p>
-                    <p class="itemdetail">
-                      2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画
-                    </p>
-                  </div>
-                  <!-- graybox -->
-                </div>
-                <!-- col-sm-3 -->
-                <div class="col-sm-3">
-                  <div class="graybox">
-                    <p class="ribbon">
-                      <img alt="main visual" src="/assets/new_ribbon.png" />
-                    </p>
-                    <!-- ribbon -->
-                    <div class="imgarea">
-                      <a class="example-image-link" data-lightbox="example-set" href="/assets/example1.gif"
-                      title="『新生 軟式globe』">
-                        <img alt="main visual" class="example-image" src="/assets/example1.gif"
-                        />
-                      </a>
-                      <!-- example-image-link -->
-                      <div class="price">
-                        ￥2533
-                      </div>
-                    </div>
-                    <!-- image area-->
-                    <p class="itemtitle">
-                      『新生 軟式globe』
-                    </p>
-                    <p class="itemdetail">
-                      2002年に放送されていたTBS系バラエティ番組のラッパー発掘企画
-                    </p>
-                  </div>
-                  <!-- graybox -->
-                </div>
-                <!-- col-sm-3 -->
+
               </div>
               <!-- row new -->
             </div>

@@ -1,5 +1,9 @@
 SoZo::Application.routes.draw do
 
+  resources :line_items
+
+  resources :carts
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   devise_for :users
 
@@ -19,7 +23,7 @@ SoZo::Application.routes.draw do
 
   get "users/:user_id/illustrations", :to => "illustrations#works"
 
-  resources :illustrations, only:[:index] do 
+  resources :illustrations, only:[:index, :show] do 
     collection do
       get 'top'
     end
@@ -49,7 +53,10 @@ SoZo::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
      resources :products do
-        get 'preview', :on => :collection
+        collection do
+          get 'preview'
+          get 'top'
+        end
      end
      
      resources :authors

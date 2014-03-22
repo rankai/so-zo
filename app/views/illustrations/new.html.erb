@@ -60,6 +60,20 @@
             success: function(data) {
                 $("#making").hide();
                 $("#products_view").html(data);
+                var $container = $("#products_view");
+                $container.imagesLoaded(function() {
+                    $container.masonry({
+                          itemSelector: '.col-sm-2',
+                          isAnimated: true, 
+                          animationOptions: {
+                            duration: 700,
+                            easing: 'linear',
+                            queue: false
+                          }              
+                       });
+                });
+
+    
             }
         };
 
@@ -82,6 +96,7 @@
         });
         $("#loading").hide();*/
     };
+
 </script>
 
 <style type="text/css">
@@ -132,23 +147,4 @@
             </div><!--container-->
 
     </div><!--contents-->
-
-    <script type="text/javascript">
-        $(function(){
-            // waterfall
-            var $container = $("#products_view");
-            $container.imagesLoaded(function() {
-                $container.masonry({
-                      itemSelector: '.col-sm-2',
-                      isAnimated: true, 
-                      animationOptions: {
-                        duration: 700,
-                        easing: 'linear',
-                        queue: false
-                      }              
-                   });
-            });
-        });
-    </script>
-
 </body>

@@ -51,7 +51,7 @@
                                             <div class="imgarea">
                                                 <a class="example-image-link" href="<%= illustration.ill_image.url(:large) %>" data-lightbox="example-set"
                                                 title="『<%= illustration.name %>』">
-                                                    <%= image_tag illustration.ill_image.url(:thumb), class: "example-image", alt: "" %>
+                                                    <%= image_tag illustration.ill_image.url(:thumb), class: "example-image", alt: illustration.name %>
                                                 </a>
                                             </div>
                                             <!-- imgarea -->

@@ -11,13 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315041032) do
+ActiveRecord::Schema.define(version: 20140320220227) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "colors", force: true do |t|
+    t.string   "name"
+    t.string   "rgb"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "colors_product_templates", force: true do |t|
+    t.integer "color_id"
+    t.integer "product_template_id"
   end
 
   create_table "credit_cards", force: true do |t|
@@ -49,6 +66,16 @@ ActiveRecord::Schema.define(version: 20140315041032) do
 
   add_index "illustrations", ["user_id"], name: "index_illustrations_on_user_id"
 
+  create_table "line_items", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "color_id"
+    t.integer  "size_id"
+  end
+
   create_table "occupations", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -63,6 +90,7 @@ ActiveRecord::Schema.define(version: 20140315041032) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color"
   end
 
   add_index "order_items", ["order_id", "product_id"], name: "index_order_items_on_order_id_and_product_id"
@@ -72,6 +100,7 @@ ActiveRecord::Schema.define(version: 20140315041032) do
     t.datetime "created_at"
     t.integer  "user_id"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
@@ -88,20 +117,22 @@ ActiveRecord::Schema.define(version: 20140315041032) do
 
   add_index "pictures", ["album_id"], name: "index_pictures_on_album_id"
 
+  create_table "product_images", force: true do |t|
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "product_image_file_name"
+    t.string   "product_image_content_type"
+    t.integer  "product_image_file_size"
+    t.datetime "product_image_updated_at"
+  end
+
   create_table "product_templates", force: true do |t|
     t.string   "template_name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "template_category_id"
-    t.integer  "intial_X"
-    t.integer  "intial_Y"
-    t.integer  "size_W"
-    t.integer  "size_H"
-    t.string   "front_image_file_name"
-    t.string   "front_image_content_type"
-    t.integer  "front_image_file_size"
-    t.datetime "front_image_updated_at"
     t.string   "back_image_file_name"
     t.string   "back_image_content_type"
     t.integer  "back_image_file_size"
@@ -110,10 +141,6 @@ ActiveRecord::Schema.define(version: 20140315041032) do
     t.string   "side_image_content_type"
     t.integer  "side_image_file_size"
     t.datetime "side_image_updated_at"
-    t.string   "front_image_mask_file_name"
-    t.string   "front_image_mask_content_type"
-    t.integer  "front_image_mask_file_size"
-    t.datetime "front_image_mask_updated_at"
     t.string   "back_image_mask_file_name"
     t.string   "back_image_mask_content_type"
     t.integer  "back_image_mask_file_size"
@@ -122,27 +149,37 @@ ActiveRecord::Schema.define(version: 20140315041032) do
     t.string   "side_image_mask_content_type"
     t.integer  "side_image_mask_file_size"
     t.datetime "side_image_mask_updated_at"
+    t.integer  "price"
+    t.string   "head_image_file_name"
+    t.string   "head_image_content_type"
+    t.integer  "head_image_file_size"
+    t.datetime "head_image_updated_at"
+    t.string   "head_image_mask_file_name"
+    t.string   "head_image_mask_content_type"
+    t.integer  "head_image_mask_file_size"
+    t.datetime "head_image_mask_updated_at"
   end
 
   add_index "product_templates", ["template_category_id"], name: "index_product_templates_on_template_category_id"
+
+  create_table "product_templates_sizes", force: true do |t|
+    t.integer "size_id"
+    t.integer "product_template_id"
+  end
 
   create_table "products", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.string   "description"
-    t.integer  "position_X"
-    t.integer  "position_Y"
     t.integer  "degree"
-    t.integer  "ill_size_W"
-    t.integer  "ill_size_H"
-    t.string   "product_image_file_name"
-    t.string   "product_image_content_type"
-    t.integer  "product_image_file_size"
-    t.datetime "product_image_updated_at"
     t.integer  "price"
     t.integer  "product_template_id"
     t.integer  "illustration_id"
+    t.integer  "position_X"
+    t.integer  "position_Y"
+    t.integer  "size_W"
+    t.integer  "size_H"
   end
 
   add_index "products", ["product_template_id", "illustration_id"], name: "index_products_on_product_template_id_and_illustration_id"
@@ -157,6 +194,23 @@ ActiveRecord::Schema.define(version: 20140315041032) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+
+  create_table "sizes", force: true do |t|
+    t.string   "name"
+    t.string   "size_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tags", force: true do |t|
     t.string   "tag_name"

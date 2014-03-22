@@ -44,11 +44,13 @@ $(function() {
                 <div class="user-img">
                   <!-- <img src="../assets/demopage/image-11.jpg" /> -->
                   <%= image_tag current_user.photo.url(:medium), :width=>"192px", :height=>"197px" %>
-                  <p style="text-align:center;">
-                    <button type="button" class="btn default btn-mini buynow" style="width:80px; font-size:12px;position:relative;cursor:pointer">
-                      更改头像<%= f.file_field :photo, :style => "width:80px;height:30px;position:absolute;left:0;top:0;opacity:0;cursor:inherit" %>
+                  <p style="text-align:center;position:relative;">
+                    <button type="button" class="btn default btn-mini buynow" style="width:80px; font-size:12px;position:absolute;left:50px;">
+                      更改头像
                     </button>
+                    <%= f.file_field :photo, :style => "width:150px;height:30px;border:solid transparent;position:absolute;left:0px;top:10px;opacity:0;filter:alpha(opacity=0);cursor:pointer" %>
                   </p>
+
                 </div>
                 <div class="form-con">
 
@@ -92,7 +94,8 @@ $(function() {
 
                   <div>
                     <%= f.label :occupation_id do %>职业<% end %>
-                    <%= f.select(:occupation_id, [['学生',1],['作者',2],['画家',3],['白领',4]]) %>
+                    <!-- f.select(:occupation_id, [['学生',1],['作者',2],['画家',3],['白领',4]]) -->
+                    <%= f.select(:occupation_id, Occupation.all.collect{|o|[o.name, o.id]}, {include_blank: true}) %>
                   </div><br />
 
                     <p>
