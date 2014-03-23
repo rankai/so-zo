@@ -54,8 +54,8 @@
                         <img src="/assets/new_ribbon.png" alt="" />
                       </p>
                       <div class="imgarea">
-                        <a class="example-image-link" href="/assets/example1.gif" data-lightbox="example-set"
-                        title="作品">
+                        <a class="example-image-link" href="<%= product.product_images.first.product_image.url(:large) %>" data-lightbox="example-set"
+                        title="『<%= product.name %>』">
                           <img class="example-image" src="<%= product.product_images.first.product_image.url(:medium) %>" alt="" />
                         </a>
                         <div class="price">
@@ -64,7 +64,7 @@
                       </div>
                       <!-- imgarea -->
                       <p class="itemtitle">
-                        <%= product.name %>
+                        『<%= product.name %>』
                       </p>
                       <p class="itemdetail">
                         <%= product.description %>

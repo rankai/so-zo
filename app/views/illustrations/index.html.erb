@@ -58,6 +58,31 @@
                                             <p class="itemtitle">
                                                 『<%= illustration.name %>』
                                             </p>
+
+                                            <button type="button" class="btn btn-default waterfall-btn-left" onclick='window.location.href="<%= illustration_path(illustration.id) %>"'>
+                                                <span class="glyphicon glyphicon-eye-open">
+                                                </span>
+                                                <span class="waterfall-btn-title">浏览</span>
+                                            </button>
+                                            <button type="button" class="btn btn-default waterfall-btn-right">
+                                                                                                <span class="waterfall-btn-title">收藏</span>
+                                                <span class="glyphicon glyphicon-star">
+                                                </span>
+                                            </button>
+
+                                            <div class="describe">
+                                                <p>
+                                                   <%= illustration.description %>
+                                                </p>
+                                            </div>
+                                            <div class="line-price">
+                                            </div>
+                                            <div class="line-bottom">
+                                                <p>
+                                                    250人相关购买
+                                                </p>
+                                            </div>
+
                                         </div><!-- graybox -->
                                     </div><!-- col-sm-2 -->
                                 <% end %>

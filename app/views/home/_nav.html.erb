@@ -2,11 +2,11 @@
         <div class="container">
             <h1 id="logo">
               <%= link_to(root_path) do %>
-              <%= image_tag("logo.jpg", alt: "logo") %>
+              <%= image_tag("logo2.png", alt: "So-Zo", width:"140px") %>
               <% end %>
                 <!--<a href="index.html"><img src="./assets/logo.jpg" alt="" /></a>-->
             </h1>
-            <div class="col-sm-1"></div>
+            <div style="width:50px;height:1px"></div>
             <ul>
                     <li><%= link_to "イラスト", illustrations_path, class: "menu" %></li>
                     <li><%= link_to "商品", illustrations_path, class: "menu" %></li>
@@ -17,19 +17,20 @@
             <div class="col-sm-1"></div>
            
             <div id="button_panel" style="position:relative;">
-                <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" title="Some tooltip text!">
+                <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="搜索">
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
-                <a href="<%= edit_user_registration_path %>" class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" title="User Center">
+                <a href="<%= user_path(current_user) %>" class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="用户信息">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
-                <a href="<%= authors_path %>" class="btn btn-primary btn-md" role="button" style="color: white">
+                <a href="<%= authors_path %>" class="btn btn-primary btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="收藏">
                     <span class="glyphicon glyphicon-star"></span>
                 </a>
-                <a href="<%= authors_path %>" class="btn btn-warning btn-md" role="button" style="color: white">
+                <a href="<%= authors_path %>" class="btn btn-warning btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="购物车">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </a>
             </div>
+
             <!--<div class="well well-sm" style="margin:3px;">-->
            <div class="login-panel">
                <% if user_signed_in? %>
@@ -51,7 +52,7 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="<%= new_user_illustration_path(current_user) %>">上传作品</a/</li>
                                         <li><a href="#">我的作品<span class="badge"><%= current_user.illustrations.count %></span></a></li>
-                                        <li><a href="#">我的订单</a></li>
+                                        <li><a href="#">我的订单<span class="badge"><%= current_user.orders.count %></span></a></li>
                                         <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>
                                         <li class="divider"></li>
                                         <li><!-- <a href="<%= destroy_user_session_path %>">退出</a> -->

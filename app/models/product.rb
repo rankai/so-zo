@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
 
 	belongs_to :product_template
 	belongs_to :illustration
-	has_many   :product_images
+	has_many   :product_images, dependent: :destroy
 	has_many   :line_items
 
 	def self.generate_products(illustration)

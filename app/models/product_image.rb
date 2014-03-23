@@ -3,7 +3,7 @@ class ProductImage < ActiveRecord::Base
 	belongs_to :product
 
 	#has_attached_file :file, :styles => {:detailed => "1920x1920>", :thumb => "100x100>"}
-	has_attached_file :product_image, 	     :styles => {:large =>"800x800>", :medium => "300x300>", :thumb => "200x200>" }, :default_url => "/images/:style/missing.png"	
+	has_attached_file :product_image, 	     :styles => {:large =>"800x800>", :medium => "400x400>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"	
 	#not set path for every user
 
 	# skip for audio

@@ -13,7 +13,7 @@
 	
 
 		<!-- ill info -->
-        <div class="imgBox"><%= image_tag @illustration.ill_image.url("medium") %></div>
+        <div class="imgBox"><%= image_tag @illustration.ill_image.url("medium"), class: "img-rounded" %></div>
         <!--label-box bg-->
         <!-- tags -->
 
@@ -32,7 +32,7 @@
           <div style="height:45px;"></div>
           <div class="buynow">
            
-           	<button type="button" class="btn btn-danger btn-lg buynow" style="height:40px; font-size:12px; margin-left:0; margin-left:-10px;">购&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;入</button>
+           	<button type="button" class="btn btn-primary btn-lg buynow" style="height:40px; font-size:12px; margin-left:0; margin-left:-10px;">收&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;藏</button>
             
             <div class="share-r">
              <span> share<font color="#FC5C54">+</font> </span>
@@ -54,7 +54,7 @@
         <h1 class="title"><span>可选形式</span></h1>
         <ul class="works-list works-list2 ">
         	<% @illustration.products.each do |product| %>
-        		<li><a href="###"><%= image_tag product.product_image.url(:medium), class:"img-thumbnail" %></a></li>
+        		<li><a href="<%= product_path(product) %>"><%= image_tag product.product_images.first.product_image.url(:medium), class:"img-thumbnail" %></a></li>
         	<% end %>
         </ul>
         </div>
@@ -87,7 +87,7 @@
         <div class="title">ポートフォリオ</div>
         <ul class="works-list">
         	<% @illustration.user.illustrations.last(5).each do |illustration| %>
-          <li><a href="###"><%= image_tag illustration.ill_image.url(:thumb), class:"img-thumbnail" %></a></li>
+          <li><a href="<%= illustration_path(illustration) %>"><%= image_tag illustration.ill_image.url(:thumb), class:"img-thumbnail" %></a></li>
         	<% end %>
         </ul>
       </div>
@@ -104,5 +104,10 @@
   <!-- container --> 
 </div>
 <!-- contents --> 
+
+  <script type="text/javascript">
+
+  </script>
+
 </body>
 

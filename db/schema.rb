@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320220227) do
+ActiveRecord::Schema.define(version: 20140323030509) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
@@ -65,6 +65,11 @@ ActiveRecord::Schema.define(version: 20140320220227) do
   end
 
   add_index "illustrations", ["user_id"], name: "index_illustrations_on_user_id"
+
+  create_table "illustrations_tags", force: true do |t|
+    t.integer "illustration_id"
+    t.integer "tag_id"
+  end
 
   create_table "line_items", force: true do |t|
     t.integer  "product_id"
@@ -215,6 +220,14 @@ ActiveRecord::Schema.define(version: 20140320220227) do
   create_table "tags", force: true do |t|
     t.string   "tag_name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "color_id"
+  end
+
+  create_table "tags_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

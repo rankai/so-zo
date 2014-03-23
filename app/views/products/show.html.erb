@@ -59,7 +59,7 @@
         $.post("/line_items",
           {product_id:gon.product_id, color_id:color_id, size_id:size_id, quantity:quantity}, 
           function(data) {
-            console.log(data);
+            //console.log(data);
           });
     });
 
@@ -69,11 +69,11 @@
             lens:true,  
             preloadImages: true,  
             alwaysOn:false,  
-            zoomWidth: 300,  
+            zoomWidth: 250,  
             zoomHeight: 250,  
             xOffset:10,  
             yOffset:10,  
-            position:'right' ,
+            position:'left' ,
             showEffect: "fadein" 
             //...MORE OPTIONS  
     };
@@ -114,9 +114,9 @@
               <div class="det_info_left">
                 <div class="clearfix" id="content">
                   <div class="clearfix" style="margin-bottom:10px; width:400px;">
-                    <a href="<%= @product.product_images.first.product_image.url(:large) %>" class="jqzoom" rel='gal1'
+                    <a href="<%= get_illustration_image(@product).url(:large) %>" class="jqzoom" rel='gal1'
                     title="<%= @product.name %>">
-                      <%= image_tag @product.product_images.first.product_image.url(:medium) %>
+                      <%= image_tag get_illustration_image(@product).url(:medium), class: "img-rounded" %>
                     </a>
                   </div>
                   <div class="clearfix">
@@ -124,10 +124,16 @@
 
                     <ul id="thumblist" class="clearfix">
 
+                      <li>
+                        <a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<%= get_illustration_image(@product).url(:medium) %>',largeimage: '<%= get_illustration_image(@product).url(:large) %>'}">
+                          <%= image_tag get_illustration_image(@product).url(:thumb), class: "img-thumbnail" %>
+                        </a>
+                      </li>
+
                      <% @product.product_images.each do |image| %>
                       <li>
-                        <a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<%= image.product_image.url(:medium) %>',largeimage: '<%= image.product_image.url(:large) %>'}">
-                          <%= image_tag image.product_image.url(:thumb) %>
+                        <a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<%= image.product_image.url(:medium) %>',largeimage: '<%= image.product_image.url(:large) %>'}">
+                          <%= image_tag image.product_image.url(:thumb),class: "img-thumbnail" %>
                         </a>
                       </li>
                      <% end %>
@@ -298,7 +304,7 @@
                         <p class="ribbon">
                         </p>
                         <div class="imgarea">
-                          <a class="example-image-link" href="<%= product.product_images.first.product_image.url(:large) %>"
+                          <a class="example-image-link" href="<%= product_path(product) %>"
                           data-lightbox="example-set" title="『新生 軟式globe』">
                             <img class="example-image" src="<%= product.product_images.first.product_image.url(:thumb) %>"
                             alt="" />

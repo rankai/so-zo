@@ -102,15 +102,11 @@ $(function() {
                       标签
                     </p>
                     <div class="label-box" style="padding-top:0; position:relative; top:-10px;">
-                      <a href="###" class="btn btn-success btn-mini">
-                        萌
-                      </a>
-                      <a href="###" class="btn btn-success btn-mini">
-                        可爱
-                      </a>
-                      <a href="###" class="btn btn-success btn-mini">
-                        赛高
-                      </a>
+                      <% @user.tags.each do |tag| %>
+                           <a class="btn btn-success btn-mini" style="background-color:<%= tag.color.rgb %>; border:none transparent">
+                          <%= tag.tag_name %>
+                          </a>
+                       <% end %>  
                     </div>
 
                     <fieldset>
@@ -211,135 +207,7 @@ $(function() {
       <div class="clear">
       </div>
       <div class="container">
-        <div id="grayfooter">
-          <div class="row">
-            <div class="col-lg-5">
-              <div style="margin:25px auto auto 70px;">
-                <p id="categorytitle">
-                  カテゴリから探す
-                </p>
-                <div class="categorylist">
-                  <ul>
-                    <li>
-                      <a href="#">
-                        アート
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        あいうおえ
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        プロダクト
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        ジャーナリズム
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        写真
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="categorylist">
-                  <ul>
-                    <li>
-                      <a href="#">
-                        アート
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        あいうおえ
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        プロダクト
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        ジャーナリズム
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        写真
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="categorylist">
-                  <ul>
-                    <li>
-                      <a href="#">
-                        アート
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        あいうおえ
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        プロダクト
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        ジャーナリズム
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        写真
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="clear">
-                </div>
-              </div>
-            </div>
-            <!-- col5 -->
-          </div>
-          <!-- row -->
-        </div>
-        <!-- grayfooter -->
-        <div id="bottomfooter">
-          <a href="#">
-            取引～～～～～
-          </a>
-          <a href="#">
-            ああああああ
-          </a>
-          <a href="#">
-            いうえおうおえ
-          </a>
-          <a href="#">
-            かきここかけ
-          </a>
-          <a href="#">
-            プライバシーポリシー
-          </a>
-          <a href="#">
-            お問合わせ
-          </a>
-          <div style="float:left;">
-            D＆SIY
-          </div>
-          <div class="clear">
-          </div>
-        </div>
-        <!-- bottomfooter -->
+        <%= render "home/bottom" %>
       </div>
       <!-- container -->
   </div>

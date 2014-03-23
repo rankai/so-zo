@@ -13,6 +13,7 @@ SoZo::Application.routes.draw do
   #------------------------------- illustrations ------------------------
   
   resources :users do
+
       resources :illustrations, except:[:index] do
         #get 'works', :on => :collection
       end

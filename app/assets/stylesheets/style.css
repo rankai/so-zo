@@ -31,7 +31,7 @@ a:hover {
 
 #nav{
 	position:fixed;
-	height:76px;
+	height:80px;
 	width:100%;
 	margin:0;
 	border-bottom:5px solid #F97570;
@@ -71,12 +71,12 @@ a:hover {
 }
 
 #nav #logo {
-	margin-top: 0px;
+	margin-top: -10px;
 }
 
 /* contents */
 
-#mainvisual{margin-top:70px;}
+#mainvisual{margin-top:95px;}
 
 #mainvisual img{
 	width:100%;
@@ -188,6 +188,9 @@ a:hover {
 	margin:30px auto;
 }
 
+#ill .col-sm-2:hover {
+	
+}
 
 #ill .col-sm-2 .graybox{
 	border:#eee 1px solid;
@@ -647,13 +650,14 @@ background:url(../assets/right-bt.jpg) no-repeat;
 .det_info_b .ku_num{ width:45px; margin:0 2px;}
 .det_info_b input.buy_now{ margin-right:5px;}
 .f-right3 .title_f{ padding:15px; font-size:16px; font-weight:bold; color:#333; text-align:center;}
-#thumblist li { padding-right:10px;}
-#thumblist li img{ width:84px; height:76px;}
 .marke_box{ padding-top:10px;}
 .marke_box .mark_ico{ display:block; width:70px; height:25px; line-height:25px; padding-left:30px; border:1px solid #eee; background:url(../images/mark_ico.png) no-repeat 8px center;}
 .det_main_box{ margin-top:10px;}
 
-.jqzoom img{ width:376px; height:369px;}
+.jqzoom img{ max-width:376px; max-height: 400px}
+#thumblist li { padding-right:10px; display:inline-block;}
+#thumblist li img{ width:80x; max-height:80px;}
+
 .det_info_a h1.title{ font-size:18px; color:#fc5c54; padding-bottom:23px; font-weight:normal; height:auto;}
 
 .numBar{ width:480px; padding:10px 0;}
@@ -878,4 +882,53 @@ _top:       expression(eval(document.compatMode &&  document.compatMode=='CSS1Co
 .btn-tougao:active {
 	position:relative;
 	top:1px;
+}
+
+
+/* water fall */
+.waterfall-btn-right {
+	float: right;
+}
+
+.waterfall-btn-title {
+	margin-left: 5px;
+	vertical-align: text-bottom;
+}
+
+.line-price {
+	border:dashed 1px #ccc;
+	width:100%;
+	height:1px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.describe {
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:10px;
+}
+
+.describe p {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.line-bottom {
+	margin-left:10px;
+	margin-right:10px;
+}
+
+
+
+/* tag */
+.label-box a {
+      　-moz-border-radius: 15px;
+　　     border-radius: 15px;
+        opacity: 0.7;
+        filter:(opacity=0.7);
+}
+
+	.label-box a:hover{
+	opacity: 1;
+	filter:(opacity=1);
 }

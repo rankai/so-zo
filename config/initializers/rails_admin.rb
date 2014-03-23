@@ -43,6 +43,7 @@ RailsAdmin.config do |config|
 
     #what edit will show
     edit do
+      field :id
       field :name
       field :password
       field :password_confirmation
@@ -53,6 +54,7 @@ RailsAdmin.config do |config|
       field :motto
       field :description
       field :roles
+      field :tags
       field :photo do
         jcrop_options aspectRatio: 500.0/320.0
       end
@@ -77,7 +79,7 @@ RailsAdmin.config do |config|
       field :price
       field :illustration
       field :product_template
-      field :product_image
+      field :product_images
     end
   end
 

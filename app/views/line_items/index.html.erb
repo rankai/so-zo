@@ -1,35 +1,209 @@
-<h1>Listing line_items</h1>
+<!DOCTYPE html>
+    
+<style type="text/css">
+  #my-cart {
+    width:60%;
+    margin: auto
+  }
 
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Cart</th>
-      <th>Color</th>
-      <th>Size</th>
-      <th>Count</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  #my-cart button {
+    width:120px;
+    height: 40px;
+    float: right;
+  }
 
-  <tbody>
-    <% @line_items.each do |line_item| %>
-      <tr>
-        <td><%= line_item.product_id %></td>
-        <td><%= line_item.cart_id %></td>
-        <td><%= line_item.color %></td>
-        <td><%= line_item.size %></td>
-        <td><%= line_item.count %></td>
-        <td><%= link_to 'Show', line_item %></td>
-        <td><%= link_to 'Edit', edit_line_item_path(line_item) %></td>
-        <td><%= link_to 'Destroy', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  #my-cart .btn-down {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
-<br>
+  #my-cart-title {
+    margin: 10px 0 20px 0;
+    padding-top: 20px
+  }
 
-<%= link_to 'New Line item', new_line_item_path %>
+  #my-cart-title #title {
+    font-size: x-large;
+    font-weight: bold;
+  }
+
+
+  .table {
+    width: 100%;
+    margin:auto;
+  }
+
+  .table thead tr {
+    background-color: #ddd
+  }
+
+  .table th span {
+    margin-left:5px; 
+    vertical-align:text-bottom
+  }
+
+  .table td span {
+    margin-left:5px; vertical-align:text-bottom
+  }
+
+  hr {
+    FILTER: alpha(opacity=100,finishopacity=0,style=3)
+  }
+
+</style>
+
+    <body id="top">
+        <div class="contents">
+            <%= render "home/nav2" %>
+          <div style="height:76px">
+          </div>
+          <div id="my-cart">
+
+              <div id="my-cart-title">
+                <span id="title">我的购物车</span>
+                 <button class="btn btn-danger btn-lg btn-up" style="display:none">
+                 去结算 <span class="glyphicon glyphicon-chevron-right"><span>
+              </button>
+                
+              </div>
+
+
+              <div class="panel panel-default">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox" id="all"/><span>全选</span></th>
+                      <th>商品</th>
+                      <!-- <th>Cart</th> -->
+                      <th>颜色</th>
+                      <th>尺寸</th>
+                      <th>数量</th>
+                      <th>价钱</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @line_items.each do |line_item| %>
+                      <tr>
+                        <td><input type="checkbox" name="line_items" /></td>
+                        <td><%= image_tag line_item.product.product_images.first.product_image.url(:thumb), width: "100px", class: "img-thumbnail", width: "80px" %><span><%= line_item.product.name %></span></td>
+                        <td>
+                            <% color = Color.find_by_id(line_item.color_id) do |color| %>
+                              <%= color.name %>
+                            <% end %>
+                        </td>
+                        <td>
+                            <% size = Size.find_by_id(line_item.size_id) do |size| %>
+                              <%= size.name %>
+                            <% end %>
+                        </td>
+                        <td class="quantity">  
+
+                          <%= line_item.quantity %>
+
+                        </td>
+                        <td class="price">
+                          ￥<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
+                              <%= product.price * line_item.quantity %>
+                          <% end %></span>
+                        </td>
+                        <td>
+                          <!-- link_to 'Show', line_item -->
+                          <!-- link_to 'Edit', edit_line_item_path(line_item) -->
+                          <%= link_to '删除', line_item, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+                </div>
+
+                <div class="panel-body" style="text-align:right">
+                  <hr width=100% size=3 color=#00ffff/>
+                  <span>总共有<em id="order_quantity"></em>件商品</span>
+                  <span>共</span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span>元</span>
+                </div>
+
+                <button class="btn btn-danger btn-lg btn-down">
+                   去结算 <span class="glyphicon glyphicon-chevron-right"><span>
+                </button>
+
+                <!-- <div class="panel-heading">Panel Heading</div> -->
+
+              </div>
+                <br>
+
+                <!-- link_to 'New Line item', new_line_item_path -->
+                </div>
+                <div class="clear">
+            </div>
+            <div class="container">
+               <%= render "home/bottom" %>
+           </div>
+    </body>
+
+    <script type="text/javascript">
+      $(function() {
+
+        calculateTotal();
+
+        $("#all").click(function() {
+
+            if($(this).prop("checked") == true) {
+              $('input[name="line_items"]').each(function(){
+                $(this).prop("checked", true);
+              });
+            } else {
+              $('input[name="line_items"]').each(function(){
+                $(this).removeAttr("checked");
+              });
+             
+            }
+            
+            calculateTotal();
+            
+        });
+
+        $('input[name="line_items"]').click(function() {
+          console.log("hjaa");
+            calculateTotal();
+        });
+
+      });
+
+      function calculateTotal() {
+
+        var quantity = 0;
+        var price    = 0;
+        // calculate money
+        $('input[name="line_items"]').each(function(){
+
+            if($(this).prop("checked") == true) {
+
+              $(this).parent().nextAll().each(function() {
+  
+                  if($(this).hasClass("quantity") == true) {
+                      quantity += parseInt($(this).text().trim());
+                  } 
+
+                  if($(this).hasClass("price") == true) {
+                      price    += parseFloat($(this).find("span").text().trim());
+                  } 
+              });
+            }
+        });
+
+        /*$(".quantity").each(function() {
+              quantity += parseInt($(this).text().trim());
+        });
+
+        $(".price span").each(function(){
+            price    += parseFloat($(this).text().trim());
+        });*/
+
+        $("#order_quantity").text(quantity);
+        $(".well-sm").text(price);
+      }
+    </script>

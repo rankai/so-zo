@@ -9,4 +9,8 @@ module ProductsHelper
 			count/3
 		end
 	end
+
+	def get_illustration_image(product)
+		product.illustration.ill_image
+	end
 end

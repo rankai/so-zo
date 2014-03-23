@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   #has_many :tags
   has_many    :credit_cards
   belongs_to  :occupation
+  has_and_belongs_to_many :tags
 
   #has_attached_file :file, :styles => {:detailed => "1920x1920>", :thumb => "100x100>"}
   has_attached_file :photo, :styles => { :medium => "197x197>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
