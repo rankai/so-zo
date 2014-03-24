@@ -20,13 +20,25 @@
                 <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="搜索">
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
-                <a href="<%= user_path(current_user) %>" class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="用户信息">
+                <a href="
+                    <% if user_signed_in? %>
+                        <%= user_path(current_user) %>
+                    <% else %>  
+                        <%= new_user_session_path %>
+                    <% end %>
+                    " class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="用户信息">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
-                <a href="<%= authors_path %>" class="btn btn-primary btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="收藏">
+                <a href="
+                    <% if user_signed_in? %>
+                        <%= user_path(current_user) %>
+                    <% else %>  
+                        <%= new_user_session_path %>
+                    <% end %>
+                " class="btn btn-primary btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="收藏">
                     <span class="glyphicon glyphicon-star"></span>
                 </a>
-                <a href="<%= authors_path %>" class="btn btn-warning btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="购物车">
+                <a href="<%= line_items_path %>" class="btn btn-warning btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="购物车">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </a>
             </div>

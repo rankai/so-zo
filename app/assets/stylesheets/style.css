@@ -914,6 +914,7 @@ _top:       expression(eval(document.compatMode &&  document.compatMode=='CSS1Co
 }
 
 .line-bottom {
+	padding-bottom: 10px;
 	margin-left:10px;
 	margin-right:10px;
 }
@@ -922,13 +923,31 @@ _top:       expression(eval(document.compatMode &&  document.compatMode=='CSS1Co
 
 /* tag */
 .label-box a {
-      　-moz-border-radius: 15px;
-　　     border-radius: 15px;
-        opacity: 0.7;
-        filter:(opacity=0.7);
+  　-moz-border-radius: 15px;
+　　 border-radius: 15px;
+    opacity: 0.7;
+    filter:(opacity=0.7);
 }
 
-	.label-box a:hover{
+.label-box a:hover{
 	opacity: 1;
 	filter:(opacity=1);
 }
+
+/* add_reduce number */
+.p_number .f_l{float:left;}
+.p_number .add_chose{width:105px;}
+.p_number .add_chose a{float:left;margin:5px 0 0 0;display:block;width:15px;height:15px;line-height:99em;overflow:hidden;background:url(reduce-add.gif) no-repeat;}
+.p_number .add_chose a.reduce{background-position:0 0;}
+.p_number .add_chose a.reduce:hover{background-position:0 -16px;}
+.p_number .add_chose a.add{background-position:-16px 0;}
+.p_number .add_chose a.add:hover{background-position:-16px -16px;}
+.p_number .add_chose .text{float:left;margin:0 5px;display:inline;border:solid 1px #ccc;padding:4px 3px 4px 8px;width:30px;line-height:18px;font-size:14px;color:#990000;font-weight:800;}
+.p_number .buy{line-height:2em;}
+.p_number .buy .total-font{font-family:Arial;font-size:26px;}
+.p_number .buy .jifen{margin-left:20px;color:#ACACAC;}
+.p_number .buy .jifen b{margin:0 3px;}
+
+
+/* my cart */
+/* IE doesn't load this if I put the css here*/

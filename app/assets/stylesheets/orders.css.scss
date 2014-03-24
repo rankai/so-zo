@@ -1,3 +1,11 @@
 // Place all the styles related to the Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+  .modal-body {
+    height: 250px
+  }
+
+  .form-control-static input[type="text"] {
+    padding:6px; 
+    border:#eee solid 1px
+  }

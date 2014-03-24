@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323030509) do
+ActiveRecord::Schema.define(version: 20140324041623) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140323030509) do
     t.string   "ill_image_content_type"
     t.integer  "ill_image_file_size"
     t.datetime "ill_image_updated_at"
+    t.integer  "state_id"
   end
 
   add_index "illustrations", ["user_id"], name: "index_illustrations_on_user_id"
@@ -105,7 +106,7 @@ ActiveRecord::Schema.define(version: 20140323030509) do
     t.datetime "created_at"
     t.integer  "user_id"
     t.datetime "updated_at"
-    t.integer  "status"
+    t.integer  "state_id"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
@@ -215,6 +216,13 @@ ActiveRecord::Schema.define(version: 20140323030509) do
     t.string   "size_value"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "states", force: true do |t|
+    t.string   "name",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "tags", force: true do |t|

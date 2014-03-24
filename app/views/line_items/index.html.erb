@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-    
+<link rel="stylesheet" type="text/css" href="/assets/buttons.css">   
 <style type="text/css">
-  #my-cart {
+
+  a:hover{
+    text-decoration: none
+  }
+
+  .my-cart {
     width:60%;
     margin: auto
   }
 
-  #my-cart button {
+  .my-cart button {
     width:120px;
     height: 40px;
     float: right;
   }
 
-  #my-cart .btn-down {
+  .my-cart .btn-down {
     margin-top: 20px;
     margin-bottom: 20px;
   }
 
-  #my-cart-title {
+  .my-cart-title {
     margin: 10px 0 20px 0;
     padding-top: 20px
   }
 
-  #my-cart-title #title {
+  .my-cart-title #title {
     font-size: x-large;
     font-weight: bold;
   }
-
 
   .table {
     width: 100%;
@@ -34,15 +38,19 @@
   }
 
   .table thead tr {
-    background-color: #ddd
+    background-color: #eee
   }
 
-  .table th span {
+  .table thead tr th span {
     margin-left:5px; 
     vertical-align:text-bottom
   }
 
-  .table td span {
+  .table tbody tr td {
+    vertical-align: middle;
+  }
+
+  .table tbody tr td span {
     margin-left:5px; vertical-align:text-bottom
   }
 
@@ -57,9 +65,9 @@
             <%= render "home/nav2" %>
           <div style="height:76px">
           </div>
-          <div id="my-cart">
+          <div class="my-cart">
 
-              <div id="my-cart-title">
+              <div class="my-cart-title">
                 <span id="title">我的购物车</span>
                  <button class="btn btn-danger btn-lg btn-up" style="display:none">
                  去结算 <span class="glyphicon glyphicon-chevron-right"><span>
@@ -70,16 +78,17 @@
 
               <div class="panel panel-default">
               <div class="table-responsive">
-                <table class="table">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th><input type="checkbox" id="all"/><span>全选</span></th>
                       <th>商品</th>
+                      <th>商品名称</th>
                       <!-- <th>Cart</th> -->
                       <th>颜色</th>
                       <th>尺寸</th>
                       <th>数量</th>
-                      <th>价钱</th>
+                      <th>单价</th>
                       <th>操作</th>
                     </tr>
                   </thead>
@@ -88,7 +97,8 @@
                     <% @line_items.each do |line_item| %>
                       <tr>
                         <td><input type="checkbox" name="line_items" /></td>
-                        <td><%= image_tag line_item.product.product_images.first.product_image.url(:thumb), width: "100px", class: "img-thumbnail", width: "80px" %><span><%= line_item.product.name %></span></td>
+                        <td><%= image_tag line_item.product.product_images.first.product_image.url(:thumb), width: "100px", class: "img-thumbnail", width: "80px" %></td>
+                        <td><span><%= line_item.product.name %></span></td>
                         <td>
                             <% color = Color.find_by_id(line_item.color_id) do |color| %>
                               <%= color.name %>
@@ -101,12 +111,18 @@
                         </td>
                         <td class="quantity">  
 
-                          <%= line_item.quantity %>
+                          <div class="p_number">
+                              <div class="f_l add_chose" style="margin-top:10px">
+                                  <a class="reduce" href="javascript:void(0)" onclick="setAmount.reduce('#qty_item_<%= line_item.id %>')">-</a>
+                                  <input type="text" name="qty_item" value="<%= line_item.quantity %>" id="qty_item_<%= line_item.id %>" onchange="calculateTotal()" onKeyUp="setAmount.modify('#qty_item_<%= line_item.id %>')"  class="text" />
+                                  <a class="add" href="javascript:void(0)" onclick="setAmount.add('#qty_item_<%= line_item.id %>')">+</a>
+                              </div>
+                          </div>
 
                         </td>
                         <td class="price">
                           ￥<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
-                              <%= product.price * line_item.quantity %>
+                              <%= product.price %>
                           <% end %></span>
                         </td>
                         <td>
@@ -126,7 +142,8 @@
                   <span>共</span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span>元</span>
                 </div>
 
-                <button class="btn btn-danger btn-lg btn-down">
+                <a href="<%= illustrations_path %>" class="button button-rounded button-flat" style="float:left; margin:20px">继续购物</a>
+                <button class="btn btn-danger btn-lg btn-down" id="btn_new_order">
                    去结算 <span class="glyphicon glyphicon-chevron-right"><span>
                 </button>
 
@@ -149,6 +166,22 @@
 
         calculateTotal();
 
+        $("#btn_new_order").click(function(){
+           <% if user_signed_in? %>
+
+              if(parseInt($("#order_quantity").text().trim()) == 0) {
+                
+                  alert("您需要至少选择一件商品");
+                  return
+              }
+
+              location.href="<%= new_user_order_path(current_user) %>";
+
+           <% else %>
+              location.href="<%= new_user_session_path %>";
+           <% end %>         
+        });
+
         $("#all").click(function() {
 
             if($(this).prop("checked") == true) {
@@ -167,16 +200,24 @@
         });
 
         $('input[name="line_items"]').click(function() {
-          console.log("hjaa");
             calculateTotal();
         });
+
+        // input instead of onchnage
+        $('input[type="text"').bind("input", function(){
+            calculateTotal();
+        });
+
+        // trigger click event after load
+        $("#all").trigger("click");
 
       });
 
       function calculateTotal() {
-
+        var item_quantity = 0;
         var quantity = 0;
         var price    = 0;
+        var item_price = 0;
         // calculate money
         $('input[name="line_items"]').each(function(){
 
@@ -185,11 +226,15 @@
               $(this).parent().nextAll().each(function() {
   
                   if($(this).hasClass("quantity") == true) {
-                      quantity += parseInt($(this).text().trim());
+                      item_quantity = parseInt($(this).find("input").val().trim());
+                      quantity += item_quantity
                   } 
 
                   if($(this).hasClass("price") == true) {
-                      price    += parseFloat($(this).find("span").text().trim());
+                      item_price = parseFloat($(this).find("span").text().trim()) * item_quantity;
+                      price    += item_price;
+                      item_price = 0;
+                      item_quantity = 0;
                   } 
               });
             }
