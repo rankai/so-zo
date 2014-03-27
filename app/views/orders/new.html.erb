@@ -1,4 +1,4 @@
- <style type="text/css">
+  <style type="text/css">
 
   .my-cart {
     width:60%;
@@ -84,6 +84,26 @@
 
         afterLoad();
 
+        /*$('#update_contact').click(function() {
+            $("#address_from").ajaxForm(options).submit();  
+            $("#myModal").modal('hide');
+            $("#edit_info").hide();
+            $("#loading").show();
+        });*/
+
+        $("#btn-order-confirm").click(function(){
+            if($("#address").text().trim() == "" || $("#tel").text().trim() == "")
+            {
+              $("#myModal").modal('show');
+              return false;
+            } else {
+              // everything is ok, submit the order
+              $("#order_form").submit();
+            }
+        });
+
+         // jquery validate
+
         var options = {
             dataType: 'json',
             success: function(data) {
@@ -94,20 +114,37 @@
             }
         };
 
-        $('#update_contact').click(function() {
-            $("#address_from").ajaxForm(options).submit();  
-            $("#myModal").modal('hide');
-            $("#edit_info").hide();
-            $("#loading").show();
-        });
+        $("#address-form").validate({
+            rules: {
+                "user[phone]": {
+                    required: true
+                },
+                "user[address]": {
+                    required: true
+                }
+            },
 
-        $("#btn_order_confirm").click(function(){
-            if($("#address").text().trim() == "" || $("#tel").text().trim() == "")
-            {
-              $("#myModal").modal('show');
-              return
-            } else {
+            highlight: function(element) {
+                $(element).closest(".form-group").addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
 
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function(error, element) {
+                if(element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element.parent());
+                }
+            },
+            submitHandler: function(form) {
+                jQuery(form).ajaxSubmit(options);
+                $("#myModal").modal('hide');
+                $("#edit_info").hide();
+                $("#loading").show();
             }
         });
 
@@ -117,6 +154,7 @@
         $("#loading").hide();
         $("#nav").css("background-image", 'url("/assets/buy_bg2.png")');
         calculateTotal();
+        $('#order_sum').val(parseInt($("#order_total").text()));
     }
 
     function calculateTotal() {
@@ -275,14 +313,22 @@
             <span>共</span><div class="well well-sm" id="order_total"></div><span>元</span>
           </div>
 
-          <button class="btn btn-danger btn-lg btn-down" id="btn_order_confirm">
-             确认订单 <span class="glyphicon glyphicon-chevron-right"><span>
-          </button>
-
+          <!-- <div class="panel-footer"> -->
           <!-- <div class="panel-heading">Panel Heading</div> -->
 
         </div>
-          <br>
+
+        <div class="btn-panel">
+          <a href="<%= line_items_path %>" class="button button-rounded button-flat" style="float:left; margin:20px">返回购物车</a>
+          <%= form_for :order, url: user_orders_path(current_user), html: {id: 'order_form'} do |f| %> 
+            <%= f.button :id=>
+            "btn-order-confirm", :class => "btn  btn-danger btn-lg btn-down", :style => "float: right; height:40px" do %> 
+                确认订单<span class="glyphicon glyphicon-chevron-right"><span>
+            <% end %>
+            <%= f.hidden_field :sum %>
+            <%= f.hidden_field :state_id, value: get_default_order_state() %>
+          <% end %>
+        </div>
 
           <!-- link_to 'New Line item', new_line_item_path -->
           </div>

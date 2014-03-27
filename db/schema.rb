@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324041623) do
+ActiveRecord::Schema.define(version: 20140325054609) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bases", force: true do |t|
+    t.string   "title",      null: false
+    t.text     "detail",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,26 +57,6 @@ ActiveRecord::Schema.define(version: 20140324041623) do
   create_table "events", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "illustrations", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.integer  "user_id"
-    t.datetime "updated_at"
-    t.string   "ill_image_file_name"
-    t.string   "ill_image_content_type"
-    t.integer  "ill_image_file_size"
-    t.datetime "ill_image_updated_at"
-    t.integer  "state_id"
-  end
-
-  add_index "illustrations", ["user_id"], name: "index_illustrations_on_user_id"
-
-  create_table "illustrations_tags", force: true do |t|
-    t.integer "illustration_id"
-    t.integer "tag_id"
   end
 
   create_table "line_items", force: true do |t|
@@ -181,14 +168,45 @@ ActiveRecord::Schema.define(version: 20140324041623) do
     t.integer  "degree"
     t.integer  "price"
     t.integer  "product_template_id"
-    t.integer  "illustration_id"
+    t.integer  "publish_id"
     t.integer  "position_X"
     t.integer  "position_Y"
     t.integer  "size_W"
     t.integer  "size_H"
   end
 
-  add_index "products", ["product_template_id", "illustration_id"], name: "index_products_on_product_template_id_and_illustration_id"
+  add_index "products", ["product_template_id", "publish_id"], name: "index_products_on_product_template_id_and_publish_id"
+
+  create_table "publish_categories", force: true do |t|
+    t.string   "name",        null: false
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "publishes", force: true do |t|
+    t.string   "name",                       null: false
+    t.text     "description",                null: false
+    t.integer  "user_id",                    null: false
+    t.integer  "state_id",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "publish_image_file_name"
+    t.string   "publish_image_content_type"
+    t.integer  "publish_image_file_size"
+    t.datetime "publish_image_updated_at"
+    t.integer  "publish_category_id"
+  end
+
+  add_index "publishes", ["publish_category_id"], name: "index_publishes_on_publish_category_id"
+  add_index "publishes", ["user_id"], name: "index_publishes_on_user_id"
+
+  create_table "publishes_tags", force: true do |t|
+    t.integer  "publish_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

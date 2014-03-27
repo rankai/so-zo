@@ -32,6 +32,8 @@ gem 'cancan' # authorization based on roles
 gem 'rolify' # roles
 gem 'rails_admin'
 
+gem 'wepay-rails'
+
 #file_upload
 gem 'paperclip', '~> 4.1.1'
 #image crop

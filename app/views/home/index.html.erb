@@ -6,7 +6,7 @@
    /*$(document).ready(function(){
       var ill_options = {
               target: '#make',
-              url: '/illustrations/top',
+              url: '/publishes/top',
               data: {top:3},
               success: function(data) {
                   $("#make").html(data);
@@ -33,7 +33,7 @@
       <div class="contents">
         <div class="container">
           <div id="mainvisual">
-            <%= image_tag( "mainvisual.gif", alt: "main visual") %>
+            <%= render "carousel" %>
               <!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />
               -->
           </div>
@@ -90,16 +90,16 @@
           </div>
           <div class="row" id="make"> 
 
-              <% get_top_3_illustrations().each do |illustration| %>
+              <% get_top_3_publishes().each do |publish| %>
                 <div class="col-sm-4">
                     <div class="graybox">
                       <div class="overflow">
-                        <a href="<%= illustration_path(illustration) %>">
-                          <%= image_tag illustration.ill_image.url(:medium), :width => "342px" %>
+                        <a href="<%= publish_path(publish) %>">
+                          <%= image_tag publish.publish_image.url(:medium), :width => "342px" %>
                         </a>
                       </div>
                       <p>
-                        <%= illustration.name %>
+                        <%= publish.name %>
                       </p>
                     </div>
                     <!-- graybox -->
@@ -197,7 +197,7 @@
                     About US
                   </p>
                   <p id="txt">
-                    ２０１０年に結成しました。都内のカフェでのイベントや、野外フェスでのライブを中心に活動しています。音楽に乗せて詩を朗読すると言
+                    <%= get_about_us() %>
                   </p>
                 </div>
               </div>

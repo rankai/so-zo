@@ -5,12 +5,12 @@ class ProductTemplate < ActiveRecord::Base
 	has_and_belongs_to_many :sizes
 
 	#has_attached_file :file, :styles => {:detailed => "1920x1920>", :thumb => "100x100>"}
-	has_attached_file :head_image, 	     :styles => {:large =>"800x800>", :medium => "300x300>", :thumb => "200x200>" }, :default_url => "/images/:style/missing.png"
-	has_attached_file :back_image,  	 :styles => {:large =>"800x800>", :medium => "300x300>", :thumb => "200x200>" }, :default_url => "/images/:style/missing.png"
-	has_attached_file :side_image,  	 :styles => {:large =>"800x800>", :medium => "300x300>", :thumb => "200x200>" }, :default_url => "/images/:style/missing.png"
-	has_attached_file :head_image_mask,  :styles => {:large =>"800x800>", :medium => "300x300>", :thumb => "200x200>" }, :default_url => "/images/:style/missing.png"
-	has_attached_file :back_image_mask,  :styles => {:large =>"800x800>", :medium => "300x300>", :thumb => "200x200>" }, :default_url => "/images/:style/missing.png"
-	has_attached_file :side_image_mask,  :styles => {:large =>"800x800>", :medium => "300x300>", :thumb => "200x200>" }, :default_url => "/images/:style/missing.png"
+	has_attached_file :head_image, 	     :styles => {:large =>"800x800>", :medium => "400x400>", :thumb => "100x100>" }
+	has_attached_file :back_image,  	 :styles => {:large =>"800x800>", :medium => "400x400>", :thumb => "100x100>" }
+	has_attached_file :side_image,  	 :styles => {:large =>"800x800>", :medium => "400x400>", :thumb => "100x100>" }
+	has_attached_file :head_image_mask,  :styles => {:large =>"800x800>", :medium => "400x400>", :thumb => "100x100>" }
+	has_attached_file :back_image_mask,  :styles => {:large =>"800x800>", :medium => "400x400>", :thumb => "100x100>" }
+	has_attached_file :side_image_mask,  :styles => {:large =>"800x800>", :medium => "400x400>", :thumb => "100x100>" }
 	#not set path for every user
 
 	# skip for audio

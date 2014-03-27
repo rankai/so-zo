@@ -9,13 +9,13 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">收货人信息</h4>
       </div>
-             <%= form_for :user, url: user_path(current_user), remote: true, method: :patch, html: { class: "form-horizontal", id: "address_from" } do |f| %>
+             <%= form_for :user, url: user_path(current_user), remote: true, method: :patch, html: { class: "form-horizontal", id: "address-form" } do |f| %>
       <div class="modal-body"> 
               <div class="form-group">
                   <label class="col-sm-2 control-label">
                       邮箱：
                   </label>
-                  <div class="col-sm-10">
+                  <div class="input-group">
                       <p class="form-control-static">
                           <%= current_user.email %>
                       </p>
@@ -27,7 +27,7 @@
                   <label class="col-sm-2 control-label">
                       姓名：
                   </label>
-                  <div class="col-sm-10">
+                  <div class="input-group">
                       <p class="form-control-static">
                           <%= current_user.name %>
                       </p>
@@ -39,9 +39,9 @@
                   <label class="col-sm-2 control-label">
                       电话：
                   </label>
-                  <div class="col-sm-10">
+                  <div class="input-group">
                       <p class="form-control-static">
-                        <%= f.text_field :phone, class: "text", placeholder:"请填写有效的电话", value: current_user.phone, :autofocus => true  %>
+                        <%= f.text_field :phone, class: "form-control", placeholder:"请填写有效的电话", value: current_user.phone, :autofocus => true  %>
                       </p>
                   </div>
               </div> 
@@ -49,16 +49,16 @@
                   <label class="col-sm-2 control-label">
                     地址：
                   </label>
-                  <div class="col-sm-10">
+                  <div class="input-group">
                       <p class="form-control-static">
-                         <%= f.text_area :address,  class: "form-control", rows: "3", placeholder:"请填写详细的收货地址", value: current_user.address %>
+                         <%= f.text_area :address,  class: "form-control", rows: "3", cols: "50", placeholder:"请填写详细的收货地址", value: current_user.address %>
                       </p>
                   </div>
               </div>         
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">取消</button>
-              <%= f.button "确  定", :id=>
+              <%= f.submit "确  定", :id=>
             "update_contact", :class => "btn btn-primary", :style => "height:40px" %>
                   <% end %>
           </div>

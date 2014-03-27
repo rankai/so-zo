@@ -10,7 +10,7 @@ module ProductsHelper
 		end
 	end
 
-	def get_illustration_image(product)
-		product.illustration.ill_image
+	def get_publish_image(product)
+		product.publish.publish_image
 	end
 end

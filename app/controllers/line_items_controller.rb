@@ -46,7 +46,10 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1.json
   def update
     respond_to do |format|
-      if @line_item.update(line_item_params)
+
+      @line_item = LineItem.find(params[:id])
+
+      if @line_item.update_attribute(:quantity, params[:quantity])
         format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
         format.json { head :no_content }
       else

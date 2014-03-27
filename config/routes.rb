@@ -1,5 +1,7 @@
 SoZo::Application.routes.draw do
 
+  resources :bases
+
   resources :line_items
 
   resources :carts
@@ -10,33 +12,38 @@ SoZo::Application.routes.draw do
   get 'home/index'
 
 
-  #------------------------------- illustrations ------------------------
+  #------------------------------- publishes ------------------------
   
   resources :users do
 
-      resources :illustrations, except:[:index] do
+      resources :publishes, except:[:index] do
         #get 'works', :on => :collection
       end
       resources :orders do
+
+        collection do
+          get 'pay'
+        end
+
         resources :items
       end
   end
 
-  get "users/:user_id/illustrations", :to => "illustrations#works"
+  get "users/:user_id/publishes", :to => "publishes#works"
 
-  resources :illustrations, only:[:index, :show] do 
+  resources :publishes, only:[:index, :show] do 
     collection do
       get 'top'
     end
   end
 
-  #------------------------------- illustrations ------------------------
+  #------------------------------- publishes ------------------------
 
 
-  #resources :illustrations
+  #resources :publishes
 
   #resources :users do
-  #  resources :illustrations
+  #  resources :publishes
   #end
 
   # The priority is based upon order of creation: first created -> highest priority.

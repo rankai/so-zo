@@ -77,7 +77,7 @@ RailsAdmin.config do |config|
       field :name
       field :description
       field :price
-      field :illustration
+      field :publish
       field :product_template
       field :product_images
     end

@@ -1,0 +1,195 @@
+<%= stylesheet_link_tag "publishes" %>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+       $("#myModal").modal('show');
+
+        var options = {
+            dataType: 'html',
+            success: function(data) {
+                $("#publish_view").html(data);
+                $("#uploading").hide();
+                $("#making").show();
+                preview_products();
+            }
+        };
+
+        /*$('#upload_pic').click(function() {
+
+            $('.form-group').each(function() {
+                if($(this)[0].is(".has-error") == true) {
+                    return
+                }
+            });
+
+            $("#upload_form").ajaxForm(options).submit();  
+            $("#pre").hide();
+            $("#uploading").show();
+            $("#myModal").modal('hide');
+        });*/
+
+        $('#myModal').on('hidden.bs.modal', function (e) {
+       
+        });
+
+        $("input[type='file']").change(function(evt) {
+            var files = evt.target.files;
+
+            for (var i = 0,
+            f; f = files[i]; i++) {
+
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+
+                var reader = new FileReader();
+
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        $(".publish-image img").attr("src", e.target.result); //预览图片的位置  
+                        $("#pre").hide();               
+                    };
+                })(f);
+
+                reader.readAsDataURL(f);
+            }
+        });
+
+        // jquery validate
+        $("#upload_form").validate({
+            rules: {
+                "publish[name]": {
+                    required: true
+                },
+                "publish[description]": {
+                    required: true
+                },
+                "publish[publish_image]": {
+                    required: true
+                }
+            },
+
+            highlight: function(element) {
+                $(element).closest(".form-group").addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function(error, element) {
+                if(element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element.parent());
+                }
+            },
+            submitHandler: function(form) {
+                jQuery(form).ajaxSubmit(options);
+                $("#pre").hide();
+                $("#uploading").show();
+                $("#myModal").modal('hide');
+            }
+        });
+
+    });
+
+    var preview_products = function() {
+        var options = {
+            target: '#products_view',
+            url: '/products/preview',
+            data: {publish_id:$("#publish_id").val()},
+            success: function(data) {
+                $("#making").hide();
+                $("#products_view").html(data);
+                var $container = $("#products_view");
+                $container.imagesLoaded(function() {
+                    $container.masonry({
+                          itemSelector: '.col-sm-2',
+                          isAnimated: true, 
+                          animationOptions: {
+                            duration: 700,
+                            easing: 'linear',
+                            queue: false
+                          }              
+                       });
+                });
+
+    
+            }
+        };
+
+        $.ajax(options);
+
+        /*$('#products_view').waterfall({
+            itemCls: 'item',
+            fitWidth: true,
+            colWidth: 222,  
+            gutterWidth: 15,
+            gutterHeight: 15,
+            isFadeIn: true,
+            isAnimated: true,
+            checkImagesLoaded: false,
+            debug: true,
+            dataType: 'html',
+            path: function(page) {
+                return '/products/preview?' + 'publish_id=' + $("#publish_id").val();
+            }
+        });
+        $("#loading").hide();*/
+    };
+
+</script>
+
+<style type="text/css">
+    .col-sm-2 {
+        width: 20%;
+        margin-bottom: 10px;
+    }
+</style>
+    <!--
+    # upload file
+    # upload success - > request preview products
+    # load products
+    # confirm products
+    # backend - save and clean products-->
+
+<body id="top">
+    <div class="contents">
+        <%= render "home/nav" %>
+            <div style="height:76px">
+            </div>
+            <div class="container">
+
+                        <div class="clear">
+                        </div>
+
+                        <%= render "upload" %>
+
+                        <div style="margin-top: 10px">
+                        <div class="left-cont">
+                            <div id="publish_view" style="display:none">
+                            </div>
+                        </div>
+                        <div id="products_view" class="right-cont">
+                                <!--把图片资源添加到此处 例如： <div class="col-sm-2">
+                                <div class="graybox">
+                                <div class="imgarea">
+                                <a class="example-image-link" href="./img/example2.gif" data-lightbox="example-set" title="『新生 軟式globe』">
+                                <img class="example-image" src="./img/example2.gif" alt="" /></a>
+                                </div>
+                                <p class="itemtitle">『新生 軟式globe』</p>
+                                </div 
+                                </div>  
+                                -->
+                            <%= render "loading" %>
+                        </div>
+                        <!--products_view-->
+                        <div class="clear"></div>
+            </div><!--container-->
+
+    </div><!--contents-->
+</body>

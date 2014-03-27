@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    function clear_session(){
+        
+    }
+</script>
+
 <div id="nav">
         <div class="container">
             <h1 id="logo">
@@ -8,10 +14,10 @@
             </h1>
             <div style="width:50px;height:1px"></div>
             <ul>
-                    <li><%= link_to "イラスト", illustrations_path, class: "menu" %></li>
-                    <li><%= link_to "商品", illustrations_path, class: "menu" %></li>
-                    <li><%= link_to "作者", illustrations_path, class: "menu" %></li>
-                    <li><%= link_to "ギャザリング", illustrations_path, class: "menu" %></li>
+                    <li><%= link_to "イラスト", publishes_path, class: "menu" %></li>
+                    <li><%= link_to "商品", publishes_path, class: "menu" %></li>
+                    <li><%= link_to "作者", publishes_path, class: "menu" %></li>
+                    <li><%= link_to "ギャザリング", publishes_path, class: "menu" %></li>
             </ul>
 
             <div class="col-sm-1"></div>
@@ -49,7 +55,7 @@
                         <!--<script type="text/javascript">
                             $(document).ready(function() {
                                 $("#tougao").click(function() {
-                                    location.href="<%= new_user_illustration_path(current_user) %>";
+                                    location.href="<%= new_user_publish_path(current_user) %>";
                                 })
                             });
                         </script>-->
@@ -62,13 +68,13 @@
                                         <span class="glyphicon glyphicon-magnet" style="margin-right:5px"></span><span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="<%= new_user_illustration_path(current_user) %>">上传作品</a/</li>
-                                        <li><a href="#">我的作品<span class="badge"><%= current_user.illustrations.count %></span></a></li>
+                                        <li><a href="<%= new_user_publish_path(current_user) %>">上传作品</a/</li>
+                                        <li><a href="#">我的作品<span class="badge"><%= current_user.publishes.count %></span></a></li>
                                         <li><a href="#">我的订单<span class="badge"><%= current_user.orders.count %></span></a></li>
                                         <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>
                                         <li class="divider"></li>
                                         <li><!-- <a href="<%= destroy_user_session_path %>">退出</a> -->
-                                            <%= link_to "退出", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+                                            <%= link_to "退出", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, onclick: "clear_session()"%>
                                         </li>
                                     </ul>
                                 </div> <!-- btn-group -->
@@ -76,7 +82,7 @@
                         </div><!-- user-info -->
 
                         <div class="user-tougao">
-                            <a href="<%= new_user_illustration_path(current_user) %>" class="btn-tougao" id="tougao">投稿</a>
+                            <a href="<%= new_user_publish_path(current_user) %>" class="btn-tougao" id="tougao">投稿</a>
                         </div>        
                     
                     <!-- <p class="notice"></p> -->

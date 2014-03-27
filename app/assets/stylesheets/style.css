@@ -528,7 +528,7 @@ a:hover {
 #buystep .buy-right .pre-info{ border:1px solid #eee; height:70px; border-radius:3px; overflow:hidden;}
 #buystep .buy-right .pre-info li{ height:70px; padding-top:20px; text-align:center; border-right:1px solid #eee; width:86px; float:left;}
 #buystep .buy-right .pre-info li.last{ border:none;}
-.share ul li{ float:left; height:30px; width:35px; margin-right:10px;}
+.share ul li{ float:left; height:30px; width:35px; margin-right:10px; margin-top: 10px}
 .share ul li a{ display:block; float:left; height:30px; width:25px; background:url(../assets/share2.jpg) no-repeat;}
 .share ul li a.s-a{ background-position:-6px 2px;}
 .share ul li a.s-b{ background-position:-55px 2px;}
@@ -542,7 +542,7 @@ a:hover {
 .label-box{ padding:30px 0;}
 .label-box .btn-mini{ padding:2px 13px; color:#fff;}
 .label-box a{ margin-right:12px;}
-#buystep .imgBox img{ width:100%;}
+#buystep .imgBox img{ max-width:100%;}
 .buy-left .title{ height:40px; line-height:40px; border-bottom:1px solid #eee;}
 .buy-left .title span{ float:left; display:block; padding-right:18px; border-bottom:3px solid #FC5C54; font-size:18px; font-weight:normal;}
 #buystep .title2{ height:40px; line-height:40px; border-bottom:1px solid #eee;}
@@ -632,9 +632,10 @@ background:url(../assets/right-bt.jpg) no-repeat;
 .det_info_right .det_a{ padding:12px 0;  color:#626262;}
 .det_info_right .det_a span{ display:inline-block; width:60px; text-align:left; margin-right:-4px }
 .det_info_right .det_a span.price{ font-size:18px; color:#F97570;}
+.det_info_right .det_b,.det_c {height: 40px;}
 .det_info_right .det_b span{ display:inline-block; text-align:left; }
 .det_info_right .det_c span{color:#666;}
-.det_info_right .det_b a{ display:inline-block; height:30px; line-height:30px; background:#EAEAEA; border:1px solid #eee; padding:0 8px; text-align:center;cursor: pointer;}
+.det_info_right .det_b a{ display:inline-block; height:30px; line-height:30px; background:#EAEAEA; border:1px solid #eee; padding:0 4px; text-align:center;cursor: pointer;}
 .det_info_right .det_b a:hover{text-decoration: none}
 .det_info_right .det_b a.active{ border:2px solid #F97570; position:relative;}
 .det_info_right .det_b .active_ico{ display:block; width:10px; height:10px; background:#ccc url(../images/arrow_a.png) right bottom no-repeat; position:absolute; bottom:-2px; right:-2px;}

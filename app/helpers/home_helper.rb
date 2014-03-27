@@ -3,7 +3,7 @@ module HomeHelper
 		Product.last(4)
 	end
 
-	def get_top_3_illustrations
-		Illustration.last(3)
+	def get_top_3_publishes
+		Publish.last(3)
 	end
 end

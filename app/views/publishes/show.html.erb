@@ -1,0 +1,113 @@
+<body id="top">
+	<div class="contents" />
+<%= render "home/nav" %>
+  <div style="height:76px"></div>
+  <div class="container">
+    <div style="height:50px"></div>
+    <div id="buystep">
+      <div class="buy-left">
+
+      	<!-- path nav -->
+      	
+        <div class="position"><a href="###">HOME</a> <span> / </span> <a href="###">SCELERIS TEMPUS POSUE </a> <span> / </span> 『<%= @publish.name %>』</div>
+	
+
+		<!-- ill info -->
+        <div class="imgBox"><%= image_tag @publish.publish_image.url("large"), class: "img-rounded" %></div>
+        <!--label-box bg-->
+        <!-- tags -->
+
+        <div class="label-box"> <a href="###" class="btn btn-success btn-mini">萌</a>
+        	<a href="###" class="btn btn-success btn-mini">可爱</a>
+        	<a href="###" class="btn btn-success btn-mini">赛高</a> 
+        </div>
+        
+        <!--label-box end-->
+       
+        <div class="description">
+          <h1 class="title"><span>Description</span></h1>
+          <div class="des-con">
+            <p><%= @publish.description %></p>
+          </div>
+          <div style="height:45px;"></div>
+          <div class="buynow">
+           
+           	<button type="button" class="btn btn-primary btn-lg buynow" style="height:40px; font-size:12px; margin-left:0; margin-left:-10px;">收&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;藏</button>
+            
+            <div class="share-r">
+             <span> share<font color="#FC5C54">+</font> </span>
+              <div class="share">
+                <ul>
+                  <li><a href="###" class="s-a"></a></li>
+                  <li><a href="###" class="s-b"></a></li>
+                  <li><a href="###" class="s-c"></a></li>
+                  <div style="clear:both"></div>
+                </ul>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            <!--分享结束--> 
+            <div style="clear:both"></div>
+          </div>
+          <div style="height:30px;"></div>
+         <!--buynow end--> 
+        <h1 class="title"><span>可选形式</span></h1>
+        <ul class="works-list works-list2 ">
+        	<% @publish.products.each do |product| %>
+        		<li><a href="<%= product_path(product) %>"><%= image_tag product.product_images.first.product_image.url(:medium), class:"img-thumbnail" %></a></li>
+        	<% end %>
+        </ul>
+        </div>
+      </div>
+
+      <!-- author info -->
+      <div class="buy-right">
+        <div class="title">著者について</div>
+        <div class="userImg2"><%= image_tag @publish.user.photo.url(:medium), class:"img-rounded" %>
+          <p><%= @publish.user.name %></p>
+        </div>
+        <ul class="pre-info">
+          <li>works<br />
+            <%= @publish.user.publishes.count %></li>
+          <li>info<br />
+            -</li>
+          <li class="last">follow<br />
+            -</li>
+          <div style="clear:both"></div>
+        </ul>
+        <div class="share">
+          <ul>
+            <li><a href="###" class="s-a"></a></li>
+            <li><a href="###" class="s-b"></a></li>
+            <li><a href="###" class="s-c"></a></li>
+            <div style="clear:both"></div>
+          </ul>
+        </div>
+        <div style="height:75px;"></div>
+        <div class="title">ポートフォリオ</div>
+        <ul class="works-list">
+        	<% @publish.user.publishes.last(5).each do |publish| %>
+          <li><a href="<%= publish_path(publish) %>"><%= image_tag publish.publish_image.url(:thumb), class:"img-thumbnail" %></a></li>
+        	<% end %>
+        </ul>
+      </div>
+      <div style="clear:both"></div>
+      <div style="height:200px"></div>
+    </div>
+  </div>
+  <!-- container -->
+  
+  <div class="clear"></div>
+  <div class="container">
+  		<%= render "home/bottom" %>
+  </div>
+  <!-- container --> 
+</div>
+<!-- contents --> 
+
+  <script type="text/javascript">
+
+  </script>
+
+</body>
+
