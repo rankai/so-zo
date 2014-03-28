@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#nav").css("background-image", 'url("/assets/buy_bg3.png")');
+  });
+</script>
+
+<style type="text/css">
+  .prompt-info {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-top: 150px
+  }
+
+  .prompt-info div {
+    text-align: center
+  }
+
+  .prompt-info div a {
+    margin-left: 120px;
+    height: 40px;
+  }
+
+</style>
+
+<body id="top">
+  <div class="contents">
+    <%= render "home/nav2" %>
+      <div style="height:76px">
+      </div>
+
+      <div class="prompt-info" align="center"  >
+        <%= image_tag "/assets/Check.png" %>&nbsp;<%= get_order_confirmed_message() %></span>
+        <div> 
+          <a href="<%= url_for(:controller => "checkouts", :action => "wepay") %>?order_id=<%= @order.id %>" type="button" class="btn btn-danger btn-lg">立即付款</a>
+          <a href="<%= user_order_path(current_user, @order) %>" type="button" class="btn btn-default btn-lg">查看订单</a>
+        </div>
+    </div>
+  </div>
+  <div class="clear">
+  </div>
+  <div class="container">
+    <%= render "home/bottom" %>
+  </div>
+</body>

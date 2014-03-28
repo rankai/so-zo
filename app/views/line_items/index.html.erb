@@ -60,173 +60,23 @@
 
 </style>
 
-<body id="top">
-  <div class="contents">
-      <%= render "home/nav2" %>
-    <div style="height:76px">
-    </div>
-    <div class="my-cart">
-
-        <div class="my-cart-title">
-          <span id="title">我的购物车</span>
-           <button class="btn btn-danger btn-lg btn-up" style="display:none">
-           去结算 <span class="glyphicon glyphicon-chevron-right"><span>
-        </button>
-          
-        </div>
-
-
-        <div class="panel panel-default">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th><input type="checkbox" id="all"/><span>全选</span></th>
-                <th>商品</th>
-                <th>商品名称</th>
-                <!-- <th>Cart</th> -->
-                <th>颜色</th>
-                <th>尺寸</th>
-                <th>数量</th>
-                <th>单价</th>
-                <th>操作</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @line_items.each do |line_item| %>
-                <tr>
-                  <td><input type="checkbox" name="line_items" /></td>
-                  <td><%= image_tag line_item.product.product_images.first.product_image.url(:thumb), width: "100px", class: "img-thumbnail", width: "80px" %></td>
-                  <td><span><%= line_item.product.name %></span></td>
-                  <td>
-                      <% color = Color.find_by_id(line_item.color_id) do |color| %>
-                        <%= color.name %>
-                      <% end %>
-                  </td>
-                  <td>
-                      <% size = Size.find_by_id(line_item.size_id) do |size| %>
-                        <%= size.name %>
-                      <% end %>
-                  </td>
-                  <td class="quantity">  
-
-                    <div class="p_number">
-                        <div class="f_l add_chose" style="margin-top:10px">
-                            <a class="reduce" href="javascript:void(0)" onclick="setAmount.reduce('#qty_item_<%= line_item.id %>')">-</a>
-                            <input type="text" name="qty_item" value="<%= line_item.quantity %>" id="qty_item_<%= line_item.id %>" onchange="update_quantity($(this), <%= line_item.id %>)" onKeyUp="setAmount.modify('#qty_item_<%= line_item.id %>');"  class="text" />
-                            <a class="add" href="javascript:void(0)" onclick="setAmount.add('#qty_item_<%= line_item.id %>')">+</a>
-                        </div>
-                    </div>
-
-                  </td>
-                  <td class="price">
-                    ￥<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
-                        <%= product.price %>
-                    <% end %></span>
-                  </td>
-                  <td>
-                    <!-- link_to 'Show', line_item -->
-                    <!-- link_to 'Edit', edit_line_item_path(line_item) -->
-                    <%= link_to '删除', line_item, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          </div>
-
-          <div class="panel-body" style="text-align:right">
-            <hr width=100% size=3 color=#00ffff/>
-            <span>总共有<em id="order_quantity"></em>件商品</span>
-            <span>共</span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span>元</span>
-          </div>
-
-          <a href="<%= publishes_path %>" class="button button-rounded button-flat" style="float:left; margin:20px">继续购物</a>
-          <button class="btn btn-danger btn-lg btn-down" id="btn_new_order">
-             去结算 <span class="glyphicon glyphicon-chevron-right"><span>
-          </button>
-
-
-          <!-- <div class="panel-heading">Panel Heading</div> -->
-
-          <!-- <a href="#" id="example" class="btn btn-primary" rel="popover"
-             data-content="This is the body of Popover"
-             data-original-title="Creativity Tuts" onclick="popover()">sd
-          </a> -->
-
-        </div>
-          <br>
-
-          <!-- link_to 'New Line item', new_line_item_path -->
-          </div>
-          <div class="clear">
-      </div>
-      <div class="container">
-         <%= render "home/bottom" %>
-     </div>
-</body>
 
 <script type="text/javascript">
 
 /*function popover() {
   $("#example").popover();
 }*/
-
-$(document).ready(function() {
-
-  $("#btn_new_order").click(function(){
-     <% if user_signed_in? %>
-        if(parseInt($("#order_quantity").text().trim()) == 0) {            
-            alert("您需要至少选择一件商品");
-            return
-        }
-        location.href="<%= new_user_order_path(current_user) %>";
-     <% else %>
-        location.href="<%= new_user_session_path %>";
-     <% end %>         
-  });
-
-  $("#all").click(function() {
-
-      if($(this).prop("checked") == true) {
-          checkAll();
-      } else {
-          cancelAll();   
-      }
-      
-      calculateTotal();
-      
-  });
-
-  $('input[name="line_items"]').click(function() {
-      calculateTotal();
-  });
-
-  // input instead of onchnage
-  $('input[type="text"').bind("input", function(){
-      calculateTotal();
-  });
-
-  // trigger click event after load
-  $("#all").prop("checked", true);
-  checkAll();
-  calculateTotal();
-
-});
-
-
 function checkAll() {
     $('input[name="line_items"]').each(function(){
       $(this).prop("checked", true);
     });
-}
+};
 
 function cancelAll() {
    $('input[name="line_items"]').each(function(){
       $(this).removeAttr("checked");
     });
-}
+};
 
 function calculateTotal() {
   var item_quantity = 0;
@@ -266,7 +116,7 @@ function calculateTotal() {
 
   $("#order_quantity").text(quantity);
   $(".well-sm").text(price);
-}
+};
 
 function update_quantity(quantity_input, line_item_id) {
   $.ajax({
@@ -297,7 +147,159 @@ function update_quantity(quantity_input, line_item_id) {
         quantity_input.popover('destroy');},1000);
     }
   });
+};
 
-}
+function new_order() {
+    <% if user_signed_in? %>
+          if($("#order_quantity").text().trim().length == 0 
+              || parseInt($("#order_quantity").text().trim()) <= 0) {            
+                alert("<%= t('errors.messages.select_none') %>");
+                return
+          }
+          location.href="<%= new_user_order_path(current_user) %>";
+   <% else %>
+          location.href="<%= new_user_session_path %>";
+    <% end %>    
+};
+
+$(function(){
+
+ $('#all').prop('checked',true);
+ checkAll();
+ calculateTotal();
+
+ $("#all").click(function() {
+      if($(this).prop("checked") == true) {
+          checkAll();
+      } else {
+          cancelAll();   
+      }
+      
+      calculateTotal();
+      
+  });
+
+  $('input[name="line_items"]').click(function() {
+      calculateTotal();
+  });
+
+  // input instead of onchnage
+  $('input[type="text"').bind("input", function(){
+      calculateTotal();
+  });
+
+});
 
 </script>
+
+<body id="top">
+  <div class="contents">
+      <%= render "home/nav2" %>
+    <div style="height:76px">
+    </div>
+    <div class="my-cart">
+
+        <div class="my-cart-title">
+          <span id="title"><%= t('cart.page_title') %></span>
+           <button class="btn btn-danger btn-lg btn-up" style="display:none">
+           去结算 <span class="glyphicon glyphicon-chevron-right"><span>
+        </button>
+          
+        </div>
+
+
+        <div class="panel panel-default">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="all"/><span><%= t('cart.select_all') %></span></th>
+                <th><%= t('cart.col_image') %></th>
+                <th><%= t('cart.col_name') %></th>
+                <!-- <th>Cart</th> -->
+                <th><%= t('cart.col_color') %></th>
+                <th><%= t('cart.col_size') %></th>
+                <th><%= t('cart.col_quantity') %></th>
+                <th><%= t('cart.col_price') %></th>
+                <th><%= t('cart.op') %></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @line_items.each do |line_item| %>
+                <tr>
+                  <td><input type="checkbox" name="line_items" /></td>
+                  <td><%= image_tag line_item.product.product_images.first.product_image.url(:thumb), width: "100px", class: "img-thumbnail", width: "80px" %></td>
+                  <td><span><%= line_item.product.name %></span></td>
+                  <td>
+                      <% color = Color.find_by_id(line_item.color_id) do |color| %>
+                        <%= color.name %>
+                      <% end %>
+                  </td>
+                  <td>
+                      <% size = Size.find_by_id(line_item.size_id) do |size| %>
+                        <%= size.name %>
+                      <% end %>
+                  </td>
+                  <td class="quantity">  
+
+                    <div class="p_number">
+                        <div class="f_l add_chose" style="margin-top:10px">
+                            <a class="reduce" href="javascript:void(0)" onclick="setAmount.reduce('#qty_item_<%= line_item.id %>')">-</a>
+                            <input type="text" name="qty_item" value="<%= line_item.quantity %>" id="qty_item_<%= line_item.id %>" onchange="update_quantity($(this), <%= line_item.id %>)" onKeyUp="setAmount.modify('#qty_item_<%= line_item.id %>');"  class="text" />
+                            <a class="add" href="javascript:void(0)" onclick="setAmount.add('#qty_item_<%= line_item.id %>')">+</a>
+                        </div>
+                    </div>
+
+                  </td>
+                  <td class="price">
+                    ￥<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
+                        <%= product.price %>
+                    <% end %></span>
+                  </td>
+                  <td>
+                    <!-- link_to 'Show', line_item -->
+                    <!-- link_to 'Edit', edit_line_item_path(line_item) -->
+                    <%= link_to t('cart.delete'), line_item, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="panel-body" style="text-align:right">
+            <hr width=100% size=3 color=#00ffff/>
+            <span>
+              <%= t('number.human.decimal_units.units.total') %>
+              <em id='order_quantity'></em>
+              <%= t('number.human.decimal_units.units.jian') %>
+              <%= t('nav.menu.product') %>
+            </span>
+            <span><%= t('cart.price_total') %></span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span><%= t('number.currency.CNY') %></span>
+          </div>
+
+          <a href="<%= publishes_path %>" class="button button-rounded button-flat" style="float:left; margin:20px"><%= t('cart.back_to_shopping') %></a>
+          <button class="btn btn-danger btn-lg btn-down" id="btn-new-order"  onclick="new_order()">
+             <%= t('cart.checkout') %> <span class="glyphicon glyphicon-chevron-right"><span>
+          </button>
+
+
+          <!-- <div class="panel-heading">Panel Heading</div> -->
+
+          <!-- <a href="#" id="example" class="btn btn-primary" rel="popover"
+             data-content="This is the body of Popover"
+             data-original-title="Creativity Tuts" onclick="popover()">sd
+          </a> -->
+
+        </div>
+          <br>
+
+          <!-- link_to 'New Line item', new_line_item_path -->
+          </div>
+          <div class="clear">
+      </div>
+      <div class="container">
+         <%= render "home/bottom" %>
+     </div>
+</body>

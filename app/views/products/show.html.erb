@@ -200,14 +200,14 @@
                   </p>
 
                   <p class="det_a" style="padding-bottom:45px;">
-                    售价：
+                    <%= t('product.price') %>：
                     <span class="price">
                       ￥<%= @product.price %>
                     </span>
                   </p>
                   <div class="numBar2 clear">
                     <div class="ctrl-left">
-                      数量:
+                      <%= t('product.price') %>:
                     </div>
                     <!-- <div class="ctrl">
                       <div class="jian">
@@ -238,7 +238,7 @@
                   </div>
                   <p class="det_a det_b">
                     <span>
-                      大小:
+                      <%= t('product.size') %>:
                     </span>
 
                     <% @product.product_template.sizes.each do |size| %>
@@ -250,7 +250,7 @@
                   </p>
                   <p class="det_a det_c">
                     <span>
-                      颜色:
+                      <%= t('product.color') %>:
                     </span>
 
                     <% @product.product_template.colors.each do |color| %>
@@ -282,7 +282,7 @@
 
                 <p class="btnBar">
                   <button type="button" id="btn_buy" class="btn btn-danger btn-lg buynow" style="height:45px; margin-left:0;">
-                    加入购物车
+                    <%= t('cart.add_to_cart') %>
                   </button>
                   <!-- <button type="button" id="btn_design" class="btn btn-success btn-lg buynow" style="height:45px; margin-right:0;">
                     定&nbsp;&nbsp;制
@@ -304,10 +304,10 @@
               <div class="tmenu tmenu3" style="border:none;">
                 <ul id="tab1">
                   <li style="width:100px;" class="on" onmouseover="SetTab('tab1',0,2);">
-                    Description
+                    <%= t('product.description') %>
                   </li>
                   <li style="width:100px;" onmouseover="SetTab('tab1',1,2);">
-                    Reviews
+                    <%= t('product.reviews') %>
                   </li>
                 </ul>
               </div>
@@ -333,7 +333,7 @@
             <div class="limit-box" id="J-lb">
               <div class="limit-buy-hd">
                 <h2>
-                  相关产品
+                  <%= t('product.related') %>
                 </h2>
                 <div class="limit-buy-nav" id="J-lbn">
                   <a href="javascript:void(0)" class="prev">

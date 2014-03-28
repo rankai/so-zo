@@ -46,4 +46,7 @@ SoZo::Application.configure do
       enable_starttls_auto: true  
   }
 
+  config.i18n.available_locales = ['zh-CN', 'ja', :de]
+  config.i18n.default_locale = 'zh-CN'
+
 end

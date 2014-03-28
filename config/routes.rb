@@ -14,17 +14,22 @@ SoZo::Application.routes.draw do
 
   #------------------------------- publishes ------------------------
   
+  resources :checkouts, only:[:wepay, :result] do
+    collection do
+      get 'wepay'
+      get 'result'
+    end
+  end
+
   resources :users do
 
       resources :publishes, except:[:index] do
         #get 'works', :on => :collection
       end
       resources :orders do
-
         collection do
-          get 'pay'
+          get 'confirm'
         end
-
         resources :items
       end
   end

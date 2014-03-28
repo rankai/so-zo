@@ -1,0 +1,45 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#nav").css("background-image", none);
+  });
+</script>
+
+<style type="text/css">
+  .prompt-info {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-top: 150px
+  }
+
+  .prompt-info div {
+    text-align: center
+  }
+
+  .prompt-info div button {
+    margin-left: 120px;
+    height: 40px
+  }
+
+</style>
+
+<body id="top">
+  <div class="contents">
+    <%= render "home/nav2" %>
+      <div style="height:76px">
+      </div>
+
+      <div class="prompt-info" align="center" id="checkout_div_id"  >
+        <script type="text/javascript" src="https://stage.wepay.com/min/js/iframe.wepay.js">
+		</script>
+
+		<script type="text/javascript">
+		    WePay.iframe_checkout("checkout_div_id", "checkout_uri");
+		</script>
+    </div>
+  </div>
+  <div class="clear">
+  </div>
+  <div class="container">
+    <%= render "home/bottom" %>
+  </div>
+</body>

@@ -91,4 +91,7 @@ SoZo::Application.configure do
     :ssl => true,
     :tls => true
   }
+
+  config.i18n.available_locales = ['zh-CN', 'ja', :de]
+  config.i18n.default_locale = 'ja'
 end

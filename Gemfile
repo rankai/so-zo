@@ -32,7 +32,12 @@ gem 'cancan' # authorization based on roles
 gem 'rolify' # roles
 gem 'rails_admin'
 
-gem 'wepay-rails'
+# json
+#gem 'multi_json'
+
+# i18n
+gem 'rails-i18n', '~> 4.0.0'
+#gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 
 #file_upload
 gem 'paperclip', '~> 4.1.1'

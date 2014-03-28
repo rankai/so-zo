@@ -196,7 +196,7 @@
     <div class="my-cart">
 
         <div class="my-cart-title">
-          <span id="title">填写确认订单信息</span>
+          <span id="title"><%= t('order.new_page_title') %></span>
            <button class="btn btn-danger btn-lg btn-up" style="display:none">
            确认订单 <span class="glyphicon glyphicon-chevron-right"><span>
         </button>
@@ -205,7 +205,7 @@
 
         <div class="panel panel-default">
              <div style="height:30px"></div>
-             <span class="list-title" >联系人信息</span>
+             <span class="list-title" ><%= t('order.contact_title') %></span>
              <a href="javascript:void(0)"  onclick='$("#myModal").modal("show");' id="edit_info">
              <%= image_tag "/assets/file_edit.png" %></a>
              <%= image_tag "/assets/loading.gif", id: "loading" %>
@@ -213,7 +213,7 @@
                <form class="form-horizontal" role="form" style="margin-left:-110px">
                   <div class="form-group">
                       <label class="col-sm-2 control-label">
-                          邮箱：
+                          <%= User.human_attribute_name('email') %>：
                       </label>
                       <div class="col-sm-10">
                           <p class="form-control-static">
@@ -223,7 +223,7 @@
                   </div>
                    <div class="form-group">
                       <label class="col-sm-2 control-label">
-                          姓名：
+                          <%= User.human_attribute_name('name') %>：
                       </label>
                       <div class="col-sm-10">
                           <p class="form-control-static">
@@ -233,7 +233,7 @@
                   </div> 
                   <div class="form-group">
                       <label class="col-sm-2 control-label">
-                          电话：
+                          <%= User.human_attribute_name('phone') %>：
                       </label>
                       <div class="col-sm-10">
                           <p class="form-control-static" id="tel">
@@ -243,7 +243,7 @@
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 control-label">
-                          地址：
+                          <%= User.human_attribute_name('address') %>：
                       </label>
                       <div class="col-sm-10">
                           <p class="form-control-static"  id="address">
@@ -254,18 +254,19 @@
             </form>
           </div>
           <div style="height:50px"></div>
-          <span class="list-title">商品清单</span>
+          <span class="list-title"><%= t('order.product_title') %></span>
           <div class="table-responsive">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th>商品</th>
-                  <th>商品名称</th>
-                  <!-- <th>Cart</th> -->
-                  <th>颜色</th>
-                  <th>尺寸</th>
-                  <th>数量</th>
-                  <th>单价</th>
+                  
+                  <th><%= t('cart.col_image') %></th>
+                  <th><%= t('cart.col_name') %></th> 
+                  <th><%= t('cart.col_color') %></th>
+                  <th><%= t('cart.col_size') %></th>
+                  <th><%= t('cart.col_quantity') %></th>
+                  <th><%= t('cart.col_price') %></th>
+
                 </tr>
               </thead>
 
@@ -309,8 +310,13 @@
 
           <div class="panel-body" style="text-align:right">
             <hr width=100% size=3 color=#00ffff/>
-            <span>总共有<em id="order_quantity"></em>件商品</span>
-            <span>共</span><div class="well well-sm" id="order_total"></div><span>元</span>
+             <span>
+              <%= t('number.human.decimal_units.units.total') %>
+              <em id='order_quantity'></em>
+              <%= t('number.human.decimal_units.units.jian') %>
+              <%= t('nav.menu.product') %>
+            </span>
+            <span><%= t('cart.price_total') %></span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span><%= t('number.currency.CNY') %></span>
           </div>
 
           <!-- <div class="panel-footer"> -->
@@ -319,11 +325,11 @@
         </div>
 
         <div class="btn-panel">
-          <a href="<%= line_items_path %>" class="button button-rounded button-flat" style="float:left; margin:20px">返回购物车</a>
+          <a href="<%= line_items_path %>" class="button button-rounded button-flat" style="float:left; margin:20px"><%= t('order.back_to_cart') %></a>
           <%= form_for :order, url: user_orders_path(current_user), html: {id: 'order_form'} do |f| %> 
             <%= f.button :id=>
             "btn-order-confirm", :class => "btn  btn-danger btn-lg btn-down", :style => "float: right; height:40px" do %> 
-                确认订单<span class="glyphicon glyphicon-chevron-right"><span>
+                <%= t('order.confirm_order') %><span class="glyphicon glyphicon-chevron-right"><span>
             <% end %>
             <%= f.hidden_field :sum %>
             <%= f.hidden_field :state_id, value: get_default_order_state() %>

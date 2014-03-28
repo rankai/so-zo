@@ -14,16 +14,16 @@
             </h1>
             <div style="width:50px;height:1px"></div>
             <ul>
-                    <li><%= link_to "イラスト", publishes_path, class: "menu" %></li>
-                    <li><%= link_to "商品", publishes_path, class: "menu" %></li>
-                    <li><%= link_to "作者", publishes_path, class: "menu" %></li>
-                    <li><%= link_to "ギャザリング", publishes_path, class: "menu" %></li>
+                    <li><%= link_to t('nav.menu.illustration'), publishes_path, class: "menu" %></li>
+                    <li><%= link_to t('nav.menu.product'), publishes_path, class: "menu" %></li>
+                    <li><%= link_to t('nav.menu.author'), publishes_path, class: "menu" %></li>
+                    <li><%= link_to t('nav.menu.group_buy'), '#', class: "menu" %></li>
             </ul>
 
             <div class="col-sm-1"></div>
            
             <div id="button_panel" style="position:relative;">
-                <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="搜索">
+                <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.search') %>">
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
                 <a href="
@@ -32,7 +32,7 @@
                     <% else %>  
                         <%= new_user_session_path %>
                     <% end %>
-                    " class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="用户信息">
+                    " class="btn btn-success btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.my_page') %>">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
                 <a href="
@@ -41,10 +41,10 @@
                     <% else %>  
                         <%= new_user_session_path %>
                     <% end %>
-                " class="btn btn-primary btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="收藏">
+                " class="btn btn-primary btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.favicons') %>">
                     <span class="glyphicon glyphicon-star"></span>
                 </a>
-                <a href="<%= line_items_path %>" class="btn btn-warning btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="购物车">
+                <a href="<%= line_items_path %>" class="btn btn-warning btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.shopping_cart') %>">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </a>
             </div>
@@ -61,20 +61,20 @@
                         </script>-->
 
                         <div class="user-info"> 
-                            <span style="float:left">您好：<%= current_user.name %></span>
+                            <span style="float:left"><%= t('nav.hello', user: current_user.name) %></span>
                             <div class="user-toggle">
                                 <div class="btn-group">
                                     <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">
                                         <span class="glyphicon glyphicon-magnet" style="margin-right:5px"></span><span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="<%= new_user_publish_path(current_user) %>">上传作品</a/</li>
-                                        <li><a href="#">我的作品<span class="badge"><%= current_user.publishes.count %></span></a></li>
-                                        <li><a href="#">我的订单<span class="badge"><%= current_user.orders.count %></span></a></li>
-                                        <li><a href="<%= edit_user_registration_path %>">个人主页</a></li>
+                                        <li><a href="<%= new_user_publish_path(current_user) %>"><%= t('nav.publish_upload') %></a/</li>
+                                        <li><a href="#"><%= t('nav.my_publishes') %><span class="badge"><%= current_user.publishes.count %></span></a></li>
+                                        <li><a href="#"><%= t('nav.my_orders') %><span class="badge"><%= current_user.orders.count %></span></a></li>
+                                        <li><a href="<%= edit_user_registration_path %>"><%= t('nav.my_page')%></a></li>
                                         <li class="divider"></li>
                                         <li><!-- <a href="<%= destroy_user_session_path %>">退出</a> -->
-                                            <%= link_to "退出", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, onclick: "clear_session()"%>
+                                            <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, onclick: "clear_session()" do %><%= t('nav.exit') %><% end %>
                                         </li>
                                     </ul>
                                 </div> <!-- btn-group -->
@@ -82,13 +82,13 @@
                         </div><!-- user-info -->
 
                         <div class="user-tougao">
-                            <a href="<%= new_user_publish_path(current_user) %>" class="btn-tougao" id="tougao">投稿</a>
+                            <a href="<%= new_user_publish_path(current_user) %>" class="btn-tougao" id="tougao"><%= t('nav.publish_upload') %></a>
                         </div>        
                     
                     <!-- <p class="notice"></p> -->
                <% else %>
-                    <a href="<%= "users/sign_in" %>">登陆</a> |
-                    <a href="<%= "users/sign_up" %>">注册</a>
+                    <a href="<%= "users/sign_in" %>"><%= t :login %></a> |
+                    <a href="<%= "users/sign_up" %>"><%= t :register %></a>
                    <!--  <p class="alert"></p> -->
                <% end %>
             </div> <!-- login-panel -->

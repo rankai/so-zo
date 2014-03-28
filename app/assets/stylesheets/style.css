@@ -12,12 +12,12 @@ a img:hover{
 	opacity:0.8;
 }
 
-a, a:link, a:visited, a:active{color:#111;}
+/*a, a:link, a:visited, a:active{color:#111;}
 
 a:hover {
     color:#555;
     text-decoration:none;
-}
+}*/
 
 
 .clear{clear:both;}
