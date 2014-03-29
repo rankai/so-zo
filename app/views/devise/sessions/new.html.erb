@@ -1,32 +1,86 @@
-<h2>Sign in</h2>
+<script type="text/javascript">
+  
+  $(function() {
+    $("#nav").css("background-image", 'none');
+  });
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+</script>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+<style type="text/css">
+  
+    .login-container {
+      margin-left: 30%;
+      margin-top: 50px;
+      margin-bottom: 80px;
+      height: 500px
+    }
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    .login-image {
+      float: left
+    }
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+    .login-form {
+      min-width: 350px;
+      max-width: 400px;
+      padding: 25px;
+      border: #eee solid 1px;
+      float: left;
+      margin-left: 100px
+    }
 
-<%= render "devise/shared/links" %>
+    .login-form input[type='submit'] {
+      height: 40px;
+    }
+</style>
 
-<!--
-<form accept-charset="UTF-8" action="/users/sign_in" class="new_user" id="new_user" method="post">
-<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="pFNIUqkeRueISCq9kYkj19J9HiY9LTbFb+mWrrw8IB4=" /></div>
-  <div><label for="user_email">Email</label><br />
-  <input autofocus="autofocus" id="user_email" name="user[email]" type="email" value="" /></div>
+<body id="top">
+  <div class="contents">
+      <%= render "home/nav2" %>
+    <div style="height:76px">
+    </div>
 
-  <div><label for="user_password">Password</label><br />
-  <input id="user_password" name="user[password]" type="password" /></div>
+    <div class="login-container">
+        <div class="login-image">
 
-    <div><input name="user[remember_me]" type="hidden" value="0" /><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1" /> <label for="user_remember_me">Remember me</label></div>
+          <%= image_tag "/assets/login_abc.png" %>
 
-  <div><input name="commit" type="submit" value="Sign in" /></div>
-</form>
--->
+         </div>
+
+        <div class="login-form">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), role: "form") do |f| %>
+
+          <div class="form-group">
+            <%= f.label :email do %> <%= User.human_attribute_name('email') %> <% end %> <br />
+            <%= f.email_field :email, :autofocus => true, class: "form-control" %>
+        </div>
+
+          <div class="form-group">
+            <%= f.label :password do %> <%= User.human_attribute_name('password') %> <% end %><br />
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="checkbox">
+              <%= f.check_box :remember_me %> <%= f.label :remember_me do %> <%= t('devise.links.remember_me') %> <% end %>
+            </div>
+          <% end -%>
+
+          <div><%= f.submit t('devise.links.sign_in_btn'), class: "btn btn-warning" %></div>
+        <% end %>
+
+        <div style="height:30px">
+        </div>
+
+        <%= render "devise/shared/links" %>
+      </div>
+  </div>
+
+      <div class="clear">
+      </div>
+      <div class="container">
+         <%= render "home/bottom" %>
+     </div>
+
+</div>
+
+</body>

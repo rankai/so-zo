@@ -9,6 +9,10 @@
 <script type="text/javascript"> 
 <!-- this would only work at chrome & firefox-->
 $(function() {
+
+    $("#nav-a").addClass("active");
+
+    // input file display
     $("input[type='file").change(function(evt) {
       var images = evt.target.files;
       for(var i=0, f; f=images[i]; i++) {
