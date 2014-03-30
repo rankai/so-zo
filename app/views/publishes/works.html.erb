@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<style>
+
+  .publish-box {
+    border: none;
+    float:right;
+    width: 860px;
+  }
+
+  .publish-gathering-title {
+    border: 1px solid #e6e6e6;
+    border-bottom: 2px solid #B8A2F0;
+    height: 33px;
+    line-height: 33px;
+    margin-bottom: 10px
+  }
+
+  .publish-gathering-title h4 {
+    color: #B8A2F0;
+    padding-left:  16px;
+    float: left
+  }
+
+  .publish-gathering-info {
+    padding-left: 20px;
+    border: 1px solid #e6e6e6;
+    margin-top: -10px;
+    min-height: 60px
+  }
+
+  .publish-gathering-info #publish-prompt dl {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+  }
+
+
+
+  .publish-gathering-info .publish-prompt dt{
+    text-align: right;
+    float:left;
+    margin-right: 25px
+  }
+
+  .publish-gathering-info .publish-prompt dd {
+    margin-right: 25px;
+    float: left;
+  }
+
+  .quick-op {
+    margin-top: 20px;
+    padding-left: 10px;
+    border-bottom: 1px solid #e6e6e6;
+  }
+
+  .publish-list {
+    /*border: 1px solid #e6e6e6;*/
+    padding: 10px
+  }
+
+  .publish-list #loading {
+    text-align: center;
+  }
+
+  .thumbnail img {
+    max-width: 300px;
+    max-height: 200px;
+  }
+
+</style>
+
+<%= stylesheet_link_tag "devise" %>
+
+<script type="text/javascript">
+    $(function() {
+
+        $("#nav-b").addClass("active");
+        $("#nav-b a").css("background-color", "#B8A2F0");
+        $("#loading").hide();
+
+        setSelect();
+
+        $('select').change(function() {
+            $('#filter-form').submit();
+        });
+
+        $('input[type="checkbox"]').change(function() {
+             $('#filter-form').submit();
+        });
+
+        $(".publish-delete").click(function() {
+            $("#loading").show();
+            var id = $(this).attr('id');
+            $.ajax({
+                type: "delete",
+                url: "/users/<%= current_user.id %>/publishes/" + id.split("-")[1],
+                dataType: "json",
+                beforeSend: function(XMLHttpRequest) {
+                    this; //调用本次ajax请求时传递的options参数
+                },
+                success: function(data) {
+                    $("#loading").hide();
+                    $("#"+id).parent().parent().parent().parent().remove();
+                }
+            });
+        });
+
+    })
+
+    function setSelect() {
+    var category = getUrlParameters("publish_category", "", true);
+    var sell = getUrlParameters("sell", "", true);
+
+    if(category != false){
+        $('#publish_publish_category').val(category);
+    }
+
+    if(sell != false) {
+        $('#publish_sell').prop("checked",true);
+    }
+
+    }
+
+
+    function getUrlParameters(parameter, staticURL, decode) {
+        var currLocation = (staticURL.length) ? staticURL: window.location.search,
+        parArr = currLocation.split("?")[1].split("&"),
+        returnBool = true;
+
+        for (var i = 0; i < parArr.length; i++) {
+            parr = parArr[i].split("=");
+            if (parr[0] == parameter) {
+                return (decode) ? decodeURIComponent(parr[1]) : parr[1];
+                returnBool = true;
+            } else {
+                returnBool = false;
+            }
+        }
+
+        if (!returnBool) return false;
+    }
+</script>
+
+<body id="top">
+  <div class="contents">
+    <%= render "home/nav" %>
+      <div style="height:76px">
+      </div>
+      <div class="container">
+        <div style="height:50px">
+        </div>
+        <%= render "devise/registrations/sider" %>
+
+
+
+
+
+         <div class="publish-box">
+
+          <div class="publish-gathering-title">
+            <h4>
+              我的作品
+            </h4>
+          </div>
+
+          <div class="publish-gathering-info">
+
+            <div class="publish-prompt">
+              <dl>
+                <dt>有爱提醒:</dt>
+                  <% 
+                    total_count = current_user.publishes.count
+                    if total_count == 0
+                   %>
+                      <dd><span style="color:#999">还没有作品</span></dd>
+                   <% else %>
+                      <dd><a href="#">总作品数(<%= total_count %>)</a></dd>
+
+                      <!-- has publishes -->
+                      <% @categories = PublishCategory.all 
+                         @categories.each do |category|
+                      %>
+
+                          <% 
+                            count = current_user.publishes.where(:publish_category => category).count
+                            if count != 0
+                          %>  
+
+                            <dd><a href="#"><%= category.description %>作品数(<%= count %>)</a></dd>
+
+                          <% end %> <!-- end if -->
+
+                          <% end %><!-- end category -->
+
+                      <!-- sells -->    
+                      <% 
+                        total_sells = get_my_sells.count
+                        if total_sells == 0
+                      %>
+                          <dd><span style="color:#999">还没有卖出作品</span></dd>
+                      <% else %>
+                          <dd><a href="#">总卖出次数(<%= total_sells %>)</a></dd>
+
+                          <!-- has cells -->
+                          <% @categories = PublishCategory.all 
+                            @categories.each do |category|
+                          %>
+
+                          <% 
+                            count = get_my_sells_on_category(category.id).count
+                            if count != 0
+                          %>  
+
+                            <dd><a href="#"><%= category.description %>卖出作品数(<%= count %>)</a></dd>
+
+                          <% end %> <!-- end if -->
+
+                          <% end %><!-- end category -->
+
+
+                      <% end %><!-- end if -->
+
+
+                      <% end %><!-- end if end -->
+           
+
+              </dl>
+            </div>      
+        </div> <!-- publish-gather-info -->
+
+    <!--       <div class="spinner product-buysetp-loaddelete" id="loading_delete">
+              <div class="bounce1">
+              </div>
+              <div class="bounce2">
+              </div>
+              <div class="bounce3">
+              </div>
+              正在删除
+          </div> -->
+        <div class="quick-op">
+              <form class="form-inline" role="form" id="filter-form" method="get" action="<%= user_publishes_path(current_user) %>">
+                <div class="form-group">
+                    <label for="inputEmail3" class=" control-label">
+                      请选择作品类型：
+                    </label>
+                    <select name="publish_category" id="publish_publish_category">
+                      <option value="all">
+                        全部作品
+                      </option>
+
+                      <% PublishCategory.all.each do |category| %>
+                        
+                        <option value="<%= category.name %>"><%= category.description %></option>
+
+                      <% end %>  
+
+                    </select>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="sell" value="1" id="publish_sell">
+                    只显示已卖出
+                  </label>
+                </div>
+              </form>
+          </div>
+        <div class="publish-list">
+          <div id="loading"><%= image_tag "/assets/loading.gif", style: "margin-right: 10px" %><%= t('progress.deleting') %></div>
+          <div class="row">
+
+            <% @publishes.each do |publish| %>
+
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <%= image_tag publish.publish_image.url(:medium) %>
+                <div class="caption">
+                  <h3> 『<%= publish.name %>』</h3>
+                  <p><%= publish.description %></p>
+                  <p>
+                    <a href="#" class="publish-hide btn btn-default" role="button" id="hide-<%= publish.id %>">隐藏</a>
+                    <a  class="publish-delete btn btn-danger" role="button" id="del-<%= publish.id %>">删除</a>       
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <% end %>
+
+          </div><!-- row -->
+
+        </div><!-- publish-list -->    
+
+        </div><!--publish-box-->
+
+
+
+
+
+
+          
+      </div><!-- container -->
+      <div style="height:200px">
+      </div>
+      <div class="clear">
+      </div>
+      <div class="container">
+        <%= render "home/bottom" %>
+      </div>
+      <!-- container -->
+  </div>
+  <!-- contents -->
+</body>
+
+</html>

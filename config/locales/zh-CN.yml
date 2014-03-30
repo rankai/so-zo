@@ -40,6 +40,10 @@ zh-CN:
     col_color: "颜色"
 
   product:
+    price: "价格"
+    quantity: "数量"
+    color: "颜色"
+    size: "尺寸"
     reviews: "商品评论"
     related: "相关商品"
     review: "评论"  
@@ -50,6 +54,19 @@ zh-CN:
     contact: "联系人信息"
     confirm_order: "确认订单"
     back_to_cart: "返回购物车"
+    cancel_order: "取消订单"
+    order_submitted_msg: "订单提交成功，您现在可以付款了"
+    pay_order: "立即付款"
+    view_order: "查看我的订单"
+    order_shipped: "请您耐心等待收货"
+    order_paid_msg: "感谢您的购买，请您耐心等待收货"
+    order_paid: "我们正在安排发货，请耐心等待"
+    order_completed: "订单已完成"
+
+  progress:
+    deleting: "正在删除..."
+    uploading: "正在上传..."
+    making_products: "正在生成产品..."
 
   modal:
     close: "关闭"
@@ -66,7 +83,20 @@ zh-CN:
       publish_select: "选择作品"
       product_generate: "生成商品"
 
-
+  flash:
+    alerts:
+      order_deleted_alert: "订单创建失败，请您稍后再试"
+      order_created_alert: "订单删除失败，请您稍后再试"
+      order_deleted_forbid: "您好，目前系统不支持已经付款的订单进行退单"
+      line_item_added_alert: "添加到购物车失败，请您稍后再试"
+      line_item_deleted_alert: "从购物车移除失败，请您稍后再试"
+      publish_upload_alert: "上传失败，请您稍后重试"
+      publish_deleted_alert: "作品删除失败，请您稍后重试"
+    notices:
+      order_deleted: "成功删除订单"
+      order_created: "成功提交订单"
+      line_item_added: "成功添加到购物车"
+      line_item_deleted: "成功从购物车移除"
 
   date:
     formats:
@@ -341,6 +371,8 @@ zh-CN:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      delete_message: "您确认删除么?"
+      exit_message: "您确认退出么?"
       select_none: "您需要至少选择一件商品"
       inclusion: "不包含于列表中"
       exclusion: "是保留关键字"
@@ -430,6 +462,7 @@ zh-CN:
       not_receive_unlock: "没有收到解锁邮件"
       resend_confirmation: "重新发送验证邮件"
       resend_unlock: "重新发送解锁邮件"
+      send_reset_password_instruction: "找回密码"
       upload_photo: "上传头像"
       change_photo: "更改头像"
       update: "现在更新"

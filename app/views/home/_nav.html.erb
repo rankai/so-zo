@@ -23,7 +23,7 @@
             <div class="col-sm-1"></div>
            
             <div id="button_panel" style="position:relative;">
-                <a href="<%= authors_path %>" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.search') %>">
+                <a href="#" class="btn btn-info btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.search') %>">
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
                 <a href="
@@ -37,11 +37,10 @@
                 </a>
                 <a href="
                     <% if user_signed_in? %>
-                        <%= user_path(current_user) %>
+                        #
                     <% else %>  
                         <%= new_user_session_path %>
-                    <% end %>
-                " class="btn btn-primary btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.favicons') %>">
+                    <% end %>" class="btn btn-primary btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.favicons') %>">
                     <span class="glyphicon glyphicon-star"></span>
                 </a>
                 <a href="<%= line_items_path %>" class="btn btn-warning btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.shopping_cart') %>">
@@ -69,12 +68,12 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="<%= new_user_publish_path(current_user) %>"><%= t('nav.publish_upload') %></a/</li>
-                                        <li><a href="#"><%= t('nav.my_publishes') %><span class="badge"><%= current_user.publishes.count %></span></a></li>
-                                        <li><a href="#"><%= t('nav.my_orders') %><span class="badge"><%= current_user.orders.count %></span></a></li>
+                                        <li><a href="<%= user_publishes_path(current_user) %>>"><%= t('nav.my_publishes') %><span class="badge"><%= current_user.publishes.count %></span></a></li>
+                                        <li><a href="<%= user_orders_path(current_user) %>"><%= t('nav.my_orders') %><span class="badge"><%= current_user.orders.count %></span></a></li>
                                         <li><a href="<%= edit_user_registration_path %>"><%= t('nav.my_page')%></a></li>
                                         <li class="divider"></li>
                                         <li><!-- <a href="<%= destroy_user_session_path %>">退出</a> -->
-                                            <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, onclick: "clear_session()" do %><%= t('nav.exit') %><% end %>
+                                            <%= link_to destroy_user_session_path, method: :delete, data: { confirm: t('errors.messages.exit_message') }, onclick: "clear_session()" do %><%= t('nav.exit') %><% end %>
                                         </li>
                                     </ul>
                                 </div> <!-- btn-group -->

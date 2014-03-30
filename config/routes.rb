@@ -23,7 +23,7 @@ SoZo::Application.routes.draw do
 
   resources :users do
 
-      resources :publishes, except:[:index] do
+      resources :publishes do
         #get 'works', :on => :collection
       end
       resources :orders do

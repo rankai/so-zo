@@ -2,7 +2,7 @@ class Publish < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :state
 	#has_many  :tags
-	has_many   :products 
+	has_many   :products, dependent: :destroy
 	belongs_to :publish_category
 
 	#has_attached_file :file, :styles => {:detailed => "1920x1920>", :thumb => "100x100>"}

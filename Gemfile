@@ -31,6 +31,7 @@ gem 'devise' # authentication
 gem 'cancan' # authorization based on roles
 gem 'rolify' # roles
 gem 'rails_admin'
+gem 'flash_render'
 
 # json
 #gem 'multi_json'

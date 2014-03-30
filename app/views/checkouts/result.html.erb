@@ -1,0 +1,43 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#nav").css("background-image", 'none');
+  });
+</script>
+
+<style type="text/css">
+  .prompt-info {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-top: 150px
+  }
+
+  .prompt-info div {
+    text-align: center
+  }
+
+  .prompt-info div a {
+    margin-left: 120px;
+    height: 40px;
+  }
+
+</style>
+
+<body id="top">
+  <div class="contents">
+    <%= render "home/nav2" %>
+      <div style="height:76px">
+      </div>
+
+      <div class="prompt-info" align="center"  >
+        <%= image_tag "/assets/Check.png" %>&nbsp;<%= t('order.order_paid_msg') %></span>
+        <div> 
+          <a href="<%= user_orders_path(current_user) %>" type="button" class="btn btn-default btn-lg"><%= t('order.view_order') %></a>
+        </div>
+    </div>
+  </div>
+  <div class="clear">
+  </div>
+  <div class="container">
+    <%= render "home/bottom" %>
+  </div>
+</body>

@@ -63,6 +63,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    flash_render (1.2.0)
+      rails (>= 2.3.8)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
     gon (5.0.4)
@@ -194,6 +196,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
   devise
+  flash_render
   gon
   jbuilder (~> 1.2)
   jquery-rails

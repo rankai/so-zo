@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
 	belongs_to :publish
 	has_many   :product_images, dependent: :destroy
 	has_many   :line_items
+	has_many   :order_items
 
 	def self.generate_products(publish)
 

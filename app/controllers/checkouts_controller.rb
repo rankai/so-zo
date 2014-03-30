@@ -10,6 +10,7 @@ class CheckoutsController < ApplicationController
 	end
 
 	def result
+		p params[:order_id]
 		@order = Order.find(params[:order_id])
 		response = Checkout.authorize(session[:checkout_id])
 
