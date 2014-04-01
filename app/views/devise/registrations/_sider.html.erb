@@ -4,8 +4,9 @@
 
   		<li id="nav-a"><a href="<%= user_path(current_user) %>">个人情报</a></li>
         <li id="nav-b"><a href="<%= user_publishes_path(current_user) %>">我的作品</a></li>
-        <li id="nav-c"><a href="<%= user_orders_path(current_user) %>">订单管理</a></li>
-        <li id="nav-d"><a href="<%= edit_user_registration_path %>">用户设定</a></li>
+        <li id="nav-c"><a href="<%= user_products_path(current_user) %>">我的商品</a></li>
+        <li id="nav-d"><a href="<%= user_orders_path(current_user) %>">订单管理</a></li>
+        <li id="nav-e"><a href="<%= edit_user_registration_path %>">用户设定</a></li>
 
 		<!-- <li>
 			 <a href="<%= authors_path %>" class="btn btn-info btn-block" role="button">

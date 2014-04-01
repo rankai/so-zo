@@ -10,6 +10,18 @@ class PublishesController < ApplicationController
 		render partial: "top", object: @publishes
 	end
 
+	def hot
+		# already added to cart, but not make orders
+		@publishes = Array.new
+		@hot_publishes = Publish.joins(:line_items).count(:group => "publishes.id", :order => 'count_all asc')
+		#@hot_publishes.each do |item|
+		#	p item
+		#	@publish = Publish.find(item[0])
+		#	@publishes.push(@publish)
+		#end
+		render "hot", object: @hot_publishes
+	end
+
 	def index
 		if params[:user_id] 
 			@publishes = nil
@@ -25,8 +37,7 @@ class PublishesController < ApplicationController
 				@publishes = current_user.publishes.where('publish_category_id LIKE ?', category_id)
 
 				if params[:sell] == '1'
-					#@publishes = Product.joins(:order_items).joins(:publish).where("publishes.user_id LIKE ? and publishes.publish_category_id LIKE ?", current_user.id, category_id)
-					Publish.joins("products").joins(:order_items).where("publishes.user_id LIKE ? and publishes.publish_category_id LIKE ?", current_user.id, category_id)
+					@publishes = Publish.joins(products: [:order_items]).where("publishes.user_id LIKE ? and publishes.publish_category_id LIKE ?", current_user.id, category_id)
 				end
 
 			else
@@ -36,7 +47,7 @@ class PublishesController < ApplicationController
 
 			end
 
-			render 'works', object: @publishes
+			render 'works', object: @publishes, :layout => "works"
 		else
 			@publishes = Publish.all
 		end	
@@ -86,13 +97,25 @@ class PublishesController < ApplicationController
 
 	def destroy
 		@publish = Publish.find(params[:id])
-		#@state = State.where(:name => "deleted").first
+
+		state_id = State.where(:name => "completed").first.id
+		count_in_order = Product.joins(order_items: :order).joins(:publish).where("publishes.id = ? and orders.state_id = ?", 
+			@publish.id, state_id).count
+		count_in_cart  = Product.joins(:line_items).joins(:publish).where("publishes.id = ? ", @publish.id).count
+
+		p "hahah: #{count_in_order}, #{count_in_cart}"
+
 		respond_to do |format|
-			#if @publish.update_attribute(:state, @state)
-			if @publish.destroy
-				format.json{head :no_content}
+
+			if count_in_cart == 0 && count_in_order == 0
+
+				if @publish.destroy				
+					format.text{render text: t('flash.notices.publish_deleted'), status: :ok}
+				else
+					format.text{render text: t('flash.alerts.publish_deleted_alert'), status: :internal_server_error}
+				end
 			else
-				format.json{head :no_content, status: :internal_server_error, :alert => t('flash.alerts.publish_deleted_alert')}
+				format.text{render text: t('flash.alerts.publish_deleted_forbid'), status: :forbidden }
 			end
 		end
 	end

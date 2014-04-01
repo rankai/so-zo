@@ -1,0 +1,80 @@
+ <style type="text/css">
+   .btn-fr a{
+                color:white;
+                margin-top: 30px
+    }
+
+    .btn-fr  a:hover{
+        text-decoration: none;
+    }
+
+    .frequency {
+      margin-top: 20px;
+      color: rgb(112, 112, 112);
+    }
+
+ </style>
+
+ <body id="top">
+        <div class="contents">
+            <%= render "home/nav" %>
+                <div style="height:76px">
+                </div>
+                <div class="container">
+                    <!--sidernav-->
+                    <%= render "sider" %>
+                    <div class="rankCon">
+                      <%= render "ranking2" %>
+                      <!-- category -->
+                      
+                      <div id="gathering">
+
+                        <% @hot_publishes.each do |item| %>
+
+                          <% 
+                            publish = Publish.find(item[0]) 
+                            frequency = item[1]
+
+                          %>
+
+                          <%  p "frequency111 #{frequency}" %>
+                        
+
+                        <!-- @publishes.each do |publish| -->
+                            <div class="col-sm-12 graybox graybox2">
+                              <p class="ribbon"><img src="/assets/ribbon_gather.png" alt="" /></p>
+                              <div class="imgarea"> 
+                                <%= image_tag publish.publish_image.url(:medium), class: "img-rounded", alt: publish.name %>
+                              </div>
+                              <!-- imgaarea -->
+                              <div class="gather_info">
+                                <div class="title"><%= publish.name %></div>
+                                <div class="detail"><%= publish.description %></div>
+                                <div class="frequency"><%= t('publish.frequency_added_to_cart') %><em><%= frequency %></em><%= t('number.human.decimal_units.units.ci') %></div>
+                                <!-- table -->
+                                <div class="clear"></div>
+                                <div class="userInfo">
+                                  <div class="userImg">
+                                    <div class="img-fl">
+                                      <%= image_tag publish.user.photo.url(:thumb), alt: publish.user.name, width: "49", height: "49", class: "img-thumbnail" %>
+                                    </div>
+                                    <p><%= t('publish.author') %><br />
+                                      <%= publish.user.name %></p>
+                                  </div>
+                                  <div class="btn-fr">
+                                    <a href="<%= publish_path(publish.id) %>" class="button button-rounded button-flat-highlight button-small"><%= t('publish.view') %></a>
+                                  </div>
+                                  <div class="clear"></div>
+                                </div>
+                              </div><!-- gather_info -->
+                              <div class="clear"></div>
+                            </div><!-- col12 -->
+                        <!-- end --><% end %>
+
+                        
+                      </div><!-- gathering --> 
+
+                    </div><!-- rankCon -->
+            </div><!-- container -->
+      </div><!-- contents -->
+</body>

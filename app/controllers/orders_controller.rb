@@ -66,7 +66,7 @@ class OrdersController < ApplicationController
 			render "confirm", :object => @order, status: :created
 			#format.json {}
 		else
-			fredirect_to action: 'new', status: :internal_server_error, :alert => t('flash.alerts.order_created_alert')
+			redirect_to action: 'new', status: :internal_server_error, :alert => t('flash.alerts.order_created_alert')
 		end
 	end
 

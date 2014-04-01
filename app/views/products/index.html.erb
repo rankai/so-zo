@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--nobanner-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="/assets/buttons.css">
+
+        <style type="text/css">
+            /* for masonry*/
+            /*.col-sm-3 {
+                width: 20%;
+                margin-bottom: 10px
+            }*/
+
+            .line-bottom a{
+                color:white;
+            }
+
+            .line-bottom  a:hover{
+                text-decoration: none;
+            }
+
+        </style>
+
+
+        <!--<script type="text/javascript">
+           $(function(){
+                /*$("#ill").masonry({
+                    itemSelector: ".col-sm-2"
+                });*/
+               var $container = $(".row");
+               $container.imagesLoaded(function() {
+                    $container.masonry({
+                          itemSelector: '.col-sm-3',
+                          isAnimated: true, 
+                          animationOptions: {
+                            duration: 700,
+                            easing: 'linear',
+                            queue: false
+                          }              
+                       });
+               });
+            });
+
+        </script>-->
+
+    </head>
+    <body id="top">
+        <div class="contents">
+            <%= render "home/nav" %>
+                <div style="height:76px">
+                </div>
+                <div class="container">
+                    <%= render "ranking" %>
+         
+                    <div class="image-row">
+                        <div class="image-set">
+                          <div class="row" id="new">
+
+                            <% @products.each do |product| %>
+
+                              <div class="col-sm-3">
+                                <div class="graybox" style="height:450px">
+                                  <% if (product.created_at - Time.now) < 7 %>
+
+                                      <p class="ribbon">
+                                        <img src="/assets/new_ribbon.png" alt="" />
+                                      </p>
+
+                                  <% end %>
+
+                                  <div class="imgarea">
+                                    <a class="example-image-link" href="<%= product_path(product) %>"
+                                    title="『<%= product.name %>』">
+                                      <img class="example-image" src="<%= product.product_images.first.product_image.url(:medium) %>" alt="" />
+                                    </a>
+                                    <div class="price">
+                                      ￥<%= product.price %>
+                                    </div>
+                                  </div>
+                                  <!-- imgarea -->
+                                  <p class="itemtitle">
+                                    『<%= product.name %>』
+                                  </p>
+                                  <p class="itemdetail">
+                                    <%= product.description %>
+                                  </p>
+                                   <div class="line-price">
+                                   </div>
+                                    <div class="line-bottom">
+                                        <!-- <span>
+                                            250人相关购买
+                                        </span> -->
+                                         <!-- <button type="button" class="btn btn-default waterfall-btn-left" onclick='window.location.href="<%= product_path(product.id) %>"'>
+                                        <span class="glyphicon glyphicon-eye-open">
+                                        </span>
+                                        <span class="waterfall-btn-title">浏览</span>
+                                        </button> -->
+                                        <!-- <button type="button" class="btn btn-default waterfall-btn-right">
+                                            <span class="waterfall-btn-title">收藏</span>
+                                            <span class="glyphicon glyphicon-star">
+                                            </span>
+                                        </button> -->
+
+                                        <a href="<%= product_path(product.id) %>" class="button button-rounded button-flat-highlight button-small"><%= t("product.purchase") %></a>
+                                    </div>
+                                </div><!-- graybox -->
+                              </div><!-- col3 -->
+
+                            <% end %>       
+
+                          </div>
+                          <!-- row new -->
+                        </div>
+                        <!-- image set -->
+                      </div>
+                      <!-- image row -->
+
+                </div><!-- container -->
+                <div class="clear">
+                </div>
+            <div class="container">
+               <%= render "home/bottom" %>
+           </div>
+    </body>
+</html>
+
+

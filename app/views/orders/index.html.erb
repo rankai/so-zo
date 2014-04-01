@@ -112,8 +112,8 @@
 <script type="text/javascript"> 
 $(function() {
 
-    $("#nav-c").addClass("active");
-    $("#nav-c a").css("background-color", "#9DCA6C");
+    $("#nav-d").addClass("active");
+    $("#nav-d a").css("background-color", "#9DCA6C");
 
     setSelect();
     // select change
@@ -191,20 +191,20 @@ $(function() {
 
 
             <div class="order-gathering-title">
-              <h4>我的订单</h4>
+              <h4><%= t('order.my_orders') %></h4>
             </div>
             <div class="order-gathering-info">
               <div id="order-prompt">
               <dl>
-                <dt>有爱提醒:</dt>
+                <dt><%= t('nav.inform') %>:</dt>
                 <dd>
                   <% 
                     unpaid_count = get_unpaid_count
                     if unpaid_count == 0
                    %>
-                      <span style="color:#999">无待付款</span>
+                      <span style="color:#999"><%= t('order.no_orders_need_to_pay') %></span>
                    <% else %>
-                      <a href="#">待付款(<%= unpaid_count %>)</a>
+                      <a href="#"><%= t('order.need_to_pay') %>(<%= unpaid_count %>)</a>
                   <% end %>
                 </dd>
                 <dd>
@@ -212,9 +212,9 @@ $(function() {
                     shipped_count = get_shipped_count
                     if shipped_count == 0
                    %>
-                      <span style="color:#999">无已发货</span>
+                      <span style="color:#999"><%= t('order.no_orders_shipped') %></span>
                    <% else %>
-                      <a href="#">已发货(<%= shipped_count %>)</a>
+                      <a href="#"><%= t('order.shipped') %>(<%= shipped_count %>)</a>
                   <% end %>
                  </dd>
               </dl>
@@ -224,7 +224,7 @@ $(function() {
               <form role="form" method="get" action="<%= user_orders_path(current_user)%>">
                   <div class="form-group">
                     <button role="button" class="btn btn-default" id="btn-search"><span class="glyphicon glyphicon-search"></span>查询</button>
-                    <input type="text" class="form-control" placeholder="商品名称、订单编号" name="search" />
+                    <input type="text" class="form-control" placeholder="<%= t('order.order_search_placeholder') %>" name="search" />
                   </div>
             </form>
             </div>
@@ -241,18 +241,30 @@ $(function() {
                   <table class="order-table table table-hover table-bordered">
                     <thead>
                       <tr>
-                        <th>订单信息</th>
-                        <th>收货人</th> 
-                        <th>订单金额</th>
+                        <th><%= t('order.col_info') %></th>
+                        <th><%= t('order.col_receiver') %></th> 
+                        <th><%= t('order.col_price') %></th>
                         <form role="form" method="get" action="<%= user_orders_path(current_user)%>"  id="select-form">
                         <th id="order-datetime">
-                          <%= select_tag "order[created_at]", '<option value="all">全部时间</option><option value="7">最近一周内</option><option value="90">最近3个月内</option><option value="365">今年</option>'.html_safe, name: "created_at" %>
+                          <select id="order_created_at" name="created_at"> 
+                            <option value='all'><%= t("order.col_created_at.options.all") %></option>
+                            <option value='7'><%= t("order.col_created_at.options.in_this_week") %></option>
+                            <option value='90'><%= t("order.col_created_at.options.last_3_months") %></option>
+                            <option value='365'><%= t("order.col_created_at.options.in_this_year") %></option>
+                          </select>
                         </th>
                         <th id="order-state">
-                          <%= select_tag "order[state]", '<option value="all">全部状态</option><option value="confirmed">未付款</option><option value="paid">已付款</option><option value="shipped">已发货</option><option value="completed">已完成</option>'.html_safe, name: "state" %>
+                          <select id="order_state" name="state">
+                            <option value="all"><%= t("order.col_state.options.all") %></option>
+                            <option value="confirmed"><%= t("order.col_state.options.need_to_pay") %></option>
+                            <option value="paid"><%= t("order.col_state.options.paid") %></option>
+                            <option value="shipped"><%= t("order.col_state.options.shipped") %></option>
+                            <option value="completed"><%= t("order.col_state.options.completed") %></option>
+                          </select>
+
                         </th>
                       </form>
-                        <th>操作</th>
+                        <th><%= t('order.col_op') %></th>
 
                       </tr>
                     </thead>
@@ -261,7 +273,7 @@ $(function() {
                     <% @orders.each do |order| %>
                       <tr class="order-number">
                         <td colspan="6">
-                          <span>订单编号：<%= order.order_number %></span>
+                          <span><%= t('order.order_number') %>：<%= order.order_number %></span>
                         </td>
                       </tr>
                       <tr>

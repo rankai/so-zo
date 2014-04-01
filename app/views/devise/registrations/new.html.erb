@@ -2,10 +2,10 @@
   
   $(function() {
     $("#nav").css("background-image", 'none');
-  });
+    $("#loading").hide();
 
-  $(function() {
     $("input[type='file").change(function(evt) {
+      
       var images = evt.target.files;
       for(var i=0, f; f=images[i]; i++) {
         if(!f.type.match('image.*')) {
@@ -29,19 +29,25 @@
                 required: true
             },
             "user[motto]": {
-                required: false
+                required: true
             },
             "user[email]": {
-                required: true
+                required: true,
+                email: true
             },
             "user[password]": {
               required: true,
               minlength: 3
             },
+            "user[password_confirmation]": {
+              required: true,
+              minlength: 3,
+              equalTo: "#user_password"
+            },
             "user[sex]": {
               required: true
             },
-            "user[occupation]": {
+            "user[occupation_id]": {
               required:true
             },
             "user[photo]": {
@@ -56,6 +62,23 @@
             $(element).closest('.form-group').removeClass('has-error');
         },
 
+        messages: {
+          "user[photo]" : "<%= t('devise.failure.upload_photo') %>",
+          "user[occupation_id]": "<%= t('devise.failure.select_occupation') %>",
+          "user[sex]": "<%= t('devise.failure.select_sex') %>",
+          "user[email]": {
+            required: "<%= t('devise.failure.input_email') %>",
+            email: "<%= t('devise.failure.input_valid_email') %>"
+          },
+          "user[password]": "<%= t('devise.failure.input_password') %>",
+          "user[password_confirmation]": {
+            equalTo:  "<%= t('devise.failure.confirm_password') %>",
+            required: "<%= t('devise.failure.input_password') %>"
+          },
+          "user[motto]": "<%= t('devise.failure.upload_photo') %>",
+          "user[name]": "<%= t('devise.failure.input_name') %>",
+        },
+
         errorElement: 'span',
         errorClass: 'help-block',
         errorPlacement: function(error, element) {
@@ -65,15 +88,14 @@
                 error.appendTo(element.parent());
             }
         },
-/*        submitHandler: function(form) {
-            jQuery(form).ajaxSubmit(options);
-            $("#pre").hide();
-            $("#uploading").show();
-            $("#myModal").modal('hide');
-        }*/
+        submitHandler: function(form) {
+            //jQuery(form).ajaxSubmit(options);
+            form.submit();
+            $("#loading").show();
+        }
     });
 
-  })
+  });
 
 </script>
 
@@ -119,6 +141,12 @@
     left:50px;
   }
 
+  #user_photo + span {
+    position: absolute;
+    top: 80px;
+    left: 38px;
+  }
+
 </style>
 
 <body id="top">
@@ -129,11 +157,11 @@
       <div class="container">
         <div style="height:50px">
         </div>
+         <div id="loading"><%= image_tag "/assets/loading.gif", style: "margin-right: 10px" %><%= t('progress.processing') %></div>
           <div class="r-box">
             <!-- <form action=""> -->
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-            <%= devise_error_messages! %>
-
+                <%= devise_error_messages! %>
                 <div class="user-img">
                   <img src="/assets/question_mark.jpg" width="200px" class="img-rounded" /> 
                   <div class="form-group" style="text-align:center;position:relative;">
@@ -141,7 +169,7 @@
                       <%= t('devise.links.upload_photo') %>
                     </button>
                     <div class="input-group">
-                      <%= f.file_field :photo %>
+                      <%= f.file_field :photo, class: "required", accept: "image/*" %>
                     </div>
                   </div>
 
@@ -151,9 +179,9 @@
                   <div class="form-group">
                   <%= f.label :email do %> <%= User.human_attribute_name('email') %>: <% end %>
                   <div class="input-group">
-                    <%= f.email_field :email, :autofocus => true %>
+                    <%= f.email_field :email, :autofocus => true, placeholder: t('devise.placeholders.required'), class: "form-control"  %>
                   </div>  
-                </div><br />
+                </div>
 
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <div class="form-group">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div><br />
@@ -161,7 +189,7 @@
 
                   <div class="form-group"><%= f.label :password do %><%= User.human_attribute_name('password') %>: <% end %>
                     <div class="input-group">
-                      <%= f.password_field :password, :autocomplete => "off" %>
+                      <%= f.password_field :password, :autocomplete => "off", placeholder: t('devise.placeholders.required'), class: "form-control"    %>
                   </div>
                  </div>
 
@@ -171,28 +199,28 @@
 
                   <div class="form-group"><%= f.label :password_confirmation do %>确认密码:<% end %>
                    <div class="input-group">
-                      <%= f.password_field :password_confirmation %>
+                      <%= f.password_field :password_confirmation, placeholder: t('devise.placeholders.required'), class: "form-control"  %>
                   </div>
                  </div>
 
                   <div class="form-group">
                       <%= f.label :name do %><%= User.human_attribute_name('name') %>: <% end %>
                       <div class="input-group">
-                      <%= f.text_field :name %>
+                      <%= f.text_field :name, placeholder: t('devise.placeholders.required'), class: "form-control"    %>
                     </div>
                   </div>
    
                   <div class="form-group">
                       <%= f.label :sex do %><%= User.human_attribute_name('sex') %>: <% end %>
                       <div class="input-group">
-                      <%= f.select(:sex, [['女', 'female'], ['男','male']]) %>
+                      <%= f.select(:sex, [['女', 'female'], ['男','male']], {include_blank: true})%>
                     </div>
                   </div>
 
                   <div class="form-group">
                       <%= f.label :motto do %><%= User.human_attribute_name('motto') %>: <% end %>
                      <div class="input-group"> 
-                      <%= f.text_area :motto %>
+                      <%= f.text_area :motto, placeholder: t('devise.placeholders.required'), rows: "10", class: "form-control"    %>
                     </div>
                   </div>
 
@@ -220,14 +248,14 @@
                       <div class="form-group">
                         <%= f.label :phone do %> <%= User.human_attribute_name('phone') %>: <% end %>
                         <div class="input-group"> 
-                        <%= f.text_field :phone %>
+                        <%= f.text_field :phone, class: "form-control", placeholder: t('devise.placeholders.not_required')   %>
                       </div>
                       </div>
 
                       <div class="form-group">
                         <%= f.label :address do %> <%= User.human_attribute_name('address') %>: <% end %>
                         <div class="input-group">
-                        <%= f.text_area :address %>
+                        <%= f.text_area :address, class: "form-control", placeholder: t('devise.placeholders.not_required'), rows: "10" %>
                       </div>
                       </div>
                     </fieldset>

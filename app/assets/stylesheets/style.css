@@ -490,7 +490,7 @@ a:hover {
 	width:220px;
 	overflow:hidden; !important
 }
-#gathering .graybox2 .userInfo{ padding-top:45px;}
+#gathering .graybox2 .userInfo{ padding-top:25px;}
 #gathering .graybox2 .userInfo .btn-fr{ float:right;}
 #gathering .graybox2 .userInfo .userImg{ float:left; width:150px;}
 #gathering .graybox2 .userInfo .userImg .img-fl{ float:left; width:50px;}
@@ -952,3 +952,7 @@ _top:       expression(eval(document.compatMode &&  document.compatMode=='CSS1Co
 
 /* my cart */
 /* IE doesn't load this if I put the css here*/
+#error_explanation{
+	margin-bottom: 20px;
+	padding: 10px;
+}

@@ -1,0 +1,454 @@
+# Japanese translations for Ruby on Rails
+# by Akira Matsuda (ronnie@dio.jp)
+# AR error messages are basically taken from Ruby-GetText-Package. Thanks to Masao Mutoh.
+# contributors:
+#  - Tsutomu Kuroda (t-kuroda@oiax.jp)
+
+ja:
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      long: "%Y年%m月%d日(%a)"
+
+    day_names:
+      - 日曜日
+      - 月曜日
+      - 火曜日
+      - 水曜日
+      - 木曜日
+      - 金曜日
+      - 土曜日
+    abbr_day_names:
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
+
+    month_names:
+      - ~
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    abbr_month_names:
+      - ~
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%y/%m/%d %H:%M"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %Z"
+    am: "午前"
+    pm: "午後"
+
+  support:
+    array:
+      sentence_connector: "と"
+      skip_last_comma: true
+      words_connector: "と"
+      two_words_connector: "と"
+      last_word_connector: "と"
+
+    select:
+      prompt: "選択してください。"
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+    currency:
+      format:
+        format: "%n%u"
+        unit: "円"
+        separator: "."
+        delimiter: ","
+        precision: 3
+        significant: false
+        strip_insignificant_zeros: false
+
+    percentage:
+      format:
+        delimiter: ""
+
+    precision:
+      format:
+        delimiter: ""
+
+    human:
+      format:
+        delimiter: ""
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: "バイト"
+          kb: "キロバイト"
+          mb: "メガバイト"
+          gb: "ギガバイト"
+          tb: "テラバイト"
+
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "千"
+          million: "百万"
+          billion: "十億"
+          trillion: "兆"
+          quadrillion: "千兆"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "30秒前後"
+      less_than_x_seconds:
+        one:   "1秒以内"
+        other: "%{count}秒以内"
+      x_seconds:
+        one:   "1秒"
+        other: "%{count}秒"
+      less_than_x_minutes:
+        one:   "1分以内"
+        other: "%{count}分以内"
+      x_minutes:
+        one:   "1分"
+        other: "%{count}分"
+      about_x_hours:
+        one:   "約1時間"
+        other: "約%{count}時間"
+      x_days:
+        one:   "1日"
+        other: "%{count}日"
+      about_x_months:
+        one:   "約1ヶ月"
+        other: "約%{count}ヶ月"
+      x_months:
+        one:   "1ヶ月"
+        other: "%{count}ヶ月"
+      about_x_years:
+        one:   "約1年"
+        other: "約%{count}年"
+      over_x_years:
+        one:   "1年以上"
+        other: "%{count}年以上"
+      almost_x_years:
+        one:   "1年弱"
+        other: "%{count}年弱"
+
+    prompts:
+      year:   "年"
+      month:  "月"
+      day:    "日"
+      hour:   "時"
+      minute: "分"
+      second: "秒"
+
+  helpers:
+    select:
+      prompt: "選択してください。"
+
+    submit:
+      create: "登録する"
+      update: "更新する"
+      submit: "保存する"
+
+  errors:
+    format: "%{attribute} %{message}"
+
+    messages: &errors_messages
+      inclusion: "は一覧にありません。"
+      exclusion: "は予約されています。"
+      invalid: "は不正な値です。"
+      confirmation: "が一致しません。"
+      accepted: "を受諾してください。"
+      empty: "を入力してください。"
+      blank: "を入力してください。"
+      too_long: "は%{count}文字以内で入力してください。"
+      too_short: "は%{count}文字以上で入力してください。"
+      wrong_length: "は%{count}文字で入力してください。"
+      not_a_number: "は数値で入力してください。"
+      not_an_integer: "は整数で入力してください。"
+      greater_than: "は%{count}より大きい値にしてください。"
+      greater_than_or_equal_to: "は%{count}以上の値にしてください。"
+      equal_to: "は%{count}にしてください。"
+      less_than: "は%{count}より小さい値にしてください。"
+      less_than_or_equal_to: "は%{count}以下の値にしてください。"
+      odd: "は奇数にしてください。"
+      even: "は偶数にしてください。"
+      #for devise
+      already_confirmed: "は既に登録済みですのでログインしてください"
+      #already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "の確認期限が切れました。%{period}以内に確認する必要があります。 新しくリクエストしてください"
+      #confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "の期限が切れましたので、新しくリクエストしてください"
+      #expired: "has expired, please request a new one"
+      not_found: "は見つかりませんでした"
+      #not_found: "not found"
+      not_locked: "は凍結されていません"
+      #not_locked: "was not locked"
+      not_saved:
+        one: "1 つのエラーにより %{resource} は保存されませんでした:"
+        #one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} つのエラーにより %{resource} は保存されませんでした:"
+        #other: "%{count} errors prohibited this %{resource} from being saved:"
+
+  devise:
+    confirmations:
+      confirmed: 'アカウントを登録しました。'
+      #confirmed: 'Your account was successfully confirmed. You are now signed in.'
+      send_instructions: '登録方法を数分以内にメールでご連絡します。'
+      #send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      send_paranoid_instructions: 'もしあなたのEメールアドレスが見つかった場合、本人確認についてのメールが数分以内に送られます。'
+      #send_paranoid_instructions: 'If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes.'
+    failure:
+      already_authenticated: '既にログインしています。'
+      #already_authenticated: 'You are already signed in.'
+      inactive: 'アカウントがアクティベートされていません。'
+      #inactive: 'Your account was not activated yet.'
+      invalid: 'メールアドレスかパスワードが違います。'
+      #invalid: 'Invalid email or password.'
+      invalid_token: '認証キーが不正です。'
+      #invalid_token: 'Invalid authentication token.'
+      locked: 'あなたのアカウントは凍結されています。'
+      #locked: 'Your account is locked.'
+      not_found_in_database: 'メールアドレスかパスワードが違います。'
+      #not_found_in_database: "Invalid email or password."
+      timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
+      #timeout: 'Your session expired, please sign in again to continue.'
+      unauthenticated: 'ログインしてください。'
+      #unauthenticated: 'You need to sign in or sign up before continuing.'
+      unconfirmed: '本登録を行ってください。'
+      #unconfirmed: 'You have to confirm your account before continuing.'
+    mailer:
+      confirmation_instructions:
+        subject: 'アカウントの登録方法'
+        #subject: 'Confirmation instructions'
+      reset_password_instructions:
+        subject: 'パスワードの再設定'
+        #subject: 'Reset password instructions'
+      unlock_instructions:
+        subject: 'アカウントの凍結解除'
+        #subject: 'Unlock Instructions'
+    omniauth_callbacks:
+      success: '%{kind} アカウントによる個人認証に成功しました。'
+      #success: 'Successfully authenticated from %{kind} account.'
+      failure: '%{kind} アカウントによる個人認証に失敗しました（%{reason}）。'
+      #failure: 'Could not authenticate you from %{kind} because "%{reason}".'
+    passwords:
+      no_token: "このページにはアクセスできません。パスワード復元メールのリンクをコピーした場合には、正しい URL かどうかをお確かめください。"
+      #no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: 'パスワードのリセット方法を数分以内にメールでご連絡します。'
+      #send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      send_paranoid_instructions: "もしあなたのEメールアドレスが見つかった場合、パスワード復元用のメールが数分以内に送られます。"
+      #send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: 'パスワードを変更しました。'
+      #updated: 'Your password was changed successfully. You are now signed in.'
+      updated_not_active: 'パスワードが正しく変更されました。'
+      #updated_not_active: 'Your password was changed successfully.'
+    registrations:
+      destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
+      #destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      signed_up: 'ようこそ！ アカウント登録を受け付けました。'
+      #signed_up: 'Welcome! You have signed up successfully.'
+      signed_up_but_inactive: 'アカウント登録を受け付けました。しかしまだ有効化されておらず、ログインできません。'
+      #signed_up_but_inactive: 'You have signed up successfully. However, we could not sign you in because your account is not yet activated.'
+      signed_up_but_locked: 'アカウント登録を受け付けました。しかし、アカウントが凍結されているためログインできません。'
+      #signed_up_but_locked: 'You have signed up successfully. However, we could not sign you in because your account is locked.'
+      signed_up_but_unconfirmed: '本人確認用のメールがあなたのEメールアドレスに送られました。メール内のリンクからアカウントを有効化させてください。'
+      #signed_up_but_unconfirmed: 'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'
+      updated: 'アカウント情報を変更しました。'
+      #updated: 'You updated your account successfully.'
+      update_needs_confirmation: "アカウント情報を変更しましたが、Eメールアドレスの本人確認用Eメールをお送りしましたので、中のリンクをクリックして証明してください。"
+      #update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
+    sessions:
+      signed_in: 'ログインしました。'
+      #signed_in: 'Signed in successfully.'
+      signed_out: 'ログアウトしました。'
+      #signed_out: 'Signed out successfully.'
+    unlocks:
+      send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
+      #end_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      send_paranoid_instructions: 'アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。'
+      #send_paranoid_instructions: 'If your account exists, you will receive an email with instructions about how to unlock it in a few minutes.'
+      unlocked: 'アカウントを凍結解除しました。ログインしています。'
+      #unlocked: 'Your account was successfully unlocked. You are now signed in.'
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one:   "%{model}にエラーが発生しました。"
+          other: "%{model}に%{count}つのエラーが発生しました。"
+        body: "次の項目を確認してください。"
+
+      messages:
+        taken: "はすでに存在します。"
+        record_invalid: "バリデーションに失敗しました。 %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute}%{message}"
+
+  admin:
+    home:
+      name: "ホーム"
+    pagination:
+      previous: "&laquo; 前"
+      next: "次 &raquo;"
+      truncate: "…"
+    misc:
+      filter_date_format: "mm/dd/yy" # a combination of 'dd', 'mm' and 'yy' with any delimiter. No other interpolation will be done!
+      search: "検索"
+      filter: "フィルタ"
+      refresh: "更新"
+      show_all: "全て表示"
+      add_filter: "フィルタを追加"
+      bulk_menu_title: "選択したアイテム"
+      remove: "削除"
+      add_new: "新規作成"
+      chosen: "Chosen %{name}"
+      chose_all: "全て選択"
+      clear_all: "全てクリア"
+      up: "Up"
+      down: "Down"
+      navigation: "ナビゲーション"
+      log_out: "ログアウト"
+      ago: "前"
+    flash:
+      successful: "%{name}の %{action} に成功しました"
+      error: "%{name} の %{action} に失敗しました"
+      noaction: "アクションが指定されていません"
+      model_not_found: "モデル '%{model}' が見つかりません"
+      object_not_found: "ID '%{id}' の%{model}が見つかりません"
+    table_headers:
+      model_name: "モデル名"
+      last_used: "Last used"
+      records: "レコード"
+      username: "ユーザ"
+      changes: "Changes"
+      created_at: "日時"
+      item: "アイテム"
+      message: "メッセージ"
+    actions:
+      dashboard:
+        title: "サイト管理"
+        menu: "ダッシュボード"
+        breadcrumb: "ダッシュボード"
+      index:
+        title: "%{model_label_plural}の一覧"
+        menu: "一覧"
+        breadcrumb: "%{model_label_plural}"
+      show:
+        title: "%{model_label} '%{object_label}' の詳細"
+        menu: "表示"
+        breadcrumb: "%{object_label}"
+      show_in_app:
+        menu: "アプリで表示"
+      new:
+        title: "新規 %{model_label}"
+        menu: "新規作成"
+        breadcrumb: "新規"
+        link: "新規 %{model_label} を作成"
+        done: "作成しました"
+      edit:
+        title: "%{model_label} '%{object_label}' の編集"
+        menu: "編集"
+        breadcrumb: "編集"
+        link: "この %{model_label} を編集"
+        done: "更新しました"
+      delete:
+        title: "%{model_label} '%{object_label}' の削除"
+        menu: "削除"
+        breadcrumb: "削除"
+        link: "'%{object_label}' を削除"
+        done: "削除しました"
+      bulk_delete:
+        title: "%{model_label_plural} の削除"
+        menu: "一括削除"
+        breadcrumb: "一括削除"
+        bulk_link: "選択した%{model_label_plural}の削除"
+      export:
+        title: "%{model_label_plural} のエクスポート"
+        menu: "エクスポート"
+        breadcrumb: "エクスポート"
+        link: "クエリ結果の%{model_label_plural}をエクスポート"
+        bulk_link: "選択した%{model_label_plural}のエクスポート"
+        done: "エクスポートしました"
+      history_index:
+        title: "%{model_label_plural} の履歴"
+        menu: "履歴"
+        breadcrumb: "履歴"
+      history_show:
+        title: "%{model_label} '%{object_label}' の履歴"
+        menu: "履歴"
+        breadcrumb: "履歴"
+    form:
+      cancel: "キャンセル"
+      basic_info: "基本情報"
+      required: "必須"
+      optional: "オプション"
+      one_char: "文字"
+      char_length_up_to: "最大文字数:"
+      char_length_of: "文字数:"
+      save: "保存"
+      save_and_add_another: "保存してもう一つ作成"
+      save_and_edit: "保存して編集画面へ"
+      all_of_the_following_related_items_will_be_deleted: ")を削除してよろしいですか？ 以下の関連するアイテムが削除されるかみなしご化されます:"
+      are_you_sure_you_want_to_delete_the_object: "本当に%{model_name} ("
+      confirmation: "はい。間違いありません！"
+      bulk_delete: "以下のオブジェクトが削除され、関連する依存オブジェクトも削除またはみなしご化されます:"
+      new_model: "%{name} (新規)"
+    export:
+      confirmation: "%{name}としてエクスポート"
+      select: "エクスポートするフィールドの選択"
+      fields_from: "%{name}のフィールド"
+      fields_from_associated: "関連%{name}のフィールド"
+      display: "Display %{name}: %{type}"
+      options_for: "%{name}のオプション"
+      empty_value_for_associated_objects: "<空>"
+      click_to_reverse_selection: 'クリックで選択を反転'
+      csv:
+        header_for_root_methods: "%{name}" # 'model' is available
+        header_for_association_methods: "%{name} [%{association}]"
+        encoding_to: "エンコード:"
+        encoding_to_help: "出力エンコードを選択して下さい。空のままにすると現在の入力エンコードのままになります: (%{name})"
+        skip_header: "ヘッダを無し"
+        skip_header_help: "チェックするとヘッダ(フィールドのタイトル)を出力しません。"
+        default_col_sep: ","
+        col_sep: "カラム区切り文字"
+        col_sep_help: "空白にすると標準の '%{value}' になります。" # value is default_col_sep

@@ -66,7 +66,7 @@
   }
 
   .thumbnail img {
-    max-width: 300px;
+    max-width: 250px;
     max-height: 200px;
   }
 
@@ -97,18 +97,37 @@
             $.ajax({
                 type: "delete",
                 url: "/users/<%= current_user.id %>/publishes/" + id.split("-")[1],
-                dataType: "json",
+                dataType: "text",
                 beforeSend: function(XMLHttpRequest) {
                     this; //调用本次ajax请求时传递的options参数
                 },
                 success: function(data) {
                     $("#loading").hide();
+                    console.log("success");
+                    console.log(data);
+                    flash(data);
                     $("#"+id).parent().parent().parent().parent().remove();
+                }, 
+                error: function(data) {
+                  console.log("error");
+                  console.log(data);
+                  $("#loading").hide();
+                  flash(data.responseText);
                 }
             });
         });
 
     })
+
+    function flash(data) {
+        $(".alert span").text(data);
+        $(".alert").slideDown('slow');
+        window.setTimeout(function() {
+            $(".alert").slideUp(500, function(){
+                $(this).hide(); 
+            });
+        }, 1500);
+    }
 
     function setSelect() {
     var category = getUrlParameters("publish_category", "", true);
@@ -162,7 +181,7 @@
 
           <div class="publish-gathering-title">
             <h4>
-              我的作品
+              <%= t('publish.my_publishes') %>
             </h4>
           </div>
 
@@ -170,14 +189,14 @@
 
             <div class="publish-prompt">
               <dl>
-                <dt>有爱提醒:</dt>
+                <dt><%= t('nav.inform') %>:</dt>
                   <% 
                     total_count = current_user.publishes.count
                     if total_count == 0
                    %>
-                      <dd><span style="color:#999">还没有作品</span></dd>
+                      <dd><span style="color:#999"><%= t('publish.no_publishes') %></span></dd>
                    <% else %>
-                      <dd><a href="#">总作品数(<%= total_count %>)</a></dd>
+                      <dd><a href="#"><%= t('publish.total') %>(<%= total_count %>)</a></dd>
 
                       <!-- has publishes -->
                       <% @categories = PublishCategory.all 
@@ -189,7 +208,7 @@
                             if count != 0
                           %>  
 
-                            <dd><a href="#"><%= category.description %>作品数(<%= count %>)</a></dd>
+                            <dd><a href="#"><%= category.description %><%= t('publish.quantity') %>(<%= count %>)</a></dd>
 
                           <% end %> <!-- end if -->
 
@@ -200,9 +219,9 @@
                         total_sells = get_my_sells.count
                         if total_sells == 0
                       %>
-                          <dd><span style="color:#999">还没有卖出作品</span></dd>
+                          <dd><span style="color:#999"><%= t('publish.no_publishes_sells') %></span></dd>
                       <% else %>
-                          <dd><a href="#">总卖出次数(<%= total_sells %>)</a></dd>
+                          <dd><a href="#"><%= t('publish.total_sells') %>(<%= total_sells %>)</a></dd>
 
                           <!-- has cells -->
                           <% @categories = PublishCategory.all 
@@ -214,7 +233,7 @@
                             if count != 0
                           %>  
 
-                            <dd><a href="#"><%= category.description %>卖出作品数(<%= count %>)</a></dd>
+                            <dd><a href="#"><%= category.description %><%= t('publish.sells') %>(<%= count %>)</a></dd>
 
                           <% end %> <!-- end if -->
 
@@ -244,11 +263,11 @@
               <form class="form-inline" role="form" id="filter-form" method="get" action="<%= user_publishes_path(current_user) %>">
                 <div class="form-group">
                     <label for="inputEmail3" class=" control-label">
-                      请选择作品类型：
+                      <%= t('publish.select_publish_category') %>：
                     </label>
                     <select name="publish_category" id="publish_publish_category">
                       <option value="all">
-                        全部作品
+                        <%= t('publish.all') %>
                       </option>
 
                       <% PublishCategory.all.each do |category| %>
@@ -262,7 +281,7 @@
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" name="sell" value="1" id="publish_sell">
-                    只显示已卖出
+                    <%= t('publish.only_show_with_sells') %>
                   </label>
                 </div>
               </form>
@@ -274,14 +293,14 @@
             <% @publishes.each do |publish| %>
 
             <div class="col-sm-6 col-md-4">
-              <div class="thumbnail">
+              <div class="thumbnail" style="height:350px">
                 <%= image_tag publish.publish_image.url(:medium) %>
                 <div class="caption">
                   <h3> 『<%= publish.name %>』</h3>
                   <p><%= publish.description %></p>
                   <p>
-                    <a href="#" class="publish-hide btn btn-default" role="button" id="hide-<%= publish.id %>">隐藏</a>
-                    <a  class="publish-delete btn btn-danger" role="button" id="del-<%= publish.id %>">删除</a>       
+                    <a href="<%= user_publish_path(current_user, publish) %>" class="publish-hide btn btn-default" role="button" id="hide-<%= publish.id %>"><%= t('publish.view') %></a>
+                    <a  class="publish-delete btn btn-danger" role="button" id="del-<%= publish.id %>"><%= t('nav.delete') %></a>       
                   </p>
                 </div>
               </div>

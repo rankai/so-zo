@@ -25,15 +25,39 @@
 
   <%= csrf_meta_tags %>
 
+  <script type="text/javascript">
+    $(function() {
+       /* $(".alert").slideDown('slow');*/
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                $(this).hide(); 
+            });
+        }, 2000);
+    });     
+
+  </script>
+
 </head>
+
 <body>
   
+  <!-- flash.each do |name, msg| -->
+          <!-- content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) -->
+<!-- end -->
+
   <% if notice %>
     <div class="alert alert-warning alert-dismissable" style="text-align:right">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <span><%= notice %></span>
     </div>
-    <% end %>
+  <% end %>
+
+  <% if alert %>
+    <div class="alert alert-warning alert-dismissable" style="text-align:right">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <span><%= alert %></span>
+    </div>
+  <% end %>
 
 	<%= yield %>
 

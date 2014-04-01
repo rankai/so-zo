@@ -22,7 +22,8 @@ SoZo::Application.routes.draw do
   end
 
   resources :users do
-
+      resources :products do
+      end
       resources :publishes do
         #get 'works', :on => :collection
       end
@@ -39,6 +40,7 @@ SoZo::Application.routes.draw do
   resources :publishes, only:[:index, :show] do 
     collection do
       get 'top'
+      get 'hot'
     end
   end
 

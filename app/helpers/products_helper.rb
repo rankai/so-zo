@@ -13,4 +13,8 @@ module ProductsHelper
 	def get_publish_image(product)
 		product.publish.publish_image
 	end
+
+	
+
+
 end

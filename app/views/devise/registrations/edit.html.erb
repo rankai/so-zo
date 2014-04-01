@@ -49,6 +49,7 @@
 </style>
 
 
+
 <body id="top">
   <div class="contents">
     <%= render "home/nav" %>
@@ -88,29 +89,31 @@
                     <div class="form-group">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div><br />
                   <% end %>
 
-                  <div class="form-group"><%= f.label :password do %><%= User.human_attribute_name('password') %>: <% end %>
-                    <div class="input-group">
-                      <%= f.password_field :password, :autocomplete => "off" %>
-                  </div>
-                 </div>
-
-                  <!-- <i>
-                    (leave blank if you don't want to change it)
-                  </i> -->
-
-                  <div class="form-group"><%= f.label :password_confirmation do %>确认密码:<% end %>
-                   <div class="input-group">
-                      <%= f.password_field :password_confirmation %>
-                  </div>
-                 </div>
-
-                  <div class="form-group"><%= f.label :current_password do %>原密码<% end %>
-                    <!--  <i>(we need your current password to confirm your changes)</i> 下来可以做tooltip-->
+                    <i>
+                      我们需要您的当前密码确认您的更改
+                    </i>
+                  <div class="form-group"><%= f.label :current_password do %><%= User.human_attribute_name('current_password') %>:<% end %>
                   <div class="input-group">
                     <%= f.password_field :current_password %>
                   </div>
                   </div>
                   
+
+                  <i>
+                    留下空白,如果你不想改变它
+                  </i>
+                  <div class="form-group"><%= f.label :password do %><%= User.human_attribute_name('new_password') %>: <% end %>
+                    <div class="input-group">
+                      <%= f.password_field :password, :autocomplete => "off" %>
+                  </div>
+                 </div>
+
+                  <div class="form-group"><%= f.label :password_confirmation do %><%= User.human_attribute_name('password_confirmation') %>:<% end %>
+                   <div class="input-group">
+                      <%= f.password_field :password_confirmation %>
+                  </div>
+                 </div>
+
 
                   <div class="form-group">
                       <%= f.label :name do %><%= User.human_attribute_name('name') %>: <% end %>
@@ -217,7 +220,7 @@
             </p>
             < link_to "Back", :back > -->
           </div><!-- r-box -->
-          <div id="buystep" style=" clear:both;width:1140; overflow:hidden; margin:0 0 0 -15px;">
+          <!-- <div id="buystep" style=" clear:both;width:1140; overflow:hidden; margin:0 0 0 -15px;">
             <h1 class="title2">
               <span>
                 可选形式
@@ -275,7 +278,7 @@
                 </a>
               </li>
             </ul>
-          </div>
+          </div> --><!-- buystep -->
       </div>
       <!-- container -->
       <div style="height:200px">
@@ -293,10 +296,10 @@
 <script type="text/javascript"> 
 $(function() {
 
-    $("#nav-d").addClass("active");
+    $("#nav-e").addClass("active");
 
     //input file display
-    $("input[type='file").change(function(evt) {
+    $('input[type="file"]').change(function(evt) {
       var images = evt.target.files;
       for(var i=0, f; f=images[i]; i++) {
         if(!f.type.match('image.*')) {
@@ -313,30 +316,29 @@ $(function() {
     });
 
     // jquery validate
-    /*$("#edit_user").validate({
+    $("#edit_user").validate({
         rules: {
             "user[name]": {
                 required: true
             },
             "user[motto]": {
-                required: false
-            },
-            "user[email]": {
                 required: true
             },
-            "user[password]": {
-              required: true,
-              minlength: 3
+            "user[email]": {
+                required: true,
+                email: true
             },
+            /*"user[password]": {
+            },
+            "user[password_confirmation]": {
+              equalTo: "#user[password]"
+            },*/
             "user[sex]": {
               required: true
             },
-            "user[occupation]": {
+            "user[occupation_id]": {
               required:true
             },
-            "user[photo]": {
-              required: true
-            }
         },
 
         highlight: function(element) {
@@ -344,6 +346,20 @@ $(function() {
         },
         unhighlight: function(element) {
             $(element).closest('.form-group').removeClass('has-error');
+        },
+
+        messages: {
+          "user[photo]" : "<%= t('devise.failure.upload_photo') %>",
+          "user[occupation_id]": "<%= t('devise.failure.select_occupation') %>",
+          "user[sex]": "<%= t('devise.failure.select_sex') %>",
+          "user[email]": {
+            required: "<%= t('devise.failure.input_email') %>",
+            email: "<%= t('devise.failure.input_valid_email') %>"
+          },
+          "user[password]": "<%= t('devise.failure.input_password') %>",
+          "user[password_confirmation]": "<%= t('devise.failure.confirm_password') %>",
+          "user[motto]": "<%= t('devise.failure.upload_photo') %>",
+          "user[name]": "<%= t('devise.failure.input_name') %>",
         },
 
         errorElement: 'span',
@@ -355,13 +371,13 @@ $(function() {
                 error.appendTo(element.parent());
             }
         },
-        submitHandler: function(form) {
+/*        submitHandler: function(form) {
             jQuery(form).ajaxSubmit(options);
             $("#pre").hide();
             $("#uploading").show();
             $("#myModal").modal('hide');
-        }
-    });*/
+        }*/
+    });
   })
 </script> 
 

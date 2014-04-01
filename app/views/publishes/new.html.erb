@@ -61,15 +61,30 @@
         $("#upload_form").validate({
             rules: {
                 "publish[name]": {
-                    required: true
+                    required: true,
+                    maxlength:20
                 },
                 "publish[description]": {
-                    required: true
+                    required: true,
+                    maxlength:200
                 },
                 "publish[publish_image]": {
                     required: true
                 }
             },
+
+            messages: {
+              "publish[publish_image]" : "<%= t('modal.upload.errors.upload_publish') %>",
+              "publish[name]": {
+                required: "<%= t('modal.upload.errors.input_name') %>",
+                maxlength: "<%= t('modal.upload.errors.name_too_long') %>"
+              },
+              "publish[description]": {
+                maxlength:  "<%= t('modal.upload.errors.description_too_long') %>",
+                required: "<%= t('modal.upload.errors.input_description') %>"
+              }
+            },
+
 
             highlight: function(element) {
                 $(element).closest(".form-group").addClass('has-error');
@@ -148,6 +163,11 @@
     .col-sm-2 {
         width: 20%;
         margin-bottom: 10px;
+    }
+
+    .publish-info {
+        width:45%;
+        float:right;
     }
 </style>
     <!--

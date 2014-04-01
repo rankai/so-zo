@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328045618) do
+ActiveRecord::Schema.define(version: 20140331101930) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 20140328045618) do
     t.string   "side_image_mask_content_type"
     t.integer  "side_image_mask_file_size"
     t.datetime "side_image_mask_updated_at"
-    t.integer  "price"
+    t.decimal  "price"
     t.string   "head_image_file_name"
     t.string   "head_image_content_type"
     t.integer  "head_image_file_size"
@@ -208,13 +208,15 @@ ActiveRecord::Schema.define(version: 20140328045618) do
     t.string   "name"
     t.string   "description"
     t.integer  "degree"
-    t.integer  "price"
+    t.decimal  "price"
     t.integer  "product_template_id"
     t.integer  "publish_id"
     t.integer  "position_X"
     t.integer  "position_Y"
     t.integer  "size_W"
     t.integer  "size_H"
+    t.decimal  "base_price"
+    t.integer  "state_id"
   end
 
   add_index "products", ["product_template_id", "publish_id"], name: "index_products_on_product_template_id_and_publish_id"
