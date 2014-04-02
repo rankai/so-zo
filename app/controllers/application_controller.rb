@@ -87,6 +87,9 @@ class ApplicationController < ActionController::Base
  
   #---------------- cart handler ------------------#
 
+ def my_cart
+    current_cart
+ end
 
 
 end

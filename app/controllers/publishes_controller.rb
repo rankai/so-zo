@@ -3,15 +3,9 @@ class PublishesController < ApplicationController
 	
 	respond_to :json, :html, :js
 
-	def top
-		#can specify top no
-		top = params["top"].to_i
-		@publishes = Publish.last(top)
-		render partial: "top", object: @publishes
-	end
-
 	def hot
 		# already added to cart, but not make orders
+
 		@publishes = Array.new
 		@hot_publishes = Publish.joins(:line_items).count(:group => "publishes.id", :order => 'count_all asc')
 		#@hot_publishes.each do |item|
@@ -54,6 +48,7 @@ class PublishesController < ApplicationController
 	end
 
 	def new 
+		render "new", layout: "works"
 	end
 
 	def upload
@@ -116,6 +111,32 @@ class PublishesController < ApplicationController
 				end
 			else
 				format.text{render text: t('flash.alerts.publish_deleted_forbid'), status: :forbidden }
+			end
+		end
+	end
+
+
+	def reset
+		@publish = Publish.find(params[:publish_id])
+		respond_to do |format|
+			if @publish.destroy 
+				format.text{render text: t('flash.notices.reset_tougao')}
+			else
+				format.text{render text: t('flash.alerts.reset_tougao_alert'), status: :internal_server_error}
+			end
+		end
+	end
+
+	def commit
+		@publish = Publish.find(params[:publish_id])
+		@products = @publish.products
+
+		@state = State.where(:name => "active").first
+		respond_to do |format|
+			if @products.update_all({:state_id => @state.id})
+				format.text{render text: t('flash.notices.commit_tougao')}
+			else
+				format.text{render text: t('flash.alerts.commit_tougao_alert'), status: :internal_server_error}
 			end
 		end
 	end

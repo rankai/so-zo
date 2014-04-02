@@ -279,7 +279,9 @@ $(function() {
                       <tr>
                         <td class="product-images">
                           <% order.order_items.each do |order_item| %>
+                          <% if not order_item.product.nil? %>
                             <%= image_tag order_item.product.product_images.first.product_image.url(:thumb), class: "img-rounded", width:"60px" %>
+                            <% end %>
                           <% end %>
                           
                         </td>

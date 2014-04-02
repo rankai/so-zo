@@ -75,7 +75,7 @@
             equalTo:  "<%= t('devise.failure.confirm_password') %>",
             required: "<%= t('devise.failure.input_password') %>"
           },
-          "user[motto]": "<%= t('devise.failure.upload_photo') %>",
+          "user[motto]": "<%= t('devise.failure.input_motto') %>",
           "user[name]": "<%= t('devise.failure.input_name') %>",
         },
 
@@ -169,7 +169,7 @@
                       <%= t('devise.links.upload_photo') %>
                     </button>
                     <div class="input-group">
-                      <%= f.file_field :photo, class: "required", accept: "image/*" %>
+                      <%= f.file_field :photo, accept: "image/png, image/jpeg" %>
                     </div>
                   </div>
 

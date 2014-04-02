@@ -23,8 +23,15 @@ SoZo::Application.routes.draw do
 
   resources :users do
       resources :products do
+        collection do
+          put 'setpriceonce'
+        end
       end
       resources :publishes do
+        collection do 
+          delete "reset"
+          put "commit"
+        end
         #get 'works', :on => :collection
       end
       resources :orders do
@@ -39,7 +46,6 @@ SoZo::Application.routes.draw do
 
   resources :publishes, only:[:index, :show] do 
     collection do
-      get 'top'
       get 'hot'
     end
   end

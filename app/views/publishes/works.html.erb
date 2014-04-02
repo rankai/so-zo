@@ -61,6 +61,12 @@
     padding: 10px
   }
 
+  .publish-list .works-info {
+    word-break: break-all;
+    white-space: normal;
+    width: 260px;
+  }
+
   .publish-list #loading {
     text-align: center;
   }
@@ -295,7 +301,7 @@
             <div class="col-sm-6 col-md-4">
               <div class="thumbnail" style="height:350px">
                 <%= image_tag publish.publish_image.url(:medium) %>
-                <div class="caption">
+                <div class="works-info caption">
                   <h3> 『<%= publish.name %>』</h3>
                   <p><%= publish.description %></p>
                   <p>

@@ -15,8 +15,9 @@ zh-CN:
     search: "搜索"
     shopping_cart: "购物车"
     favicons: "收藏"
-    inform: "有爱提醒"
+    inform: "友爱提醒"
     delete: "删除"
+    ok: "确定"
     menu:
       illustration: "插画"
       photo: "写真"
@@ -41,7 +42,8 @@ zh-CN:
     col_price: "单价"
     col_size: "尺寸"
     col_color: "颜色"
-    remove_confirm: "您确认从购物车移除么"
+    remove_confirm: "您确认从购物车移除么?"
+    quantity_change: "商品数量更改成功"
 
   product:
     only_show_with_sells: "只显示已卖出"
@@ -63,6 +65,16 @@ zh-CN:
     no_products: "还没有商品"
     my_products: "我的商品"
     purchase: "购买"
+    set_uniform_price: "统一提高价格"
+    set_price: "价格"
+    confirm_tougao: "确认投稿"
+    re_tougao: "重新投稿"
+    input_price: "填写您希望的价格"
+    input_price_ratio: "请填写您希望提高的比例"
+    input_price_ratio_error: "请输入大于0小于100的比例，例如50"
+    input_price_more_than: "这件商品的成本是"
+    end_to_price_more_than: "你不能输入超过它2倍的价格哦"
+    frequency_sells: "卖出次数"
 
   bonus:
     no_bonus: "还没有收益"
@@ -125,7 +137,8 @@ zh-CN:
     hide: "隐藏"
     view: "浏览"
     author: "作者"
-    frequency_added_to_cart: "被加入购物车"
+    frequency_added_to_cart: "加入购物车"
+    options: "可选形式"
 
 
   progress:
@@ -133,6 +146,7 @@ zh-CN:
     uploading: "正在上传..."
     making_products: "正在生成产品..."
     processing: "正在处理，请耐心等待..."
+    waiting_uploading: "等待上传作品..."
 
   modal:
     close: "关闭"
@@ -152,7 +166,9 @@ zh-CN:
         input_name: "请填写作品名称"
         input_description: "请填写作品描述"
         name_too_long: "作品名称请保持在20字以下"
-        description_too_long: "作品描述请保持在200字以下"
+        name_too_short: "作品名称不能少于5个字符"
+        description_too_short: "作品描述不能少于20个字符"
+        description_too_long: "作品描述请保持在50字以下"
         upload_publish: "请上传作品大图"
 
 
@@ -168,7 +184,13 @@ zh-CN:
       publish_upload_alert: "上传失败，请您稍后重试"
       publish_deleted_alert: "作品删除失败，请您稍后重试"
       product_deleted_alert: "商品删除失败，请您稍后重试"
-      last_product_deleted_forbid: "此商品是相关作品的最后一件商品，不能进行删除;如要要删除，请直接删除相关的作品"
+      last_product_deleted_forbid: "这是您相关作品的最后一件商品了，如果要删除，您可以直接删除您的那件作品"
+      last_product_removed_alert: '这是您的最后一件商品了，如果您要取消您这次的投稿，请点“取消投稿”'
+      product_price_updated_alert: "价格设定失败，可能由于系统繁忙，请重试一下"
+      commit_tougao_alert: "投稿失败，请稍后重试"
+      reset_tougao_alert: "取消失败，请稍后重试"
+
+
     notices:
       order_deleted: "成功删除订单"
       order_created: "成功提交订单"
@@ -176,6 +198,9 @@ zh-CN:
       line_item_deleted: "成功从购物车移除"
       product_deleted: "成功删除商品"
       publish_deleted: "成功删除指定作品以及生成的所有商品"
+      product_price_updated: "价格设定成功"
+      commit_tougao: "投稿成功，可以进行下一次投稿啦"
+      reset_tougao: "取消成功，您可以重新投稿啦"
 
   date:
     formats:
@@ -294,8 +319,8 @@ zh-CN:
       strip_insignificant_zeros: false
     currency:
       CNY: "元"
-      JPY: "美元"
-      USD: "日元"
+      USD: "美元"
+      JPY: "日元"
       format:
         format: "%u %n"
         unit: "CN¥"
@@ -380,15 +405,34 @@ zh-CN:
       color: "颜色"
       publish_category: "作品类别"
       occupation: "职业"
-      event: "自定义事件（保留）"
-      checkout: "支付（保留）"
+      event: "自定义事件(保留)"
+      checkout: "支付(保留)"
       cart: "购物车"
       line_item: "购物车明细"
-      picture: "图片（保留）"
+      picture: "图片(保留)"
       album: "相簿"
       product_image: "商品图片"
-      credit_card: "信用卡（保留）"
+      credit_card: "信用卡(保留)"
     attributes:
+      product_template:
+        template_name: "名称"
+        sizes: "支持的尺寸"
+        colors: "支持的颜色"
+        template_category: "模板类别"
+        price: "价格"
+        description: "描述"
+        head_image: "正面图片"
+        head_image_mask: "正面蒙板"
+        back_image: "背面图片"
+        back_image_mask: "背面蒙板"
+        side_image: "侧面图片"
+        side_image_mask: "侧面蒙板"
+        position_X: "X坐标"
+        position_Y: "Y坐标"
+        size_X: "宽度"
+        size_Y: "长度"
+        degree: "角度"
+        if_zoom: "是否缩放"
       product:
         name: "商品名称"
         price: "商品价格"
@@ -408,11 +452,13 @@ zh-CN:
         motto: "格言"
         occupation: "职业"
         description: "自我介绍"
-        tag: "标签"
+        tags: "标签"
         phone: "电话"
         address: "地址"
         roles: "系统角色"
         photo: "头像"
+        infos: "消息数"
+        follows: "关注数"
         password_confirmation: "确认密码"
     errors:
       models:

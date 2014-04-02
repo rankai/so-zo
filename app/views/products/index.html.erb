@@ -70,12 +70,12 @@
                                   <% end %>
 
                                   <div class="imgarea">
-                                    <a class="example-image-link" href="<%= product_path(product) %>"
+                                    <a class="example-image-link" data-lightbox="example-set" href="<%= product.product_images.first.product_image.url %>"
                                     title="『<%= product.name %>』">
                                       <img class="example-image" src="<%= product.product_images.first.product_image.url(:medium) %>" alt="" />
                                     </a>
                                     <div class="price">
-                                      ￥<%= product.price %>
+                                      $<%= product.price %>
                                     </div>
                                   </div>
                                   <!-- imgarea -->

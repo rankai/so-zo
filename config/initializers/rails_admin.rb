@@ -43,7 +43,6 @@ RailsAdmin.config do |config|
 
     #what edit will show
     edit do
-      field :id
       field :name
       field :password
       field :password_confirmation
@@ -93,6 +92,12 @@ config.model ProductTemplate do
       field :description
       field :sizes
       field :colors
+      field :position_X
+      field :position_Y
+      field :size_X
+      field :size_Y
+      field :degree
+      field :if_zoom
       field :head_image
       field :head_image_mask
       field :back_image

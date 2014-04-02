@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		if params[:search].present?
+		if params[:search]
 			@orders = Order.search(params[:search], current_user)
 		elsif params[:created_at] || params[:state]
 			#Product.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
@@ -18,6 +18,8 @@ class OrdersController < ApplicationController
 			@orders = current_user.orders.where('created_at > ? and state_id like ?', time, state_id)
 		else
 			@orders = current_user.orders.all
+			p "orders count : #{@orders.count}"
+			@orders
 		end
 	end
 
@@ -36,6 +38,11 @@ class OrdersController < ApplicationController
 	end
 
 	def create
+
+		if current_cart.line_items.count == 0 
+			return
+		end
+
 		@user = User.find(params[:user_id])
 		#@order = @user.orders.create(params[:order].permit(:sum, :state_id))
 		@order = @user.orders.build
@@ -61,7 +68,9 @@ class OrdersController < ApplicationController
 				end
 			end
 
+			#session[:cart_id] = nil
 			current_cart.destroy
+			current_cart
 			#format.html {render "confirm", :object => @order, status: :created, :notice => t('flash.notices.order_created')}
 			render "confirm", :object => @order, status: :created
 			#format.json {}

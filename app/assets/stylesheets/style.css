@@ -568,7 +568,7 @@ a:hover {
 .r-box .user-img{ width:200px;float:left; }
 .r-box .form-con{ float:left; width:500px; padding-left:60px;}
 .r-box .form-con p{ padding-bottom:15px;}
-.r-box .form-con label{ display:block; width:60px; text-align:left; float:left; height:30px; line-height:30px; font-weight:normal; font-size:14px;}
+.r-box .form-con label{ display:block; width:80px; text-align:left; float:left; height:30px; line-height:30px; font-weight:normal; font-size:14px;}
 .r-box .form-con input { border:1px solid #eee; padding:6px 10px;border-radius:4px; width:240px;}
 /*.r-box .form-con input.txt{ border-radius:4px; width:240px;}
 .r-box .form-con input.txt2{ width:260px;}*/
@@ -937,13 +937,13 @@ _top:       expression(eval(document.compatMode &&  document.compatMode=='CSS1Co
 
 /* add_reduce number */
 .p_number .f_l{float:left;}
-.p_number .add_chose{width:105px;}
+.p_number .add_chose{width:140px;}
 .p_number .add_chose a{float:left;margin:5px 0 0 0;display:block;width:15px;height:15px;line-height:99em;overflow:hidden;background:url(reduce-add.gif) no-repeat;}
 .p_number .add_chose a.reduce{background-position:0 0;}
 .p_number .add_chose a.reduce:hover{background-position:0 -16px;}
 .p_number .add_chose a.add{background-position:-16px 0;}
 .p_number .add_chose a.add:hover{background-position:-16px -16px;}
-.p_number .add_chose .text{float:left;margin:0 5px;display:inline;border:solid 1px #ccc;padding:4px 3px 4px 8px;width:30px;line-height:18px;font-size:14px;color:#990000;font-weight:800;}
+.p_number .add_chose .text{float:left;margin:0 5px;display:inline;border:solid 1px #ccc;padding:4px 3px 4px 8px;width:70px;line-height:18px;font-size:14px;color:#990000;font-weight:800;}
 .p_number .buy{line-height:2em;}
 .p_number .buy .total-font{font-family:Arial;font-size:26px;}
 .p_number .buy .jifen{margin-left:20px;color:#ACACAC;}

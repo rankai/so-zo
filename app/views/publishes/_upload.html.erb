@@ -19,7 +19,7 @@
               <div class="uploading-text">
                 <%= t('modal.upload.publish_select') %>
               </div>
-              <%= f.file_field :publish_image %>
+              <%= f.file_field(:publish_image, accept: 'image/png,image/jpeg') %>
           </div>
         </div>
         </div>

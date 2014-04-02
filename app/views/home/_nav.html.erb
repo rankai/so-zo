@@ -4,6 +4,15 @@
     }
 </script>
 
+<style type="text/css">
+    #cart-badge {
+        position: absolute;
+        top: -10px;
+        background-color: #f0ad4c;
+        color: #FFF
+    }
+</style>
+
 <div id="nav">
         <div class="container">
             <h1 id="logo">
@@ -45,6 +54,25 @@
                 </a>
                 <a href="<%= line_items_path %>" class="btn btn-warning btn-md" role="button" style="color: white" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.shopping_cart') %>">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
+                    
+                        <% 
+                            cart_id = session[:cart_id]
+                            if not cart_id.nil?
+                        %>
+
+                            <%  @cart = Cart.find(cart_id)
+                                if not @cart.nil?
+                            %>
+                                <% count = @cart.line_items.count 
+                                    if count > 0
+                                %>
+                                    <span class="badge" id="cart-badge"><%= count %> </span>
+                                <% end %>
+
+                            <% end %>
+
+                        <% end %>
+               
                 </a>
             </div>
 

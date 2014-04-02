@@ -72,6 +72,10 @@
     border: #eee solid 1px; width:90%; margin:auto
   }
 
+  .contact_content { 
+    width: 50%;
+  }
+
   #order_total {
     width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px
   }
@@ -210,7 +214,8 @@
              <%= image_tag "/assets/file_edit.png" %></a>
              <%= image_tag "/assets/loading.gif", id: "loading" %>
              <div class="contact_info">
-               <form class="form-horizontal" role="form" style="margin-left:-110px">
+              <div class="contact_content">
+               <form class="form-horizontal" role="form">
                   <div class="form-group">
                       <label class="col-sm-2 control-label">
                           <%= User.human_attribute_name('email') %>：
@@ -253,6 +258,7 @@
                   </div>
             </form>
           </div>
+          </div><!-- contact info -->
           <div style="height:50px"></div>
           <span class="list-title"><%= t('order.product_title') %></span>
           <div class="table-responsive">
@@ -295,7 +301,7 @@
 
                           </td>
                           <td class="price">
-                            ￥<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
+                            $<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
                                 <%= product.price %>
                             <% end %></span>
                           </td>
@@ -316,7 +322,7 @@
               <%= t('number.human.decimal_units.units.jian') %>
               <%= t('nav.menu.product') %>
             </span>
-            <span><%= t('cart.price_total') %></span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span><%= t('number.currency.CNY') %></span>
+            <span><%= t('cart.price_total') %></span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span><%= t('number.currency.USD') %></span>
           </div>
 
           <!-- <div class="panel-footer"> -->

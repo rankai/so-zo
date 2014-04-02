@@ -135,7 +135,7 @@ function update_quantity(quantity_input, line_item_id) {
         placement: 'top',
         trigger: 'manual',
         content: function () {
-            return '<div class="body"><p>商品数量更改成功</p>' + "<p>商品总额为<em>" + total + "</em>元</p></div>"
+            return '<div class="body"><p><%= t("cart.quantity_change") %></p>' + "<p><%= t('cart.price_total') %><em>" + total + "</em><%= t('number.currency.USD') %></p></div>"
         },
         container: 'body',
         html: 'true'
@@ -253,14 +253,14 @@ $(function(){
 
                   </td>
                   <td class="price">
-                    ￥<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
+                    $<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
                         <%= product.price %>
                     <% end %></span>
                   </td>
                   <td>
                     <!-- link_to 'Show', line_item -->
                     <!-- link_to 'Edit', edit_line_item_path(line_item) -->
-                    <%= link_to t('cart.delete'), line_item, method: :delete, data: { confirm: "t('cart.remove_confirm')?" } %>
+                    <%= link_to t('cart.delete'), line_item, method: :delete, data: { confirm: t('cart.remove_confirm') } %>
                   </td>
                 </tr>
               <% end %>
@@ -276,7 +276,7 @@ $(function(){
               <%= t('number.human.decimal_units.units.jian') %>
               <%= t('nav.menu.product') %>
             </span>
-            <span><%= t('cart.price_total') %></span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span><%= t('number.currency.CNY') %></span>
+            <span><%= t('cart.price_total') %></span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span><%= t('number.currency.USD') %></span>
           </div>
 
           <a href="<%= publishes_path %>" class="button button-rounded button-flat" style="float:left; margin:20px"><%= t('cart.back_to_shopping') %></a>

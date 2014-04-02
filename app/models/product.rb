@@ -16,6 +16,37 @@ class Product < ActiveRecord::Base
 
 		@product_templates.each do |template|
 
+			position_X = -1
+			position_Y = -1
+			size_X = -1
+			size_Y = -1
+			degree = 0
+			if_zoom = 0
+
+			# position
+			if template.position_X.present? and template.position_Y.present?
+				position_X = template.position_X
+				position_Y = template.position_Y
+			end 
+
+			# if room
+			if template.if_zoom.present?
+				if_zoom = template.if_zoom
+
+				# size
+				if template.size_X.present? and template.size_Y.present?
+					size_X = template.size_X
+					size_Y = template.size_Y
+				end
+			
+			end
+
+			# degree
+			if template.degree.present?
+				degree = template.degree
+			end
+
+
 			publish_image = "#{Rails.root}/public" + "#{publish.publish_image.url}".split("?")[0]
 			#publish_image_content_type = publish.publish_image.content_type.split("/")[1]
 			#tmp_image = "#{Rails.root}/tmp/" + "#{Time.now.to_i}#{Time.now.to_i}.#{publish_image_content_type}"				
@@ -50,7 +81,7 @@ class Product < ActiveRecord::Base
 					head_image_mask = "#{Rails.root}/public" + "#{template.head_image_mask.url}".split("?")[0]
 					head_image      = "#{Rails.root}/public" + "#{template.head_image.url}".split("?")[0]    
 					
-					composite(head_image, head_image_mask, publish_image, tmp_product_image)
+					composite(head_image, head_image_mask, publish_image, tmp_product_image, position_Y, position_Y, size_X, size_Y, degree, if_zoom)
 					
 					@product_image = ProductImage.new();
 					@product_image.make_image(tmp_product_image)
@@ -65,7 +96,7 @@ class Product < ActiveRecord::Base
 					side_image_mask = "#{Rails.root}/public" + "#{template.side_image_mask.url}".split("?")[0]
 					side_image 	    = "#{Rails.root}/public" + "#{template.side_image.url}".split("?")[0]    
 
-					composite(side_image, side_image_mask, publish_image, tmp_product_image)
+					composite(side_image, side_image_mask, publish_image, tmp_product_image, position_Y, position_Y, size_X, size_Y, degree, if_zoom)
 					
 					@product_image = ProductImage.new();
 					@product_image.make_image(tmp_product_image)
@@ -79,7 +110,7 @@ class Product < ActiveRecord::Base
 					back_image_mask = "#{Rails.root}/public" + "#{template.back_image_mask.url}".split("?")[0]
 					back_image 	    = "#{Rails.root}/public" + "#{template.back_image.url}".split("?")[0]    
 
-					composite(back_image, back_image_mask, publish_image, tmp_product_image)
+					composite(back_image, back_image_mask, publish_image, tmp_product_image, position_Y, position_Y, size_X, size_Y, degree, if_zoom)
 					
 					@product_image = ProductImage.new();
 					@product_image.make_image(tmp_product_image)
@@ -102,9 +133,35 @@ class Product < ActiveRecord::Base
 	# publish  : publish image
 	# mask 	   : template image mask
 	# tmp      : output image
-	def self.composite(template, mask, publish, tmp)
+	def self.composite(template, mask, publish, tmp, position_X, position_Y, size_X, size_Y, degree, if_zoom)
 		p "convert \"#{mask}\" -compose atop \"#{publish}\" -gravity center -composite \"#{tmp}\""
-		system "convert \"#{mask}\" -compose atop \"#{publish}\" -gravity center -composite \"#{tmp}\""
+
+		zoomed = 0
+		tmp_image = "#{Rails.root}/tmp/" + "#{Time.now.to_i}#{Time.now.to_i}.png"
+
+		# zoom
+		if if_zoom == 1 
+			if size_X != -1 and size_Y != -1
+					system "convert \"#{publish}\" -auto-orient -resize \"#{size_X}x#{size_Y}>\" \"#{tmp_image}\""
+					zoomed = 1
+			end
+		end
+
+		# rotate
+		if(zoomed == 1) 
+			system "convert \"#{tmp_image}\" -rotate #{degree} \"#{tmp_image}\""
+		else
+			system "convert \"#{publish}\" -rotate #{degree} \"#{tmp_image}\""
+		end
+		
+
+		if position_X != -1 and position_Y != -1
+			system "convert \"#{mask}\" -compose atop \"#{tmp_image}\" -geometry +#{position_X}+#{position_Y} -composite \"#{tmp}\""
+		else
+			system "convert \"#{mask}\" -compose atop \"#{tmp_image}\" -gravity center -composite \"#{tmp}\""
+		end
+
+
 		system "convert \"#{tmp}\" -compose over \"#{template}\" -geometry +0+0 -composite \"#{tmp}\""
 	end
 

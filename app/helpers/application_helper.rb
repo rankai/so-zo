@@ -9,6 +9,15 @@ module ApplicationHelper
 		@base.detail
 	end
 
+	def active_product_state
+		@state = State.where(:name => 'active').first
+	end
+
+
+	def cart_quantity
+		current_cart.line_items.count		
+	end
+
 	def my_bonus
 		bonus = 0.00
 		#@orders = Order.where(:user_id != current_user.id)
@@ -35,7 +44,7 @@ module ApplicationHelper
 	end
 
 	def get_my_products
-		Product.joins(:publish).where('publishes.user_id = ?', current_user.id)
+		Product.joins(:publish).where('publishes.user_id = ? AND products.state_id = ?', current_user.id, active_product_state.id)
 	end
 
 	def get_products_on_template_category(category_id)
@@ -44,8 +53,8 @@ module ApplicationHelper
 
 	def get_my_product_sells
 		state_id = State.where(:name => 'completed').first.id
-		Product.joins(order_items: :order).joins(:publish).where("publishes.user_id = ? and orders.state_id = ?", 
-			current_user.id, state_id)
+		Product.joins(order_items: :order).joins(:publish).where("publishes.user_id = ? AND orders.state_id = ? AND products.state_id = ?", 
+			current_user.id, state_id, active_product_state.id)
 	end
 
 	def get_my_product_sells_on_template_category(category_id)
@@ -56,15 +65,12 @@ module ApplicationHelper
 	# from publish helper
 	def get_my_sells
 		state_id = State.where(:name => 'completed').first.id
-		Product.joins(order_items: :order).joins(:publish).where("publishes.user_id = ? and orders.state_id = ?", 
-			current_user.id, state_id)
+		Product.joins(order_items: :order).joins(:publish).where("publishes.user_id = ? AND orders.state_id = ? AND products.state_id = ?", 
+			current_user.id, state_id, active_product_state.id)
 	end
 
 	def get_my_sells_on_category(category_id)
 		get_my_sells.joins(:publish).where("publishes.publish_category_id = ?", category_id)
 	end
 
-	def get_sells
-		state_id = State.where(:name => 'completed').first.id
-	end
 end
