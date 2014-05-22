@@ -1,0 +1,842 @@
+# Chinese (China) translations for Ruby on Rails
+# by tsechingho (http://github.com/tsechingho)
+# action -> model
+
+zh-CN:
+  nav:
+    hello: "您好：%{user}"
+    publish_upload: "投稿"
+    my_orders: "我的订单"
+    my_publishes: "我的作品"
+    my_page: "个人主页"
+    exit: "退出"
+    register: "注册"
+    login: "登陆"
+    search: "搜索"
+    shopping_cart: "购物车"
+    favicons: "收藏"
+    inform: "友爱提醒"
+    delete: "删除"
+    ok: "确定"
+    bottom:
+      title: "取引～～～～～"
+      home: "主页"
+      news: "新闻"
+      customer_service: "客服"
+      intro: "采用情报"
+      info: "公司介绍"
+      question: "Q&A"
+      agreement: "利用规约"
+      map: "网站地图"
+    menu:
+      illustration: "插画"
+      photo: "写真"
+      group_buy: "团购"
+      product: "商品"
+      author: "作者"
+      hot: "最热门"
+      personal_info: "个人情报"
+      my_works: "我的作品"
+      my_products: "我的商品"
+      my_orders: "我的订单"
+      settings: "用户设定"
+    rank:
+      like_rank: "人气排行"
+      sell_rank: "贩售数排行"
+      type: "类型"
+
+  language:
+    select: "选择语言"
+    Japanese: "日语"
+    Chinese: "中文"
+
+  home:
+    latest_products: "最新商品"
+    latest_photos: "最新照片"
+    popular_products: "热门商品"
+
+  cart:
+    page_title: "我的购物车"
+    add_to_cart: "加入购物车"
+    op: "操作"
+    back_to_shopping: "继续购物"
+    checkout: "去结算"
+    select_all: "全选"
+    price_total: "总计"
+    quantity_total: "总共有%{quantity}件商品"
+    delete: "移除"
+    col_quantity: "数量"
+    col_name: "名称"
+    col_image: "商品图片"
+    col_price: "单价"
+    col_size: "尺寸"
+    col_color: "颜色"
+    remove_confirm: "您确认从购物车移除么?"
+    quantity_change: "商品数量更改成功"
+
+  product:
+    only_show_with_sells: "只显示已卖出"
+    select_product_category: "请选择商品类型"
+    all: "全部商品"
+    price: "价格"
+    base_price: "成本"
+    quantity: "数量"
+    color: "颜色"
+    size: "尺寸"
+    reviews: "商品评论"
+    related: "相关商品"
+    review: "评论"
+    total: "总商品数"
+    total_sells: "总卖出次数"
+    sells: "卖出次数"
+    no_sells: "还没有卖出商品"
+    quantity: "商品数"
+    no_products: "还没有商品"
+    my_products: "我的商品"
+    purchase: "购买"
+    set_uniform_price: "统一提高价格"
+    set_price: "价格"
+    confirm_tougao: "确认投稿"
+    re_tougao: "重新投稿"
+    input_price: "填写您希望的价格"
+    input_price_ratio: "请填写您希望提高的比例"
+    input_price_ratio_error: "请输入大于0小于100的比例，例如50"
+    base_price: "当前成本是"
+    price_too_high: "不能设定超过它2倍的价格哦"
+    price_too_low: "不能设定小于它的价格"
+    frequency_sells: "卖出次数"
+
+  bonus:
+    no_bonus: "还没有收益"
+    total: "总收益"
+
+  bank:
+    bank_name: "开户行名称："
+    bank_account: "银行账号："
+    receiver: "收款人："
+    notice: "成功汇款后请告知客服, 汇款确认后我们会立即安排发货, 谢谢合作!"
+
+  order:
+    orders: "总订单数"
+    my_orders: "我的订单"
+    new_page_title: "填写确认订单信息"
+    product_title: "商品清单"
+    contact: "联系人信息"
+    confirm_order: "确认订单"
+    back_to_cart: "返回购物车"
+    cancel_order: "取消订单"
+    order_submitted_msg: "订单提交成功，您现在可以付款了"
+    pay_order: "立即付款"
+    online_pay: "在线付款"
+    transfer: "银行汇款"
+    checkout_support: "我们支持以下几种付款方式:"
+    view_order: "查看我的订单"
+    order_shipped: "请您耐心等待收货"
+    order_paid_msg: "感谢您的购买，请您耐心等待收货"
+    order_paid: "我们正在安排发货，请耐心等待"
+    order_completed: "订单已完成"
+    no_orders_need_to_pay: "无待付款"
+    no_orders_need_to_ship: "无未发货"
+    no_orders_shipped: "无已发货"
+    need_to_pay: "待付款"
+    shipped: "无已发货"
+    col_info: "订单信息"
+    col_created_at:
+      options:
+        all: "全部时间"
+        in_this_week: "最近一周内"
+        last_3_months: "最近3个月内"
+        in_this_year: "今年"
+    col_state:
+      options:
+        all: "全部状态"
+        shipped: "已发货"
+        need_to_ship: ""
+        need_to_pay: "未付款"
+        completed: "已完成"
+        paid: "已付款"
+    col_op: "操作"
+    col_receiver: "收货人"
+    col_price: "订单金额"
+    order_number: "订单编号"
+    order_search_placeholder: "商品名称、订单编号"
+
+
+  publish:
+    my_publishes: "我的作品"
+    no_publishes: "还没有作品"
+    total: "总作品数"
+    quantity: "作品数"
+    no_publishes_sells: "还没有卖出作品"
+    total_sells: "总卖出次数"
+    sells: "卖出作品数"
+    select_publish_category: "请选择作品类"
+    all: "全部作品"
+    only_show_with_sells: "只显示已卖出"
+    hide: "隐藏"
+    view: "浏览"
+    author: "作者"
+    frequency_added_to_cart: "加入购物车"
+    options: "可选形式"
+    refresh_alert: "请不要刷新页面，您可以选择确认投稿或者取消投稿"
+
+  favorites:
+    my_collections: "我的收藏"
+    collection_total: "总收藏数"
+    collection_quantity: "收藏数"
+    no_collections: "还没有收藏"
+    my_watches: "我的关注"
+    no_watches: "还没有关注"
+    watch_total: "总关注数"
+
+  views:
+    pagination:
+      first: "&laquo; 第一页"
+      last: "最后一页 &raquo;"
+      previous: "&lsaquo; 上一页"
+      next: "下一页 &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+
+
+  progress:
+    deleting: "正在删除..."
+    uploading: "正在上传..."
+    making_products: "正在生成产品..."
+    making_products_progress: "共%{total}件，目前已完成%{current}件"
+    processing: "正在处理，请耐心等待..."
+    waiting_uploading: "等待上传作品..."
+    publish_processing: "正在处理作品..."
+    cancel: "取消"
+
+  modal:
+    close: "关闭"
+    cancel: "取消"
+    ok: "确定"
+    address:
+      title: "填写收货人信息"
+      address_placeholder: "请填写有效的电话"
+      phone_placeholder: "请填写详细的收货地址"
+    upload:
+      title: "上传您的大作"
+      publish_name_placeholder: "请填写作品名称"
+      publish_des_placeholder: " 请填写作品描述"
+      publish_select: "选择作品"
+      product_generate: "生成商品"
+      publish_requirements_prompt: "作品要求：图片格式为JPG或PNG, 最低像素为2000px"
+      errors:
+        input_name: "请填写作品名称"
+        input_description: "请填写作品描述"
+        name_too_long: "作品名称请保持在10字以下"
+        name_too_short: "作品名称不能少于5个字符"
+        description_too_short: "作品描述不能少于5个字符"
+        description_too_long: "作品描述请保持在100字以下"
+        upload_publish: "请上传作品大图"
+        publish_format_not_valid: "请上传jpg和png格式的作品"
+
+
+  flash:
+    alerts:
+      order_deleted_alert: "订单创建失败，请您稍后再试"
+      order_created_alert: "订单删除失败，请您稍后再试"
+      order_deleted_forbid: "您好，目前系统不支持对已经付款的订单进行退单"
+      product_deleted_forbid: "您好，目前系统不允许对已经加入购物车或有未完成订单的商品进行删除"
+      publish_deleted_forbid: "您好，目前系统不允许对已生成的商品中有已经加入购物车或有未完成订单的作品进行删除"
+      line_item_added_alert: "添加到购物车失败，请您稍后再试"
+      line_item_deleted_alert: "从购物车移除失败，请您稍后再试"
+      publish_upload_alert: "上传失败，请您稍后重试"
+      publish_deleted_alert: "作品删除失败，请您稍后重试"
+      product_deleted_alert: "商品删除失败，请您稍后重试"
+      last_product_deleted_forbid: "这是您相关作品的最后一件商品了，如果要删除，您可以直接删除您的那件作品"
+      last_product_removed_alert: '这是您的最后一件商品了，如果您要取消您这次的投稿，请点“取消投稿”'
+      product_price_updated_alert: "价格设定失败，可能由于系统繁忙，请重试一下"
+      commit_tougao_alert: "投稿失败，请稍后重试"
+      reset_tougao_alert: "取消失败，请稍后重试"
+      order_already_submitted: "请不要重复提交订单"
+      payment_failed: "付款失败，请您稍后再试"
+
+
+    notices:
+      order_deleted: "成功删除订单"
+      order_created: "成功提交订单"
+      line_item_added: "成功添加到购物车"
+      line_item_deleted: "成功从购物车移除"
+      product_deleted: "成功删除商品"
+      publish_deleted: "成功删除指定作品以及生成的所有商品"
+      product_price_updated: "价格设定成功"
+      commit_tougao: "投稿成功，可以进行下一次投稿啦"
+      reset_tougao: "取消成功，您可以重新投稿啦"
+      payment_finished: "付款成功，感谢您的购买"
+      collection_added: "成功加入收藏"
+      collection_removed: "取消收藏成功"
+      watch_added: "成功关注"
+      watch_removed: "取消关注成功"
+
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b%d日"
+      long: "%Y年%b%d日"
+    day_names:
+      - 星期日
+      - 星期一
+      - 星期二
+      - 星期三
+      - 星期四
+      - 星期五
+      - 星期六
+    abbr_day_names:
+      - 日
+      - 一
+      - 二
+      - 三
+      - 四
+      - 五
+      - 六
+    month_names:
+      - ~
+      - 一月
+      - 二月
+      - 三月
+      - 四月
+      - 五月
+      - 六月
+      - 七月
+      - 八月
+      - 九月
+      - 十月
+      - 十一月
+      - 十二月
+    abbr_month_names:
+      - ~
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%Y年%b%d日 %A %H:%M:%S %Z"
+      short: "%b%d日 %H:%M"
+      long: "%Y年%b%d日 %H:%M"
+    am: "上午"
+    pm: "下午"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "半分钟"
+      less_than_x_seconds:
+        one: "不到一秒"
+        other: "不到 %{count} 秒"
+      x_seconds:
+        one: "一秒"
+        other: "%{count} 秒"
+      less_than_x_minutes:
+        one: "不到一分钟"
+        other: "不到 %{count} 分钟"
+      x_minutes:
+        one: "一分钟"
+        other: "%{count} 分钟"
+      about_x_hours:
+        one: "大约一小时"
+        other: "大约 %{count} 小时"
+      x_days:
+        one: "一天"
+        other: "%{count} 天"
+      about_x_months:
+        one: "大约一个月"
+        other: "大约 %{count} 个月"
+      x_months:
+        one: "一个月"
+        other: "%{count} 个月"
+      about_x_years:
+        one: "大约一年"
+        other: "大约 %{count} 年"
+      over_x_years:
+        one: "一年多"
+        other: "%{count} 年多"
+      almost_x_years:
+        one:   "接近一年"
+        other: "接近 %{count} 年"
+    prompts:
+      year:   "年"
+      month:  "月"
+      day:    "日"
+      hour:   "时"
+      minute: "分"
+      second: "秒"
+
+
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      CNY: "元"
+      USD: "美元"
+      JPY: "日元"
+      format:
+        format: "%u %n"
+        unit: "CN¥"
+        separator: "."
+        delimiter: ","
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+        significant: false
+        strip_insignificant_zeros: false
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      decimal_units:
+        format: "%n %u"
+        units:
+          total: "共"
+          jian: "件"
+          ci: "次"
+          # 10^-21 zepto, 10^-24 yocto
+          atto: "渺"  # 10^-18
+          femto: "飞" # 10^-15 毫微微
+          pico: "漠"  # 10^-12 微微
+          nano: "奈"  # 10^-9 毫微
+          micro: "微" # 10^-6
+          mili: "毫"  # 10^-3 milli
+          centi: "厘" # 10^-2
+          deci: "分"  # 10^-1
+          unit: ""
+          ten:
+            one: "十"
+            other: "十"  # 10^1
+          hundred: "百"  # 10^2
+          thousand: "千" # 10^3 kilo
+          million: "百万" # 10^6 mega
+          billion: "十亿" # 10^9 giga
+          trillion: "兆" # 10^12 tera
+          quadrillion: "千兆" # 10^15 peta
+          # 10^18 exa, 10^21 zetta, 10^24 yotta
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " 和 "
+      last_word_connector: ", 和 "
+    select:
+      prompt: "请选择"
+
+
+  activerecord:
+    models:
+      #here is for model name, for example, in rails_admin 
+      user: "用户"
+      publish: "作品"
+      product: "商品"
+      income:   "收益"
+      product_template: "模板"
+      order: "订单"
+      base: "基础数据"
+      order_item: "订单详情"
+      role: "系统角色"
+      tag: "标签"
+      template_category: "模板类型"
+      state: "状态"
+      size: "尺寸"
+      color: "颜色"
+      publish_category: "作品类别"
+      occupation: "职业"
+      event: "自定义事件(保留)"
+      checkout: "支付(保留)"
+      cart: "购物车"
+      line_item: "购物车明细"
+      picture: "图片(保留)"
+      album: "相簿"
+      product_image: "商品图片"
+      credit_card: "信用卡(保留)"
+      collection: "关注"
+      watch: "收藏"
+    attributes:
+      product_template:
+        template_name: "名称"
+        sizes: "支持的尺寸"
+        colors: "支持的颜色"
+        template_category: "模板类别"
+        price: "价格"
+        description: "描述"
+        head_image: "正面图片"
+        head_image_mask: "正面蒙板"
+        back_image: "背面图片"
+        back_image_mask: "背面蒙板"
+        side_image: "侧面图片"
+        side_image_mask: "侧面蒙板"
+        position_X: "X坐标"
+        position_Y: "Y坐标"
+        size_X: "宽度"
+        size_Y: "长度"
+        degree: "角度"
+        if_zoom: "是否缩放"
+      product:
+        name: "商品名称"
+        price: "商品价格"
+        base_price: "成本"
+        description: "商品描述"
+      publish:
+        name: "作品名称"
+        description:  "作品描述"
+        type: "类别"
+      user:
+        email: "邮箱"
+        password: "密码"
+        current_password: "当前密码"
+        new_password: "新密码"
+        name: "姓名"
+        sex: "性别"
+        motto: "格言"
+        occupation: "职业"
+        description: "自我介绍"
+        tags: "标签"
+        phone: "电话"
+        address: "地址"
+        roles: "系统角色"
+        photo: "头像"
+        infos: "消息数"
+        follows: "关注数"
+        password_confirmation: "确认密码"
+    errors:
+      models:
+        user:
+          attributes:
+            photo:
+              blank: "不能为空"
+      template: # ~ 2.3.5 backward compatible
+        header:
+          one: "有 1 个错误发生导致「%{model}」无法被保存。"
+          other: "有 %{count} 个错误发生导致「%{model}」无法被保存。"
+        body: "如下字段出现错误："
+      full_messages:
+        format: "%{attribute} %{message}"
+      messages:
+        inclusion: "不包含于列表中"
+        exclusion: "是保留关键字"
+        invalid: "是无效的"
+        confirmation: "与确认值不匹配"
+        accepted: "必须是可被接受的"
+        empty: "不能留空"
+        blank: "不能为空"
+        too_long: "过长（最长为 %{count} 个字符）"
+        too_short: "过短（最短为 %{count} 个字符）"
+        wrong_length: "长度非法（必须为 %{count} 个字符）"
+        not_a_number: "不是数字"
+        not_an_integer: "必须是整数"
+        greater_than: "必须大于 %{count}"
+        greater_than_or_equal_to: "必须大于或等于 %{count}"
+        equal_to: "必须等于 %{count}"
+        less_than: "必须小于 %{count}"
+        less_than_or_equal_to: "必须小于或等于 %{count}"
+        odd: "必须为单数"
+        even: "必须为双数"
+        taken: "已经被使用"
+        record_invalid: "校验失败: %{errors}"
+
+  activemodel:
+    errors:
+      template:
+        header:
+          one: "有 1 个错误发生导致「%{model}」无法被保存。"
+          other: "有 %{count} 个错误发生导致「%{model}」无法被保存。"
+        body: "如下字段出现错误："
+
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      delete_message: "您确认删除么?"
+      exit_message: "您确认退出么?"
+      select_none: "您需要至少选择一件商品"
+      inclusion: "不包含于列表中"
+      exclusion: "是保留关键字"
+      invalid: "是无效的"
+      confirmation: "与确认值不匹配"
+      accepted: "必须是可被接受的"
+      empty: "不能留空"
+      blank: "不能为空字符"
+      too_long: "过长（最长为 %{count} 个字符）"
+      too_short: "过短（最短为 %{count} 个字符）"
+      wrong_length: "长度非法（必须为 %{count} 个字符）"
+      not_a_number: "不是数字"
+      not_an_integer: "必须是整数"
+      greater_than: "必须大于 %{count}"
+      greater_than_or_equal_to: "必须大于或等于 %{count}"
+      equal_to: "必须等于 %{count}"
+      less_than: "必须小于 %{count}"
+      less_than_or_equal_to: "必须小于或等于 %{count}"
+      odd: "必须为单数"
+      even: "必须为双数"
+      #for devise
+      already_confirmed: "已经确认，请重新登录。"
+      confirmation_period_expired: "请在%{period}内确认注册, 请重新注册。"
+      expired: "邮件确认已过期，请重新注册。"
+      not_found: "没有找到。"
+      not_locked: "未锁定。"
+      not_saved:
+        one: "因为1个错误导致此%{resource}保存失败:"
+        other: "因为%{count}个错误导致此%{resource}保存失败:"
+
+  helpers:
+    select:
+      prompt: "请选择"
+    submit:
+      create: "新增%{model}"
+      update: "更新%{model}"
+      submit: "储存%{model}"
+
+
+  devise:
+    confirmations:
+      confirmed: "您的帐号已经确认，您现在已登录。"
+      send_instructions: "几分钟后，您将收到确认帐号的电子邮件。"
+      send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封确认账号的邮件。"
+    failure:
+      already_authenticated: "您已经登录。"
+      inactive: "您还没有激活帐户。"
+      invalid: "邮箱或密码错误。"
+      locked: "您的帐号已被锁定。"
+      last_attempt: "您还有最后一次尝试机会，再次失败您的账号将被锁定。"
+      not_found_in_database: "邮箱或密码错误。"
+      timeout: "您已登录超时，请重新登录。"
+      unauthenticated: "继续操作前请注册或者登录。"
+      unconfirmed: "继续操作前请先确认您的帐号。"
+      upload_photo: "请上传您的靓照"
+      select_occupation: "请选择您的职业"
+      select_sex: "请选择您的性别"
+      input_email: "请填写您的邮箱"
+      input_valid_email: "请填写正确的邮箱地址"
+      input_password: "请填写密码"
+      input_motto: "请填写您的格言"
+      confirm_password: "请输入相同的密码"
+      input_name: "请填写您的姓名"
+
+    mailer:
+      confirmation_instructions:
+        subject: "确认信息"
+      reset_password_instructions:
+        subject: "重置密码信息"
+      unlock_instructions:
+        subject: "解锁信息"
+    omniauth_callbacks:
+      failure: "因为%{reason}，所以您无法从%{kind}获得授权。"
+      success: "成功地从%{kind}获得授权。"
+    passwords:
+      no_token: "这是密码重置页面，未重置邮件不得访问此页面。如果您是通过重置邮件而来的，请确保您访问的URL是完整的。"
+      send_instructions: "几分钟后，您将收到重置密码的电子邮件。"
+      send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封找回密码的邮件。"
+      updated: "您的密码已修改成功，您现在已登录。"
+      updated_not_active: "您的密码已修改成功。"
+    registrations:
+      destroyed: "再见！您的帐户已成功注销。我们希望很快可以再见到您。"
+      signed_up: "欢迎您！您已注册成功。"
+      signed_up_but_inactive: "您已注册，但尚未激活账号。"
+      signed_up_but_locked: "您已注册，但账号被锁定了。"
+      signed_up_but_unconfirmed: "一封带有确认链接的邮件已经发送至您的邮箱，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的账号。"
+      update_needs_confirmation: "信息更新成功，但我们需要染整您的新电子邮件地址，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的账号。"
+      updated: "帐号资料更新成功。"
+      leave_blank: "留下空白,如果你不想改变它"
+      password_need_to_confirm_changes: "我们需要您的当前密码确认您的更改"
+
+    links:
+      remember_me: "记住我"
+      sign_in_btn: "登录"
+      sign_up_btn: "注册"
+      sign_in: "现在登录"
+      sign_up: "我没有账号，现在去注册"
+      forget_password: "忘记密码"
+      not_receive_confirmation: "没有收到确认邮件"
+      not_receive_unlock: "没有收到解锁邮件"
+      resend_confirmation: "重新发送验证邮件"
+      resend_unlock: "重新发送解锁邮件"
+      send_reset_password_instruction: "找回密码"
+      upload_photo: "上传头像"
+      change_photo: "更改头像"
+      update: "现在更新"
+      reset: "重填"
+    label:
+      at_registration: "注册成为so-zo一员"
+      to_sign_in: "我已注册，现在就"
+    placeholders:
+      resend_email: "填写您注册的邮箱"
+      required: "必填"
+      not_required: "选填"
+    sessions:
+      signed_in: "登录成功."
+      signed_out: "退出成功."
+    unlocks:
+      send_instructions: "几分钟后，您将收到一封解锁帐号的邮件。"
+      send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封解锁账号的邮件。"
+      unlocked: "您的帐号已成功解锁，您现在已登录。"
+
+  admin:
+    home:
+      name: "首页"
+    pagination:
+      previous: "&laquo; 上一页"
+      next: "下一页 &raquo;"
+      truncate: "…"
+    misc:
+      filter_date_format: "mm/dd/yy"
+      search: "搜索"
+      filter: "筛选"
+      refresh: "刷新"
+      show_all: "显示全部"
+      add_filter: "添加筛选条件"
+      bulk_menu_title: "选中的项目"
+      remove: "移除"
+      add_new: "新增"
+      chosen: "选择%{name}"
+      chose_all: "全选"
+      clear_all: "清空"
+      up: "上"
+      down: "下"
+      navigation: "导航"
+      log_out: "登出"
+      ago: "前"
+    flash:
+      successful: "%{name}%{action}成功"
+      error: "%{name}%{action}失败"
+      noaction: "无操作被执行"
+      model_not_found: "找不到'%{model}' Model"
+      object_not_found: "找不到id为'%{id}'的'%{model}'"
+    table_headers:
+      model_name: "Model 名"
+      last_used: "上次使用"
+      records: "记录"
+      username: "用户"
+      changes: "变更"
+      created_at: "日期/时间"
+      item: "项目"
+      message: "信息"
+    actions:
+      dashboard:
+        title: "网站管理"
+        menu: "信息板"
+        breadcrumb: "信息板"
+      index:
+        title: "%{model_label_plural}列表"
+        menu: "列表"
+        breadcrumb: "%{model_label_plural}"
+      show:
+        title: "%{model_label} '%{object_label}'详情"
+        menu: "查看"
+        breadcrumb: "%{object_label}"
+      show_in_app:
+        menu: "在前台显示"
+      new:
+        title: "新增%{model_label}"
+        menu: "新增"
+        breadcrumb: "新增"
+        link: "新增%{model_label}"
+        done: "创建完成"
+      edit:
+        title: "编辑%{model_label} '%{object_label}'"
+        menu: "编辑"
+        breadcrumb: "编辑"
+        link: "编辑%{model_label}"
+        done: "更新完成"
+      delete:
+        title: "删除%{model_label} '%{object_label}'"
+        menu: "删除"
+        breadcrumb: "删除"
+        link: "删除'%{object_label}'"
+        done: "删除完成"
+      bulk_delete:
+        title: "删除%{model_label_plural}"
+        menu: "批量删除"
+        breadcrumb: "批量删除"
+        bulk_link: "删除选中的%{model_label_plural}"
+      export:
+        title: "导出%{model_label_plural}"
+        menu: "导出"
+        breadcrumb: "导出"
+        link: "导出找到的%{model_label_plural}"
+        bulk_link: "导出选中的%{model_label_plural}"
+        done: "导出完成"
+      history_index:
+        title: "%{model_label_plural}的历史记录"
+        menu: "历史"
+        breadcrumb: "历史"
+      history_show:
+        title: "%{model_label} '%{object_label}'的历史记录"
+        menu: "历史"
+        breadcrumb: "历史"
+    form:
+      cancel: "取消"
+      basic_info: "基本信息"
+      required: "必填"
+      optional: "可选"
+      one_char: "字节"
+      char_length_up_to: "长度不多于"
+      char_length_of: "字节数"
+      save: "保存"
+      save_and_add_another: "保存后继续添加"
+      save_and_edit: "保存后编辑"
+      all_of_the_following_related_items_will_be_deleted: "? 下列关联的项目可能会被删除或孤立:"
+      are_you_sure_you_want_to_delete_the_object: "你确定要删除%{model_name}吗？"
+      confirmation: "是的，我确定"
+      bulk_delete: "下列项目将被删除, 和它们想关联的项目也可能被删除或孤立:"
+      new_model: "%{name} (新)"
+    export:
+      confirmation: "导出到%{name}"
+      select: "选择希望导出的字段"
+      fields_from: "出自%{name}的字段"
+      fields_from_associated: "源自与%{name}关联项目的字段"
+      display: "显示%{name}: %{type}"
+      options_for: "%{name}的选项"
+      empty_value_for_associated_objects: "<空>"
+      click_to_reverse_selection: "反选"
+      csv:
+        header_for_root_methods: "%{name}"
+        header_for_association_methods: "%{name} [%{association}]"
+        encoding_to: "文字编码"
+        encoding_to_help: "选择输出编码。留空保持原来的编码不变：（%{name}）"
+        skip_header: "无文件头"
+        skip_header_help: "不输出字段描述"
+        default_col_sep: ","
+        col_sep: "分隔符"
+        col_sep_help: "留空使用默认设置（'%{value}'）"

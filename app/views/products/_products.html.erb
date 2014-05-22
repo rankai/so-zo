@@ -1,0 +1,191 @@
+<script type="text/javascript">
+  
+   $(function() {
+
+        $(".product-delete").click(function() {
+            $("#loading").show();
+            var id = $(this).attr('id');
+            $.ajax({
+                type: "delete",
+                url: "/users/<%= @user.id %>/products/" + id.split("-")[1],
+                dataType: "json",
+                beforeSend: function(XMLHttpRequest) {
+                    this; //调用本次ajax请求时传递的options参数
+                },
+                success: function(data) {
+                    $("#loading").hide();
+                    console.log("success");
+                    console.log(data);
+                    //flash(data);
+                    //$("#"+id).parent().parent().parent().parent().remove();
+                    //location.href = "<%= user_products_path(@user) %>"
+                    flash(data["notice"]);
+                    jquery_id = "#" + id
+                    $(jquery_id).parent().parent().parent().parent().remove();
+                    $("#loading").hide();
+                }, 
+                error: function(data) {
+                  console.log("error");
+                  console.log(data);
+                  $("#loading").hide();
+                  asJson = jQuery.parseJSON(data.responseText);
+                  flash(asJson["alert"]);
+                }
+            });
+        });
+
+    })
+
+</script>
+
+
+<div class="product-gathering-title">
+  <h4>
+    <%= t('product.my_products') %>
+  </h4>
+</div>
+
+<div class="product-gathering-info">
+
+  <div class="product-prompt">
+    <dl>
+      <dt><%= t('nav.inform') %>:</dt>
+        <!-- bonus -->
+        <%
+          bonus = user_bonus(@user)
+          if bonus == 0.00
+        %>
+          <dd><span style="color:#999"><%= t('bonus.no_bonus') %></span></dd>
+
+        <% else %>
+          <dd><a href="#"><%= t('bonus.total') %>(<%= bonus %>)</a></dd>
+        <% end %>
+
+        <% 
+          total_count = total_products(@user).count
+          if total_count == 0
+         %>
+            <dd><span style="color:#999"><%= t('product.no_products') %></span></dd>
+         <% else %>
+            <dd><a href="#"><%= t('product.total') %>(<%= total_count %>)</a></dd>
+
+            <!-- has products -->
+            <% @categories = TemplateCategory.all 
+               @categories.each do |category|
+            %>
+
+                <% 
+                  count = get_products_on_template_category(@user, category).count
+                  if count != 0
+                %>  
+
+                  <dd><a href="#"><%= category.description %>商品数(<%= count %>)</a></dd>
+
+                <% end %> <!-- end if -->
+
+                <% end %><!-- end category -->
+
+            <!-- sells -->    
+            <% 
+              total_sells = get_product_sells(@user).count
+              if total_sells == 0
+            %>
+                <dd><span style="color:#999"><%= t('product.no_sells') %></span></dd>
+            <% else %>
+                <dd><a href="#"><%= t('product.total_sells') %>(<%= total_sells %>)</a></dd>
+
+                <!-- has cells -->
+                <% @categories = TemplateCategory.all 
+                  @categories.each do |category|
+                %>
+
+                <% 
+                  count = get_product_sells_on_template_category(@user, category).count
+                  if count != 0
+                %>  
+
+                  <dd><a href="#"><%= category.description %><%= t('product.sells') %>(<%= count %>)</a></dd>
+
+                <% end %> <!-- end if -->
+
+                <% end %><!-- end category -->
+
+
+            <% end %><!-- end if -->
+
+
+            <% end %><!-- end if end -->
+ 
+
+    </dl>
+  </div><!-- product-prompt -->      
+</div> <!-- product-gather-info -->
+
+<!--       <div class="spinner product-buysetp-loaddelete" id="loading_delete">
+    <div class="bounce1">
+    </div>
+    <div class="bounce2">
+    </div>
+    <div class="bounce3">
+    </div>
+    正在删除
+</div> -->
+<div class="quick-op">
+    <form class="form-inline" role="form" id="filter-form" method="get" action="<%= user_products_path(@user.id) %>">
+      <div class="form-group">
+          <label for="inputEmail3" class=" control-label">
+            <%= t('product.select_product_category') %>：
+          </label>
+          <select name="product_category" id="product_template_category">
+            <option value="all">
+              <%= t('product.all') %>
+            </option>
+
+            <% TemplateCategory.all.each do |category| %>
+              
+              <option value="<%= category.name %>"><%= category.description %></option>
+
+            <% end %>  
+
+          </select>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="sell" value="1" id="product_sell">
+          <%= t('product.only_show_with_sells') %>
+        </label>
+      </div>
+    </form>
+</div>
+<div class="product-list">
+<div id="loading"><%= image_tag "loading.gif", style: "margin-right: 10px" %><%= t('progress.deleting') %></div>
+<div class="row">
+
+  <% @products.each do |product| %>
+
+  <% if product.product_images.count > 0 %>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <%= image_tag product_image(product).product_image.url(:medium), class: "img-responsive" %>
+            <div class="caption">
+              <p class="itemtitle"> 『<%= product.name %>』</p>
+              <p class="describe"><%= product.description %></p>
+              <p>
+                <!-- <a href="#" class="product-hide btn btn-default" role="button" id="hide-<%= product.id %>">隐藏</a> -->
+                <a href="<%= user_product_path(@user.id, product) %>" class="product-hide btn btn-default" role="button" id="hide-<%= product.id %>"><%= t('publish.view') %></a>
+                <% if can? :delete, product %>
+                  <a  class="product-delete btn btn-danger" role="button" id="del-<%= product.id %>"><%= t('nav.delete') %></a> 
+                <% end %>      
+              </p>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+
+  <% end %>
+
+</div><!-- row -->
+
+</div><!-- product-list -->    

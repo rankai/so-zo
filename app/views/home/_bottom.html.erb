@@ -1,0 +1,81 @@
+
+<div id="grayfooter">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="footer-category">
+                <div class="category-list">
+                    <p class="category-title"><%= t("activerecord.models.publish") %></p>
+                    <ul class="category-content">
+                        <% publish_categories.each do |category| %>
+                            <li><%= link_to category.description, publishes_path(publish_category: category.name) %></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="category-list">
+                    <p class="category-title"><%= t("activerecord.models.product") %></p>
+                    <ul class="category-content">
+                        <% product_categories.each do |category| %>
+                            <li><%= link_to category.description, products_path(product_category: category.name) %></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <!-- col5 -->
+    </div>
+    <!-- row -->
+</div>
+<!-- grayfooter -->
+<div id="bottomfooter">
+    <div id="language">
+        <span><%= t("language.select") %>:</span>
+        <form role="form">
+          <div class="form-group">
+            <select class="form-control" id="language-select">
+                <option value="zh-CN"><%= t("language.Chinese") %></option>
+                <option value="ja"><%= t("language.Japanese") %></option>
+            </select>
+          </div>
+        </form>
+    </div>
+
+    <%= link_to "#{t('nav.bottom.home')}", root_path %>
+    <%= link_to "#{t('nav.bottom.news')}", "#" %>
+    <%= link_to "#{t('nav.bottom.customer_service')}", "#" %>
+    <%= link_to "#{t('nav.bottom.intro')}", "#" %>
+    <%= link_to "#{t('nav.bottom.info')}", "#" %>
+    <%= link_to "#{t('nav.bottom.question')}", "#" %>
+    <%= link_to "#{t('nav.bottom.agreement')}", "#" %>
+    <%= link_to "#{t('nav.bottom.map')}", "#" %>
+
+    <div class="clear">
+    </div>
+</div>
+<!-- bottomfooter -->
+</div>
+
+<script type="text/javascript">
+$(function(){
+
+    // set language select
+    var locale = getUrlParameters("locale", "", true);
+    if(locale != false) {
+        $("#language-select").val(locale);
+    }
+
+    $("#language-select").change(function(){
+        var language = $(this).val();
+        var currLocation = window.location.search;
+        var parArr = currLocation.split("?")[1].split("&");
+        if(currLocation.indexOf("locale") != -1) {
+            // FIXME: we assume the locale query param is at 0, mostly it is
+            parArr[0] = "locale=" + language;
+        } else {
+            parArr.unshift("locale=" + language);
+        }
+        window.location.search = "?" + parArr.join("&");
+    })
+})
+</script>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<style>
+
+  .collection-box {
+    border: none;
+    float:right;
+    width: 860px;
+  }
+
+  .collection-gathering-title {
+    border: 1px solid #e6e6e6;
+    border-bottom: 2px solid #79a2a7;
+    height: 33px;
+    line-height: 33px;
+    margin-bottom: 10px
+  }
+
+  .collection-gathering-title h4 {
+    color: #79a2a7;
+    padding-left:  16px;
+    float: left
+  }
+
+  .collection-gathering-info {
+    padding-left: 20px;
+    border: 1px solid #e6e6e6;
+    margin-top: -10px;
+    min-height: 60px
+  }
+
+  .collection-gathering-info #collection-prompt dl {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+  }
+
+
+
+  .collection-gathering-info .collection-prompt dt{
+    text-align: right;
+    float:left;
+    margin-right: 25px
+  }
+
+  .collection-gathering-info .collection-prompt dd {
+    margin-right: 25px;
+    float: left;
+  }
+
+  .quick-op {
+    margin-top: 20px;
+    padding-left: 10px;
+    border-bottom: 1px solid #e6e6e6;
+  }
+
+  .collection-list {
+    /*border: 1px solid #e6e6e6;*/
+    padding: 10px
+  }
+
+  .collection-list .works-info {
+    word-break: break-all;
+    white-space: normal;
+    width: 260px;
+  }
+
+  .collection-list #loading {
+    text-align: center;
+  }
+
+  .thumbnail img {
+    max-width: 250px;
+    max-height: 200px;
+  }
+
+</style>
+
+<%= stylesheet_link_tag "devise" %>
+
+<script type="text/javascript">
+    $(function() {
+
+        $("#nav-d").addClass("active");
+        $("#nav-d a").css("background-color", "#79a2a7");
+        $("#loading").hide();
+
+        setSelect();
+
+        $('select').change(function() {
+            $('#filter-form').submit();
+        });
+
+        /*$('input[type="checkbox"]').change(function() {
+             $('#filter-form').submit();
+        });*/
+
+    })
+
+
+    function setSelect() {
+    var category = getUrlParameters("publish_category", "", true);
+    var sell = getUrlParameters("sell", "", true);
+
+    if(category != false){
+        $('#publish_publish_category').val(category);
+    }
+
+    /*if(sell != false) {
+        $('#publish_sell').prop("checked",true);
+    }*/
+
+    }
+
+
+    function getUrlParameters(parameter, staticURL, decode) {
+        var currLocation = (staticURL.length) ? staticURL: window.location.search,
+        parArr = currLocation.split("?")[1].split("&"),
+        returnBool = true;
+
+        for (var i = 0; i < parArr.length; i++) {
+            parr = parArr[i].split("=");
+            if (parr[0] == parameter) {
+                return (decode) ? decodeURIComponent(parr[1]) : parr[1];
+                returnBool = true;
+            } else {
+                returnBool = false;
+            }
+        }
+
+        if (!returnBool) return false;
+    }
+</script>
+
+<body id="top">
+  <div class="contents">
+    <%= render "home/nav" %>
+      <div style="height:76px">
+      </div>
+      <div class="container">
+        <div style="height:50px">
+        </div>
+        <%= render "devise/registrations/sider" %>
+
+
+        <div class="collection-box">
+          <%= render "collection" %>
+        </div><!--collection-box-->
+
+          
+      </div><!-- container -->
+      <div style="height:200px">
+      </div>
+      <div class="clear">
+      </div>
+      <div class="container">
+        <%= render "home/bottom" %>
+      </div>
+      <!-- container -->
+  </div>
+  <!-- contents -->
+</body>
+
+</html>

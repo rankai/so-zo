@@ -1,0 +1,213 @@
+ <style type="text/css"> 
+    .graybox {
+      height: 400px
+    }
+
+    .graybox .imgarea {
+      height:300px
+    }
+ </style>
+
+  <body id="top">
+    <%= render "home/nav" %>
+      <div class="contents">
+        <div class="container">
+          <div id="mainvisual">
+            <%= render "carousel" %>
+              <!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />
+              -->
+          </div>
+          <!-- mainvisual -->
+          <div class="col-sm-12 midashi">
+            <p>
+              <%= link_to products_path(), class: "home-link" do %>
+                <%= t('home.latest_products') %>
+              <% end %>
+            </p>
+          </div>
+          <div class="image-row">
+            <div class="image-set">
+              <div class="row" id="new">
+
+                <% @products.each do |product| %>
+
+                <% if product.product_images.count > 0 %>
+
+                  <div class="col-sm-3">
+                    <div class="graybox">
+                      <p class="ribbon"><%= image_tag "new_ribbon.png" %></p>
+                      <div class="imgarea">
+                        <%= link_to product_path(product), class: "example-image-link", title: "『product.name』" do %>
+                          <%= image_tag product.product_images.first.product_image.url(:medium), 
+                          class: "img-responsive example-image", alt: product.name %>
+                        <% end %>
+                        <div class="price">
+                          $<%= product.price %>
+                        </div>
+                      </div>
+                      <!-- imgarea -->
+                      <p class="itemtitle">
+                        『<%= product.name %>』
+                      </p>
+                      <p class="itemdetail">
+                        <%= short_text(50, product.description) %>
+                      </p>
+                    </div><!-- graybox -->
+                  </div><!-- col3 -->
+
+                  <% end %>
+
+                <% end %>       
+
+              </div>
+              <!-- row new -->
+            </div>
+            <!-- image set -->
+          </div>
+          <!-- image row -->
+
+
+          <div class="col-sm-12 midashi">
+            <p>
+              <%= link_to publishes_path(:publish_category => "photo"), class: "home-link" do %>
+                <%= t('home.latest_photos') %>
+              <% end %>
+            </p>
+          </div>
+          <div class="row" id="make"> 
+
+              <% @photos = get_latest_photos(3) 
+                if not @photos.nil?
+              %>
+
+                <% @photos.each do |publish| %>
+                  <div class="col-sm-3">
+                      <div class="graybox">
+                        <div class="overflow">
+                          <a href="<%= publish_path(publish) %>">
+                            <%= image_tag publish.publish_image.url(:medium), class: "img-responsive" %>
+                          </a>
+                        </div>
+                        <p>
+                          <%= publish.name %>
+                        </p>
+                      </div>
+                      <!-- graybox -->
+                    </div>
+                    <!-- col-sm-4 -->
+              <% end %>
+
+            <% end %>
+            
+          </div>
+          <!-- row make -->
+
+
+          <div class="col-sm-12 midashi">
+            <p>
+              <%= link_to products_path(), class: "home-link" do %>
+                <%= t('home.popular_products') %>
+              <% end %>
+            </p>
+          </div>
+          <div class="image-row">
+            <div class="image-set">
+              <div class="row" id="new">
+                
+                <div id="view-most-products">
+
+                    <% @ranked_by_view_products = get_products_by_statistics('V', 4) 
+                      if not @ranked_by_view_products.nil?
+                    %>
+
+                    <% @ranked_by_view_products.each do |product| %>
+
+                     <% if product.product_images.count > 0 %>
+                      <div class="col-sm-3">
+                        <div class="graybox">
+                          <p class="ribbon"><%= image_tag "new_ribbon.png" %></p>
+                          <div class="imgarea">
+                            <a class="example-image-link" href="<%= product_path(product) %>"
+                            title="『<%= product.name %>』">
+                              <%= image_tag product.product_images.first.product_image.url(:medium), class: "img-responsive example-image", alt: product.name %>
+                            </a>
+                            <div class="price">
+                              $<%= product.price %>
+                            </div>
+                          </div>
+                          <!-- imgarea -->
+                          <p class="itemtitle">
+                            『<%= product.name %>』
+                          </p>
+                          <p class="itemdetail">
+                            <%= short_text(50, product.description) %>
+                          </p>
+                        </div><!-- graybox -->
+                      </div><!-- col3 -->
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+
+              </div>
+              <!-- row new -->
+            </div>
+            <!-- image set -->
+          </div>
+          <!-- image row -->
+        </div>
+        <!-- container -->
+        <div style="height:76px"></div>
+        <div class="clear">
+        </div>
+        <div class="container">
+
+          <div class="row">
+            <div class="col-lg-9" id="footerbase">
+              <p>
+                <span>
+                  最新の活動報告
+                </span>
+                <br />
+                新商品導入成功
+                <br />
+               カーテン対応
+              </p>
+            </div>
+            <!-- col9 -->
+            <div class="col-lg-3" id="footerleft">
+              <button type="button" class="btn btn-success btn-md">
+                <span>
+                  詳細はこちら
+                </span>
+              </button>
+            </div>
+            <!-- col3 -->
+          </div><!-- row -->
+
+          <div id="company">
+            <div class="row">
+              <div class="col-lg-4">
+                <div>
+                  <%= image_tag "logo_gray.jpg", alt: "So-Zo" %>
+                </div>
+              </div>
+              <!-- col4 -->
+              <div class="col-lg-6">
+                <div>
+                  <p id="title">
+                    About US
+                  </p>
+                  <p id="txt">
+                    <%= get_about_us() %>
+                  </p>
+                </div>
+              </div>
+              <!-- col6 -->
+            </div>
+            <!-- row -->
+          </div>
+          <!-- company -->
+         <%= render "bottom" %>
+        <!-- container -->
+      </div>

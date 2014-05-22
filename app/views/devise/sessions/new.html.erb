@@ -1,0 +1,144 @@
+<script type="text/javascript">
+  
+  $(function() {
+    $("#nav").css("background-image", 'none');
+
+
+     // jquery validate
+    $("#new_user").validate({
+        rules: {
+            "user[email]": {
+              required: true,
+              email: true
+            },
+            "user[password]": {
+              required: true
+            }
+        },
+
+        messages: {
+          "user[email]": {
+            required: "<%= t('devise.failure.input_email') %>",
+            email: "<%= t('devise.failure.input_valid_email') %>"
+          },
+          "user[password]": "<%= t('devise.failure.input_password') %>",
+        },
+
+        highlight: function(element) {
+            $(element).closest(".form-group").addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element.parent());
+            }
+        },
+/*        submitHandler: function(form) {
+            jQuery(form).ajaxSubmit(options);
+            $("#pre").hide();
+            $("#uploading").show();
+            $("#myModal").modal('hide');
+        }*/
+    });
+  });
+
+</script>
+
+<style type="text/css">
+  
+    .login-container {
+      margin-left: 30%;
+      margin-top: 50px;
+      margin-bottom: 80px;
+      height: 500px
+    }
+
+    .login-image {
+      float: left
+    }
+
+    .login-form {
+      min-width: 350px;
+      max-width: 400px;
+      padding: 25px;
+      border: #eee solid 1px;
+      float: left;
+      margin-left: 100px
+    }
+
+    .login-form input[type='email'] {
+      width: 250px;
+    }
+
+    .login-form input[type='password'] {
+      width: 250px;
+    }
+
+    .login-form input[type='submit'] {
+      height: 40px;
+    }
+</style>
+
+<body id="top">
+  <div class="contents">
+      <%= render "home/nav2" %>
+    <div style="height:76px">
+    </div>
+
+    <div class="login-container">
+        <div class="login-image">
+
+          <%= image_tag "login_abc.png" %>
+
+         </div>
+
+        <div class="login-form">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), role: "form") do |f| %>
+        <%= devise_error_messages! %>
+
+          <div class="form-group">
+            <%= f.label :email do %> <%= User.human_attribute_name('email') %> <% end %> <br />
+            <div class= "input-group">
+            <%= f.email_field :email, :autofocus => true, class: "form-control", placeholder: t('devise.placeholders.required') %>
+          </div>
+        </div>
+
+          <div class="form-group">
+            <%= f.label :password do %> <%= User.human_attribute_name('password') %> <% end %><br />
+            <div class= "input-group">
+            <%= f.password_field :password, class: "form-control", placeholder: t('devise.placeholders.required') %>
+          </div>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="checkbox">
+              <%= f.check_box :remember_me %> <%= f.label :remember_me do %> <%= t('devise.links.remember_me') %> <% end %>
+            </div>
+          <% end -%>
+
+          <div><%= f.submit t('devise.links.sign_in_btn'), class: "btn btn-warning" %></div>
+        <% end %>
+
+        <div style="height:30px">
+        </div>
+
+        <%= render "devise/shared/links" %>
+      </div>
+  </div>
+
+      <div class="clear">
+      </div>
+      <div class="container">
+         <%= render "home/bottom" %>
+     </div>
+
+</div>
+
+</body>

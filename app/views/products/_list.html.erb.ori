@@ -1,0 +1,39 @@
+<!--<%= @products.size() %>-->
+<% @products.each do |product| %>
+    <div class="col-sm-2">
+        <div class="graybox">
+            <div class="imgarea">
+                <a class="example-image-link" href="<%= product.product_images.first.product_image.url %>" data-lightbox="example-set"
+                title="<%= product.name %>">
+                    <%= image_tag product.product_images.first.product_image.url(:medium), alt: product.name %>
+                </a>
+            </div><!-- imgarea -->
+            <p class="itemtitle">
+                『<%= product.name %>』
+            </p>
+            <p class="describe">
+                <%= product.description %>
+            </p>
+            <div class="line-price">
+                <span><%= t('product.set_price') %>:</span>
+                 <div class="p_number">
+                    <div class="f_l add_chose" style="margin-top:10px">
+                        <a class="reduce" href="javascript:void(0)" onclick="setAmount.reduce('#product_<%= product.id %>')">-</a>
+                        <input type="text" id="product_<%= product.id %>" name="product[price]" value="<%= product.price %>" class="text" onchange="update_single_price($this, <%= product.id %>);" onKeyUp="setAmount.modify('#product_<%= product.id %>');" />
+                        <a class="add" href="javascript:void(0)" onclick="setAmount.add('#product_<%= product.id %>');">+</a>
+                    </div>
+                </div>
+            </div>
+            <div class="line-bottom">
+                <a href="#" class="button button-rounded button-flat-highlight button-small"><%= t('nav.delete') %></a>
+            </div>
+        </div><!-- graybox -->
+    </div><!-- col2 -->
+
+    <!-- test for all -->
+
+<% end %>
+
+<!-- below all tests, should be removed after that-->
+
+<!-- test end -->

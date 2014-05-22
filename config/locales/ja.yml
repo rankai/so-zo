@@ -1,0 +1,821 @@
+# Japanese translations for Ruby on Rails
+# by Akira Matsuda (ronnie@dio.jp)
+# AR error messages are basically taken from Ruby-GetText-Package. Thanks to Masao Mutoh.
+# contributors:
+#  - Tsutomu Kuroda (t-kuroda@oiax.jp)
+
+ja:
+  nav:
+    hello: "こんにちは：%{user}"
+    publish_upload: "投稿"
+    my_orders: "私の注文"
+    my_publishes: "私の作品"
+    my_page: "プロフィール"
+    exit: "ログアウト"
+    register: "登録"
+    login: "ログイン"
+    search: "検索"
+    shopping_cart: "ショッピングカート"
+    favicons: "お気に入り"
+    inform: "注意"
+    delete: "削除"
+    ok: "確定"
+    bottom:
+      title: "取り扱い~~~"
+      home: "ホーム"
+      news: "ニュース"
+      customer_service: "問い合わせ"
+      intro: "会社概要"
+      info: "採用情報"
+      question: "よくある質問"
+      agreement: "利用規約"
+      map: "サイトマップ"
+    menu:
+      illustration: "イラスト"
+      photo: "写真"
+      group_buy: "ギャザリング"
+      product: "商品"
+      author: "作者"
+      hot: "ランキング"
+      personal_info: "ユーザー情報"
+      my_works: "私の作品"
+      my_products: "私の商品"
+      my_orders: "私の注文"
+      settings: "情報設定"
+    rank:
+      like_rank: "人気ランキング"
+      sell_rank: "販売ランキング"
+      type: "ジャンル"
+
+
+  language:
+    select: "言語を選択してください"
+    Japanese: "日本语"
+    Chinese: "中文"
+
+  home:
+    latest_products: "スタッフの推しプ"
+    latest_photos: "作りたい商品を選"
+    popular_products: "スタッフの推しプ"
+
+  cart:
+    page_title: "私のカート"
+    add_to_cart: "カートに入れる"
+    op: "設定"
+    back_to_shopping: "買い物に戻る"
+    checkout: "決済"
+    select_all: "全てを選択"
+    price_total: "合計"
+    quantity_total: "全部で%{quantity}件商品"
+    delete: "削除"
+    col_quantity: "数"
+    col_name: "名称"
+    col_image: "商品画像"
+    col_price: "単価"
+    col_size: "サイズ"
+    col_color: "色"
+    remove_confirm: "ショッピングカートから削除しますか?"
+    quantity_change: "商品の数量を変更成功"
+
+  product:
+    only_show_with_sells: "売れた分を表示"
+    select_product_category: "ジャンル別"
+    all: "すべての商品"
+    price: "価格"
+    base_price: "コスト"
+    quantity: "数"
+    color: "色"
+    size: "サイズ"
+    reviews: "商品詳細"
+    related: "関連商品"
+    review: "レビュー" 
+    total: "総商品数"
+    total_sells: "総販売数"
+    sells: "販売数"
+    no_sells: "未販売数"
+    quantity: "商品数"
+    no_products: "売れ切り"
+    my_products: "私の商品" 
+    purchase: "購入"
+    set_uniform_price: "価格一括设定"
+    set_price: "価格"
+    confirm_tougao: "投稿する"
+    re_tougao: "再投稿"
+    input_price: "希望価格を記入"
+    input_price_ratio: "ご希望の比率を記入してください"
+    input_price_ratio_error: "数字を入力してください. 例えば50"
+    base_price: "生産コスト"
+    price_too_high: "2倍以上の値段は設定出来ません"
+    price_too_low: "これ以下の価格は設定出来ません"
+    frequency_sells: "販売数"
+
+  bonus:
+    no_bonus: "無収益"
+    total: "総収益"
+
+  order:
+    orders: "総注文数"
+    my_orders: "私の注文"
+    new_page_title: "注文情報をご記入してください"
+    product_title: "商品リスト"
+    contact: "連絡先情報"
+    confirm_order: "注文する"
+    back_to_cart: "カートに戻る"
+    cancel_order: "キャンセル"
+    order_submitted_msg: "ご注文をありがとうございました。今すぐお支払いへ"
+    pay_order: "すぐ支払い"
+    view_order: "私の注文"
+    order_shipped: "ご購入の商品を発送いたしました"
+    order_paid_msg: "ご購入頂き、誠にありがとうございます"
+    order_paid: "商品が届くまで、少々お待ちください"
+    order_completed: "ご注文を完了致しました"
+    no_orders_need_to_pay: "支払いはありません"
+    no_orders_need_to_ship: "出荷するものはありません"
+    no_orders_shipped: "全て出荷完了です"
+    need_to_pay: "支払い待ち"
+    shipped: "出荷しました"
+    col_info: "オーダー情報"
+    col_state:
+      options:
+        all: "全部の状態"
+        shipped: "出荷済み"
+        need_to_ship: "出荷してください"
+        need_to_pay: "支払いしてください"
+        completed: "完成"
+        paid: "支払い完了です"
+    col_created_at:
+      options:
+        all: "全ての時間"
+        in_this_week: "一週間以内"
+        last_3_months: "最近3ヶ月以内に"
+        in_this_year: "今年"
+    col_op: "操作"
+    col_receiver: "受取人"
+    col_price: "受注額"
+    order_number: "注文番号"
+    order_search_placeholder: "商品名、注文番号"
+
+  publish:
+    my_publishes: "公開作品"
+    no_publishes: "非公開作品"
+    total: "全ての作品"
+    quantity: "作品数"
+    no_publishes_sells: "非公開作品販売数"
+    total_sells: "総販売数"
+    sells: "売り作品数"
+    select_publish_category: "作品の種類を選択してください"
+    all: "すべての作品"
+    only_show_with_sells: "売れ分を表示"
+    hide: "隠す"
+    view: "ブラウズ"
+    author: "作者"
+    frequency_added_to_cart: "カートに入れる"
+    options: "任意の形式"
+    refresh_alert: "お客様の投稿が失敗するかもしれませんので、更新しないでください"
+
+  favorites:
+    my_collections: "我的收藏"
+    collection_total: "総收藏数"
+    collection_quantity: "收藏数"
+    no_collections: "まだ收藏"
+    my_watches: "私の注目を集めて"
+    no_watches: "まだ関心"
+    watch_total: "総関心数"
+
+  views:
+    pagination:
+      first: "&laquo; 最初のページに"
+      last: "最後のページ &raquo;"
+      previous: "&lsaquo; ねがい"
+      next: "次頁 &rsaquo;"
+      truncate: "&hellip;"
+
+  progress:
+      deleting: "削除しています..."
+      uploading: "アップロードしています..."
+      making_products: "商品が生成中..."
+      making_products_progress: "総計%{total}件で、すでに%{current}件完了です"
+      processing: "ただ今処理しています、少々お待ちください..."
+      waiting_uploading: "作品をアップロード中..."
+      publish_processing: "商品生成中..."
+      cancel: "キャンセル"
+
+  modal:
+    close: "閉じる"
+    cancel: "キャンセル"
+    ok: "確定"
+    address:
+      title: "受取人の情報をご記入してください"
+      address_placeholder: "有効な電話をご記入してください"
+      phone_placeholder: "住所の詳細をご記入してください"
+    upload:
+      title: "作品をアップロードしてください"
+      publish_name_placeholder: "作品名を記入してください"
+      publish_des_placeholder: "作品の説明を記入してください"
+      publish_select: "作品選択"
+      product_generate: "商品生成"
+      publish_requirements_prompt: "作品はjpgやpngの形式で、最低画素数は2000pxです"
+      errors:
+        input_name: "作品名を記入してください"
+        input_description: "作品の説明を記入してください"
+        name_too_long: "作品名称を１０字以内にしてください"
+        name_too_short: "作品名称を５文字以上にしてください"
+        description_too_short: "作品の説明を５文字に以上に記入してください"
+        description_too_long: "作品の詳細を１００文字以内に記入してください"
+        upload_publish: "作品をアップロードしてください"
+        publish_format_not_valid: "jpgとpng形式の作品をアップロードしてください"
+
+  flash:
+    alerts:
+      order_deleted_alert: "オーダー作成が失敗しました。もう一度お試し下さい"
+      order_created_alert: "オーダー削除が失敗しました。もう一度お試し下さい"
+      order_deleted_forbid: "既に支払ったご注文のキャンセルは出来ません"
+      product_deleted_forbid: "こちらの作品は他のユーザーに注文されていますので、削除で出来ません"
+      publish_deleted_forbid: "こちらの作品は他のユーザーに注文されていますので、削除で出来ません"
+      line_item_added_alert: "カードに追加失敗、もう一度お試しください"
+      line_item_deleted_alert: "カードから削除失敗、もう一度お試しください"
+      publish_upload_alert: "作品アップロード失敗、もう一度お試しください"
+      publish_deleted_alert: "作品削除失敗、もう一度お試しください"
+      product_deleted_alert: "商品削除失敗、もう一度お試しください"
+      last_product_deleted_forbid: "こちらの商品を削除したい場合、作品を削除してください"
+      last_product_removed_alert: 'こちらはお客様の最後の商品です。キャンセルしたい場合、"投稿キャンセルボタン"を押して下さい'
+      product_price_updated_alert: "価格設定失敗、もう一度お試しください"
+      commit_tougao_alert: "投稿失敗、もう一度お試しください"
+      reset_tougao_alert: "キャンセル失敗、もう一度お試しください"
+      order_already_submitted: "注文の再提出をお控えください"
+      payment_failed: "お支払い失敗、もう一度お試しください"
+
+    notices:
+      order_deleted: "オーダー削除成功"
+      order_created: "オーダー作成成功"
+      line_item_added: "成功添加ショッピングカート"
+      line_item_deleted: "成功のショッピングカートから削除"
+      product_deleted: "成功を削除する商品"
+      publish_deleted: "成功を削除する指定作品や生成の全商品"
+      product_price_updated: "価格設定に成功"
+      commit_tougao: "投稿を行うことができることに成功し、次の投稿とか"
+      reset_tougao: "成功することができますキャンセル、再投稿とか"
+      payment_finished: "支払いが成功して、ありがとうございます購入"
+
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      long: "%Y年%m月%d日(%a)"
+
+    day_names:
+      - 日曜日
+      - 月曜日
+      - 火曜日
+      - 水曜日
+      - 木曜日
+      - 金曜日
+      - 土曜日
+    abbr_day_names:
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
+
+    month_names:
+      - ~
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    abbr_month_names:
+      - ~
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%y/%m/%d %H:%M"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %Z"
+    am: "午前"
+    pm: "午後"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "30秒前後"
+      less_than_x_seconds:
+        one:   "1秒以内"
+        other: "%{count}秒以内"
+      x_seconds:
+        one:   "1秒"
+        other: "%{count}秒"
+      less_than_x_minutes:
+        one:   "1分以内"
+        other: "%{count}分以内"
+      x_minutes:
+        one:   "1分"
+        other: "%{count}分"
+      about_x_hours:
+        one:   "約1時間"
+        other: "約%{count}時間"
+      x_days:
+        one:   "1日"
+        other: "%{count}日"
+      about_x_months:
+        one:   "約1ヶ月"
+        other: "約%{count}ヶ月"
+      x_months:
+        one:   "1ヶ月"
+        other: "%{count}ヶ月"
+      about_x_years:
+        one:   "約1年"
+        other: "約%{count}年"
+      over_x_years:
+        one:   "1年以上"
+        other: "%{count}年以上"
+      almost_x_years:
+        one:   "1年弱"
+        other: "%{count}年弱"
+
+    prompts:
+      year:   "年"
+      month:  "月"
+      day:    "日"
+      hour:   "時"
+      minute: "分"
+      second: "秒"
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      CNY: "元"
+      USD: "ドル"
+      JPY: "円"
+      format:
+        format: "%n%u"
+        unit: "円"
+        separator: "."
+        delimiter: ","
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+
+    percentage:
+      format:
+        delimiter: ""
+
+    precision:
+      format:
+        delimiter: ""
+
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+
+      storage_units:
+        format: "%n%u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+
+      decimal_units:
+        format: "%n %u"
+        units:
+          total: "共"
+          jian: "件"
+          ci: "度"
+          # 10^-21 zepto, 10^-24 yocto
+          atto: "渺"  # 10^-18
+          femto: "飞" # 10^-15 毫微微
+          pico: "漠"  # 10^-12 微微
+          nano: "奈"  # 10^-9 毫微
+          micro: "微" # 10^-6
+          mili: "毫"  # 10^-3 milli
+          centi: "厘" # 10^-2
+          deci: "分"  # 10^-1
+          unit: ""
+          ten:
+            one: "十"
+            other: "十"  # 10^1
+          hundred: "百"  # 10^2
+          thousand: "千" # 10^3 kilo
+          million: "百万" # 10^6 mega
+          billion: "十億" # 10^9 giga
+          trillion: "兆" # 10^12 tera
+          quadrillion: "千兆" # 10^15 peta
+           # 10^18 exa, 10^21 zetta, 10^24 yotta
+
+  support:
+    array:
+      words_connector: "と"
+      two_words_connector: "と"
+      last_word_connector: "と"
+
+    select:
+      prompt: "選択してください。"
+  activerecord:
+    models:
+      #here is for model name, for example, in rails_admin 
+      user: "ユーザー"
+      publish: "作品"
+      product: "商品"
+      product_template: "テンプレート"
+      order: "注文"
+      base: "基礎データ"
+      order_item: "注文書の詳細"
+      role: "システム役"
+      tag: "ラベル"
+      template_category: "テンプレートタイプ"
+      state: "状態"
+      size: "サイズ"
+      color: "色"
+      publish_category: "作品の分類"
+      occupation: "職業"
+      event: "カスタム事件（保留）"
+      checkout: "支払い（保留）"
+      cart: "ショッピングカート"
+      line_item: "ショッピングカート明細"
+      picture: "写真（保留）"
+      album: "アルバム"
+      product_image: "商品画像"
+      credit_card: "クレジットカード（保留）"
+    attributes:
+      product_template:
+        template_name: "名称"
+        sizes: "支持のサイズ"
+        colors: "支持の色"
+        template_category: "テンプレートのカテゴリー"
+        price: "価格"
+        description: "説明"
+        head_image: "正面図"
+        head_image_mask: "フロントマスク"
+        back_image: "背面図"
+        back_image_mask: "マスクの裏側"
+        side_image: "側面図"
+        side_image_mask: "サイドマスクを使用"
+        position_X: "X座標"
+        position_Y: "Y座標"
+        size_X: "幅"
+        size_Y: "長さ"
+        degree: "角度"
+        if_zoom: "ズームかどうか"
+      product:
+        name: "商品名称"
+        price: "商品の価格"
+        base_price: "成本"
+        description: "商品の説明"
+      publish:
+        name: "作品の名称"
+        description: "作品の説明"
+        type: "類別"
+      user:
+        email: "電子メール"
+        password: "パスワード"
+        current_password: "現在のパスワード"
+        new_password: "新パスワード"
+        name: "氏名"
+        sex: "性別"
+        motto: "格言"
+        occupation: "職業"
+        description: "自己紹介"
+        tag: "ラベル"
+        phone: "電話"
+        address: "アドレス"
+        roles: "システム役"
+        photo: "アバター"
+        infos: "メッセージ数"
+        follows: "注目数"
+        password_confirmation: "パスワード確認"
+    errors:
+      models:
+        user:
+          attributes:
+            photo:
+              blank: "は空にできません"
+      template: # ~ 2.3.5 backward compatible
+        header:
+          one:   "%{model}にエラーが発生しました。"
+          other: "%{model}に%{count}つのエラーが発生しました。"
+        body: "次の項目を確認してください。"
+      full_messages:
+        format: "%{attribute}%{message}"
+      messages:
+        inclusion: "リストに含まれない"
+        exclusion: "キーワードは保留"
+        invalid: "無効"
+        confirmation: "と確認値の不一緻"
+        accepted: "は受け入れられなければならない"
+        empty: "不能留空"
+        blank: "できない空白文字"
+        too_long: "長すぎる（最長 %{count} 文字）"
+        too_short: "短い（は最短 %{count} 文字）"
+        wrong_length: "不法（長さなければならない %{count} 文字）"
+        not_a_number: "数字ではなく"
+        not_an_integer: "なくてはならない整数"
+        greater_than: "よりなければならない %{count}"
+        greater_than_or_equal_to: "大なりイコールなければならない %{count}"
+        equal_to: "なければならないに等しい %{count}"
+        less_than: "以下がなければならない %{count}"
+        less_than_or_equal_to: "小なりイコールなければならない %{count}"
+        odd: "奇数でなければならない"
+        even: "必ず偶数"
+        taken: "既に使われて"
+        record_invalid: "パリティ失敗: %{errors}"
+
+  activemodel:
+    errors:
+      template:
+        header:
+          one: "ある1つのミスによる「%{model}」保存されない。"
+          other: " ある %{count} エラー発生による「%{model}」保存されない。"
+        body: "次のフィールドにミス："
+
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      delete_message: "ご確認を削除するか?"
+      exit_message: "あなたの終瞭を確認するか?"
+      select_none: "少なくとも1件の商品を選んでください"
+      inclusion: "リストに含まれない"
+      exclusion: "キーワードは保留"
+      invalid: "無効"
+      confirmation: "と確認値の不一緻"
+      accepted: "は受け入れられなければならない"
+      empty: "留空できない"
+      blank: "できない空白文字"
+      too_long: "長（最長 %{count} 文字）"
+      too_short: "短い（は最短 %{count} 文字）"
+      wrong_length: "不法（長さなければならない %{count} 文字）"
+      not_a_number: "数字ではなく"
+      not_an_integer: "なくてはならない整数"
+      greater_than: "よりなければならない %{count}"
+      greater_than_or_equal_to: "大なりイコールなければならない %{count}"
+      equal_to: "なければならないに等しい %{count}"
+      less_than: "以下がなければならない %{count}"
+      less_than_or_equal_to: "小なりイコールなければならない %{count}"
+      odd: "奇数でなければならない"
+      even: "必ず偶数"
+      #for devise
+      already_confirmed: "確認しました、もう一度ログインして下さい。"
+      confirmation_period_expired: "してください%{period}内に登録確認, 再登録してください。"
+      expired: "メールで確認の有効期限が切れて、再登録してください。"
+      not_found: "見つからない。"
+      not_locked: "未ロック。"
+      not_saved:
+        one: "それから1つのミスによる%{resource}セーブに失敗し:"
+        other: "から%{count}つのミスによるこの%{resource}セーブに失敗し:"
+
+  helpers:
+    select:
+      prompt: "を選択してください"
+    submit:
+      create: "新規%{model}"
+      update: "更新%{model}"
+      submit: "貯蔵%{model}"
+
+
+  devise:
+    confirmations:
+      confirmed: "あなたのアカウントを確認して、今ご登録"
+      send_instructions: "数分後、確認のメールアカウントをお受けし"
+      send_paranoid_instructions: "もしあなたの電子メールの存在は私たちのデータベースをお受け通、確認メールアカウントの"
+    failure:
+      already_authenticated: "あなたはすでに登録"
+      inactive: "あなたはまだアカウントをアクティブに"
+      invalid: "電子メールやパスワードエラー"
+      locked: "あなたのアカウントがロックされて"
+      last_attempt: "あなたの最後のチャンス失败して、再びあなたのアカウントはロックされて"
+      not_found_in_database: "電子メールやパスワードエラー"
+      timeout: "タイムアウトにご登録いただきまして、再び登録して下さい"
+      unauthenticated: "続けて前に登録または登録操作。"
+      unconfirmed: "引き続き操作の前に先にご確認のアカウント"
+      upload_photo: "どうぞご靓照アップ"
+      select_occupation: "あなたの職業を選択してください"
+      select_sex: "あなたの性別を選択してください"
+      input_email: "あなたのメールアドレスを入力してください"
+      input_valid_email: "アドレスを入力してください"
+      input_password: "パスワードを入力してください"
+      input_motto: "格言を記入してください"
+      confirm_password: "同じパスワードを入力してください"
+      input_name: "あなたの名前を書いてください"
+    mailer:
+      confirmation_instructions:
+        subject: "確認情報"
+      reset_password_instructions:
+        subject: "リセットパスワード情報"
+      unlock_instructions:
+        subject: "ロックを解除する情報"
+    omniauth_callbacks:
+      failure: "から%{reason}ので、あなたからない%{kind}獲得する"
+      success: "成功してから%{kind}獲得する"
+    passwords:
+      no_token: "これは暗証番号をリロールページ、未リセットメールは訪問このページ。もしあなたはリセットメールを通じて、ご訪問のURLは完全な。"
+      send_instructions: "数分後、パスワードのメールをお受けリセット。。"
+      send_paranoid_instructions: "もしあなたの電子メールの存在は私たちのデータベースでは、お届け通パスワードのメールを取り戻す。"
+      updated: "あなたのパスワードを改正して、今ご登録。"
+      updated_not_active: "あなたのパスワードを改正して。"
+    registrations:
+      destroyed: "さようなら。あなたのアカウントが成功する。私たちはすぐにまたお会いできる。"
+      signed_up: "あなたを歓迎します！あなたはすでに登録成功。"
+      signed_up_but_inactive: "ご登録されたが、まだアカウントをアクティブに。"
+      signed_up_but_locked: "ご登録されたが、アカウントがロックされました。"
+      signed_up_but_unconfirmed: "一通のメールはもう送って、リンクを確認することから、あなたのメールボックスをチェックしてください電子メールを含む（ごみメールし、当該リンクをクリックして）あなたのアカウントをアクティブにする。"
+      update_needs_confirmation: "情報の更新に成功するが、それが染色あなたの新しいメールアドレスをご確認ください電子メールを含む（ごみメールし、当該リンクをクリックして）あなたのアカウントをアクティブにする。"
+      updated: "アカウントデータ更新成功。"
+      leave_blank: "空白を殘して、もしあなたはそれを変えたくない"
+      password_need_to_confirm_changes: "私達があなたの現在のパスワードの確認ご変更"
+    links:
+      remember_me: "IDを覚えろ"
+      sign_in_btn: "ログイン"
+      sign_up_btn: "登録"
+      sign_in: "今すぐログイン"
+      sign_up: "今すぐ登録"
+      forget_password: "パスワード忘れた"
+      not_receive_confirmation: "確認メールが届いてない"
+      not_receive_unlock: "メールが届いていないロックを解除する"
+      resend_confirmation: "メール送信を再検証"
+      resend_unlock: "確認メールを再送信"
+      send_reset_password_instruction: "パスワードを取り戻す"
+      upload_photo: "プロフィール写真"
+      change_photo: "アイコン変更"
+      update: "更新"
+      reset: "再記入"
+    label:
+      at_registration: "SO-ZOを登録"
+      to_sign_in: "既に登録、今すぐログイン"
+    placeholders:
+      resend_email: "メールアドレスをご記入"
+      required: "必須"
+      not_required: "必須"
+    sessions:
+      signed_in: "ログイン成功."
+      signed_out: "ログアウト成功."
+    unlocks:
+      send_instructions: "確認メールを発送しました。ご確認ください"
+      send_paranoid_instructions: "もしあなたの電子メールの存在は私たちのデータベースでは、お届け通のメールアカウントロックを解除する。"
+      unlocked: "アカウントの確認が出来ました。今すぐログイン"
+
+
+  admin:
+    home:
+      name: "ホーム"
+    pagination:
+      previous: "&laquo; 前"
+      next: "次 &raquo;"
+      truncate: "…"
+    misc:
+      filter_date_format: "mm/dd/yy" # a combination of 'dd', 'mm' and 'yy' with any delimiter. No other interpolation will be done!
+      search: "検索"
+      filter: "フィルタ"
+      refresh: "更新"
+      show_all: "全て表示"
+      add_filter: "フィルタを追加"
+      bulk_menu_title: "選択したアイテム"
+      remove: "削除"
+      add_new: "新規作成"
+      chosen: "Chosen %{name}"
+      chose_all: "全て選択"
+      clear_all: "全てクリア"
+      up: "Up"
+      down: "Down"
+      navigation: "ナビゲーション"
+      log_out: "ログアウト"
+      ago: "前"
+    flash:
+      successful: "%{name}の %{action} に成功しました"
+      error: "%{name} の %{action} に失敗しました"
+      noaction: "アクションが指定されていません"
+      model_not_found: "モデル '%{model}' が見つかりません"
+      object_not_found: "ID '%{id}' の%{model}が見つかりません"
+    table_headers:
+      model_name: "モデル名"
+      last_used: "Last used"
+      records: "レコード"
+      username: "ユーザ"
+      changes: "Changes"
+      created_at: "日時"
+      item: "アイテム"
+      message: "メッセージ"
+    actions:
+      dashboard:
+        title: "サイト管理"
+        menu: "ダッシュボード"
+        breadcrumb: "ダッシュボード"
+      index:
+        title: "%{model_label_plural}の一覧"
+        menu: "一覧"
+        breadcrumb: "%{model_label_plural}"
+      show:
+        title: "%{model_label} '%{object_label}' の詳細"
+        menu: "表示"
+        breadcrumb: "%{object_label}"
+      show_in_app:
+        menu: "アプリで表示"
+      new:
+        title: "新規 %{model_label}"
+        menu: "新規作成"
+        breadcrumb: "新規"
+        link: "新規 %{model_label} を作成"
+        done: "作成しました"
+      edit:
+        title: "%{model_label} '%{object_label}' の編集"
+        menu: "編集"
+        breadcrumb: "編集"
+        link: "この %{model_label} を編集"
+        done: "更新しました"
+      delete:
+        title: "%{model_label} '%{object_label}' の削除"
+        menu: "削除"
+        breadcrumb: "削除"
+        link: "'%{object_label}' を削除"
+        done: "削除しました"
+      bulk_delete:
+        title: "%{model_label_plural} の削除"
+        menu: "一括削除"
+        breadcrumb: "一括削除"
+        bulk_link: "選択した%{model_label_plural}の削除"
+      export:
+        title: "%{model_label_plural} のエクスポート"
+        menu: "エクスポート"
+        breadcrumb: "エクスポート"
+        link: "クエリ結果の%{model_label_plural}をエクスポート"
+        bulk_link: "選択した%{model_label_plural}のエクスポート"
+        done: "エクスポートしました"
+      history_index:
+        title: "%{model_label_plural} の履歴"
+        menu: "履歴"
+        breadcrumb: "履歴"
+      history_show:
+        title: "%{model_label} '%{object_label}' の履歴"
+        menu: "履歴"
+        breadcrumb: "履歴"
+    form:
+      cancel: "キャンセル"
+      basic_info: "基本情報"
+      required: "必須"
+      optional: "オプション"
+      one_char: "文字"
+      char_length_up_to: "最大文字数:"
+      char_length_of: "文字数:"
+      save: "保存"
+      save_and_add_another: "保存してもう一つ作成"
+      save_and_edit: "保存して編集画面へ"
+      all_of_the_following_related_items_will_be_deleted: ")を削除してよろしいですか？ 以下の関連するアイテムが削除されるかみなしご化されます:"
+      are_you_sure_you_want_to_delete_the_object: "本当に%{model_name} ("
+      confirmation: "はい。間違いありません！"
+      bulk_delete: "以下のオブジェクトが削除され、関連する依存オブジェクトも削除またはみなしご化されます:"
+      new_model: "%{name} (新規)"
+    export:
+      confirmation: "%{name}としてエクスポート"
+      select: "エクスポートするフィールドの選択"
+      fields_from: "%{name}のフィールド"
+      fields_from_associated: "関連%{name}のフィールド"
+      display: "Display %{name}: %{type}"
+      options_for: "%{name}のオプション"
+      empty_value_for_associated_objects: "<空>"
+      click_to_reverse_selection: 'クリックで選択を反転'
+      csv:
+        header_for_root_methods: "%{name}" # 'model' is available
+        header_for_association_methods: "%{name} [%{association}]"
+        encoding_to: "エンコード:"
+        encoding_to_help: "出力エンコードを選択して下さい。空のままにすると現在の入力エンコードのままになります: (%{name})"
+        skip_header: "ヘッダを無し"
+        skip_header_help: "チェックするとヘッダ(フィールドのタイトル)を出力しません。"
+        default_col_sep: ","
+        col_sep: "カラム区切り文字"
+        col_sep_help: "空白にすると標準の '%{value}' になります。" # value is default_col_sep

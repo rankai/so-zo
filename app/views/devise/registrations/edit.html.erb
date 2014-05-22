@@ -1,0 +1,278 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>So-Zo</title>
+<link rel="stylesheet" type="text/css" href="../assets/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/meny.css" />
+<link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css" />
+</head> -->
+<%= stylesheet_link_tag "devise" %>
+
+<style type="text/css">
+  
+  input[type='submit'] {
+    height: 40px
+  }
+
+  input[type='file'] {
+    width:150px;
+    height:30px;
+    border:solid transparent;
+    position:absolute;
+    left:0px;
+    top:10px;
+    opacity:0;
+    filter:alpha(opacity=0);
+    cursor:pointer
+  }
+
+  .input-group {
+    display: -webkit-box
+  }
+
+  .input-group span {
+    margin-left: 15px
+  }
+
+  .form-group button {
+    height: 40px;
+    margin-left: 10px
+  }
+
+  .buynow {
+    width:80px; 
+    font-size:12px;
+    position:absolute;
+    left:50px;
+  }
+
+  .form-con i {
+    margin-left: 80px
+  }
+
+</style>
+
+
+
+<body id="top">
+  <div class="contents">
+    <%= render "home/nav" %>
+      <div style="height:76px">
+      </div>
+      <div class="container">
+        <div style="height:50px">
+        </div>
+        <%= render "sider" %>
+          <div class="r-box">
+            <!-- <form action=""> -->
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+            <%= devise_error_messages! %>
+
+            <div class="user-img">
+                  <%= image_tag current_user.photo.url(:medium), :width=>"192px", class: "img-rounded img-responsive" %>
+                  <div class="form-group" style="text-align:center;position:relative;">
+                    <button type="button" class="btn default btn-mini buynow">
+                      <%= t('devise.links.upload_photo') %>
+                    </button>
+                    <div class="input-group">
+                      <%= f.file_field :photo %>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-con">
+
+                  <div class="form-group">
+                  <%= f.label :email do %> <%= User.human_attribute_name('email') %>: <% end %>
+                  <div class="input-group">
+                    <%= f.email_field :email, :autofocus => true %>
+                  </div>  
+                </div>
+
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div class="form-group">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                  <% end %>
+
+                    <i>
+                      <%= t('devise.registrations.password_need_to_confirm_changes') %>
+                    </i>
+                  <div class="form-group"><%= f.label :current_password do %><%= User.human_attribute_name('current_password') %>:<% end %>
+                  <div class="input-group">
+                    <%= f.password_field :current_password %>
+                  </div>
+                  </div>
+                  
+
+                  <i>
+                    <%= t('devise.registrations.leave_blank') %>
+                  </i>
+                  <div class="form-group"><%= f.label :password do %><%= User.human_attribute_name('new_password') %>: <% end %>
+                    <div class="input-group">
+                      <%= f.password_field :password, :autocomplete => "off" %>
+                  </div>
+                 </div>
+
+                  <div class="form-group"><%= f.label :password_confirmation do %><%= User.human_attribute_name('password_confirmation') %>:<% end %>
+                   <div class="input-group">
+                      <%= f.password_field :password_confirmation %>
+                  </div>
+                 </div>
+
+
+                  <div class="form-group">
+                      <%= f.label :name do %><%= User.human_attribute_name('name') %>: <% end %>
+                      <div class="input-group">
+                      <%= f.text_field :name %>
+                    </div>
+                  </div>
+   
+                  <div class="form-group">
+                      <%= f.label :sex do %><%= User.human_attribute_name('sex') %>: <% end %>
+                      <div class="input-group">
+                      <%= f.select(:sex, [['女', 'female'], ['男','male']]) %>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                      <%= f.label :motto do %><%= User.human_attribute_name('motto') %>: <% end %>
+                     <div class="input-group"> 
+                      <%= f.text_area :motto %>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :occupation_id do %><%= User.human_attribute_name('occupation') %>: <% end %>
+                    <!-- f.select(:occupation_id, [['学生',1],['作者',2],['画家',3],['白领',4]]) -->
+                    <div class="input-group"> 
+                    <%= f.select(:occupation_id, Occupation.all.collect{|o|[o.name, o.id]}, {include_blank: true}) %>
+                  </div>
+                  </div>
+
+                    <fieldset>
+                      <legend> <%= t('order.contact') %> </legend>
+                      <div class="form-group">
+                        <%= f.label :phone do %> <%= User.human_attribute_name('phone') %>: <% end %>
+                        <div class="input-group"> 
+                        <%= f.text_field :phone %>
+                      </div>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :address do %> <%= User.human_attribute_name('address') %>: <% end %>
+                        <div class="input-group">
+                        <%= f.text_area :address %>
+                      </div>
+                      </div>
+                    </fieldset>
+
+                  <!-- 使用Option Tags from a Collection of Arbitrary Objects来自动生成options -->
+
+                    <div>
+                      <%= f.submit t('devise.links.update'), class: "btn btn-success btn-lg" %>
+                    </div>
+                  <% end %><!-- </form> -->
+            </div><!--form-con end-->
+          </div><!-- r-box -->
+      </div>
+      <!-- container -->
+      <div style="height:200px">
+      </div>
+      <div class="clear">
+      </div>
+      <div class="container">
+        <%= render "home/bottom" %>
+      </div>
+      <!-- container -->
+  </div>
+  <!-- contents -->
+</body>
+
+<script type="text/javascript"> 
+$(function() {
+
+    $("#nav-g").addClass("active");
+
+    //input file display
+    $('input[type="file"]').change(function(evt) {
+      var images = evt.target.files;
+      for(var i=0, f; f=images[i]; i++) {
+        if(!f.type.match('image.*')) {
+          continue;
+        }
+        var reader = new FileReader();
+        reader.onload = (function(file) {
+          return function(e) {
+            $(".user-img img").attr("src", e.target.result);
+          }
+        })(f);
+        reader.readAsDataURL(f);
+      }
+    });
+
+    // jquery validate
+    $("#edit_user").validate({
+        rules: {
+            "user[name]": {
+                required: true
+            },
+            "user[motto]": {
+                required: true
+            },
+            "user[email]": {
+                required: true,
+                email: true
+            },
+            /*"user[password]": {
+            },
+            "user[password_confirmation]": {
+              equalTo: "#user[password]"
+            },*/
+            "user[sex]": {
+              required: true
+            },
+            "user[occupation_id]": {
+              required:true
+            },
+        },
+
+        highlight: function(element) {
+            $(element).closest(".form-group").addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+
+        messages: {
+          "user[photo]" : "<%= t('devise.failure.upload_photo') %>",
+          "user[occupation_id]": "<%= t('devise.failure.select_occupation') %>",
+          "user[sex]": "<%= t('devise.failure.select_sex') %>",
+          "user[email]": {
+            required: "<%= t('devise.failure.input_email') %>",
+            email: "<%= t('devise.failure.input_valid_email') %>"
+          },
+          "user[password]": "<%= t('devise.failure.input_password') %>",
+          "user[password_confirmation]": "<%= t('devise.failure.confirm_password') %>",
+          "user[motto]": "<%= t('devise.failure.upload_photo') %>",
+          "user[name]": "<%= t('devise.failure.input_name') %>",
+        },
+
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.appendTo(element.parent());
+            } else {
+                error.appendTo(element.parent());
+            }
+        },
+/*        submitHandler: function(form) {
+            jQuery(form).ajaxSubmit(options);
+            $("#pre").hide();
+            $("#uploading").show();
+            $("#myModal").modal('hide');
+        }*/
+    });
+  })
+</script> 
+
+</html>

@@ -1,0 +1,28 @@
+<% @products.each do |product| %>
+
+    <% if product.product_images.count > 0 %>
+          <div class="col-sm-3">
+            <div class="graybox">
+              <p class="ribbon">
+                <%= image_tag "ribbon_gather.png" %>
+              </p><!-- ribbon -->
+              <div class="imgarea">
+                <a class="example-image-link" data-lightbox="example-set" href="<%= product.product_images.first.product_image.url(:large) %>"
+                title="『『<%= product.name %>』">
+                  <img alt="main visual" class="example-image" src="<%= product.product_images.first.product_image.url(:medium) %>"
+                  />
+                </a><!-- example-image-link -->
+                <div class="price">
+                  ￥<%= product.price %>
+                </div>
+              </div><!-- image area-->
+              <p class="itemtitle">
+                『<%= product.name %>』
+              </p>
+              <p class="itemdetail">
+                <%= product.description %>
+              </p>
+            </div><!-- graybox -->
+          </div><!-- col-sm-3 -->
+    <% end%>
+<% end %>

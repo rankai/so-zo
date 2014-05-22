@@ -1,0 +1,133 @@
+<body id="top">
+  	<div class="contents" />
+    <%= render "home/nav" %>
+    <div style="height:76px"></div>
+    <div class="container">
+      <div style="height:50px"></div>
+      <div id="buystep">
+        <div class="buy-left">
+
+        	<!-- path nav -->
+        	
+          <div class="position">
+            <%= link_to "Home", root_path %>
+            <span> / </span> 
+            <%= link_to publishes_path(publish_category: @publish.publish_category.name) do %>
+              <%= @publish.publish_category.description %>
+            <% end %> 
+            <span> / </span>
+            『<%= @publish.name %>』
+          </div>
+  	
+
+  		<!-- ill info -->
+          <div class="imgBox"><%= image_tag @publish.publish_image.url("large"), class: "img-rounded" %></div>
+          <!--label-box bg-->
+          <!-- tags -->
+
+         <!--  not support tags now <div class="label-box"> <a href="###" class="btn btn-success btn-mini">萌</a>
+          	<a href="###" class="btn btn-success btn-mini">可爱</a>
+          	<a href="###" class="btn btn-success btn-mini">赛高</a> 
+          </div> -->
+          
+          <!--label-box end-->
+         
+          <div class="description">
+            <h1 class="title"><span>Description</span></h1>
+            <div class="des-con">
+              <p><%= @publish.description %></p>
+            </div>
+            <div style="height:45px;"></div>
+            <div class="buynow">
+              
+              <% if already_collected(@publish)  %>   
+                    <button type="button" class="btn btn-primary btn-lg" disabled="disabled">已      收     藏</button>
+              <% else %>
+                  <%= button_to "收        藏", {controller: "collections", action: "create", publish_id: @publish.id}, class: "btn btn-primary btn-lg" %>
+              <% end %>      
+                    
+              
+              <div class="share-r">
+               <span> share<font color="#FC5C54">+</font> </span>
+                <div class="share">
+                  <ul>
+                    <li><a href="###" class="s-a"></a></li>
+                    <li><a href="###" class="s-b"></a></li>
+                    <li><a href="###" class="s-c"></a></li>
+                    <div style="clear:both"></div>
+                  </ul>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+              <!--分享结束--> 
+              <div style="clear:both"></div>
+            </div>
+            <div style="height:30px;"></div>
+           <!--buynow end--> 
+          <h1 class="title"><span><%= t('publish.options') %></span></h1>
+          <ul class="works-list works-list2 ">
+          	<% @publish.products.each do |product| %>
+          		<li><a href="<%= product_path(product) %>"><%= image_tag product.product_images.first.product_image.url(:medium), class:"img-thumbnail img-responsive" %></a></li>
+          	<% end %>
+          </ul>
+          </div>
+        </div>
+
+        <!-- author info -->
+        <div class="buy-right">
+          <div class="title">著者について</div>
+          <div class="userImg2">
+            <%= link_to user_path(@user) do %>
+              <%= image_tag @publish.user.photo.url(:medium), class:"img-rounded" %>
+            <% end %>
+            <%= link_to user_path(@user) do %>
+            <p><%= @publish.user.name %></p>
+            <% end %>
+          </div>
+          <ul class="pre-info">
+            <li><%= t('publish.quantity') %><br />
+              <%= @publish.user.publishes.count %></li>
+            <li><%= User.human_attribute_name('infos') %><br />
+              -</li>
+            <li class="last"><%= User.human_attribute_name('follows') %><br />
+              -</li>
+            <div style="clear:both"></div>
+          </ul>
+          <div class="share">
+            <ul>
+              <li><a href="###" class="s-a"></a></li>
+              <li><a href="###" class="s-b"></a></li>
+              <li><a href="###" class="s-c"></a></li>
+              <div style="clear:both"></div>
+            </ul>
+          </div>
+
+          <% if already_watched(@user)  %>         
+              <button type="button" class="btn btn-success btn-lg" disabled="disabled">已      关       注</button>
+          <% else %>
+              <%= button_to "关      注", {controller: "users", action: "watch", user_id: @user.id}, class: "btn btn-success btn-lg" %>
+          <% end %>
+              
+
+          <div style="height:75px;"></div>
+          <div class="title">ポートフォリオ</div>
+          <ul class="works-list">
+          	<% author_works(@publish.user, 8).each do |publish| %>
+            <li><a href="<%= publish_path(publish) %>"><%= image_tag publish.publish_image.url(:thumb), class:"img-thumbnail img-responsive" %></a></li>
+          	<% end %>
+          </ul>
+        </div>
+        <div style="clear:both"></div>
+        <div style="height:200px"></div>
+      </div>
+    </div>
+    <!-- container -->
+    
+    <div class="clear"></div>
+    <div class="container">
+    		<%= render "home/bottom" %>
+    </div>
+    <!-- container --> 
+  </div>
+  <!-- contents --> 
+</body>
