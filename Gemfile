@@ -6,6 +6,9 @@ gem 'rails', '4.0.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# Use msyql
+gem 'mysql2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -26,6 +29,35 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+gem 'devise' # authentication
+gem 'cancan' # authorization based on roles
+gem 'rolify' # roles
+
+# simple backend
+gem 'rails_admin'
+
+# add flash support to render
+gem 'flash_render'
+
+# masonry
+gem 'masonry-rails'
+
+# jquery validate
+gem 'jquery-validation-rails'
+
+# json
+# gem 'multi_json'
+
+# passenger
+# gem 'passenger'
+
+# i18n
+gem 'rails-i18n', '~> 4.0.0'
+
+#file_upload
+gem 'paperclip', '~> 4.1.1'
+
 #gem 'kaminari' # 分页
 gem 'devise' # authentication
 gem 'cancan' # authorization based on roles
@@ -42,14 +74,25 @@ gem 'rails-i18n', '~> 4.0.0'
 
 #file_upload
 gem 'paperclip', '~> 4.1.1'
+
 #image crop
 gem 'rails_admin_jcrop'
 
 #active_record_session
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
+#kaminari
+gem 'kaminari'
+
+# Gon
+gem 'gon'
+
+# jquery lazy_load
+# gem "lazyload-rails"
+
 # GOn
 gem 'gon'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
