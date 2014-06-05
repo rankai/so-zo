@@ -92,7 +92,7 @@ SoZo::Application.configure do
 
 
   config.i18n.available_locales = ['zh-CN', 'ja', :de]
-  config.i18n.default_locale = 'zh-CN'
+  config.i18n.default_locale = 'ja'
 
   #paperclip
   Paperclip.options[:command_path] = "/usr/bin/convert"

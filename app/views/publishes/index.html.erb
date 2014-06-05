@@ -22,18 +22,17 @@
         /*$("#ill").masonry({
             itemSelector: ".col-sm-2"
         });*/
-       var $container = $("#ill");
-       $container.imagesLoaded(function() {
-            $container.masonry({
-                  itemSelector: '.col-sm-2',
-                  isAnimated: !Modernizr.csstransitions, 
-                  animationOptions: {
-                    duration: 700,
-                    easing: 'linear',
-                    queue: false
-                  }              
-               });
-       });
+        var container = $("#ill");
+        $("img.lazy").lazyload({
+          event : "sporty",
+          load  : function(){
+             masonryNow('.col-sm-2', container, 10);
+          }
+        });
+
+        container.imagesLoaded(function() {
+            masonryNow('.col-sm-2', container, 10);
+        });
 
         var meny = Meny.create({
             menuElement:  $('.meny')[0],
@@ -78,7 +77,8 @@
                                         <div class="imgarea">
                                             <a class="example-image-link" href="<%= publish.publish_image.url %>" data-lightbox="example-set"
                                             title="<%= publish.name %>" data-path="<%= publish_path(publish) %>" data-action="<%= t('publish.view') %>">
-                                                <%= image_tag publish.publish_image.url(:medium), class: "example-image", alt: publish.name %>
+                                                <!--<= image_tag publish.publish_image.url(:medium), class: "example-image", alt: publish.name %>-->
+                                                <img class="lazy example-image" data-original="<%= publish.publish_image.url(:medium) %>" alt="<%= publish.name%>" />
                                             </a>
                                         </div>
                                         <!-- imgarea -->

@@ -29,18 +29,23 @@
   <script type="text/javascript">
 
     $(function() {
-      // lazy load for nav
-      /*$("img").lazyload({
-        failure_limit : 10
-      });*/
+
        /* $(".alert").slideDown('slow');*/
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function(){
                 $(this).hide(); 
             });
         }, 2000);
+       
+        $("img.lazy").lazyload({
+            event : "sporty"
+        });
+    });
 
-    });     
+
+  $(window).bind("load", function() { 
+      var timeout = setTimeout(function() { $("img.lazy").trigger("sporty") }, 3000);
+  });         
 
   </script>
 

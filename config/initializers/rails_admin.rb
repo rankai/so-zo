@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
     show
     edit
     delete
-    show_in_app
+    #show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
@@ -39,6 +39,7 @@ RailsAdmin.config do |config|
 
   #for jcrop
   config.model User do
+    navigation_icon 'icon-user'
     configure :photo, :jcrop
 
     #what edit will show
@@ -51,6 +52,8 @@ RailsAdmin.config do |config|
       field :phone
       field :address
       field :motto
+      #field :description, :ck_editor do
+      #end
       field :description
       field :roles
       field :tags
@@ -107,6 +110,10 @@ config.model ProductTemplate do
       field :side_image
       field :side_image_mask
     end
+  end
+
+  config.model Rich do
+    visible false
   end
 
 end

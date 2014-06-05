@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   has_many    :watches, dependent: :destroy
   #has_one     :income, dependent: :destroy
   #has_many :tags
-  has_many    :statistics
   has_many    :credit_cards, dependent: :destroy
   belongs_to  :occupation
   has_and_belongs_to_many :tags

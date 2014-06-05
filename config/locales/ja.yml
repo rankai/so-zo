@@ -31,6 +31,7 @@ ja:
       agreement: "利用規約"
       map: "サイトマップ"
     menu:
+      publish: "作品"
       illustration: "イラスト"
       photo: "写真"
       group_buy: "ギャザリング"
@@ -54,9 +55,9 @@ ja:
     Chinese: "中文"
 
   home:
-    latest_products: "スタッフの推しプ"
-    latest_photos: "作りたい商品を選"
-    popular_products: "スタッフの推しプ"
+    latest_products: "最新の商品"
+    latest_photos: "写真に投稿したコラム"
+    popular_products: "ランキング"
 
   cart:
     page_title: "私のカート"
@@ -219,8 +220,8 @@ ja:
         input_name: "作品名を記入してください"
         input_description: "作品の説明を記入してください"
         name_too_long: "作品名称を１０字以内にしてください"
-        name_too_short: "作品名称を５文字以上にしてください"
-        description_too_short: "作品の説明を５文字に以上に記入してください"
+        name_too_short: "作品名称より少ないできない1文字"
+        description_too_short: "说明できない作品より5つの言叶を使った"
         description_too_long: "作品の詳細を１００文字以内に記入してください"
         upload_publish: "作品をアップロードしてください"
         publish_format_not_valid: "jpgとpng形式の作品をアップロードしてください"
@@ -450,7 +451,8 @@ ja:
       prompt: "選択してください。"
   activerecord:
     models:
-      #here is for model name, for example, in rails_admin 
+      #here is for model name, for example, in rails_admin
+      statistic: "統計"  
       user: "ユーザー"
       publish: "作品"
       product: "商品"

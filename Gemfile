@@ -34,6 +34,9 @@ gem 'devise' # authentication
 gem 'cancan' # authorization based on roles
 gem 'rolify' # roles
 
+# rich editor
+gem 'rich', :git => 'https://github.com/bastiaanterhorst/rich.git'
+
 # simple backend
 gem 'rails_admin'
 

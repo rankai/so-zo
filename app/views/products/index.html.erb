@@ -19,20 +19,25 @@
 
 
 <script type="text/javascript">
+
+  $(window).bind("load", function() { 
+      var timeout = setTimeout(function() { $("img.lazy").trigger("sporty") }, 3000);
+  });         
+
+
 $(function(){
- var $container = $("#new");
- $container.imagesLoaded(function() {
-    $container.masonry({
-        itemSelector: '.col-sm-3',
-        gutter: 10,
-        isAnimated: !Modernizr.csstransitions, 
-        animationOptions: {
-          duration: 700,
-          easing: 'linear',
-          queue: false
-        }              
-    });
- });
+   var container = $("#new");
+
+   $("img.lazy").lazyload({
+      event : "sporty",
+      load  : function(){
+         masonryNow('.col-sm-3', container, 10);
+      }
+  });
+
+  container.imagesLoaded(function() {
+      masonryNow('.col-sm-3', container, 10);
+  });
 
  var meny = Meny.create({
     menuElement:  $('.meny')[0],
@@ -87,7 +92,8 @@ $(function(){
                       <div class="imgarea">
                         <a class="example-image-link" data-lightbox="example-set" href="<%= product.product_images.first.product_image.url %>"
                         title="<%= product.name %>" data-path="<%= product_path(product) %>" data-action="<%= t('product.purchase') %>">
-                          <%= image_tag product.product_images.first.product_image.url(:medium), class: "lazy img-responsive example-image", alt: product.product_template.description %>
+                          <!--<= image_tag product.product_images.first.product_image.url(:medium), class: "example-image", alt: product.product_template.description %>-->
+                          <img class="lazy example-image" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
                         </a>
                         <div class="price">
                           $<%= product.price %>

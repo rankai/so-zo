@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require masonry/jquery.masonry
-//= require jquery.lazyload
 //= require masonry/jquery.event-drag
 //= require masonry/jquery.imagesloaded.min
 //= require masonry/jquery.infinitescroll.min
@@ -42,19 +41,37 @@ function flash(data) {
 
 
 function getUrlParameters(parameter, staticURL, decode) {
-    var currLocation = (staticURL.length) ? staticURL: window.location.search,
-    parArr = currLocation.split("?")[1].split("&"),
+    var currLocation = (staticURL.length) ? staticURL : window.location.search,
     returnBool = true;
+    // test if the url has search section
+    if(currLocation.length) {
+        var parArr = currLocation.split("?")[1].split("&");
 
-    for (var i = 0; i < parArr.length; i++) {
-        parr = parArr[i].split("=");
-        if (parr[0] == parameter) {
-            return (decode) ? decodeURIComponent(parr[1]) : parr[1];
-            returnBool = true;
-        } else {
-            returnBool = false;
+        for (var i = 0; i < parArr.length; i++) {
+            parr = parArr[i].split("=");
+            if (parr[0] == parameter) {
+                return (decode) ? decodeURIComponent(parr[1]) : parr[1];
+                returnBool = true;
+            } else {
+                returnBool = false;
+            }
         }
+    } else {
+        returnBool = false;
     }
-
+    
     if (!returnBool) return false;
+}
+
+function masonryNow(itemSelector, container, gutter) {
+    container.masonry({
+        itemSelector: itemSelector,
+        gutter: gutter,
+        isAnimated: !Modernizr.csstransitions, 
+        animationOptions: {
+          duration: 700,
+          easing: 'linear',
+          queue: false
+        }
+    }); 
 }

@@ -11,13 +11,13 @@
   <body id="top">
     <%= render "home/nav" %>
       <div class="contents">
+        <div id="mainvisual">
+          <%= render "carousel" %>
+          <!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />
+          -->
+        </div>
+        <!-- mainvisual -->
         <div class="container">
-          <div id="mainvisual">
-            <%= render "carousel" %>
-              <!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />
-              -->
-          </div>
-          <!-- mainvisual -->
           <div class="col-sm-12 midashi">
             <p>
               <%= link_to products_path(), class: "home-link" do %>
@@ -37,9 +37,10 @@
                     <div class="graybox">
                       <p class="ribbon"><%= image_tag "new_ribbon.png" %></p>
                       <div class="imgarea">
-                        <%= link_to product_path(product), class: "example-image-link", title: "『product.name』" do %>
-                          <%= image_tag product.product_images.first.product_image.url(:medium), 
-                          class: "img-responsive example-image", alt: product.name %>
+                        <%= link_to product_path(product), class: "example-image-link", title: "『" + product.name + "』" do %>
+                          <!--< image_tag product.product_images.first.product_image.url(:medium), 
+                          class: "img-responsive example-image", alt: product.name %>-->
+                          <img class="lazy img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
                         <% end %>
                         <div class="price">
                           $<%= product.price %>
@@ -85,7 +86,8 @@
                       <div class="graybox">
                         <div class="overflow">
                           <a href="<%= publish_path(publish) %>">
-                            <%= image_tag publish.publish_image.url(:medium), class: "img-responsive" %>
+                            <!--< image_tag publish.publish_image.url(:medium), class: "img-responsive" %>-->
+                            <img class="lazy img-responsive" data-original="<%= publish.publish_image.url(:medium) %>" alt="<%= publish.name%>" />
                           </a>
                         </div>
                         <p>
@@ -127,10 +129,10 @@
                         <div class="graybox">
                           <p class="ribbon"><%= image_tag "new_ribbon.png" %></p>
                           <div class="imgarea">
-                            <a class="example-image-link" href="<%= product_path(product) %>"
-                            title="『<%= product.name %>』">
-                              <%= image_tag product.product_images.first.product_image.url(:medium), class: "img-responsive example-image", alt: product.name %>
-                            </a>
+                            <%= link_to product_path(product), class: "example-image-link", title: "『" + product.name + "』" do %>
+                              <!--< image_tag product.product_images.first.product_image.url(:medium), class: "img-responsive example-image", alt: product.name %>-->
+                              <img class="lazy img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
+                            <% end %>
                             <div class="price">
                               $<%= product.price %>
                             </div>

@@ -7,6 +7,18 @@ GIT
       activerecord (>= 4.0.0, < 5)
       railties (>= 4.0.0, < 5)
 
+GIT
+  remote: https://github.com/bastiaanterhorst/rich.git
+  revision: 02cec78fac2d78499222c07cf25a28a2a7257962
+  specs:
+    rich (1.4.7)
+      jquery-rails
+      kaminari
+      mime-types
+      rack-raw-upload
+      rails (>= 3.2.0)
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -112,6 +124,8 @@ GEM
     rack-pjax (0.7.0)
       nokogiri (~> 1.5)
       rack (~> 1.3)
+    rack-raw-upload (1.1.1)
+      multi_json
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.3)
@@ -212,6 +226,7 @@ DEPENDENCIES
   rails-i18n (~> 4.0.0)
   rails_admin
   rails_admin_jcrop
+  rich!
   rolify
   sass-rails (~> 4.0.0)
   sdoc

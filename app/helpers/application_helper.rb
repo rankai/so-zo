@@ -119,4 +119,12 @@ module ApplicationHelper
 		end
 	end
 
+	def get_publish_image(product)
+		product.publish.publish_image
+	end
+
+	def product_image(product)
+		product.product_images.first
+	end
+
 end

@@ -1,5 +1,6 @@
 SoZo::Application.routes.draw do
 
+  mount Rich::Engine => '/rich', :as => 'rich'
   resources :statistics
 
   resources :watches

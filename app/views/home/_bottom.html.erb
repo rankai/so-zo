@@ -68,11 +68,14 @@ $(function(){
     $("#language-select").change(function(){
         var language = $(this).val();
         var currLocation = window.location.search;
-        var parArr = currLocation.split("?")[1].split("&");
+        var parArr = new Array();
         if(currLocation.indexOf("locale") != -1) {
             // FIXME: we assume the locale query param is at 0, mostly it is
+            // only if the URL has locale query param
+            parArr = currLocation.split("?")[1].split("&");
             parArr[0] = "locale=" + language;
         } else {
+            // if the URL not set locale, set it auto
             parArr.unshift("locale=" + language);
         }
         window.location.search = "?" + parArr.join("&");

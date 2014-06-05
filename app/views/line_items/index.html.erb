@@ -114,7 +114,7 @@ function calculateTotal() {
   });*/
 
   $("#order_quantity").text(quantity);
-  $(".well-sm").text(price);
+  $(".well-sm").text(price.toFixed(2));
 };
 
 function update_quantity(quantity_input, line_item_id) {

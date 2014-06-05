@@ -29,6 +29,7 @@ zh-CN:
       agreement: "利用规约"
       map: "网站地图"
     menu:
+      publish: "作品"
       illustration: "插画"
       photo: "写真"
       group_buy: "团购"
@@ -52,8 +53,8 @@ zh-CN:
 
   home:
     latest_products: "最新商品"
-    latest_photos: "最新照片"
-    popular_products: "热门商品"
+    latest_photos: "写真投稿"
+    popular_products: "排行榜"
 
   cart:
     page_title: "我的购物车"
@@ -236,8 +237,8 @@ zh-CN:
         input_name: "请填写作品名称"
         input_description: "请填写作品描述"
         name_too_long: "作品名称请保持在10字以下"
-        name_too_short: "作品名称不能少于5个字符"
-        description_too_short: "作品描述不能少于5个字符"
+        name_too_short: "作品名称不能少于1个字"
+        description_too_short: "作品描述不能少于5个字"
         description_too_long: "作品描述请保持在100字以下"
         upload_publish: "请上传作品大图"
         publish_format_not_valid: "请上传jpg和png格式的作品"
@@ -467,7 +468,8 @@ zh-CN:
 
   activerecord:
     models:
-      #here is for model name, for example, in rails_admin 
+      #here is for model name, for example, in rails_admin
+      statistic: "统计" 
       user: "用户"
       publish: "作品"
       product: "商品"
