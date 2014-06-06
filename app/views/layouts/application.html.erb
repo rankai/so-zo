@@ -38,13 +38,14 @@
         }, 2000);
        
         $("img.lazy").lazyload({
-            event : "sporty"
+            event : "sporty",
+            effect: 'fadeIn'
         });
     });
 
 
   $(window).bind("load", function() { 
-      var timeout = setTimeout(function() { $("img.lazy").trigger("sporty") }, 3000);
+      var timeout = setTimeout(function() { $("img.lazy").trigger("sporty") }, 1500);
   });         
 
   </script>

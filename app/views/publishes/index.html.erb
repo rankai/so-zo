@@ -77,8 +77,8 @@
                                         <div class="imgarea">
                                             <a class="example-image-link" href="<%= publish.publish_image.url %>" data-lightbox="example-set"
                                             title="<%= publish.name %>" data-path="<%= publish_path(publish) %>" data-action="<%= t('publish.view') %>">
-                                                <!--<= image_tag publish.publish_image.url(:medium), class: "example-image", alt: publish.name %>-->
-                                                <img class="lazy example-image" data-original="<%= publish.publish_image.url(:medium) %>" alt="<%= publish.name%>" />
+                                                <!--<= image_tag publish.publish_image.url(:medium), class: "example-image img-responsive", alt: publish.name %>-->
+                                                <img class="lazy example-image img-responsive" data-original="<%= publish.publish_image.url(:medium) %>" alt="<%= publish.name%>" />
                                             </a>
                                         </div>
                                         <!-- imgarea -->

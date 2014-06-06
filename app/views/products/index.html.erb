@@ -92,8 +92,8 @@ $(function(){
                       <div class="imgarea">
                         <a class="example-image-link" data-lightbox="example-set" href="<%= product.product_images.first.product_image.url %>"
                         title="<%= product.name %>" data-path="<%= product_path(product) %>" data-action="<%= t('product.purchase') %>">
-                          <!--<= image_tag product.product_images.first.product_image.url(:medium), class: "example-image", alt: product.product_template.description %>-->
-                          <img class="lazy example-image" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
+                          <!--<= image_tag product.product_images.first.product_image.url(:medium), class: "example-image  img-responsive", alt: product.product_template.description %>-->
+                          <img class="lazy example-image img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
                         </a>
                         <div class="price">
                           $<%= product.price %>
