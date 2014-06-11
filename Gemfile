@@ -49,6 +49,9 @@ gem 'masonry-rails'
 # jquery validate
 gem 'jquery-validation-rails'
 
+# independent data dump
+gem 'yaml_db', github: 'jetthoughts/yaml_db', ref: 'fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba'
+
 # json
 # gem 'multi_json'
 

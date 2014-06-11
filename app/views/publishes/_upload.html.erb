@@ -42,8 +42,19 @@
             <%= f.label :description, class: "control-label" do %><%= Publish.human_attribute_name('description') %>:<% end %>
             <div class="input-group">
               <%= f.text_area :description, rows: "5", placeholder: t('modal.upload.publish_des_placeholder'), class: "form-control" %>
+            </div><!-- publish-info -->
+        </div> <!-- modal-body -->
+        <div class="form-group">
+          <div class="input-group">
+            <div class="checkbox">
+              <label id="agreement" class="control-label">
+                  <%= f.check_box :isOriginal, class: "form-control" %>
+                  <%= link_to "#{t('modal.upload.agree_to_our_policy')}", static_pages_treaty_path, target: "_blank" %>
+              </label>
             </div>
+          </div>
         </div>
+
           <%= f.hidden_field :state_id, value: get_default_state() %>
         </div>
       </div>

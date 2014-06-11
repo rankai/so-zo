@@ -11,4 +11,10 @@ class HomeController < ApplicationController
 	def logout
 		session[:user_id] = nil;
 	end
+
+	def intro
+	end
+
+	def treaty
+	end
 end

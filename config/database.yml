@@ -7,9 +7,8 @@ development:
   #adapter : mysql2
   #database: sozo_development
   #username: szadmin
-  #password : szadmin
+  #password: szadmin
   #host    : localhost
-
   # sqlite3
   adapter: sqlite3
   database: db/development.sqlite3
@@ -33,7 +32,13 @@ test:
 
 production:
   # sqlite3
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 1024
-  timeout: 50000
+  #adapter: sqlite3
+  #database: db/production.sqlite3
+  #pool: 1024
+  #timeout: 50000
+  adapter : mysql2
+  database: sozo_production
+  encoding: utf8
+  username: szadmin
+  password: szadmin
+  host    : localhost

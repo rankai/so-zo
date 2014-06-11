@@ -9,8 +9,7 @@
         alt: "" %>
       <% end %>
       <div class="price">
-        $
-        <%= @relative_product.price %>
+        <%= t('number.currency.JPY_SIGN')%><%= @relative_product.price %>
       </div>
     </div>
     <!-- imgarea -->

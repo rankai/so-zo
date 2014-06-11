@@ -56,7 +56,7 @@ class Product < ActiveRecord::Base
 			@product  = Product.new()
 			@product.product_template_id = template.id
 			@product.name = template.template_name
-			@product.description = template.description
+			@product.description = template.brief
 			@product.publish_id = publish.id
 
 			@state = State.find_by_name("inactive")

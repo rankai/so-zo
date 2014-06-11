@@ -43,7 +43,7 @@
                           <img class="lazy img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
                         <% end %>
                         <div class="price">
-                          $<%= product.price %>
+                          <%= t('number.currency.JPY_SIGN')%><%= product.price %>
                         </div>
                       </div>
                       <!-- imgarea -->
@@ -134,7 +134,7 @@
                               <img class="lazy img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
                             <% end %>
                             <div class="price">
-                              $<%= product.price %>
+                              <%= t('number.currency.JPY_SIGN') %><%= product.price %>
                             </div>
                           </div>
                           <!-- imgarea -->
@@ -157,7 +157,8 @@
             <!-- image set -->
           </div>
           <!-- image row -->
-        </div>
+        </div><!-- container -->
+
         <!-- container -->
         <div style="height:76px"></div>
         <div class="clear">
@@ -213,3 +214,4 @@
          <%= render "bottom" %>
         <!-- container -->
       </div>
+</body>

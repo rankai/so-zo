@@ -36,7 +36,7 @@ $(function(){
   });
 
   container.imagesLoaded(function() {
-      masonryNow('.col-sm-3', container, 10);
+      //masonryNow('.col-sm-3', container, 10);
   });
 
  var meny = Meny.create({
@@ -96,7 +96,7 @@ $(function(){
                           <img class="lazy example-image img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
                         </a>
                         <div class="price">
-                          $<%= product.price %>
+                          <%= t('number.currency.JPY_SIGN')%><%= product.price %>
                         </div>
                       </div>
                       <!-- imgarea -->

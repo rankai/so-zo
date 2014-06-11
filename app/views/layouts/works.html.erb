@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SoZo</title>
+  <meta name="description" content="SO-ZOは「人の想像を創造する」を理念とし、オーダーメイドのインテリア商品に特化した、「痛部屋」を創るサービスです" />
+  <meta name="keywords" content="so-zo 痛部屋 痛商品 いたべや 想像を創造 アニメ壁紙 オーダーメイド" />
+  <title>So-Zo</title>
   <%= javascript_include_tag "application" %>
  
   <%= stylesheet_link_tag    "reset" %>
@@ -10,6 +12,7 @@
   <%= stylesheet_link_tag    "bootstrap.min" %>  
   <%= stylesheet_link_tag    "buttons" %>
   <%= stylesheet_link_tag    "home" %>
+  <%= stylesheet_link_tag    "icheck/skins/flat/green" %>
 
   <%= csrf_meta_tags %>
 
@@ -35,8 +38,19 @@
   <script type="text/javascript">
     $(function(){
         // lazy load for nav
-        /*$("img").lazyload();*/
+        $("img.lazy").lazyload({
+            event : "sporty",
+            effect: 'fadeIn'
+        });
+        
+        $("input[type='checkbox']").iCheck({
+          checkboxClass: 'icheckbox_flat-green',
+        });
     })
+
+    $(window).bind("load", function() { 
+      var timeout = setTimeout(function() { $("img.lazy").trigger("sporty") }, 1500);
+    });   
   </script>
 
 </head>

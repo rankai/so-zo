@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528225256) do
+ActiveRecord::Schema.define(version: 20140601210210) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
@@ -229,6 +229,7 @@ ActiveRecord::Schema.define(version: 20140528225256) do
     t.integer  "size_Y"
     t.integer  "degree"
     t.integer  "if_zoom"
+    t.string   "brief",                        default: "", null: false
   end
 
   add_index "product_templates", ["template_category_id"], name: "index_product_templates_on_template_category_id"
@@ -265,10 +266,10 @@ ActiveRecord::Schema.define(version: 20140528225256) do
   end
 
   create_table "publishes", force: true do |t|
-    t.string   "name",                       null: false
-    t.text     "description",                null: false
-    t.integer  "user_id",                    null: false
-    t.integer  "state_id",                   null: false
+    t.string   "name",                                   null: false
+    t.text     "description",                            null: false
+    t.integer  "user_id",                                null: false
+    t.integer  "state_id",                               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "publish_image_file_name"
@@ -276,6 +277,7 @@ ActiveRecord::Schema.define(version: 20140528225256) do
     t.integer  "publish_image_file_size"
     t.datetime "publish_image_updated_at"
     t.integer  "publish_category_id"
+    t.integer  "isOriginal",                 default: 0, null: false
   end
 
   add_index "publishes", ["publish_category_id"], name: "index_publishes_on_publish_category_id"

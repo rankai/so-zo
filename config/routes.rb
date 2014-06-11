@@ -1,5 +1,8 @@
 SoZo::Application.routes.draw do
 
+  get "static_pages/company"
+  get "static_pages/help"
+  get "static_pages/treaty"
   mount Rich::Engine => '/rich', :as => 'rich'
   resources :statistics
 

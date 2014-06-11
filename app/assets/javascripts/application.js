@@ -75,3 +75,20 @@ function masonryNow(itemSelector, container, gutter) {
         }
     }); 
 }
+
+function popup(data, target) {
+    var options = {
+        placement: 'top',
+        trigger: 'manual',
+        content: function () {
+            return data;
+        },
+        container: 'body',
+        html: 'true'
+      };
+
+      target.popover(options);
+      target.popover('show');
+      window.setTimeout(function(){
+        target.popover('destroy');},2000);
+}

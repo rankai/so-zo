@@ -8,7 +8,6 @@
   }
 
   .my-cart {
-    width:60%;
     margin: auto
   }
 
@@ -67,7 +66,7 @@
 }*/
 function checkAll() {
     $('input[name="line_items"]').each(function(){
-      $(this).prop("checked", true);
+      $(this).prop("checked", false);
     });
 };
 
@@ -83,11 +82,12 @@ function calculateTotal() {
   var price    = 0;
   var item_price = 0;
   // calculate money
+
   $('input[name="line_items"]').each(function(){
 
-      if($(this).prop("checked") == true) {
+       if($(this).prop("checked") == true) {
 
-        $(this).parent().nextAll().each(function() {
+        $(this).parent().parent().parent().nextAll().each(function() {
 
             if($(this).hasClass("quantity") == true) {
                 item_quantity = parseInt($(this).find("input").val().trim());
@@ -163,9 +163,36 @@ function new_order() {
 
 $(function(){
 
- $('#all').prop('checked',true);
- checkAll();
+
+ // check all items when loaded
+ // $('#all').prop('checked',true);
+ // checkAll();
+ // calculateTotal();
+ $('input').iCheck('check');
  calculateTotal();
+
+  // icheck callback
+  $('input').on('ifChecked', function(event){
+    var name = $(event.target).attr('name');
+    if(name == 'all') {
+      $('input').iCheck('check');
+    }else {
+      $(event.target).iCheck('check');
+    }
+    calculateTotal();
+    //alert(event.target + ' callback');
+  });
+
+  $('input').on('ifUnchecked', function(event){
+    var name = $(event.target).attr('name');
+    if(name == 'all') {
+      $('input').iCheck('uncheck');
+    } else{
+      $(event.target).iCheck('uncheck');
+    }
+    calculateTotal();
+    //alert(event.target + ' callback');
+  });
 
  $("#all").click(function() {
       if($(this).prop("checked") == true) {
@@ -193,116 +220,128 @@ $(function(){
 
 <body id="top">
   <div class="contents">
-      <%= render "home/nav2" %>
+    <%= render "home/nav2" %>
     <div style="height:76px">
     </div>
-    <div class="my-cart">
+    <div class="container">
+      <div class="my-cart">
 
-        <div class="my-cart-title">
-          <span id="title"><%= t('cart.page_title') %></span>
-           <button class="btn btn-danger btn-lg btn-up" style="display:none">
-           去结算 <span class="glyphicon glyphicon-chevron-right"><span>
-        </button>
-          
-        </div>
-
-
-        <div class="panel panel-default">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th style="float:left"><input type="checkbox" id="all"/><span><%= t('cart.select_all') %></span></th>
-                <th><%= t('cart.col_image') %></th>
-                <th><%= t('cart.col_name') %></th>
-                <!-- <th>Cart</th> -->
-                <th><%= t('cart.col_color') %></th>
-                <th><%= t('cart.col_size') %></th>
-                <th><%= t('cart.col_quantity') %></th>
-                <th><%= t('cart.col_price') %></th>
-                <th><%= t('cart.op') %></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @line_items.each do |line_item| %>
-                  <% if not line_item.product.nil? %>
-                  <% if line_item.product.product_images.count > 0 %>
-                    <tr>
-                      <td style="float:left; padding-top:30px"><input type="checkbox" name="line_items" /></td>
-                      <td><%= image_tag line_item.product.product_images.first.product_image.url(:thumb), width: "100px", class: "img-thumbnail", width: "80px" %></td>
-                      <td><span><%= line_item.product.name %></span></td>
-                      <td>
-                          <% color = Color.find_by_id(line_item.color_id) do |color| %>
-                            <%= color.name %>
-                          <% end %>
-                      </td>
-                      <td>
-                          <% size = Size.find_by_id(line_item.size_id) do |size| %>
-                            <%= size.name %>
-                          <% end %>
-                      </td>
-                      <td class="quantity">  
-
-                        <div class="p_number">
-                            <div class="f_l add_chose" style="margin-top:10px">
-                                <a class="reduce" href="javascript:void(0)" onclick="setAmount.reduce('#qty_item_<%= line_item.id %>')">-</a>
-                                <input type="text" name="qty_item" value="<%= line_item.quantity %>" id="qty_item_<%= line_item.id %>" onchange="update_quantity($(this), <%= line_item.id %>)" onKeyUp="setAmount.modify('#qty_item_<%= line_item.id %>');"  class="text" />
-                                <a class="add" href="javascript:void(0)" onclick="setAmount.add('#qty_item_<%= line_item.id %>')">+</a>
-                            </div>
-                        </div>
-
-                      </td>
-                      <td class="price">
-                        $<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
-                            <%= product.price %>
-                        <% end %></span>
-                      </td>
-                      <td>
-                        <!-- link_to 'Show', line_item -->
-                        <!-- link_to 'Edit', edit_line_item_path(line_item) -->
-                        <%= link_to t('cart.delete'), line_item, method: :delete, data: { confirm: t('cart.remove_confirm') } %>
-                      </td>
-                    </tr>
-                <% end %><!-- count > 0 -->
-                <% end %> <!-- not nil-->
-              <% end %>
-            </tbody>
-          </table>
-          </div>
-
-          <div class="panel-body" style="text-align:right">
-            <hr width=100% size=3 color=#00ffff/>
-            <span>
-              <%= t('number.human.decimal_units.units.total') %>
-              <em id='order_quantity'></em>
-              <%= t('number.human.decimal_units.units.jian') %>
-              <%= t('nav.menu.product') %>
-            </span>
-            <span><%= t('cart.price_total') %></span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span><%= t('number.currency.USD') %></span>
-          </div>
-
-          <a href="<%= publishes_path %>" class="button button-rounded button-flat" style="float:left; margin:20px"><%= t('cart.back_to_shopping') %></a>
-          <button class="btn btn-danger btn-lg btn-down" id="btn-new-order"  onclick="new_order()">
-             <%= t('cart.checkout') %> <span class="glyphicon glyphicon-chevron-right"><span>
+          <div class="my-cart-title">
+            <span id="title"><%= t('cart.page_title') %></span>
+             <button class="btn btn-danger btn-lg btn-up" style="display:none">
+             去结算 <span class="glyphicon glyphicon-chevron-right"><span>
           </button>
-
-
-          <!-- <div class="panel-heading">Panel Heading</div> -->
-
-          <!-- <a href="#" id="example" class="btn btn-primary" rel="popover"
-             data-content="This is the body of Popover"
-             data-original-title="Creativity Tuts" onclick="popover()">sd
-          </a> -->
-
-        </div>
-          <br>
-
-          <!-- link_to 'New Line item', new_line_item_path -->
+            
           </div>
+
+
+          <div class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>
+                          <div class="checkbox">
+                            <%= check_box_tag 'all', 'yes', true %>
+                            <span><%= t('cart.select_all') %></span>
+                          </div>
+                      </th>
+                      <th>
+                        <%= t('cart.col_image') %>
+                      </th>
+                      <th><%= t('cart.col_name') %></th>
+                      <!-- <th>Cart</th> -->
+                      <th><%= t('cart.col_color') %></th>
+                      <th><%= t('cart.col_size') %></th>
+                      <th><%= t('cart.col_quantity') %></th>
+                      <th><%= t('cart.col_price') %></th>
+                      <th><%= t('cart.op') %></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @line_items.each do |line_item| %>
+                        <% if not line_item.product.nil? %>
+                        <% if line_item.product.product_images.count > 0 %>
+                          <tr>
+                            <td>
+                              <div class="checkbox">
+                                <%= check_box_tag "line_items_#{line_item.id}", 'yes', true, {name: "line_items"} %>
+                              </div>
+                            </td>
+                            <td><%= image_tag line_item.product.product_images.first.product_image.url(:thumb), width: "100px", class: "img-thumbnail", width: "80px" %></td>
+                            <td><span><%= line_item.product.name %></span></td>
+                            <td>
+                                <% color = Color.find_by_id(line_item.color_id) do |color| %>
+                                  <%= color.name %>
+                                <% end %>
+                            </td>
+                            <td>
+                                <% size = Size.find_by_id(line_item.size_id) do |size| %>
+                                  <%= size.name %>
+                                <% end %>
+                            </td>
+                            <td class="quantity">  
+
+                              <div class="p_number">
+                                  <div class="f_l add_chose" style="margin-top:10px">
+                                      <a class="reduce" href="javascript:void(0)" onclick="setAmount.reduce('#qty_item_<%= line_item.id %>')">-</a>
+                                      <input type="text" name="qty_item" value="<%= line_item.quantity %>" id="qty_item_<%= line_item.id %>" onchange="update_quantity($(this), <%= line_item.id %>)" onKeyUp="setAmount.modify('#qty_item_<%= line_item.id %>');"  class="text" />
+                                      <a class="add" href="javascript:void(0)" onclick="setAmount.add('#qty_item_<%= line_item.id %>')">+</a>
+                                  </div>
+                              </div>
+
+                            </td>
+                            <td class="price">
+                              <%= t('number.currency.JPY_SIGN')%><span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
+                                  <%= product.price %>
+                              <% end %></span>
+                            </td>
+                            <td>
+                              <!-- link_to 'Show', line_item -->
+                              <!-- link_to 'Edit', edit_line_item_path(line_item) -->
+                              <%= link_to t('cart.delete'), line_item, method: :delete, data: { confirm: t('cart.remove_confirm') } %>
+                            </td>
+                          </tr>
+                      <% end %><!-- count > 0 -->
+                      <% end %> <!-- not nil-->
+                    <% end %>
+                  </tbody>
+                </table>
+              </div> <!-- table -->
+
+              <div class="panel-body" style="text-align:right">
+                <hr width=100% size=3 color=#00ffff/>
+                <span>
+                  <%= t('number.human.decimal_units.units.total') %>
+                  <em id='order_quantity'></em>
+                  <%= t('number.human.decimal_units.units.jian') %>
+                  <%= t('nav.menu.product') %>
+                </span>
+                <span><%= t('cart.price_total') %></span><div class="well well-sm" id="order_total" style="width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px"></div><span><%= t('number.currency.JPY') %></span>
+              </div>
+
+              <a href="<%= publishes_path %>" class="button button-rounded button-flat" style="float:left; margin:20px"><%= t('cart.back_to_shopping') %></a>
+              <button class="btn btn-danger btn-lg btn-down" id="btn-new-order"  onclick="new_order()">
+                 <%= t('cart.checkout') %> <span class="glyphicon glyphicon-chevron-right"><span>
+              </button>
+
+
+              <!-- <div class="panel-heading">Panel Heading</div> -->
+
+              <!-- <a href="#" id="example" class="btn btn-primary" rel="popover"
+                 data-content="This is the body of Popover"
+                 data-original-title="Creativity Tuts" onclick="popover()">sd
+              </a> -->
+
+              </div><br>
+          </div> <!-- my-cart -->
           <div class="clear">
-      </div>
-      <div class="container">
-         <%= render "home/bottom" %>
-     </div>
+          </div>
+        </div><!-- container -->
+        <div class="container">
+           <%= render "home/bottom" %>
+       </div>
+
+ </div><!-- contents -->
 </body>

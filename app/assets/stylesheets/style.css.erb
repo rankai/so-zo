@@ -47,6 +47,7 @@ a:hover {
 	position: fixed;
 	height: 80px;
 	width: 100%;
+	padding-left: 60px;
 	margin: 0;
 	border-bottom: 5px solid #F97570;
 	background: #fff;
@@ -309,11 +310,14 @@ a:hover {
 }
 .table div {
 	margin: auto 10px 5px auto;
-	width: 113px;
+	/*width: 113px;*/
 	height: 39px;
-	line-height: 39px;
+	/*line-height: 39px;*/
 	text-align: center;
 	float: left;
+}
+.table .checkbox {
+	margin-bottom: -20px;
 }
 .table .general {
 	background: #eee;
@@ -323,7 +327,7 @@ a:hover {
 	color: #fff;
 }
 .buynow {
-	width: 130px;
+	width: 180px;
 	margin: 10px;
 }
 /* footer*/
@@ -1400,6 +1404,19 @@ textarea {
 .modal-tougao {
 	margin-top: 40px
 }
+#agreement-modal {
+	margin-top: 120px;
+}
+#agreement-modal > div:first-child{
+	width: 800px;
+}
+#agreement a {
+	color: gray;
+	text-decoration: none;
+}
+#agreement a:hover{
+	color: black;
+}
 /* tougao*/
 .user-tougao {
 	/*top: 10px;
@@ -1565,4 +1582,22 @@ textarea {
 .page {
 	text-align: center;
 	padding: 10px;
+}
+/** static pages **/
+.company-introduction-page {
+  padding-bottom: 9px;
+  background: url(<%= asset_path 'midashi_line.gif' %>) no-repeat left bottom;
+  font-weight: bold;
+}
+.static-height{
+	height:10px;
+}
+.static-content{
+	margin: 120px auto 20px;
+}
+.company-introduction{
+	font-size: 18px;
+}
+.treaty-content{
+	font-size: 16px;
 }

@@ -93,8 +93,23 @@
             $('#filter-form').submit();
         });
 
-        $('input[type="checkbox"]').change(function() {
-             $('#filter-form').submit();
+        // $('input[type="checkbox"]').change(function() {
+        //      $('#filter-form').submit();
+        // });
+
+        // init iCheck
+        $('input').iCheck('uncheck');
+
+        // icheck callback
+        $('input').on('ifChecked', function(event){
+          $('#filter-form').submit();
+          $(event.target).iCheck('check');
+          //alert(event.target + ' callback');
+        });
+
+        $('input').on('ifUnchecked', function(event){
+          $(event.target).iCheck('uncheck');
+          //alert(event.target + ' callback');
         });
 
     })

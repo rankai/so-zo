@@ -12,6 +12,23 @@
        $("#myModal").modal('show');
        //$("#products_view").hide();
 
+        // show agreement
+        // $("#agreement").click(function(){
+        //     $("#agreement-modal").modal('show');
+        // });
+        // hide agreement
+        // $("#btn-hide-agreement-modal").click(function(){
+        //     $("#agreement-modal").modal('hide');
+        // });
+
+        // $('#myModal').on('hidden.bs.modal', function (e) {
+       
+        // });
+
+        // $('#agreement-modal').on('hidden.bs.modal', function (e) {
+        //   $('#agreement-modal').modal('hide');
+        // })
+
        $("#price-form").validate({
             rules: {
                 "product[price]": {
@@ -47,12 +64,6 @@
             }
         });
 
-
-        $('#myModal').on('hidden.bs.modal', function (e) {
-       
-        });
-
-
         // confrim tougao
         $('#btn-confirm-tougao').click(function(){
             //$("#loading").show();
@@ -66,7 +77,7 @@
                     //console.log("success");
                     //console.log(data);
                     flash(data);
-                    location.href = "<%= user_publishes_path(current_user) %>"
+                    location.href = "<%= user_publishes_path(current_user) %>";
                 },
                 error: function(data){
                     $("#loading").hide();
@@ -91,7 +102,7 @@
                     //console.log("success");
                     //console.log(data);
                     flash(data);
-                    location.href = "<%= new_user_publish_path(current_user) %>"
+                    location.href = "<%= new_user_publish_path(current_user) %>";
                 },
                 error: function(data){
                     $("#loading").hide();
@@ -115,10 +126,14 @@
                     maxlength:100,
                     minlength:5
                 },
+                "publish[isOriginal]" : {
+                    required: true
+                },
                 "publish[publish_image]": {
                     required: true,
                     accept: "image/jpeg,image/png"
                 }
+
             },
 
             messages: {
@@ -135,6 +150,9 @@
                 maxlength:  "<%= t('modal.upload.errors.description_too_long') %>",
                 required: "<%= t('modal.upload.errors.input_description') %>",
                 minlength: "<%= t('modal.upload.errors.description_too_short') %>"
+              },
+              "publish[isOriginal]": {
+                    required: "<%= t('modal.upload.errors.agree_to_our_policy') %>"
               }
             },
 
@@ -149,10 +167,15 @@
             errorElement: 'span',
             errorClass: 'help-block',
             errorPlacement: function(error, element) {
+                console.log(element.parent());
                 if(element.parent('.input-group').length) {
                     error.insertAfter(element.parent());
                 } else {
-                    error.insertAfter(element.parent());
+                    if($(element).attr('name') == "publish[isOriginal]") {
+                        error.insertAfter($("#agreement"));
+                    } else {
+                        error.insertAfter(element.parent());
+                    }
                 }
             },
             submitHandler: function(form) {
@@ -161,10 +184,12 @@
                     processData: false,
                     success: function(data) {
                         $("#processing").hide();
-                        console.log(data);        
+                        console.log(data);
+                        console.log("I am here");        
                         // set publish id to hidden input        
                         $("#publish_id").val(data["publish_id"]);
                         var templates = jQuery.parseJSON(data["templates"]);
+                        console.log("templates: " + templates)
                         preview_products(templates);
                     },
                     xhr: function(){
@@ -239,7 +264,9 @@
         $("#making #progress").text("<%= t('product.quantity') %>: " + total);
         $("#making").show();
 
+        console.log("sliding up");
         $('#nav').slideUp('slow'); 
+        console.log("sliding down");
         $('.product-op').slideDown('slow');
 
         //$.each(templates,function(i,val){
@@ -249,7 +276,6 @@
                 url: '/products/preview',
                 data: {publish_id:$("#publish_id").val()},//template_id: val.id},
                 success: function(data) {
-                    console.log(data);
                     //$("#making #progress").text(index + " / " + total);
                     $("#products_view").html(data);
 
@@ -298,7 +324,6 @@
                 success: function(data) {
                     $("#loading").hide();
                     console.log("success");
-                    console.log(data);
                     flash(data);
                     $("#"+id).parent().parent().parent().remove();
                     var $container = $("#products_view");
@@ -316,8 +341,9 @@
     // update price in browser
     function set_price(price_ratio) {
         $('input[name="product[price]"]').each(function(){
-            var price = $(this).val();
-            $(this).val(price * (1 + price_ratio / 100));
+            var cur_price = $(this).val();
+            var new_price = cur_price * (1 + price_ratio / 100);
+            $(this).val(new_price.toFixed(2));
         });
     }
 
@@ -416,35 +442,6 @@
         $.ajax(options);
     };
 
-
-    function popup(data, target) {
-        var options = {
-            placement: 'top',
-            trigger: 'manual',
-            content: function () {
-                return data;
-            },
-            container: 'body',
-            html: 'true'
-          };
-
-          target.popover(options);
-          target.popover('show');
-          window.setTimeout(function(){
-            target.popover('destroy');},2000);
-    }
-
-
-    function flash(data) {
-        $(".alert span").text(data);
-        $(".alert").slideDown('slow');
-        window.setTimeout(function() {
-            $(".alert").slideUp(500, function(){
-                $(this).hide(); 
-            });
-        }, 1500);
-    }
-
 </script>
 
 <style type="text/css">
@@ -514,7 +511,7 @@
     #product_price {
         padding-left: 20px;
         text-align: right;
-        background: url("/assets/percent.png") no-repeat scroll left center transparent;
+        background: url("<%= asset_path "percent.png" %>") no-repeat scroll left center transparent;
     }
 
     #price-submit {
@@ -533,61 +530,61 @@
 <body id="top">
     <div class="contents">
         <%= render "home/nav" %>
-            <div style="height:76px">
+        <div style="height:76px">
+        </div>
+        <div class="container">
+
+            <div class="clear">
             </div>
-            <div class="container">
 
-                        <div class="clear">
+            <%= render "upload" %>
+
+            <div style="margin-top: 10px">
+            <div class="left-cont">
+                <div id="publish_view" style="display:none">
+                </div>
+            </div>
+
+            <div id="loading"><%= image_tag "loading.gif", style: "margin-right: 10px" %></div>
+            <div class="product-op">
+
+                <div class="left">
+                    <form class="form-inline" role="form" id="price-form">
+                      <div class="form-group">
+                        <label for="product_price"><%= t('product.set_uniform_price') %>:</label>
+                        <div class="input-group" id="price-input-group">
+                            <input type="number" min="1" max="100" pattern="\d+" class="form-control" id="product_price" name="product[price]" placeholder="<%= t('product.input_price_ratio') %>">
                         </div>
+                      </div>
+                      <button type="submit" id="price-submit" class="btn btn-default" disabled="disabled" ><%= t('nav.ok') %></a></button>
+                    </form>
+                </div>
 
-                        <%= render "upload" %>
+                <div class="right" style="float:right">  
 
-                        <div style="margin-top: 10px">
-                        <div class="left-cont">
-                            <div id="publish_view" style="display:none">
-                            </div>
-                        </div>
+                    <a role="button" id="btn-confirm-tougao" class="btn btn-success"  disabled="disabled" ><%= t('product.confirm_tougao') %></a>
+                    <a id="btn-re-tougao" class="publish-delete btn btn-danger" role="button" disabled="disabled"><%= t('product.re_tougao') %></a>    
+                </div>
 
-                        <div id="loading"><%= image_tag "loading.gif", style: "margin-right: 10px" %></div>
-                        <div class="product-op">
+            </div>
 
-                            <div class="left">
-                                <form class="form-inline" role="form" id="price-form">
-                                  <div class="form-group">
-                                    <label for="product_price"><%= t('product.set_uniform_price') %>:</label>
-                                    <div class="input-group" id="price-input-group">
-                                        <input type="number" min="1" max="100" pattern="\d+" class="form-control" id="product_price" name="product[price]" placeholder="<%= t('product.input_price_ratio') %>">
-                                    </div>
-                                  </div>
-                                  <button type="submit" id="price-submit" class="btn btn-default" disabled="disabled" ><%= t('nav.ok') %></a></button>
-                                </form>
-                            </div>
-
-                            <div class="right" style="float:right">  
-
-                                <a role="button" id="btn-confirm-tougao" class="btn btn-success"  disabled="disabled" ><%= t('product.confirm_tougao') %></a>
-                                <a id="btn-re-tougao" class="publish-delete btn btn-danger" role="button" disabled="disabled"><%= t('product.re_tougao') %></a>    
-                            </div>
-
-                        </div>
-
-                        <input type="hidden" id="publish_id" />
-                        <div id="products_view" class="right-cont">
-                                <!--把图片资源添加到此处 例如： <div class="col-sm-2">
-                                <div class="graybox">
-                                <div class="imgarea">
-                                <a class="example-image-link" href="./img/example2.gif" data-lightbox="example-set" title="『新生 軟式globe』">
-                                <img class="example-image" src="./img/example2.gif" alt="" /></a>
-                                </div>
-                                <p class="itemtitle">『新生 軟式globe』</p>
-                                </div 
-                                </div>  
-                                -->
-                            <%= render "loading" %>
-                        </div>
-                        <!--products_view-->
-                        <div class="clear"></div>
-            </div><!--container-->
+            <input type="hidden" id="publish_id" />
+            <div id="products_view" class="right-cont">
+                    <!--把图片资源添加到此处 例如： <div class="col-sm-2">
+                    <div class="graybox">
+                    <div class="imgarea">
+                    <a class="example-image-link" href="./img/example2.gif" data-lightbox="example-set" title="『新生 軟式globe』">
+                    <img class="example-image" src="./img/example2.gif" alt="" /></a>
+                    </div>
+                    <p class="itemtitle">『新生 軟式globe』</p>
+                    </div 
+                    </div>  
+                    -->
+                <%= render "loading" %>
+            </div>
+            <!--products_view-->
+            <div class="clear"></div>
+        </div><!--container-->
 
     </div><!--contents-->
 </body>

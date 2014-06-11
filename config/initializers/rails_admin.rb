@@ -94,7 +94,9 @@ config.model ProductTemplate do
       field :template_name
       field :template_category
       field :price
-      field :description
+      field :brief
+      field :description, :ck_editor do
+      end
       field :sizes
       field :colors
       field :position_X

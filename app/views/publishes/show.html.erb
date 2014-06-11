@@ -33,7 +33,7 @@
           <!--label-box end-->
          
           <div class="description">
-            <h1 class="title"><span>Description</span></h1>
+            <h1 class="title"><span><%= Publish.human_attribute_name('description') %></span></h1>
             <div class="des-con">
               <p><%= @publish.description %></p>
             </div>
@@ -47,7 +47,7 @@
               <% end %>      
                     
               
-              <div class="share-r">
+              <!-- <div class="share-r">
                <span> share<font color="#FC5C54">+</font> </span>
                 <div class="share">
                   <ul>
@@ -58,7 +58,7 @@
                   </ul>
                 </div>
                 <div style="clear:both"></div>
-              </div>
+              </div> -->
               <!--分享结束--> 
               <div style="clear:both"></div>
             </div>
@@ -93,14 +93,14 @@
               -</li>
             <div style="clear:both"></div>
           </ul>
-          <div class="share">
+          <!-- <div class="share">
             <ul>
               <li><a href="###" class="s-a"></a></li>
               <li><a href="###" class="s-b"></a></li>
               <li><a href="###" class="s-c"></a></li>
               <div style="clear:both"></div>
             </ul>
-          </div>
+          </div> -->
 
           <% if already_watched(@user)  %>         
               <button type="button" class="btn btn-success btn-lg" disabled="disabled">已      关       注</button>

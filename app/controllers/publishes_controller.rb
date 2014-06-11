@@ -116,7 +116,7 @@ class PublishesController < ApplicationController
 	end
 
 	def new 
-		render "new", layout: "works"
+		render "new"
 	end
 
 	def upload
@@ -124,7 +124,7 @@ class PublishesController < ApplicationController
 
 	def create
 		# eatch Publish belongs to an user
-		@publish = current_user.publishes.create(params[:publish].permit(:name, :description, :publish_category_id, :state_id, :publish_image))
+		@publish = current_user.publishes.create(params[:publish].permit(:name, :description, :isOriginal, :publish_category_id, :state_id, :publish_image))
 
 		if @publish.save
 

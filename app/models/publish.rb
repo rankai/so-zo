@@ -1,5 +1,11 @@
 class Publish < ActiveRecord::Base
 
+	# validations
+	validates :name, presence: true, length: {minimum: 1, maximum: 10}
+	validates :description, presence: true, length: {minimum: 5, maximum: 100}
+	validates :publish_image, presence: true
+	validates :isOriginal, presence: true
+
 	belongs_to :user
 	belongs_to :state
 	#has_many  :tags
@@ -12,7 +18,8 @@ class Publish < ActiveRecord::Base
 	#has_attached_file :file, :styles => {:detailed => "1920x1920>", :thumb => "100x100>"}
 	has_attached_file :publish_image, :styles => {:large => "1280x800>", :medium => "640x400>", :thumb => "160x100>" }
 	#not set path for every user
-	before_create :randomize_file_name  
+	before_create :randomize_file_name 
+
       
 	private  
 	def randomize_file_name  

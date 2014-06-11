@@ -296,7 +296,7 @@ $(function() {
                           
                         </td>
                         <td><%= order.user.name %></td>
-                        <td><%= order.sum %></td>
+                        <td><%= t('number.currency.JPY_SIGN')%><%= order.sum %></td>
                         <td><%= order.created_at.strftime('%F') %></td>
                         <td><%= order.state.description %></td>
                         <td>

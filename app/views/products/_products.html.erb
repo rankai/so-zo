@@ -58,7 +58,7 @@
           <dd><span style="color:#999"><%= t('bonus.no_bonus') %></span></dd>
 
         <% else %>
-          <dd><a href="#"><%= t('bonus.total') %>(<%= bonus %>)</a></dd>
+          <dd><a href="#"><%= t('bonus.total') %>(<%= t('number.currency.JPY_SIGN')%><%= bonus %>)</a></dd>
         <% end %>
 
         <% 
