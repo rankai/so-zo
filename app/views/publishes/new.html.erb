@@ -465,6 +465,10 @@
         float: left
     }
 
+    .product-op .left #info {
+        padding: 10px;
+    }
+
     .product-op .left label {
         float: left;
         padding-top: 5px;
@@ -549,15 +553,18 @@
             <div class="product-op">
 
                 <div class="left">
-                    <form class="form-inline" role="form" id="price-form">
+                    <!-- <form class="form-inline" role="form" id="price-form">
                       <div class="form-group">
-                        <label for="product_price"><%= t('product.set_uniform_price') %>:</label>
+                        <label for="product_price"><= t('product.set_uniform_price') %>:</label>
                         <div class="input-group" id="price-input-group">
-                            <input type="number" min="1" max="100" pattern="\d+" class="form-control" id="product_price" name="product[price]" placeholder="<%= t('product.input_price_ratio') %>">
+                            <input type="number" min="1" max="100" pattern="\d+" class="form-control" id="product_price" name="product[price]" placeholder="<= t('product.input_price_ratio') %>">
                         </div>
                       </div>
-                      <button type="submit" id="price-submit" class="btn btn-default" disabled="disabled" ><%= t('nav.ok') %></a></button>
-                    </form>
+                      <button type="submit" id="price-submit" class="btn btn-default" disabled="disabled" ><= t('nav.ok') %></a></button>
+                    </form> -->
+                     <div id="info">
+                        <span class="glyphicon glyphicon-info-sign inset"></span><%= t('modal.upload.product_deletable') %>
+                    </div>
                 </div>
 
                 <div class="right" style="float:right">  

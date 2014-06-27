@@ -92,7 +92,7 @@
   }
 
   #order_total {
-    width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px
+    width:80px; display:inline;text-align:center;margin-left:5px; margin-right:5px;
   }
 
   </style>
@@ -130,6 +130,7 @@
         var options = {
             dataType: 'json',
             success: function(data) {
+              console.log(data);
               $("#tel").text(data["phone"]);
               $("#address").text(data["address"]);
               $("#loading").hide();

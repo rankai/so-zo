@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601210210) do
+ActiveRecord::Schema.define(version: 20140616143818) do
 
   create_table "albums", force: true do |t|
     t.string   "name"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "updated_at"
   end
 
-  add_index "bonuses", ["user_id"], name: "index_bonuses_on_user_id"
+  add_index "bonuses", ["user_id"], name: "index_bonuses_on_user_id", using: :btree
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.string   "short_description"
     t.text     "long_description"
     t.string   "currency"
-    t.decimal  "amount"
-    t.decimal  "app_fee"
+    t.decimal  "amount",            precision: 10, scale: 0
+    t.decimal  "app_fee",           precision: 10, scale: 0
     t.string   "fee_payer"
-    t.decimal  "gross"
-    t.decimal  "fee"
+    t.decimal  "gross",             precision: 10, scale: 0
+    t.decimal  "fee",               precision: 10, scale: 0
     t.string   "reference_id"
     t.text     "redirect_uri"
     t.text     "callback_uri"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.boolean  "auto_capture"
     t.boolean  "require_shipping"
     t.text     "shipping_address"
-    t.decimal  "tax"
+    t.decimal  "tax",               precision: 10, scale: 0
     t.string   "security_token"
     t.string   "access_token"
     t.string   "model"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "updated_at"
   end
 
-  add_index "checkouts", ["checkout_id"], name: "index_checkouts_on_checkout_id"
+  add_index "checkouts", ["checkout_id"], name: "index_checkouts_on_checkout_id", using: :btree
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "updated_at"
   end
 
-  add_index "collections", ["publish_id"], name: "index_collections_on_publish_id"
-  add_index "collections", ["user_id"], name: "index_collections_on_user_id"
+  add_index "collections", ["publish_id"], name: "index_collections_on_publish_id", using: :btree
+  add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
   create_table "colors", force: true do |t|
     t.string   "name"
@@ -112,12 +112,23 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "updated_at"
   end
 
-  add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id"
+  add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
 
   create_table "events", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "url",        default: "", null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "incomes", force: true do |t|
     t.integer  "user_id",                    null: false
@@ -157,7 +168,7 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "product_image_updated_at"
   end
 
-  add_index "order_items", ["order_id", "product_id"], name: "index_order_items_on_order_id_and_product_id"
+  add_index "order_items", ["order_id", "product_id"], name: "index_order_items_on_order_id_and_product_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.string   "sum"
@@ -168,7 +179,7 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.string   "order_number", default: "1395933961", null: false
   end
 
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "pictures", force: true do |t|
     t.integer  "album_id"
@@ -180,7 +191,7 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "file_updated_at"
   end
 
-  add_index "pictures", ["album_id"], name: "index_pictures_on_album_id"
+  add_index "pictures", ["album_id"], name: "index_pictures_on_album_id", using: :btree
 
   create_table "product_images", force: true do |t|
     t.integer  "product_id"
@@ -214,7 +225,7 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.string   "side_image_mask_content_type"
     t.integer  "side_image_mask_file_size"
     t.datetime "side_image_mask_updated_at"
-    t.decimal  "price"
+    t.decimal  "price",                        precision: 10, scale: 0
     t.string   "head_image_file_name"
     t.string   "head_image_content_type"
     t.integer  "head_image_file_size"
@@ -229,10 +240,10 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.integer  "size_Y"
     t.integer  "degree"
     t.integer  "if_zoom"
-    t.string   "brief",                        default: "", null: false
+    t.string   "brief",                                                 default: "", null: false
   end
 
-  add_index "product_templates", ["template_category_id"], name: "index_product_templates_on_template_category_id"
+  add_index "product_templates", ["template_category_id"], name: "index_product_templates_on_template_category_id", using: :btree
 
   create_table "product_templates_sizes", force: true do |t|
     t.integer "size_id"
@@ -245,18 +256,18 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.string   "name"
     t.string   "description"
     t.integer  "degree"
-    t.decimal  "price"
+    t.decimal  "price",               precision: 10, scale: 0
     t.integer  "product_template_id"
     t.integer  "publish_id"
     t.integer  "position_X"
     t.integer  "position_Y"
     t.integer  "size_W"
     t.integer  "size_H"
-    t.decimal  "base_price"
+    t.decimal  "base_price",          precision: 10, scale: 0
     t.integer  "state_id"
   end
 
-  add_index "products", ["product_template_id", "publish_id"], name: "index_products_on_product_template_id_and_publish_id"
+  add_index "products", ["product_template_id", "publish_id"], name: "index_products_on_product_template_id_and_publish_id", using: :btree
 
   create_table "publish_categories", force: true do |t|
     t.string   "name",        null: false
@@ -280,8 +291,8 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.integer  "isOriginal",                 default: 0, null: false
   end
 
-  add_index "publishes", ["publish_category_id"], name: "index_publishes_on_publish_category_id"
-  add_index "publishes", ["user_id"], name: "index_publishes_on_user_id"
+  add_index "publishes", ["publish_category_id"], name: "index_publishes_on_publish_category_id", using: :btree
+  add_index "publishes", ["user_id"], name: "index_publishes_on_user_id", using: :btree
 
   create_table "publishes_tags", force: true do |t|
     t.integer  "publish_id"
@@ -311,8 +322,8 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], name: "index_roles_on_name"
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
@@ -321,8 +332,8 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "sizes", force: true do |t|
     t.string   "name"
@@ -347,9 +358,9 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "updated_at"
   end
 
-  add_index "statistics", ["action"], name: "index_statistics_on_action"
-  add_index "statistics", ["object_id"], name: "index_statistics_on_object_id"
-  add_index "statistics", ["object_type"], name: "index_statistics_on_object_type"
+  add_index "statistics", ["action"], name: "index_statistics_on_action", using: :btree
+  add_index "statistics", ["object_id"], name: "index_statistics_on_object_id", using: :btree
+  add_index "statistics", ["object_type"], name: "index_statistics_on_object_type", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "tag_name"
@@ -406,17 +417,17 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "photo_updated_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"
     t.integer "role_id"
   end
 
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   create_table "watches", force: true do |t|
     t.integer  "user_id"
@@ -425,7 +436,7 @@ ActiveRecord::Schema.define(version: 20140601210210) do
     t.datetime "updated_at"
   end
 
-  add_index "watches", ["user_id"], name: "index_watches_on_user_id"
-  add_index "watches", ["watched_user_id"], name: "index_watches_on_watched_user_id"
+  add_index "watches", ["user_id"], name: "index_watches_on_user_id", using: :btree
+  add_index "watches", ["watched_user_id"], name: "index_watches_on_watched_user_id", using: :btree
 
 end

@@ -107,7 +107,7 @@
   }
 
   input[type='submit'] {
-    height: 40px
+    height: 40px;
   }
 
   input[type='file'] {
@@ -127,12 +127,12 @@
   }
 
   .input-group span {
-    margin-left: 15px
+    margin-left: 15px;
   }
 
   .form-group button {
     height: 40px;
-    margin-left: 10px
+    margin-left: 10px;
   }
 
   .btn-upload-photo {
@@ -146,6 +146,10 @@
     position: absolute;
     top: 80px;
     left: 38px;
+  }
+
+  h4, li {
+    max-width: 250px;
   }
 
 </style>
@@ -252,22 +256,30 @@
                   <!-- 使用Option Tags from a Collection of Arbitrary Objects来自动生成options -->
 
                     <div class="form-group">
-                      <%= button_tag t('devise.links.reset'), type: :reset, class: "btn btn-warning btn-lg" %>
-                      <%= f.submit t('devise.links.sign_up_btn'), class: "btn btn-success btn-lg", style: "margin-left: 20px" %>
+                      <%= button_tag t('devise.links.reset'), type: :reset, class: "btn btn-warning btn-lg button-flat-highlight" %>
+                      <%= f.submit t('devise.links.sign_up_btn'), class: "btn btn-success btn-lg button-flat-action", style: "margin-left: 20px" %>
                     </div>
 
                   <% end %><!-- </form> -->
                 </div><!--form-con end-->
-                <!-- <div class="reg-instruction">
-                  <h4>注意事项：</h4>
-                  <ul>
-                    <li>xxxxxxxxxxxxxxxx</li>
-                    <li>xxxxxxxxxxxxxxxx</li>
-                    <li>xxxxxxxxxxxxxxxx</li>
-                    <li>xxxxxxxxxxxxxxxx</li>
-                    <li>xxxxxxxxxxxxxxxx</li>
+
+                <div class="reg-instruction">
+                  <!-- <h4><span class="glyphicon glyphicon-link"></span> <= t('devise.label.3rd_login_notice') %></h4>
+                  <ul> -->
+                    <li><div class="omniauth">
+                      <a class="btn btn-primary button-flat-primary omniauth-provider" href="/users/auth/facebook?locale=zh-CN"> 
+                         <i class="fa fa-facebook fa-large left"></i>Facebook<%= t('devise.links.3rd_login') %>
+                         <%= fa_icon "caret-right large", class: "right" %>
+                        </a>
+                    </div></li>
                   </ul>
-                </div> -->
+                  <div style="height:20px">
+                  </div>
+                   <h4><span class="glyphicon glyphicon-check"></span> <%= t('devise.label.registration_notice') %>: </h4>
+                  <ul>
+                    <li><%= t('devise.label.please_read_part1') %><%= link_to "#{t('nav.bottom.agreement')}", static_pages_treaty_path %><%= t('devise.label.please_read_part2') %></li>
+                  </ul>
+                </div>
           </div><!-- r-box -->
       </div><!-- container -->
     </div> <!-- contents -->

@@ -10,33 +10,33 @@
 
 <style type="text/css">
   
-  input[type='submit'] {
-    height: 40px
-  }
+/*  input[type='submit'] {
+    height: 40px;
+  }*/
 
   input[type='file'] {
-    width:150px;
-    height:30px;
-    border:solid transparent;
-    position:absolute;
-    left:0px;
-    top:10px;
-    opacity:0;
-    filter:alpha(opacity=0);
-    cursor:pointer
+    width: 150px;
+    height: 30px;
+    border: solid transparent;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
   }
 
   .input-group {
-    display: -webkit-box
+    display: -webkit-box;
   }
 
   .input-group span {
-    margin-left: 15px
+    margin-left: 15px;
   }
 
   .form-group button {
     height: 40px;
-    margin-left: 10px
+    margin-left: 10px;
   }
 
   .buynow {
@@ -47,7 +47,7 @@
   }
 
   .form-con i {
-    margin-left: 80px
+    margin-left: 120px;
   }
 
 </style>
@@ -134,9 +134,9 @@
                   </div>
 
                   <div class="form-group">
-                      <%= f.label :motto do %><%= User.human_attribute_name('motto') %>: <% end %>
+                      <%= f.label :description do %><%= User.human_attribute_name('description') %>: <% end %>
                      <div class="input-group"> 
-                      <%= f.text_area :motto %>
+                      <%= f.text_area :description %>
                     </div>
                   </div>
 

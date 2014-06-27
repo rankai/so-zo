@@ -1,8 +1,38 @@
 <script type="text/javascript">
   
-  $(function() {
+  $(document).ready(function() {
+
     $("#nav").css("background-image", 'none');
 
+    // jquery backstrech
+    // Create an array of images that you'd like to use
+      var images = [
+          //"/assets/login_abc.png",
+          "<%= asset_path('b2.jpg') %>",
+          "<%= asset_path('b3.jpg') %>"
+      ];
+
+      // A little script for preloading all of the images
+      // It's not necessary, but generally a good idea
+      // $(images).each(function(){
+      //    $('<img/>')[0].src = this;
+      // });
+
+      // The index variable will keep track of which image is currently showing
+      var index = 0;
+
+      // Call backstretch for the first time,
+      // In this case, I'm settings speed of 500ms for a fadeIn effect between images.
+      $('.login-container').backstretch(images[index], {speed: 800});
+      $("img").addClass("img-responsive");
+
+      // Set an interval that increments the index and sets the new image
+      // Note: The fadeIn speed set above will be inherited
+      setInterval(function() {
+          index = (index >= images.length - 1) ? 0 : index + 1;
+          $('.login-container').backstretch(images[index]);
+          $("img").addClass("img-responsive");
+      }, 3000);
 
      // jquery validate
     $("#new_user").validate({
@@ -54,23 +84,36 @@
 <style type="text/css">
   
     .login-container {
-      margin-left: 30%;
+      /*margin-left: 30%;
       margin-top: 50px;
-      margin-bottom: 80px;
-      height: 500px
+      margin-bottom: 80px;*/
+      /*margin: 50px auto;*/
+      height: 900px;
+      max-height: 1200px;
+      /*padding-left: 30%;
+      padding-right: 50%;*/
+      width: 100%;
     }
 
     .login-image {
-      float: left
+      /*float: left*/
+      width: 400px;
+      height: 400px;
+      margin-top: 50px;
+      margin-right: 150px; 
     }
 
     .login-form {
       min-width: 350px;
       max-width: 400px;
+      max-height: 800px;
+      margin-top: 50px;
       padding: 25px;
       border: #eee solid 1px;
-      float: left;
-      margin-left: 100px
+      float: right;
+      background-color: rgba(255,255,255,0.9);
+      /*margin-left: 100px;*/
+      margin-right: 22%;
     }
 
     .login-form input[type='email'] {
@@ -93,16 +136,18 @@
     </div>
 
     <div class="login-container">
-        <div class="login-image">
 
-          <%= image_tag "login_abc.png" %>
+        <!-- <div class="login-image">
 
-         </div>
+          <= image_tag "login_abc.png" %>
 
+         </div> -->
         <div class="login-form">
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), role: "form") do |f| %>
         <%= devise_error_messages! %>
-
+          <div class="omniauth">
+                  <%= render "devise/shared/omniauth" %>
+          </div>
           <div class="form-group">
             <%= f.label :email do %> <%= User.human_attribute_name('email') %> <% end %> <br />
             <div class= "input-group">
@@ -128,7 +173,7 @@
 
         <div style="height:30px">
         </div>
-
+  
         <%= render "devise/shared/links" %>
       </div>
   </div>

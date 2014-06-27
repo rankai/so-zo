@@ -30,15 +30,29 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'devise' # authentication
-gem 'cancan' # authorization based on roles
-gem 'rolify' # roles
+# webpay
+gem 'webpay'
+
+# authentication
+gem 'devise'
+
+# authorization based on roles
+gem 'cancan'
+
+# roles
+gem 'rolify'
+
+# oauths
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+#gem 'omniauth-linkedin'
+
 
 # rich editor
 gem 'rich', :git => 'https://github.com/bastiaanterhorst/rich.git'
 
 # simple backend
-gem 'rails_admin'
+gem "rails_admin", :github => "sferik/rails_admin"
 
 # add flash support to render
 gem 'flash_render'
@@ -75,6 +89,9 @@ gem 'kaminari'
 
 # Gon
 gem 'gon'
+
+# font-awesome
+gem "font-awesome-rails"
 
 # jquery lazy_load
 # gem "lazyload-rails"

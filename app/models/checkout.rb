@@ -25,7 +25,7 @@ class Checkout < ActiveRecord::Base
       :type               => 'GOODS',
       :currency           => 'USD', # only support USD
       :mode               => 'regular',
-      :redirect_uri       => "http://www.d-siy.com:8080/checkouts/result?order_id=#{order.order_number}"
+      :redirect_uri       => "http://www.so-zo.co/checkouts/result?order_id=#{order.order_number}"
       })
     
     response

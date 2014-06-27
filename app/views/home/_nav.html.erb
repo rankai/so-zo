@@ -5,6 +5,15 @@
         background-color: #f0ad4c;
         color: #FFF
     }
+    .login-panel {
+        position: relative;
+    }
+    .login-panel .omniauth-icon {
+        position: absolute;
+        top: -10px;
+        left: 100px;
+    }
+
 </style>
 
 <div id="nav">
@@ -31,7 +40,7 @@
 
            
             <div class="button-panel">
-                <a href="#" class="btn btn-info btn-md" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.search') %>">
+                <a href="#" class="btn btn-info btn-md button-flat-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.search') %>">
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
                 <a href="
@@ -40,7 +49,7 @@
                     <% else %>  
                         <%= new_user_session_path %>
                     <% end %>
-                    " class="btn btn-success btn-md" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.my_page') %>">
+                    " class="btn btn-success btn-md button-flat-action" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.my_page') %>">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
                 <a href="
@@ -48,10 +57,10 @@
                         <%= user_collections_path(current_user) %>
                     <% else %>  
                         <%= new_user_session_path %>
-                    <% end %>" class="btn btn-primary btn-md" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.favicons') %>">
+                    <% end %>" class="btn btn-primary btn-md button-flat-highlight" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.favicons') %>">
                     <span class="glyphicon glyphicon-star"></span>
                 </a>
-                <a href="<%= line_items_path %>" class="btn btn-warning btn-md" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.shopping_cart') %>">
+                <a href="<%= line_items_path %>" class="btn btn-warning btn-md button-flat-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.shopping_cart') %>">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                     
                         <% 
@@ -112,14 +121,22 @@
                         </div><!-- user-info -->
 
                         <div class="user-tougao">
-                            <a href="<%= new_user_publish_path(current_user) %>" class="btn-tougao" id="tougao"><%= t('nav.publish_upload') %></a>
+                            <a href="<%= new_user_publish_path(current_user) %>" class="btn-tougao button button-rounded button-flat-primary button-large" id="tougao"><%= t('nav.publish_upload') %></a>
                         </div>        
                     
                     <!-- <p class="notice"></p> -->
                <% else %>
                     <a href="<%= new_user_session_path %>"><%= t('nav.login') %></a> |
                     <a href="<%= new_user_registration_path %>"><%= t('nav.register') %></a>
-                   <!--  <p class="alert"></p> -->
+                    <!-- <div class="omniauth-icon">
+                      <a class="btn btn-primary omniauth-provider" href="/users/auth/facebook?locale=zh-CN"> 
+                         <i class="fa fa-facebook fa-large left"></i>
+                        </a>
+                    </div> -->
+                    <div class="user-tougao">
+                            <a href="<%= new_user_session_path %>" class="btn-tougao button button-round button-flat-primary button-large" id="tougao"><%= t('nav.publish_upload') %></a>
+                        </div>        
+                   <!--  <p class="alert"></p> --> 
                <% end %>
             </div> <!-- login-panel -->
             <div class="clear"></div>

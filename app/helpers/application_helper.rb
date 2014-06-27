@@ -19,7 +19,6 @@ module ApplicationHelper
 				active_product_state.id, user.id).order("publishes.created_at asc").distinct("publishes.id")
 	end
 
-
 	def cart_quantity
 		current_cart.line_items.count		
 	end

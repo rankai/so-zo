@@ -28,6 +28,13 @@
 //= require_tree .
 
 
+//$(document).ready(function(){
+    // remove #_=_ from url
+    // #_=_ is a bug when using omniauth-facebook, facebook add this to the end of url to cause jquery expression error
+    if (window.location.href.indexOf('#_=_') > 0) {
+        window.location = window.location.href.replace(/#.*/, '');
+}//});
+
 function flash(data) {
     $(".alert span").text(data);
     $(".alert").css("opacity", "100");
