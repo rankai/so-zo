@@ -225,7 +225,7 @@
                   <p class="det_a" style="padding-bottom:45px;">
                     <%= t('product.price') %>:
                     <span class="price">
-                      <%= t('number.currency.JPY_SIGN')%><%= @product.price %>
+                      <%= t('number.currency.JPY_SIGN')%><%= @product.price.to_i %>
                     </span>
                   </p>
                   <div class="numBar2 clear">

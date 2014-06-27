@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("stylescombo","tr",{label:"Bi\xe7em",panelTitle:"Stilleri D\xfczenliyor",panelTitle1:"Blok Stilleri",panelTitle2:"Inline Stilleri",panelTitle3:"Nesne Stilleri"});

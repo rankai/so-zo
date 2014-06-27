@@ -114,7 +114,7 @@ function calculateTotal() {
   });*/
 
   $("#order_quantity").text(quantity);
-  $(".well-sm").text(price.toFixed(2));
+  $(".well-sm").text(price.toFixed(0));
 };
 
 function update_quantity(quantity_input, line_item_id) {
@@ -294,7 +294,7 @@ $(function(){
                             </td>
                             <td class="price">
                               <%= t('number.currency.JPY_SIGN')%><span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
-                                  <%= product.price %>
+                                  <%= product.price.to_i %>
                               <% end %></span>
                             </td>
                             <td>

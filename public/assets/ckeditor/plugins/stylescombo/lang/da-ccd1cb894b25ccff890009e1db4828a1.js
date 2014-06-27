@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("stylescombo","da",{label:"Typografi",panelTitle:"Formattering p\xe5 stylesheet",panelTitle1:"Block typografi",panelTitle2:"Inline typografi",panelTitle3:"Object typografi"});

@@ -1,0 +1,28 @@
+<div class="row" id="make"> 
+
+    <% @photos = get_latest_photos(3) 
+      if not @photos.nil?
+    %>
+
+    <% @photos.each do |publish| %>
+        <div class="col-sm-3">
+            <div class="graybox">
+              <div class="overflow">
+                <a href="<%= publish_path(publish) %>">
+                  <!--< image_tag publish.publish_image.url(:medium), class: "img-responsive" %>-->
+                  <img class="lazy img-responsive" data-original="<%= publish.publish_image.url(:medium) %>" alt="<%= publish.name%>" />
+                </a>
+              </div>
+              <p>
+                <%= publish.name %>
+              </p>
+            </div>
+            <!-- graybox -->
+          </div>
+          <!-- col-sm-4 -->
+    <% end %>
+
+  <% end %>
+  
+</div>
+<!-- row make -->

@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("maximize","ro",{maximize:"M\u0103re\u0219te",minimize:"Mic\u0219oreaz\u0103"});

@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("maximize","tr",{maximize:"B\xfcy\xfclt",minimize:"K\xfc\xe7\xfclt"});

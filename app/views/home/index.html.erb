@@ -17,92 +17,27 @@
           -->
         </div>
         <!-- mainvisual -->
+                  <%= render "instruction" %>
         <div class="container">
-          <div class="col-sm-12 midashi">
+
+         <!--  <div class="col-sm-12 midashi">
             <p>
-              <%= link_to products_path(), class: "home-link" do %>
-                <%= t('home.latest_products') %>
-              <% end %>
+              <= link_to products_path(), class: "home-link" do %>
+                <= t('home.latest_products') %>
+              < end %>
             </p>
           </div>
-          <div class="image-row">
-            <div class="image-set">
-              <div class="row" id="new">
-
-                <% @products.each do |product| %>
-
-                <% if product.product_images.count > 0 %>
-
-                  <div class="col-sm-3">
-                    <div class="graybox">
-                      <p class="ribbon"><%= image_tag "new_ribbon.png" %></p>
-                      <div class="imgarea">
-                        <%= link_to product_path(product), class: "example-image-link", title: "『" + product.name + "』" do %>
-                          <!--< image_tag product.product_images.first.product_image.url(:medium), 
-                          class: "img-responsive example-image", alt: product.name %>-->
-                          <img class="lazy img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
-                        <% end %>
-                        <div class="price">
-                          <%= t('number.currency.JPY_SIGN')%><%= product.price %>
-                        </div>
-                      </div>
-                      <!-- imgarea -->
-                      <p class="itemtitle">
-                        『<%= product.name %>』
-                      </p>
-                      <p class="itemdetail">
-                        <%= short_text(50, product.description) %>
-                      </p>
-                    </div><!-- graybox -->
-                  </div><!-- col3 -->
-
-                  <% end %>
-
-                <% end %>       
-
-              </div>
-              <!-- row new -->
-            </div>
-            <!-- image set -->
-          </div>
-          <!-- image row -->
+          <= render "products", object: @products %>
 
 
           <div class="col-sm-12 midashi">
             <p>
-              <%= link_to publishes_path(:publish_category => "photo"), class: "home-link" do %>
-                <%= t('home.latest_photos') %>
-              <% end %>
+              <= link_to publishes_path(:publish_category => "photo"), class: "home-link" do %>
+                <= t('home.latest_photos') %>
+              < end %>
             </p>
           </div>
-          <div class="row" id="make"> 
-
-              <% @photos = get_latest_photos(3) 
-                if not @photos.nil?
-              %>
-
-                <% @photos.each do |publish| %>
-                  <div class="col-sm-3">
-                      <div class="graybox">
-                        <div class="overflow">
-                          <a href="<%= publish_path(publish) %>">
-                            <!--< image_tag publish.publish_image.url(:medium), class: "img-responsive" %>-->
-                            <img class="lazy img-responsive" data-original="<%= publish.publish_image.url(:medium) %>" alt="<%= publish.name%>" />
-                          </a>
-                        </div>
-                        <p>
-                          <%= publish.name %>
-                        </p>
-                      </div>
-                      <!-- graybox -->
-                    </div>
-                    <!-- col-sm-4 -->
-              <% end %>
-
-            <% end %>
-            
-          </div>
-          <!-- row make -->
+          <= render "publishes", object: @publishes %> -->
 
 
           <div class="col-sm-12 midashi">
@@ -112,51 +47,10 @@
               <% end %>
             </p>
           </div>
-          <div class="image-row">
-            <div class="image-set">
-              <div class="row" id="new">
-                
-                <div id="view-most-products">
+          <% @products = get_products_by_statistics('V', 4) %>
+          <%= render "products", object: @products %>
 
-                    <% @ranked_by_view_products = get_products_by_statistics('V', 4) 
-                      if not @ranked_by_view_products.nil?
-                    %>
-
-                    <% @ranked_by_view_products.each do |product| %>
-
-                     <% if product.product_images.count > 0 %>
-                      <div class="col-sm-3">
-                        <div class="graybox">
-                          <p class="ribbon"><%= image_tag "new_ribbon.png" %></p>
-                          <div class="imgarea">
-                            <%= link_to product_path(product), class: "example-image-link", title: "『" + product.name + "』" do %>
-                              <!--< image_tag product.product_images.first.product_image.url(:medium), class: "img-responsive example-image", alt: product.name %>-->
-                              <img class="lazy img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
-                            <% end %>
-                            <div class="price">
-                              <%= t('number.currency.JPY_SIGN') %><%= product.price %>
-                            </div>
-                          </div>
-                          <!-- imgarea -->
-                          <p class="itemtitle">
-                            『<%= product.name %>』
-                          </p>
-                          <p class="itemdetail">
-                            <%= short_text(50, product.description) %>
-                          </p>
-                        </div><!-- graybox -->
-                      </div><!-- col3 -->
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </div>
-
-              </div>
-              <!-- row new -->
-            </div>
-            <!-- image set -->
-          </div>
-          <!-- image row -->
+          
         </div><!-- container -->
 
         <!-- container -->

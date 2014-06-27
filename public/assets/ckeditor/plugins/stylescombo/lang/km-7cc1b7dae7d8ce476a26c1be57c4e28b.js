@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("stylescombo","km",{label:"\u1798\u17c9\u17bc\u178f",panelTitle:"Formatting Styles",panelTitle1:"Block Styles",panelTitle2:"Inline Styles",panelTitle3:"Object Styles"});

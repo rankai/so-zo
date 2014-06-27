@@ -23,8 +23,8 @@ zh-CN:
       home: "主页"
       news: "新闻"
       customer_service: "客服"
-      intro: "采用情报"
-      info: "公司介绍"
+      intro: "公司介绍"
+      info: "采用情报"
       question: "Q&A"
       agreement: "利用规约"
       map: "网站地图"
@@ -227,6 +227,7 @@ zh-CN:
       title: "填写收货人信息"
       address_placeholder: "请填写有效的电话"
       phone_placeholder: "请填写详细的收货地址"
+      notice: "为了能够收到购买的商品，请认真填写信息"
     upload:
       title: "上传您的大作"
       publish_name_placeholder: "请填写作品名称"
@@ -665,6 +666,7 @@ zh-CN:
       input_valid_email: "请填写正确的邮箱地址"
       input_password: "请填写密码"
       input_motto: "请填写您的格言"
+      input_description: "请填写您的自我介绍"
       confirm_password: "请输入相同的密码"
       input_name: "请填写您的姓名"
 

@@ -1,8 +1,27 @@
 <style type="text/css">
+  
+  .contact-notice {
+    float: left;
+    padding-top: 10px;
+  }
+
+  .contact-notice span {
+    padding: 0px 5px;
+    vertical-align: top;
+  }
+
+  .contact-notice #content {
+    width: 320px;
+    display:inline-block;
+  }
+
+  img {
+    margin: 5px auto 20px;
+  }
 
 </style>
 
-<div class="modal fade" id="myModal" style="margin-top:40px">
+<div class="modal fade" id="myModal" style="margin-top:120px">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,9 +29,13 @@
         <h4 class="modal-title"><%= t('modal.address.title') %>：</h4>
       </div>
              <%= form_for :user, url: user_path(current_user), remote: true, method: :patch, html: { class: "form-horizontal", id: "address-form" } do |f| %>
+
       <div class="modal-body"> 
               <div class="form-group">
-                  <label class="col-sm-2 control-label">
+                <%= image_tag current_user.photo.url("thumb"), class: "img-circle img-responsive" %>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">
                       <%= User.human_attribute_name("email") %>：
                   </label>
                   <div class="input-group">
@@ -24,7 +47,7 @@
               
               
               <div class="form-group">
-                  <label class="col-sm-2 control-label">
+                  <label class="col-sm-3 control-label">
                       <%= User.human_attribute_name("name") %>：
                   </label>
                   <div class="input-group">
@@ -36,7 +59,7 @@
               
 
                <div class="form-group">
-                  <label class="col-sm-2 control-label">
+                  <label class="col-sm-3 control-label">
                       <%= User.human_attribute_name("phone") %>：
                   </label>
                   <div class="input-group">
@@ -46,17 +69,23 @@
                   </div>
               </div> 
                <div class="form-group">
-                  <label class="col-sm-2 control-label">
+                  <label class="col-sm-3 control-label">
                     <%= User.human_attribute_name("address") %>：
                   </label>
                   <div class="input-group">
                       <p class="form-control-static">
-                         <%= f.text_area :address,  class: "form-control", rows: "3", cols: "50", placeholder:t('modal.address.address_placeholder'), value: current_user.address %>
+                         <%= f.text_area :address,  class: "form-control", rows: "3", cols: "40", placeholder:t('modal.address.address_placeholder'), value: current_user.address %>
                       </p>
                   </div>
               </div>         
           </div>
           <div class="modal-footer">
+
+            <div class="contact-notice">          
+                <span class="glyphicon glyphicon-info-sign"></span>
+                <span id="content" class="text-left"><%= t('modal.address.notice') %></span>
+            </div>
+
             <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px"><%= t('modal.cancel') %></button>
               <%= f.submit t('modal.ok'), :id=>
             "update_contact", :class => "btn btn-primary", :style => "height:40px" %>

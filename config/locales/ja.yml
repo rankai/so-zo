@@ -21,7 +21,7 @@ ja:
     delete: "削除"
     ok: "確定"
     bottom:
-      title: "取り扱い~~~"
+      title: "メニュー"
       home: "ホーム"
       news: "ニュース"
       customer_service: "問い合わせ"
@@ -52,13 +52,13 @@ ja:
 
   language:
     select: "言語を選択してください"
-    Japanese: "日本语"
+    Japanese: "日本語"
     Chinese: "中文"
 
   home:
     latest_products: "最新の商品"
     latest_photos: "写真"
-    popular_products: "ランキング"
+    popular_products: "人気商品"
 
   cart:
     page_title: "私のカート"
@@ -115,12 +115,16 @@ ja:
     no_bonus: "無収益"
     total: "総収益"
 
+  checkout: 
+    online_pay: "オンライン支払い"
+    transfer: "銀行に送金"
+
   order:
     orders: "総注文数"
     my_orders: "私の注文"
     new_page_title: "注文情報をご記入してください"
     product_title: "商品リスト"
-    contact: "連絡先情報"
+    contact: "連絡先"
     confirm_order: "注文する"
     back_to_cart: "カートに戻る"
     cancel_order: "キャンセル"
@@ -169,24 +173,24 @@ ja:
     all: "すべての作品"
     only_show_with_sells: "売れ分を表示"
     hide: "隠す"
-    view: "ブラウズ"
+    view: "詳細"
     author: "作者"
     frequency_added_to_cart: "カートに入れる"
-    options: "任意の形式"
-    refresh_alert: "お客様の投稿が失敗するかもしれませんので、更新しないでください"
+    options: "設定"
+    refresh_alert: "このページをリフレッシュしないでください。更新失敗の可能性があります。"
 
   favorites:
-    my_collections: "我的收藏"
-    collection_total: "総收藏数"
-    collection_quantity: "收藏数"
-    no_collections: "まだ收藏"
-    my_watches: "私の注目を集めて"
-    no_watches: "まだ関心"
-    watch_total: "総関心数"
+    my_collections: "気に入り"
+    collection_total: "お気に入り総数"
+    collection_quantity: "お気に入り数"
+    no_collections: "お気に入りがありません"
+    my_watches: "フォロー"
+    no_watches: "まだ誰もフォローしていません"
+    watch_total: "フォローの総数"
 
   views:
     pagination:
-      first: "&laquo; 最初のページに"
+      first: "&laquo; 最初のページ"
       last: "最後のページ &raquo;"
       previous: "&lsaquo; ねがい"
       next: "次頁 &rsaquo;"
@@ -198,8 +202,8 @@ ja:
       making_products: "商品が生成中..."
       making_products_progress: "総計%{total}件で、すでに%{current}件完了です"
       processing: "ただ今処理しています、少々お待ちください..."
-      waiting_uploading: "作品をアップロードしてください"
-      publish_processing: "商品生成中..."
+      waiting_uploading: "作品を投稿してください"
+      publish_processing: "商品の生成に..."
       cancel: "キャンセル"
 
   modal:
@@ -210,22 +214,23 @@ ja:
       title: "受取人の情報をご記入してください"
       address_placeholder: "有効な電話をご記入してください"
       phone_placeholder: "住所の詳細をご記入してください"
+      notice: "正しい情報をご記入ください"
     upload:
       title: "作品をアップロードしてください"
       publish_name_placeholder: "作品名を記入してください"
       publish_des_placeholder: "作品の説明を記入してください"
       publish_select: "作品選択"
-      product_generate: "商品生成"
-      agree_to_our_policy: "私は同意し著作権条項が盛り込まれている"
-      publish_requirements_prompt: "作品要求：图片格式为JPG或PNG, 最低像素为2000px"
+      product_generate: "製作開始"
+      agree_to_our_policy: "「利用規約」を確認した上で投稿してください"
+      publish_requirements_prompt: "投稿出来る作品の形式JPGとPNGのみです。商品を作るには2000px以上が必要です。"
       errors:
-        input_name: "请填写作品名称"
-        agree_to_our_policy: "同意してください私たちの著作権条項が盛り込まれている"
+        input_name: "作品名を記入してください"
+        agree_to_our_policy: "「利用規約」を確認した上で投稿してくささい"
         input_description: "作品の説明を記入してください"
         name_too_long: "作品名称を１０字以内にしてください"
-        name_too_short: "作品名称より少ないできない1文字"
-        description_too_short: "说明できない作品より5つの言叶を使った"
-        description_too_long: "作品の詳細を１００文字以内に記入してください"
+        name_too_short: "作品名称を１文字以上記入してください"
+        description_too_short: "説明文章を５文字以上に記入してください"
+        description_too_long: "作品説明を１００文字以内に記入してください"
         upload_publish: "作品をアップロードしてください"
         publish_format_not_valid: "jpgとpng形式の作品をアップロードしてください"
 
@@ -252,14 +257,14 @@ ja:
     notices:
       order_deleted: "オーダー削除成功"
       order_created: "オーダー作成成功"
-      line_item_added: "成功添加ショッピングカート"
-      line_item_deleted: "成功のショッピングカートから削除"
-      product_deleted: "成功を削除する商品"
-      publish_deleted: "成功を削除する指定作品や生成の全商品"
-      product_price_updated: "価格設定に成功"
-      commit_tougao: "投稿を行うことができることに成功し、次の投稿とか"
-      reset_tougao: "成功することができますキャンセル、再投稿とか"
-      payment_finished: "支払いが成功して、ありがとうございます購入"
+      line_item_added: "ショッピングカートに追加成功"
+      line_item_deleted: "ショッピングカートから削除成功"
+      product_deleted: "商品を削除成功"
+      publish_deleted: "指定した商品削除成功"
+      product_price_updated: "価格設定成功"
+      commit_tougao: "投稿が成功しました。次の投稿をどうぞ"
+      reset_tougao: "投稿がキャンセル出来ました。再投稿してください"
+      payment_finished: "支払いが成功しました。ご購入ありがとうございます"
 
   date:
     formats:
@@ -421,7 +426,7 @@ ja:
       decimal_units:
         format: "%n %u"
         units:
-          total: "共"
+          total: "全部"
           jian: "件"
           ci: "度"
           # 10^-21 zepto, 10^-24 yocto
@@ -504,7 +509,7 @@ ja:
         degree: "角度"
         if_zoom: "ズームかどうか"
       product:
-        name: "商品名称"
+        name: "商品名"
         price: "商品の価格"
         base_price: "成本"
         description: "商品の説明"
@@ -531,12 +536,12 @@ ja:
         description: "自己紹介"
         tag: "ラベル"
         phone: "電話"
-        address: "アドレス"
+        address: "住所"
         roles: "システム役"
         photo: "アバター"
         infos: "メッセージ数"
         follows: "注目数"
-        password_confirmation: "パスワード確認"
+        password_confirmation: "パスワード再入力"
     errors:
       models:
         user:
@@ -622,7 +627,7 @@ ja:
     submit:
       create: "新規%{model}"
       update: "更新%{model}"
-      submit: "貯蔵%{model}"
+      submit: "保存%{model}"
 
 
   devise:
@@ -647,11 +652,12 @@ ja:
       input_valid_email: "アドレスを入力してください"
       input_password: "パスワードを入力してください"
       input_motto: "紹介を記入してください"
+      input_description: "记入してくださいあなたの自己绍介をします"
       confirm_password: "同じパスワードを入力してください"
       input_name: "あなたの名前を書いてください"
     mailer:
       confirmation_instructions:
-        subject: "確認情報"
+        subject: "情報確認"
       reset_password_instructions:
         subject: "リセットパスワード情報"
       unlock_instructions:
@@ -670,40 +676,40 @@ ja:
       signed_up: "ありがとうございます。登録成功しました。"
       signed_up_but_inactive: "このアカウントはまだメールで確認されていません。"
       signed_up_but_locked: "ご登録のアカウントがロックされました。"
-      signed_up_but_unconfirmed: "一通のメールはもう送って、リンクを確認することから、あなたのメールボックスをチェックしてください電子メールを含む（ごみメールし、当該リンクをクリックして）あなたのアカウントをアクティブにする。"
-      update_needs_confirmation: "情報の更新に成功するが、それが染色あなたの新しいメールアドレスをご確認ください電子メールを含む（ごみメールし、当該リンクをクリックして）あなたのアカウントをアクティブにする。"
+      signed_up_but_unconfirmed: "確認メールがお送りしました。メールボックスでご確認ください。"
+      update_needs_confirmation: "情報の更新が成功しました。メールボックスでメールをご確認ください。"
       updated: "アカウントデータ更新成功。"
       leave_blank: "空白を殘して、もしあなたはそれを変えたくない"
       password_need_to_confirm_changes: "私達があなたの現在のパスワードの確認ご変更"
     links:
-      remember_me: "IDを覚える"
+      remember_me: "次回から入力を省略"
       sign_in_btn: "ログイン"
       sign_up_btn: "登録"
       sign_in: "今すぐログイン"
       sign_up: "今すぐ登録"
-      forget_password: "パスワード忘れた"
+      forget_password: "パスワードが忘れたら"
       not_receive_confirmation: "確認メールが届いてない"
       not_receive_unlock: "メールが届いていないロックを解除する"
-      resend_confirmation: "メール送信を再検証"
+      resend_confirmation: "メールを再送信"
       resend_unlock: "確認メールを再送信"
       send_reset_password_instruction: "パスワードを取り戻す"
-      upload_photo: "プロフィール写真"
-      change_photo: "アイコン変更"
+      upload_photo: "写真を投稿"
+      change_photo: "写真を更新"
       update: "更新"
       reset: "再記入"
     label:
-      at_registration: "SO-ZOを登録"
-      to_sign_in: "既に登録、今すぐログイン"
+      at_registration: "無料会員登録"
+      to_sign_in: "SO-ZO会員の方はこちら"
     placeholders:
       resend_email: "メールアドレスをご記入"
       required: "必須"
-      not_required: "必須"
+      not_required: "别売"
     sessions:
       signed_in: "ログイン成功."
       signed_out: "ログアウト成功."
     unlocks:
       send_instructions: "確認メールを発送しました。ご確認ください"
-      send_paranoid_instructions: "もしあなたの電子メールの存在は私たちのデータベースでは、お届け通のメールアカウントロックを解除する。"
+      send_paranoid_instructions: "アカウント解除するメールが送りました。ご確認ください"
       unlocked: "アカウントの確認が出来ました。今すぐログイン"
 
 

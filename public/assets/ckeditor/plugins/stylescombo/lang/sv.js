@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("stylescombo","sv",{label:"Anpassad stil",panelTitle:"Formatmallar",panelTitle1:"Blockstil",panelTitle2:"Inb\xe4ddad stil",panelTitle3:"Objektets stil"});

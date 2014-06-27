@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("maximize","lt",{maximize:"I\u0161didinti",minimize:"Suma\u017einti"});

@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("stylescombo","bg",{label:"\u0421\u0442\u0438\u043b\u043e\u0432\u0435",panelTitle:"Formatting Styles",panelTitle1:"Block Styles",panelTitle2:"Inline Styles",panelTitle3:"Object Styles"});

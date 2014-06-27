@@ -1,7 +1,7 @@
   <style type="text/css">
 
   .my-cart {
-    width:60%;
+    /*width:60%;*/
     margin: auto
   }
 
@@ -56,11 +56,11 @@
     margin:60px; font-size:large; font-weight:bold
   }
 
-  #edit_info {
+  #edit-info {
     margin-left: -50px
   }
 
-  #edit_info img {
+  #edit-info img {
     margin-bottom:10px; width:24px;
   }
 
@@ -68,12 +68,27 @@
     margin-bottom:10px; width:24px;margin-left:-50px
   }
 
-  .contact_info {
+  .contact-info {
     border: #eee solid 1px; width:90%; margin:auto
   }
 
-  .contact_content { 
-    width: 50%;
+  .contact-content { 
+    /*width: 50%;*/
+    padding: 10px;
+  }
+
+  .contact-content .item {
+    padding: 5px 0px 5px 0px;
+  }
+
+  .contact-content .title {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .contact-content .content {
+    padding: 5px;
   }
 
   #order_total {
@@ -91,7 +106,7 @@
         /*$('#update_contact').click(function() {
             $("#address_from").ajaxForm(options).submit();  
             $("#myModal").modal('hide');
-            $("#edit_info").hide();
+            $("#edit-info").hide();
             $("#loading").show();
         });*/
 
@@ -118,7 +133,7 @@
               $("#tel").text(data["phone"]);
               $("#address").text(data["address"]);
               $("#loading").hide();
-              $("#edit_info").show();
+              $("#edit-info").show();
             }
         };
 
@@ -151,7 +166,7 @@
             submitHandler: function(form) {
                 jQuery(form).ajaxSubmit(options);
                 $("#myModal").modal('hide');
-                $("#edit_info").hide();
+                $("#edit-info").hide();
                 $("#loading").show();
             }
         });
@@ -199,6 +214,8 @@
     <div style="height:76px">
     </div>
 
+    <div class="container" >
+
     <%= render "contact" %>
 
     <div class="my-cart">
@@ -214,13 +231,29 @@
         <div class="panel panel-default">
              <div style="height:30px"></div>
              <span class="list-title" ><%= t('order.contact') %></span>
-             <a href="javascript:void(0)"  onclick='$("#myModal").modal("show");' id="edit_info">
+             <a href="javascript:void(0)"  onclick='$("#myModal").modal("show");' id="edit-info">
                 <%= image_tag "file_edit.png" %>
              </a>
              <%= image_tag "loading.gif", id: "loading" %>
-             <div class="contact_info">
-              <div class="contact_content">
-               <form class="form-horizontal" role="form">
+             <div class="contact-info">
+              <div class="contact-content">
+                <div class="item">
+                  <span class="title"><%= User.human_attribute_name('email') %>：</span>
+                  <span class="content"><%= current_user.email %></span>
+                </div>
+                <div class="item">
+                  <span class="title"><%= User.human_attribute_name('name') %>：</span>
+                  <span class="content"><%= current_user.name %></span>
+                </div>
+                <div class="item">
+                  <span class="title"><%= User.human_attribute_name('phone') %>：</span>
+                  <span class="content" id="tel"><%= current_user.phone %></span>
+               </div>
+               <div class="item">
+                  <span class="title"><%= User.human_attribute_name('address') %>：</span>
+                  <span class="content" id="address"><%= current_user.address %></span>
+               </div>
+              <!--  <form class="form-horizontal" role="form">
                   <div class="form-group">
                       <label class="col-sm-2 control-label">
                           <%= User.human_attribute_name('email') %>：
@@ -261,7 +294,7 @@
                           </p>
                       </div>
                   </div>
-            </form>
+            </form> -->
           </div>
           </div><!-- contact info -->
           <div style="height:50px"></div>
@@ -307,7 +340,7 @@
                           </td>
                           <td class="price">
                             $<span style="margin-left:0px"><% product = Product.find_by_id(line_item.product_id) do |product| %>
-                                <%= product.price %>
+                                <%= product.price.to_i %>
                             <% end %></span>
                           </td>
                         </tr>
@@ -351,6 +384,7 @@
           </div>
           <div class="clear">
       </div>
+    </div><!-- container -->
       <div class="container">
          <%= render "home/bottom" %>
      </div>

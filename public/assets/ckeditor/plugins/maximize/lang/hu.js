@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("maximize","hu",{maximize:"Teljes m\xe9ret",minimize:"Kis m\xe9ret"});

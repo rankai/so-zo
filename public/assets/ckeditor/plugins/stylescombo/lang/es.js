@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("stylescombo","es",{label:"Estilo",panelTitle:"Estilos para formatear",panelTitle1:"Estilos de p\xe1rrafo",panelTitle2:"Estilos de car\xe1cter",panelTitle3:"Estilos de objeto"});

@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("maximize","hr",{maximize:"Pove\u0107aj",minimize:"Smanji"});

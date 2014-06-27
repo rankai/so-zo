@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("stylescombo","eo",{label:"Stiloj",panelTitle:"Stiloj pri enpa\u011digo",panelTitle1:"Stiloj de blokoj",panelTitle2:"Enliniaj Stiloj",panelTitle3:"Stiloj de objektoj"});

@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("stylescombo","th",{label:"\u0e25\u0e31\u0e01\u0e29\u0e13\u0e30",panelTitle:"Formatting Styles",panelTitle1:"Block Styles",panelTitle2:"Inline Styles",panelTitle3:"Object Styles"});

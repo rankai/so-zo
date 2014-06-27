@@ -28,7 +28,7 @@
             "user[name]": {
                 required: true
             },
-            "user[motto]": {
+            "user[description]": {
                 required: true
             },
             "user[email]": {
@@ -68,7 +68,7 @@
             equalTo:  "<%= t('devise.failure.confirm_password') %>",
             required: "<%= t('devise.failure.input_password') %>"
           },
-          "user[motto]": "<%= t('devise.failure.input_motto') %>",
+          "user[description]": "<%= t('devise.failure.input_description') %>",
           "user[name]": "<%= t('devise.failure.input_name') %>",
         },
 
@@ -102,17 +102,21 @@
 
 <style type="text/css">
 
+  .contents {
+      background-color: lightpink;
+  }
+
   input[type='submit'] {
     height: 40px
   }
 
   input[type='file'] {
-    width:150px;
-    height:30px;
+    width:120px;
+    height:40px;
     border:solid transparent;
     position:absolute;
-    left:0px;
-    top:10px;
+    left:60px;
+    top:20px;
     opacity:0;
     filter:alpha(opacity=0);
     cursor:pointer
@@ -131,15 +135,11 @@
     margin-left: 10px
   }
 
-  .r-box {
-    width: 100%
-  }
-
-  .buynow {
-    width:80px; 
+  .btn-upload-photo {
+    width:120px; 
     font-size:12px;
     position:absolute;
-    left:50px;
+    left:30px;
   }
 
   #user_photo + span {
@@ -158,31 +158,30 @@
       <div class="container">
         <div style="height:50px">
         </div>
-         <div id="loading"><%= image_tag "loading.gif", style: "margin-right: 10px" %><%= t('progress.processing') %></div>
-          <div class="r-box">
+         <div id="loading" class="text-center"><%= image_tag "loading.gif", style: "margin-right: 10px" %><%= t('progress.processing') %></div>
+          <div class="r-box registration-box">
             <!-- <form action=""> -->
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
                 <%= devise_error_messages! %>
                 <div class="user-img">
                   <%= image_tag "question_mark.jpg", width: "200px", class: "img-rounded" %>
                   <div class="form-group" style="text-align:center;position:relative;">
-                    <button type="button" class="btn default btn-mini buynow">
+                    <button type="button" class="btn default btn-upload-photo">
                       <%= t('devise.links.upload_photo') %>
                     </button>
                     <div class="input-group">
                       <%= f.file_field :photo, accept: "image/png, image/jpeg" %>
                     </div>
                   </div>
-
                 </div>
                 <div class="form-con">
 
                   <div class="form-group">
-                  <%= f.label :email do %> <%= User.human_attribute_name('email') %>: <% end %>
-                  <div class="input-group">
-                    <%= f.email_field :email, :autofocus => true, placeholder: t('devise.placeholders.required'), class: "form-control"  %>
-                  </div>  
-                </div>
+                    <%= f.label :email do %> <%= User.human_attribute_name('email') %>: <% end %>
+                    <div class="input-group">
+                      <%= f.email_field :email, :autofocus => true, placeholder: t('devise.placeholders.required'), class: "form-control"  %>
+                    </div>  
+                 </div>
 
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <div class="form-group">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div><br />
@@ -198,7 +197,7 @@
                     (leave blank if you don't want to change it)
                   </i> -->
 
-                  <div class="form-group"><%= f.label :password_confirmation do %>确认密码:<% end %>
+                  <div class="form-group"><%= f.label :password_confirmation do %><%= User.human_attribute_name('password_confirmation') %>: <% end %>
                    <div class="input-group">
                       <%= f.password_field :password_confirmation, placeholder: t('devise.placeholders.required'), class: "form-control"  %>
                   </div>
@@ -219,9 +218,9 @@
                   </div>
 
                   <div class="form-group">
-                      <%= f.label :motto do %><%= User.human_attribute_name('motto') %>: <% end %>
+                      <%= f.label :description do %><%= User.human_attribute_name('description') %>: <% end %>
                      <div class="input-group"> 
-                      <%= f.text_area :motto, placeholder: t('devise.placeholders.required'), rows: "10", class: "form-control"    %>
+                      <%= f.text_area :description, placeholder: t('devise.placeholders.required'), rows: "10", class: "form-control" %>
                     </div>
                   </div>
 
@@ -258,7 +257,17 @@
                     </div>
 
                   <% end %><!-- </form> -->
-            </div><!--form-con end-->
+                </div><!--form-con end-->
+                <!-- <div class="reg-instruction">
+                  <h4>注意事项：</h4>
+                  <ul>
+                    <li>xxxxxxxxxxxxxxxx</li>
+                    <li>xxxxxxxxxxxxxxxx</li>
+                    <li>xxxxxxxxxxxxxxxx</li>
+                    <li>xxxxxxxxxxxxxxxx</li>
+                    <li>xxxxxxxxxxxxxxxx</li>
+                  </ul>
+                </div> -->
           </div><!-- r-box -->
       </div><!-- container -->
     </div> <!-- contents -->

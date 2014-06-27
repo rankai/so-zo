@@ -96,7 +96,7 @@ $(function(){
                           <img class="lazy example-image img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
                         </a>
                         <div class="price">
-                          <%= t('number.currency.JPY_SIGN')%><%= product.price %>
+                          <%= t('number.currency.JPY_SIGN')%><%= product.price.to_i %>
                         </div>
                       </div>
                       <!-- imgarea -->

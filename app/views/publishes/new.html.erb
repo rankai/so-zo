@@ -343,7 +343,7 @@
         $('input[name="product[price]"]').each(function(){
             var cur_price = $(this).val();
             var new_price = cur_price * (1 + price_ratio / 100);
-            $(this).val(new_price.toFixed(2));
+            $(this).val(new_price.toFixed(0));
         });
     }
 

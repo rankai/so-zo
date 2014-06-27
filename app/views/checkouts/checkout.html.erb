@@ -5,31 +5,22 @@
 </script>
 
 <style type="text/css">
-  .prompt-info {
-    margin-top: 100px;
-    margin-bottom: 200px;
-    width: 500px;
-    margin: 5% auto;
+
+  .pay-page {
+    margin: 50px auto;
+    width: 100%;
+    border: 1px solid #eee;
+    padding: 10px;
   }
-  .prompt-info .title {
-    font-size: xx-large;
+  .title {
+    padding-bottom: 12px;
+    background: url(<%= asset_path 'midashi_line.gif' %>) no-repeat left bottom;
     font-weight: bold;
   }
-
-   .prompt-info .pay-method {
-    margin-top: 50px;
-    text-align: left;
+  .pay-height {
+    height: 32px;
   }
 
-  .prompt-info .pay-method .wepay,.transfer {
-    font-size: large;
-    margin-left: 45px;
-    text-align: left;
-  }
-
-  .prompt-info .pay-method .transfer #title {
-    font-weight: bold;
-  }
 </style>
 
 <body id="top">
@@ -38,29 +29,13 @@
       <div style="height:76px">
       </div>
 
-      <div class="prompt-info" align="center" >
-        <span class="title"><%= t('order.checkout_support') %></span>
-        <div class="pay-method"> 
-          <div class="wepay">
-              <%= image_tag "pay2.png", width: "48px" %>
-              <a href="<%= url_for(:controller => "checkouts", :action => "wepay") %>&order_id=<%= @order.id %>" type="button" class="btn btn-danger btn-lg"><%= t("order.online_pay") %></a>
-          </div>
-          <hr/>
-          <div class="transfer">
-            <p id="title"><%= t("order.transfer") %></p>
-            <div class="bank-info">
-              <p><%= t("bank.bank_name") %></p>
-              <p><%= t("bank.bank_account") %></p>
-              <p><%= t("bank.receiver") %></p>
-              <i><%= t("bank.notice") %></i>
-            </div>
-          </div>
-        </div>
+      <div class="container">
+          <%= render "pay_methods" %>
     </div>
-  </div>
   <div class="clear">
   </div>
   <div class="container">
     <%= render "home/bottom" %>
   </div>
+    </div>
 </body>
