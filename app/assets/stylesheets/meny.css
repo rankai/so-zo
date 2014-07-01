@@ -43,7 +43,7 @@ a.wbp-small.brown:hover, a.wbp-small.brown.hover {background-position: -970px -2
 /* 3Dサイドバーデザイン */
 body {
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .meny {
     display: none;

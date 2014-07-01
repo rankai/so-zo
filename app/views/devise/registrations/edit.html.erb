@@ -54,11 +54,11 @@
 
 
 
-<body id="top">
-  <div class="contents">
-    <%= render "home/nav" %>
-      <div style="height:76px">
-      </div>
+<body>
+  <div class="header">
+        <%= render "home/nav" %>
+  </div>
+  <div class="content">
       <div class="container">
         <div style="height:50px">
         </div>
@@ -93,9 +93,9 @@
                     <div class="form-group">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
                   <% end %>
 
-                    <i>
-                      <%= t('devise.registrations.password_need_to_confirm_changes') %>
-                    </i>
+                    <!-- <i>
+                      <= t('devise.registrations.password_need_to_confirm_changes') %>
+                    </i> -->
                   <div class="form-group"><%= f.label :current_password do %><%= User.human_attribute_name('current_password') %>:<% end %>
                   <div class="input-group">
                     <%= f.password_field :current_password %>
@@ -103,9 +103,9 @@
                   </div>
                   
 
-                  <i>
-                    <%= t('devise.registrations.leave_blank') %>
-                  </i>
+                  <!-- <i>
+                    <= t('devise.registrations.leave_blank') %>
+                  </i> -->
                   <div class="form-group"><%= f.label :password do %><%= User.human_attribute_name('new_password') %>: <% end %>
                     <div class="input-group">
                       <%= f.password_field :password, :autocomplete => "off" %>

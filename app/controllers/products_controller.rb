@@ -34,9 +34,14 @@ class ProductsController < ApplicationController
 				end
 			end			
 
+			keywords = "%"
+			if params[:keywords] && params[:keywords] != ""
+				keywords = "%#{params[:keywords]}%"
+			end
+
 			@products = Product.joins(:product_template).joins(:product_images)
-			.where('product_templates.template_category_id LIKE ? AND products.state_id = ?',
-			 category_id, @state.id).distinct("products.id").order("products.created_at desc").page(params[:page])
+			.where('product_templates.template_category_id LIKE ? AND products.name LIKE ? AND products.state_id = ?',
+			 category_id, keywords, @state.id).distinct("products.id").order("products.created_at desc").page(params[:page])
 
 		else
 			@products = Product.joins(:product_images).where(:state => @state).distinct("products.id")

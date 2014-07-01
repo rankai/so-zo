@@ -41,7 +41,7 @@ class PublishesController < ApplicationController
 
 		if params[:publish_category]
 
-			p "parameter: #{params[:publish_category]}, #{params[:sell]}"
+			# p "parameter: #{params[:publish_category]}, #{params[:sell]}"
 
 			category_id = "%"
 			if params[:publish_category] != 'all'
@@ -52,12 +52,17 @@ class PublishesController < ApplicationController
 				end
 			end
 			
-			p "parameter: #{params[:publish_category]}:#{category_id}, #{params[:sell]}"
+			# p "parameter: #{params[:publish_category]}:#{category_id}, #{params[:sell]}"
+			keywords = "%"
+			if params[:keywords] && params[:keywords] != ""
+				keywords = "%#{params[:keywords]}%"
+			end
 
-			@publishes = Publish.joins(products: :product_images).where('publishes.publish_category_id LIKE ? AND products.state_id = ?', 
-			category_id, @state.id).distinct("publishes.id").order("publishes.created_at desc").page(params[:page])
+			@publishes = Publish.joins(products: :product_images).where('publishes.publish_category_id LIKE ? 
+				AND publishes.name LIKE ? AND products.state_id = ?', category_id, keywords, 
+				@state.id).distinct("publishes.id").order("publishes.created_at desc").page(params[:page])
 
-			p "publishes quantity: #{@publishes.count}"
+			# p "publishes quantity: #{@publishes.count}"
 
 		else	
 

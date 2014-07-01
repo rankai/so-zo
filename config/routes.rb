@@ -3,24 +3,23 @@ SoZo::Application.routes.draw do
   get "static_pages/company"
   get "static_pages/help"
   get "static_pages/treaty"
+  get "static_pages/license"
   mount Rich::Engine => '/rich', :as => 'rich'
-  resources :statistics
-
-  resources :watches
-
-  resources :collections
-
-  resources :bases
-
-  resources :line_items
-
-  resources :carts
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  devise_for :users
+  #devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   get 'home/index'
 
+  resources :statistics
+  resources :watches
+  resources :collections
+  resources :bases
+  resources :line_items
+  resources :carts
+  get '/search' => 'search#search'
 
   #------------------------------- publishes ------------------------
   

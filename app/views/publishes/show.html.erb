@@ -1,7 +1,8 @@
-<body id="top">
-  	<div class="contents" />
-    <%= render "home/nav" %>
-    <div style="height:76px"></div>
+<body>
+  <div class="header"> 
+        <%= render "home/nav" %>
+  </div>
+  	<div class="content" />
     <div class="container">
       <div style="height:50px"></div>
       <div id="buystep">
@@ -41,9 +42,9 @@
             <div class="buynow">
               
               <% if already_collected(@publish)  %>   
-                    <button type="button" class="btn btn-primary btn-lg" disabled="disabled">已      收     藏</button>
+                    <button type="button" class="btn btn-primary btn-lg" disabled="disabled">t('favorites.already_added_to_favorites')</button>
               <% else %>
-                  <%= button_to "收        藏", {controller: "collections", action: "create", publish_id: @publish.id}, class: "btn btn-primary btn-lg" %>
+                  <%= button_to t('favorites.add_to_favorites'), {controller: "collections", action: "create", publish_id: @publish.id}, class: "btn btn-primary btn-lg" %>
               <% end %>      
                     
               
@@ -75,7 +76,7 @@
 
         <!-- author info -->
         <div class="buy-right">
-          <div class="title">著者について</div>
+          <div class="title"><%= t('author.title') %></div>
           <div class="userImg2">
             <%= link_to user_path(@user) do %>
               <%= image_tag @publish.user.photo.url(:medium), class:"img-rounded" %>
@@ -103,14 +104,14 @@
           </div> -->
 
           <% if already_watched(@user)  %>         
-              <button type="button" class="btn btn-success btn-lg" disabled="disabled">已      关       注</button>
+              <button type="button" class="btn btn-success btn-lg" disabled="disabled">t('favorites.already_followed')</button>
           <% else %>
-              <%= button_to "关      注", {controller: "users", action: "watch", user_id: @user.id}, class: "btn btn-success btn-lg" %>
+              <%= button_to t('favorites.follow'), {controller: "users", action: "watch", user_id: @user.id}, class: "btn btn-success btn-lg" %>
           <% end %>
               
 
           <div style="height:75px;"></div>
-          <div class="title">ポートフォリオ</div>
+          <div class="title">人気作品</div>
           <ul class="works-list">
           	<% author_works(@publish.user, 8).each do |publish| %>
             <li><a href="<%= publish_path(publish) %>"><%= image_tag publish.publish_image.url(:thumb), class:"img-thumbnail img-responsive" %></a></li>

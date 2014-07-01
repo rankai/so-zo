@@ -16,7 +16,18 @@
 
 </style>
 
-<div id="nav">
+<script type="text/javascript">
+    $(function() {
+        $("#button-search").click(function(e){
+            e.preventDefault? e.preventDefault() : e.returnValue = false; 
+            $(".search-container").slideToggle(500);
+
+        })
+    })
+
+</script>
+
+<div id="nav" class="">
         <div class="container">
             <h1 id="logo">
               <%= link_to(root_path) do %>
@@ -40,7 +51,7 @@
 
            
             <div class="button-panel">
-                <a href="#" class="btn btn-info btn-md button-flat-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.search') %>">
+                <a href="#" id="button-search" class="btn btn-info btn-md button-flat-primary" role="button" data-toggle="tooltip" data-placement="bottom" title="<%= t('nav.search') %>">
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
                 <a href="

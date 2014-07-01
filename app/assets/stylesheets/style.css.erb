@@ -51,11 +51,8 @@ a:hover {
 	margin: 0 auto;
 }
 #nav {
-	position: fixed;
 	height: 80px;
 	width: 100%;
-	padding-left: 60px;
-	margin: 0;
 	border-bottom: 5px solid #F97570;
 	background: #fff;
 	z-index: 10000;
@@ -90,13 +87,51 @@ a:hover {
 #nav #logo {
 	margin-top: -10px;
 }
+
+.headroom {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    right: 0;
+    -webkit-transition: .25s;
+    -o-transition: .25s;
+    -moz-transition: .25s;
+    -ms-transition: .25s;
+    transition: transform .25s ease-in-out;
+}
+.headroom--unpinned {
+   top: -108px;
+  -webkit-transition: .25s;
+  -o-transition: .25s;
+  -moz-transition: .25s;
+  -ms-transition: .25s;
+  transition: .25s;
+  -webkit-transform: translateY(-108px);
+  -o-transform: translateY(-108px);
+  -moz-transform: translateY(-108px);
+  -ms-transform: translateY(-108px);
+  transform: translateY(-108px);
+}
+
+.headroom--pinned {
+   top: 0;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  transition: .5s;
+}
 /* contents*/
+.meny {
+	margin-top: 80px;
+}
 #mainvisual {
-	margin: 80px auto 20px;
 	width: 100%;
 }
 #mainvisual img {
 	width: 100%;
+	margin-bottom: 10px;
 }
 .home-link {
 	color: black;

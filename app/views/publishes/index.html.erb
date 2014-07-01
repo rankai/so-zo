@@ -22,6 +22,7 @@
         /*$("#ill").masonry({
             itemSelector: ".col-sm-2"
         });*/
+
         var container = $("#ill");
         $("img.lazy").lazyload({
           event : "sporty",
@@ -36,16 +37,16 @@
 
         var meny = Meny.create({
             menuElement:  $('.meny')[0],
-            contentsElement:  $('.contents')[0],
+            contentsElement:  $('.content')[0],
             menuElement: document.querySelector( '.meny' ),
-            contentsElement: document.querySelector( '.contents' )
+            contentsElement: document.querySelector( '.content' )
         });
     });
 
 </script>
 
 </head>
-<body id="top">
+<body>
 
 <div class="meny">
   <h4 class="title">Contents</h4>
@@ -56,13 +57,14 @@
   </ul>
 </div>
 
-<div class="contents">
-
-    <div class="meny-arrow"></div>
-
+<div class="header">
     <%= render "home/nav" %>
-    <div style="height:76px">
-    </div>
+    <%= render "home/search_box" %>
+</div>
+
+<div class="content">
+    <div style="height: 80px"></div>
+    <div class="meny-arrow"></div>
     <div class="container">
         <%= render "ranking" %>
         <div class="image-row">
@@ -119,9 +121,12 @@
             </div><!-- image set -->
         </div><!-- image row -->
     </div><!-- container -->
+</div> <!-- content -->
     <div class="clear"></div>
     <div class="page"> <%= paginate @publishes %> </div>
-    <div class="container">
-       <%= render "home/bottom" %>
-   </div>
+    <div class="bottom">
+        <div class="container">
+           <%= render "home/bottom" %>
+       </div>
+    </div>
 </body>

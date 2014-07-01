@@ -3,6 +3,9 @@
 # action -> model
 
 zh-CN:
+  website:
+    title: "欢迎来到，痛房间"
+
   nav:
     hello: "您好：%{user}"
     publish_upload: "投稿"
@@ -28,6 +31,7 @@ zh-CN:
       question: "Q&A"
       agreement: "利用规约"
       map: "网站地图"
+      license: "网络商务许可"
       mail_subject: "反馈"
     menu:
       publish: "作品"
@@ -46,6 +50,10 @@ zh-CN:
       like_rank: "人气排行"
       sell_rank: "贩售数排行"
       type: "类型"
+
+  search:
+      title: "快速搜索您要找的东西"
+      keywords: "请输入关键词"
 
   language:
     select: "选择语言"
@@ -118,6 +126,10 @@ zh-CN:
     receiver: "收款人："
     notice: "成功汇款后请告知客服, 汇款确认后我们会立即安排发货, 谢谢合作!"
 
+  checkout: 
+    online_pay: "オンライン支払い"
+    transfer: "銀行に送金"
+
   order:
     orders: "总订单数"
     my_orders: "我的订单"
@@ -129,8 +141,6 @@ zh-CN:
     cancel_order: "取消订单"
     order_submitted_msg: "订单提交成功，您现在可以付款了"
     pay_order: "立即付款"
-    online_pay: "在线付款"
-    transfer: "银行汇款"
     checkout_support: "我们支持以下几种付款方式:"
     view_order: "查看我的订单"
     order_shipped: "请您耐心等待收货"
@@ -163,6 +173,8 @@ zh-CN:
     order_number: "订单编号"
     order_search_placeholder: "商品名称、订单编号"
 
+  author:
+    title: "作者信息"
 
   publish:
     my_publishes: "我的作品"
@@ -190,6 +202,10 @@ zh-CN:
     my_watches: "我的关注"
     no_watches: "还没有关注"
     watch_total: "总关注数"
+    add_to_favorites: "收   藏"
+    already_added_to_favorites: "已收藏"
+    follow: "关 注"
+    already_followed: "已关注"
 
   views:
     pagination:
@@ -236,6 +252,7 @@ zh-CN:
       product_generate: "生成商品"
       agree_to_our_policy: "我同意著作权条款"
       publish_requirements_prompt: "作品要求：图片格式为JPG或PNG, 最低像素为2000px"
+      product_deletable: "可以把不合适的商品删除掉"
       errors:
         input_name: "请填写作品名称"
         agree_to_our_policy: "请同意我们的著作权条款"
@@ -474,6 +491,7 @@ zh-CN:
   activerecord:
     models:
       #here is for model name, for example, in rails_admin
+      identity: "omniAuth"
       statistic: "统计" 
       user: "用户"
       publish: "作品"
@@ -686,6 +704,8 @@ zh-CN:
       send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封找回密码的邮件。"
       updated: "您的密码已修改成功，您现在已登录。"
       updated_not_active: "您的密码已修改成功。"
+    updates:
+      updated: "您的资料已更新あなたの資料が更新します"
     registrations:
       destroyed: "再见！您的帐户已成功注销。我们希望很快可以再见到您。"
       signed_up: "欢迎您！您已注册成功。"
@@ -696,7 +716,8 @@ zh-CN:
       updated: "帐号资料更新成功。"
       leave_blank: "留下空白,如果你不想改变它"
       password_need_to_confirm_changes: "我们需要您的当前密码确认您的更改"
-
+      blank_placeholder: "这个人很懒，什么也没留下"
+      finish_signup: "完成注册"
     links:
       remember_me: "记住我"
       sign_in_btn: "登录"
@@ -713,9 +734,16 @@ zh-CN:
       change_photo: "更改头像"
       update: "现在更新"
       reset: "重填"
+      sign_in_with: "通过%{provider}账号登陆"
+      3rd_login: "账号登陆"
     label:
       at_registration: "注册成为so-zo一员"
       to_sign_in: "我已注册，现在就"
+      finish_sign_up_email: "请确认您的邮箱，邮箱可以直接作为您的登陆账号"
+      last_step: "马上就ok了, 现在绑定本地账号"
+      registration_notice: "注册须知"
+      3rd_login_notice: "您也可以选择直接选择使用第三方账号登陆"
+      please_read: "请认真阅读我们的"
     placeholders:
       resend_email: "填写您注册的邮箱"
       required: "必填"

@@ -21,6 +21,8 @@ module SoZo
     # config.i18n.default_locale = :de
 
   config.assets.precompile << Proc.new do |path|
+      config.assets.paths << Rails.root.join("app", "assets", "fonts")
+      #config.assets.precompile += %w(.svg .eot .woff .ttf)
       if path =~ /\.(css|js|scss|png|jpg|gif|json)\z/
         full_path = Rails.application.assets.resolve(path).to_path
         app_assets_path1 = Rails.root.join('app', 'assets').to_path

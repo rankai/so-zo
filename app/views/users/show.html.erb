@@ -55,11 +55,11 @@ $(function() {
     });
   })
 </script> 
-<body id="top">
-  <div class="contents">
+<body>
+  <div class="header">
     <%= render "home/nav" %>
-      <div style="height:76px">
-      </div>
+  </div>
+  <div class="content">
       <div class="container">
         <div style="height:50px">
         </div>
@@ -74,9 +74,9 @@ $(function() {
 
                         <% if cannot? :manage, @user %>
                             <% if already_watched(@user)  %>         
-                                <button type="button" class="btn btn-success btn-lg" disabled="disabled">已      关       注</button>
+                                <button type="button" class="btn btn-success btn-lg" disabled="disabled"><%= t('favorites.already_followed') %></button>
                             <% else %>
-                                <%= button_to "关      注", {controller: "users", action: "watch", user_id: @user.id}, class: "btn btn-success btn-lg" %>
+                                <%= button_to t('favorites.follow'), {controller: "users", action: "watch", user_id: @user.id}, class: "btn btn-success btn-lg" %>
                             <% end %> 
                         <% end %>
 
@@ -187,12 +187,14 @@ $(function() {
       </div>
       <div class="clear">
       </div>
+      <div class="bottom">
       <div class="container">
         <%= render "home/bottom" %>
       </div>
+      </div>
       <!-- container -->
   </div>
-  <!-- contents -->
+  <!-- content -->
 </body>
 
 </html>

@@ -94,7 +94,11 @@ gem 'gon'
 gem "font-awesome-rails"
 
 # jquery lazy_load
+# instead, mannually import lazyload js/css to support lazyload
 # gem "lazyload-rails"
+
+# cache
+# gem 'nkallen-cache-money', github: "nkallen/cache-money"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

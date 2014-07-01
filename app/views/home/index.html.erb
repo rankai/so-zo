@@ -8,14 +8,22 @@
     }
  </style>
 
-  <body id="top">
-    <%= render "home/nav" %>
-      <div class="contents">
-        <div id="mainvisual">
-          <%= render "carousel" %>
+ 
+<script type="text/javascript">   
+
+</script>
+
+  <body>
+    <div class="header">
+          <%= render "home/nav" %>
+          <%= render "search_box" %>
+          <div id="mainvisual">
+            <%= render "carousel" %>
           <!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />
           -->
-        </div>
+          </div>
+    </div>
+      <div class="content">
         <!-- mainvisual -->
                   <%= render "instruction" %>
         <div class="container">
@@ -50,14 +58,10 @@
           <% @products = get_products_by_statistics('V', 4) %>
           <%= render "products", object: @products %>
 
-          
-        </div><!-- container -->
-
-        <!-- container -->
         <div style="height:76px"></div>
         <div class="clear">
         </div>
-        <div class="container">
+        <div class="activity">
 
           <div class="row">
             <div class="col-lg-9" id="footerbase">
@@ -105,7 +109,12 @@
             <!-- row -->
           </div>
           <!-- company -->
-         <%= render "bottom" %>
-        <!-- container -->
-      </div>
+      </div>        <!-- activity -->
+    </div> <!-- container -->
+  </div> <!-- content -->
+  <div class="bottom">
+    <div class="container">
+        <%= render "bottom" %>
+    </div>
+  </div>
 </body>

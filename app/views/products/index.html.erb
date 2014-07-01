@@ -41,14 +41,14 @@ $(function(){
 
  var meny = Meny.create({
     menuElement:  $('.meny')[0],
-    contentsElement:  $('.contents')[0],
+    contentsElement:  $('.content')[0],
     menuElement: document.querySelector( '.meny' ),
-    contentsElement: document.querySelector( '.contents' )
+    contentsElement: document.querySelector( '.content' )
 });
 });
 </script>
 
-<body id="top">
+<body>
 
   <div class="meny">
   <h4 class="title">Contents</h4>
@@ -60,16 +60,16 @@ $(function(){
   </div>
   <!-- /#meny -->
 
-  <div class="contents">
-
-   <div class="meny-arrow"></div>
-
-    <%= render "home/nav" %>
-    <div style="height:76px">
+    <div class="header">
+        <%= render "home/nav" %>
+        <%= render "home/search_box" %>
     </div>
+   
+  <div class="content">
+  <div style="height: 80px"></div>
+   <div class="meny-arrow"></div>
     <div class="container">
-        <%= render "ranking" %>
-
+       <%= render "ranking" %>
         <div class="image-row">
             <div class="image-set">
               <div class="row" id="new">
@@ -134,14 +134,17 @@ $(function(){
           <!-- image row -->
 
     </div><!-- container -->
+  </div> <!-- content -->
     <!--<= paginate @products, remote: true %> ajax-->
     <div class="clear">
     </div>
     <div class="page"> <%= paginate @products %> </div>
                    
+    <div class="bottom">
     <div class="container">
-       <%= render "home/bottom" %>
-   </div>
+        <%= render "home/bottom" %>
+    </div>
+  </div>
  </div>
 </body>
 

@@ -183,11 +183,11 @@ $(function() {
      if(!returnBool) return false;  
   }
 </script> 
-<body id="top">
-  <div class="contents">
-    <%= render "home/nav" %>
-      <div style="height:76px">
-      </div>
+<body>
+  <div class="header">
+        <%= render "home/nav" %>
+  </div>
+  <div class="content">
       <div class="container">
         <div style="height:50px">
         </div>
@@ -333,9 +333,12 @@ $(function() {
       </div>
       <div class="clear">
       </div>
-      <div class="container">
-        <%= render "home/bottom" %>
+      <div class="bottom">
+        <div class="container">
+          <%= render "home/bottom" %>
+        </div>
       </div>
+
       <!-- container -->
   </div>
   <!-- contents -->

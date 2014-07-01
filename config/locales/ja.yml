@@ -5,6 +5,8 @@
 #  - Tsutomu Kuroda (t-kuroda@oiax.jp)
 
 ja:
+  website:
+    title: "痛部屋にようこそ"
   nav:
     hello: "こんにちは：%{user}"
     publish_upload: "投稿"
@@ -30,6 +32,7 @@ ja:
       question: "よくある質問"
       agreement: "利用規約"
       map: "サイトマップ"
+      license: "特定商取引法に基づく表記"
       mail_subject: "フィードバック"
     menu:
       publish: "作品"
@@ -49,6 +52,9 @@ ja:
       sell_rank: "販売ランキング"
       type: "ジャンル"
 
+  search:
+      title: "ここで検索してください"
+      keywords: "キーワードを入力してください。"
 
   language:
     select: "言語を選択してください"
@@ -161,6 +167,9 @@ ja:
     order_number: "注文番号"
     order_search_placeholder: "商品名、注文番号"
 
+  author:
+    title: "著者について"
+
   publish:
     my_publishes: "公開作品"
     no_publishes: "非公開作品"
@@ -178,6 +187,7 @@ ja:
     frequency_added_to_cart: "カートに入れる"
     options: "設定"
     refresh_alert: "このページをリフレッシュしないでください。更新失敗の可能性があります。"
+    collect: "お気に入り"
 
   favorites:
     my_collections: "気に入り"
@@ -187,13 +197,17 @@ ja:
     my_watches: "フォロー"
     no_watches: "まだ誰もフォローしていません"
     watch_total: "フォローの総数"
+    add_to_favorites: "お気に入り"
+    already_added_to_favorites: "お気に入り"
+    follow: "フォロー"
+    already_followed: "フォロー"
 
   views:
     pagination:
       first: "&laquo; 最初のページ"
       last: "最後のページ &raquo;"
-      previous: "&lsaquo; ねがい"
-      next: "次頁 &rsaquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
       truncate: "&hellip;"
 
   progress:
@@ -223,6 +237,7 @@ ja:
       product_generate: "製作開始"
       agree_to_our_policy: "「利用規約」を確認した上で投稿してください"
       publish_requirements_prompt: "投稿出来る作品の形式JPGとPNGのみです。商品を作るには2000px以上が必要です。"
+      product_deletable: "不適切な商品はどうぞお削除してください "
       errors:
         input_name: "作品名を記入してください"
         agree_to_our_policy: "「利用規約」を確認した上で投稿してくささい"
@@ -461,6 +476,7 @@ ja:
   activerecord:
     models:
       #here is for model name, for example, in rails_admin
+      identity: "omniAuth"
       statistic: "統計"  
       user: "ユーザー"
       publish: "作品"
@@ -671,6 +687,8 @@ ja:
       send_paranoid_instructions: "もしご登録したメールアドレスは正しければ、確認メールが届くはずです"
       updated: "パスワードが更新しました。今すぐログインを"
       updated_not_active: "パスワードが更新しました。"
+    updates:
+      updated: "您的资料已更新あなたの資料が更新します"
     registrations:
       destroyed: "このアカウントは消し済みました。"
       signed_up: "ありがとうございます。登録成功しました。"
@@ -681,6 +699,8 @@ ja:
       updated: "アカウントデータ更新成功。"
       leave_blank: "空白を殘して、もしあなたはそれを変えたくない"
       password_need_to_confirm_changes: "私達があなたの現在のパスワードの確認ご変更"
+      blank_placeholder: "この人天元突破、何も入れずに残る"
+      finish_signup: "登録を終え"
     links:
       remember_me: "次回から入力を省略"
       sign_in_btn: "ログイン"
@@ -697,9 +717,17 @@ ja:
       change_photo: "写真を更新"
       update: "更新"
       reset: "再記入"
+      sign_in_with: "%{provider} IDでログイン"
+      3rd_login: "で登録"
     label:
       at_registration: "無料会員登録"
       to_sign_in: "SO-ZO会員の方はこちら"
+      finish_sign_up_email: "ヤンマーを确认してください、メールが直接をあなたの上陸口座番号だった"
+      last_step: "すぐok,今绑定当地の口座番号だった"
+      registration_notice: "登録について"
+      3rd_login_notice: "あなたを选択することができますを直接選択使用第三者の口座に上陆した"
+      please_read_part1: "登録する前に、"
+      please_read_part2: "をご確認してください"
     placeholders:
       resend_email: "メールアドレスをご記入"
       required: "必須"
