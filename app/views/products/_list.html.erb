@@ -19,7 +19,7 @@
                  <div class="p_number">
                     <div class="f_l add_chose" style="margin-top:7px; display:-webkit-inline-flex; display: -webkit-grid">
                         <input type="hidden" value="<%= product.base_price %>" />
-                        <input type="number" pattern="\d+" id="product_price_<%= product.id %>" name="product[price]" value="<%= product.price %>" class="form-control text" onchange="validate_price(event)" onKeyUp="validate_price(event)"  style="width:75px" />
+                        <input type="number" pattern="\d+" id="product_price_<%= product.id %>" name="product[price]" value="<%= product.price.to_i %>" class="form-control text" onchange="validate_price(event)" onKeyUp="validate_price(event)"  style="width:75px" />
                         <button role="button" id="btn_price_<%= product.id %>" class="btn-price btn btn-default" onclick="update_price(event, true);"  disabled="disabled" ><%= t('nav.ok') %></button>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
 
 ja:
   website:
-    title: "痛部屋にようこそ"
+    title: "痛部屋"
   nav:
     hello: "こんにちは：%{user}"
     publish_upload: "投稿"
@@ -53,7 +53,7 @@ ja:
       type: "ジャンル"
 
   search:
-      title: "ここで検索してください"
+      title: "ここから検索"
       keywords: "キーワードを入力してください。"
 
   language:
@@ -83,7 +83,7 @@ ja:
     col_size: "サイズ"
     col_color: "色"
     remove_confirm: "ショッピングカートから削除しますか?"
-    quantity_change: "商品の数量を変更成功"
+    quantity_change: "商品の数量が変更成功"
 
   product:
     only_show_with_sells: "売れた分を表示"
@@ -578,7 +578,7 @@ ja:
         confirmation: "と確認値の不一緻"
         accepted: "は受け入れられなければならない"
         empty: "空欄に出来ません"
-        blank: "できない空白文字"
+        blank: "空白に出来ません"
         too_long: "長すぎる（最長 %{count} 文字）"
         too_short: "短い（は最短 %{count} 文字）"
         wrong_length: "不法（長さなければならない %{count} 文字）"
@@ -697,10 +697,10 @@ ja:
       signed_up_but_unconfirmed: "確認メールがお送りしました。メールボックスでご確認ください。"
       update_needs_confirmation: "情報の更新が成功しました。メールボックスでメールをご確認ください。"
       updated: "アカウントデータ更新成功。"
-      leave_blank: "空白を殘して、もしあなたはそれを変えたくない"
-      password_need_to_confirm_changes: "私達があなたの現在のパスワードの確認ご変更"
-      blank_placeholder: "この人天元突破、何も入れずに残る"
-      finish_signup: "登録を終え"
+      leave_blank: "こちらは入力しないでください"
+      password_need_to_confirm_changes: "パスワードが変更されました。"
+      blank_placeholder: "よろしくお願いします"
+      finish_signup: "登録完了"
     links:
       remember_me: "次回から入力を省略"
       sign_in_btn: "ログイン"
@@ -722,16 +722,16 @@ ja:
     label:
       at_registration: "無料会員登録"
       to_sign_in: "SO-ZO会員の方はこちら"
-      finish_sign_up_email: "ヤンマーを确认してください、メールが直接をあなたの上陸口座番号だった"
-      last_step: "すぐok,今绑定当地の口座番号だった"
+      finish_sign_up_email: "ご登録するIDはこちらになります、ご確認してください。"
+      last_step: "ご登録すぐ終ります"
       registration_notice: "登録について"
-      3rd_login_notice: "あなたを选択することができますを直接選択使用第三者の口座に上陆した"
+      3rd_login_notice: "こちらのアカウントはすでに登録されております。"
       please_read_part1: "登録する前に、"
       please_read_part2: "をご確認してください"
     placeholders:
       resend_email: "メールアドレスをご記入"
       required: "必須"
-      not_required: "别売"
+      not_required: "自由"
     sessions:
       signed_in: "ログイン成功."
       signed_out: "ログアウト成功."
@@ -865,7 +865,7 @@ ja:
         encoding_to: "エンコード:"
         encoding_to_help: "出力エンコードを選択して下さい。空のままにすると現在の入力エンコードのままになります: (%{name})"
         skip_header: "ヘッダを無し"
-        skip_header_help: "チェックするとヘッダ(フィールドのタイトル)を出力しません。"
+        skip_header_help: "チェックするとヘッダ(フィールドのタイトル)が出力しません。"
         default_col_sep: ","
         col_sep: "カラム区切り文字"
         col_sep_help: "空白にすると標準の '%{value}' になります。" # value is default_col_sep

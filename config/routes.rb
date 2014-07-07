@@ -20,7 +20,6 @@ SoZo::Application.routes.draw do
   resources :line_items
   resources :carts
   get '/search' => 'search#search'
-
   #------------------------------- publishes ------------------------
   
   resources :checkouts, only:[:wepay, :result] do
@@ -94,7 +93,9 @@ SoZo::Application.routes.draw do
      resources :products do
         collection do
           get 'preview'
+          get 'job'
           get 'top'
+          get 'results'
         end
      end
      

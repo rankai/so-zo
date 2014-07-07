@@ -325,10 +325,26 @@
               <div class="tmenu tmenu3" style="border:none;">
                 <ul id="tab1">
                   <li class="on" onmouseover="SetTab('tab1',0,2);">
-                    <%= Product.human_attribute_name('description') %>
+                      <%= ProductTemplate.human_attribute_name('description') %>
+                  </li>
+                </ul>
+              </div>
+              <div class="tbox3">
+                <div id="tab1-content0" class="block">
+                  <div class="des-con">
+                    <p>
+                      <%= @product.product_template.description.html_safe %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="tmenu tmenu3" style="border:none;">
+                <ul id="tab1">
+                  <li class="on" onmouseover="SetTab('tab1',0,2);">
+                    <= Product.human_attribute_name('description') %>
                   </li>
                    <li onmouseover="SetTab('tab1',1,2);">
-                    <%= ProductTemplate.human_attribute_name('description') %>
+                    <= ProductTemplate.human_attribute_name('description') %>
                   </li> 
                 </ul>
               </div>
@@ -336,16 +352,16 @@
                 <div id="tab1-content0" class="block">
                   <div class="des-con">
                     <p>
-                      <%= @product.description %>
+                      <= @product.description %>
                     </p>
                   </div>
                 </div>
                 <div id="tab1-content1" class="none">
                   <p>
-                    <%= @product.product_template.description.html_safe %>
+                    <= @product.product_template.description.html_safe %>
                   </p>
                 </div> 
-              </div>
+              </div> -->
               <!--tab end-->
             </div>
             <!--相关商品开始-->

@@ -1,16 +1,116 @@
+require "pusher"
+require "redis-queue"
+require "thread"
 class ProductsController < ApplicationController
+		include ActionController::Live
+
 	before_filter :authenticate_user!, :except => [:show, :index, :top, :products]
 
-	def preview
-        # validate legal?
-		@publish = Publish.find(params[:publish_id])
-		#@template = ProductTemplate.find(params[:template_id])	
-		@products = Product.generate_products(@publish)
+	# check results
+	def results
+		response.headers['Content-Type'] = 'text/event-stream'
+		sse = Pusher::SSE.new(response.stream)
+		# Looper.new.async.perform(queue, sse)
+		job_id = params[:job_id]
+		# redis = Redis.new
+		#Create a queue that will listen for a new element for 10 seconds
+		queue = Redis::Queue.new("__#{job_id}", "bp__#{job_id}", :redis => $redis)
 
-		if @products.nil?
-			redirect_to new_user_publish_path(@user), alert: t('flash.alerts.commit_tougao_alert')
+		#When all elements are dequeud, process method will wait for 10 secods before exit
+		# queue.process do |message|
+		#   puts "'#{message}'" 
+		# end
+
+
+		begin
+			queue.process(true) do |message|
+				
+				# if message.include? '/'
+				# 	p "#{message}"
+			 # 		sse.write({data: "#{message}"}, event: "update")
+			 # 	elsif message == 'finished'
+			 # 		# sse.write({msg: "sss"}, event: 'results')
+			 # 		sse.write({data: ""}, event: "finished")
+			 # 	else
+			 # 		# useless now
+			 # 	end
+
+				if message == 'finished'
+					p "finished"
+					sse.write({data: "#{message}"}, event: "finished")
+				elsif not message.blank?
+					p "update"
+					p "#{message}"
+					sse.write({data: "#{message}"}, event: "update")
+				else
+				end
+
+				queue.commit
+			end
+		rescue IOError
+			#
+		ensure
+			sse.close
+		end
+
+		# Looper.new.async.perform(queue, sse)
+
+	end
+
+	def preview
+		if params[:publish_id]
+			@publish = Publish.find(params[:publish_id])
+			@products = Product.where("products.publish_id = ?", @publish.id)
+
+			if @products.nil? || @products.count == 0
+				redirect_to new_user_publish_path(@user), alert: t('flash.alerts.commit_tougao_alert')
+			else
+				render partial: "list", object: @products
+			end
+		end
+	end
+	
+	def job
+        # validate legal?
+        if params[:publish_id]
+
+        	uuid = UUID.new.generate(:compact)
+			@publish = Publish.find(params[:publish_id])
+			# @products = Product.generate_products(@publish)
+
+			# if @products.nil? || @products.count == 0
+			# 	redirect_to new_user_publish_path(@user), alert: t('flash.alerts.commit_tougao_alert')
+			# else
+			# 	GenerateProductsJob.new.async.perform(queue, "haha")
+			# 	# render partial: "list", object: @products
+			# end
+			t = Thread.new do
+		   	# We should use a second connection here since the first one is busy 
+		   	# on a blocking call
+
+				_redis = Redis.new
+				# _queue = Redis::Queue.new('__test', 'bp__test', :redis => _redis)
+				_queue = Redis::Queue.new("__#{uuid}", "bp__#{uuid}", :redis => _redis)
+				p "#{uuid}"
+				@product_templates = ProductTemplate.all
+				templates_length = @product_templates.count
+				@product_templates.each_with_index do |template, index|
+					@product = Product.generate_product(@publish, template)
+					if @product.present?
+						_queue << "#{templates_length}/#{index+1}"
+					end
+				end
+
+				_queue << "finished"
+
+			end
+   			# _queue = Redis::Queue.new('__test', 'bp__test', :redis => $redis)
+
+			# GenerateProductsJob.new.async.perform(_queue, "haha")
+			render status: 202, text: "job_id:#{uuid}"
+			# t.join
 		else
-			render partial: "list", object: @products
+			# invalid request
 		end
 	end
 
@@ -99,6 +199,10 @@ class ProductsController < ApplicationController
 
 		# TODO: Add view statistics
 		Statistic.create_or_update_statistic(@product.id, 'C', 'V')
+
+		respond_to do |format|
+			format.html {render "show"}
+		end
 
 	end
 
@@ -241,4 +345,10 @@ class ProductsController < ApplicationController
 	end
  
  	# any others 
+
+ 	
+		#  after do
+		#   ActiveRecord::Base.connection.close
+		# end
+
 end

@@ -93,6 +93,26 @@ gem 'gon'
 # font-awesome
 gem "font-awesome-rails"
 
+# puma concurrent web server
+gem 'puma'
+
+# redis
+gem 'redis'
+# redis queue
+gem 'redis-queue'
+
+# resque queusing jobs
+# gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
+
+# like girls_friday background job
+gem 'sucker_punch', '~> 1.0'
+
+# render in any class
+# gem 'render_anywhere', :require => false
+
+# uuid
+gem 'uuid'
+
 # jquery lazy_load
 # instead, mannually import lazyload js/css to support lazyload
 # gem "lazyload-rails"

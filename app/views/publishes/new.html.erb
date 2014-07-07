@@ -1,16 +1,18 @@
 <%= include_gon(:init => true) %>
-<%= stylesheet_link_tag "publishes" %>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function() {
 
-       $("#processing").hide();
+       //$("#processing").hide();
        $('#loading').hide(); 
-       $('#uploading').hide();   
+       //$('#uploading').hide();   
        $('.product-op').hide();
+       $('#timeout').hide();
+       $('#waiting').hide();
+       $(".circle-progress").hide();
        $("#myModal").modal('show');
-       //$("#products_view").hide();
+       //$("#products-view").hide();
 
         // show agreement
         // $("#agreement").click(function(){
@@ -183,13 +185,10 @@
                     dataType: 'json',
                     processData: false,
                     success: function(data) {
-                        $("#processing").hide();
-                        console.log(data);
-                        console.log("I am here");        
+                        $("#processing").hide();     
                         // set publish id to hidden input        
                         $("#publish_id").val(data["publish_id"]);
                         var templates = jQuery.parseJSON(data["templates"]);
-                        console.log("templates: " + templates)
                         preview_products(templates);
                     },
                     xhr: function(){
@@ -205,14 +204,16 @@
                                       $("#uploading .progress .progress-bar").css("width", percent + "%");
                                       $("#uploading .progress .progress-bar span").text(percent + '%');
                                       */
-                                      $("#uploading span").text(percent.toFixed(0) + '%');
-                                      console.log(percent.toFixed(0) + '%');
+                                      //$("#uploading span").text(percent.toFixed(0) + '%');
+                                      $(".circle-progress .progress-label").text("<%= t('progress.uploading') %>, " + percent.toFixed(0) + '%');
+                                      //console.log(percent.toFixed(0) + '%');
                                 }
                              }, false);
 
                             xhr.upload.addEventListener("load", function(e){
                                 $("#uploading").hide();
-                                $("#processing").show();
+                                //$("#processing").show();
+                                $(".circle-progress .progress-label").text("<%= t('progress.publish_processing') %>...");
                             }, false);
                         }
 
@@ -223,7 +224,8 @@
                 };
                 jQuery(form).ajaxSubmit(options);
                 $("#pre").hide();
-                $("#uploading").show();
+                //$("#uploading").show();
+                $(".circle-progress").show();
                 $("#myModal").modal('hide');
             }
         });
@@ -261,43 +263,150 @@
         total = templates.length;
         //var index = 1;
 
-        $("#making #progress").text("<%= t('product.quantity') %>: " + total);
-        $("#making").show();
+        // $("#making #progress").text("<%= t('product.quantity') %>: " + total);
+        // $(".circle-progress").show();
 
-        console.log("sliding up");
-        $('#nav').slideUp('slow'); 
-        console.log("sliding down");
-        $('.product-op').slideDown('slow');
+         // window.setTimeout(function() {
+         //    $("#waiting").show();
+         // }, 3000);
+
+         // window.setTimeout(function() {
+         //    $("#waiting").hide();
+         //    $("#timeout").show();
+         // }, 10000);
 
         //$.each(templates,function(i,val){
 
-            var options = {
-                target: '#products_view',
+        var xmlhttp;
+        if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+        }else{// code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        var params = "publish_id=" + $("#publish_id").val();
+        var url = "/products/job?" + params;
+        xmlhttp.open("GET",url,true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.timeout = 10000;
+
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState == 4) {
+                console.log(xmlhttp.responseText);
+                setupSSEs(xmlhttp.responseText);
+            }
+        };
+        xmlhttp.ontimeout = function() {
+            console.log("timeout");
+        };
+        xmlhttp.send();
+    };
+
+    function setupSSEs(data) {
+        // Listening for SSEs
+        setTimeout(function(){
+
+            var params = "job_id=" + data.split(":")[1];
+            var source = new EventSource('/products/results?' + params);
+            // source.addEventListener('update', function(e) {
+            //     console.log(e);
+            // });
+            source.addEventListener('message', function(e) {
+              $("#products-view").append(e.data);
+            }, false);
+
+            source.addEventListener('update', function(e) {
+                // $("#products-view").append(e.data);
+                var json = jQuery.parseJSON(e.data);
+                var progress_str_array = json.data.split('/');
+                var total = progress_str_array[0];
+                var current = progress_str_array[1];
+
+                // for progress bar
+                // var progress_bar = $(".progress .progress-bar");
+                // var progress_bar_label = $(".progress .progress-bar .sr-only");
+                // console.log(json);
+                // if(current == total) {
+                //     $(progress_bar).css("width", "100%");
+                // } else {
+                //    var step_str = current/total*100 + "%";
+                //    $(progress_bar).css("width", step_str);
+                //    $(progress_bar_label).text(step_str + " complete");
+                // }
+
+                // for progress circle
+                var progress_circle = $(".circle-progress .loader");
+                var progress_circle_label = $(".circle-progress .progress-label");
+                $(progress_circle_label).text("<%= t('progress.making_products') %>..., " + total + "/" + current);
+
+            }, false);
+
+            source.addEventListener('open', function(e) {
+                // Connection was opened.
+            }, false);
+
+            source.addEventListener('error', function(e) {
+               if (e.readyState == EventSource.CLOSED) {
+                 // Connection was closed.
+                }
+            }, false);
+
+            source.addEventListener('finished', function(e){
+                source.close();
+                $(".circle-progress").hide();
+                // var $container = $("#products-view");
+                // $("#timeout").remove();
+                // $container.imagesLoaded(function() {
+                    // load_masonry($container, ".col-sm-2");           
+                // });
+                 //console.log("sliding up");
+
+                preview();
+
+                $('#nav').slideUp('slow'); 
+                //console.log("sliding down");
+                $('.product-op').slideDown('slow');
+
+
+                $('input[type="submit"]').removeAttr("disabled"); 
+                $('button').removeAttr("disabled");                
+                $('a').removeAttr("disabled");  
+            });
+            // source.onmessage = function(e) {
+            //     // console.log(e);
+            //     $("#products-view").append(e.data);
+            // };
+
+        }, 1);
+    }
+
+    function preview() {
+         var options = {
+                target: '#products-view',
                 url: '/products/preview',
                 data: {publish_id:$("#publish_id").val()},//template_id: val.id},
                 success: function(data) {
-                    //$("#making #progress").text(index + " / " + total);
-                    $("#products_view").html(data);
-
-                    var $container = $("#products_view");
-                    $("#making").hide();
-                    $container.imagesLoaded(function() {
-                        load_masonry($container, ".col-sm-2");           
+                    console.log(data);
+                    var container = $("#products-view");
+                    container.html(data);
+                    container.imagesLoaded(function() {
+                        load_masonry(container, ".col-sm-2");           
                     });
 
                     $('input[type="submit"]').removeAttr("disabled"); 
                     $('button').removeAttr("disabled");                
                     $('a').removeAttr("disabled");  
-
-                   //index++;
-                }
+                   
+                },
+                // UNSENT = 0;  // 没有发送请求
+                // OPENED = 1;    // 已经打开http连接
+                // HEADERS_RECEIVED = 2; // 接收到response header
+                // LOADING = 3;          // 真正接收response body   
+                // DONE = 4;             // 请求接收完毕
             };
 
-            //console.log(val);
-            $.ajax(options);
-        //});
-    };
-
+        $.ajax(options);
+    }
 
     function load_masonry(container, itemSelector) {
         container.masonry({
@@ -326,7 +435,7 @@
                     console.log("success");
                     flash(data);
                     $("#"+id).parent().parent().parent().remove();
-                    var $container = $("#products_view");
+                    var $container = $("#products-view");
                     load_masonry($container, ".col-sm-2");              
                 }, 
                 error: function(data) {
@@ -444,86 +553,6 @@
 
 </script>
 
-<style type="text/css">
-    .col-sm-2 {
-        width: 20%;
-        margin-bottom: 10px;
-    }
-
-    .publish-info {
-        width:45%;
-        float:right;
-    }
-
-    .product-op {
-        margin-top: 50px;
-        border-bottom: 1px solid #e6e6e6;
-        height: 50px;
-    }
-
-    .product-op .left {
-        float: left
-    }
-
-    .product-op .left #info {
-        padding: 10px;
-    }
-
-    .product-op .left label {
-        float: left;
-        padding-top: 5px;
-        padding-right: 10px;
-        width: 120px;
-    }
-
-    .product-op .right {
-        float: right
-    }
-
-    .product-op .right button {
-        margin-top: 5px;
-    }
-
-    .line-price {
-        height: 45px;     
-    }
-
-    .line-price span {
-        float: left;
-        padding: 10px;
-        padding-right: 5px;
-    }
-
-    .line-bottom a{
-        color:white;
-    }
-
-    .line-bottom  a:hover{
-        text-decoration: none;
-    }
-
-    #loading {
-        text-align: center;
-    }
-
-    #price-input-group {
-        width: 220px;
-        position: absolute;
-        margin-left: 100px;
-    }
-
-    #product_price {
-        padding-left: 20px;
-        text-align: right;
-        background: url("<%= asset_path "percent.png" %>") no-repeat scroll left center transparent;
-    }
-
-    #price-submit {
-        margin-left: 205px
-    }
-
-
-</style>
     <!--
     # upload file
     # upload success - > request preview products
@@ -531,67 +560,70 @@
     # confirm products
     # backend - save and clean products-->
 
-<body id="top">
-    <div class="contents">
+<body>
+    <div class="header">
         <%= render "home/nav" %>
-        <div style="height:76px">
-        </div>
-        <div class="container">
+    </div>
+    <div class="content">
 
-            <div class="clear">
-            </div>
+        <div class="container">
 
             <%= render "upload" %>
 
             <div style="margin-top: 10px">
-            <div class="left-cont">
-                <div id="publish_view" style="display:none">
+                <div class="left-cont">
+                    <div id="publish_view" style="display:none">
+                    </div>
                 </div>
-            </div>
 
-            <div id="loading"><%= image_tag "loading.gif", style: "margin-right: 10px" %></div>
-            <div class="product-op">
+                <div id="loading"><%= image_tag "loading.gif", style: "margin-right: 10px" %></div>
+                <div class="product-op">
 
-                <div class="left">
-                    <!-- <form class="form-inline" role="form" id="price-form">
-                      <div class="form-group">
-                        <label for="product_price"><= t('product.set_uniform_price') %>:</label>
-                        <div class="input-group" id="price-input-group">
-                            <input type="number" min="1" max="100" pattern="\d+" class="form-control" id="product_price" name="product[price]" placeholder="<= t('product.input_price_ratio') %>">
+                    <div class="left">
+                        <!-- <form class="form-inline" role="form" id="price-form">
+                          <div class="form-group">
+                            <label for="product_price"><= t('product.set_uniform_price') %>:</label>
+                            <div class="input-group" id="price-input-group">
+                                <input type="number" min="1" max="100" pattern="\d+" class="form-control" id="product_price" name="product[price]" placeholder="<= t('product.input_price_ratio') %>">
+                            </div>
+                          </div>
+                          <button type="submit" id="price-submit" class="btn btn-default" disabled="disabled" ><= t('nav.ok') %></a></button>
+                        </form> -->
+                         <div id="info">
+                            <span class="glyphicon glyphicon-info-sign inset"></span><%= t('modal.upload.product_deletable') %>
                         </div>
-                      </div>
-                      <button type="submit" id="price-submit" class="btn btn-default" disabled="disabled" ><= t('nav.ok') %></a></button>
-                    </form> -->
-                     <div id="info">
-                        <span class="glyphicon glyphicon-info-sign inset"></span><%= t('modal.upload.product_deletable') %>
+                    </div> <!-- left -->
+
+                    <div class="right" style="float:right">  
+
+                        <a role="button" id="btn-confirm-tougao" class="btn btn-success"  disabled="disabled" ><%= t('product.confirm_tougao') %></a>
+                        <a id="btn-re-tougao" class="publish-delete btn btn-danger" role="button" disabled="disabled"><%= t('product.re_tougao') %></a>    
                     </div>
+
+                </div> <!-- product op -->
+
+                <input type="hidden" id="publish_id" />
+                <div id="products-view" class="right-cont">
+                        <!--把图片资源添加到此处 例如： <div class="col-sm-2">
+                        <div class="graybox">
+                        <div class="imgarea">
+                        <a class="example-image-link" href="./img/example2.gif" data-lightbox="example-set" title="『新生 軟式globe』">
+                        <img class="example-image" src="./img/example2.gif" alt="" /></a>
+                        </div>
+                        <p class="itemtitle">『新生 軟式globe』</p>
+                        </div 
+                        </div>  
+                        -->
+                        <div class="loading-view text-center col-sm-6" style="margin-left:25%; padding: 20px">
+                            <%= render "loading" %>
+                        </div>
+                    
                 </div>
+                <!--products-view-->
+                <div class="clear"></div>
+        </div> <!--div margin-top-->
 
-                <div class="right" style="float:right">  
-
-                    <a role="button" id="btn-confirm-tougao" class="btn btn-success"  disabled="disabled" ><%= t('product.confirm_tougao') %></a>
-                    <a id="btn-re-tougao" class="publish-delete btn btn-danger" role="button" disabled="disabled"><%= t('product.re_tougao') %></a>    
-                </div>
-
-            </div>
-
-            <input type="hidden" id="publish_id" />
-            <div id="products_view" class="right-cont">
-                    <!--把图片资源添加到此处 例如： <div class="col-sm-2">
-                    <div class="graybox">
-                    <div class="imgarea">
-                    <a class="example-image-link" href="./img/example2.gif" data-lightbox="example-set" title="『新生 軟式globe』">
-                    <img class="example-image" src="./img/example2.gif" alt="" /></a>
-                    </div>
-                    <p class="itemtitle">『新生 軟式globe』</p>
-                    </div 
-                    </div>  
-                    -->
-                <%= render "loading" %>
-            </div>
-            <!--products_view-->
-            <div class="clear"></div>
-        </div><!--container-->
-
-    </div><!--contents-->
+    </div><!--container-->
+</div> <!-- content -->
+    <div class="bottom"></div>
 </body>
