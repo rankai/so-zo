@@ -1,9 +1,0 @@
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-primary btn-lg button-flat-primary omniauth-provider" do %> 
-			 <%= fa_icon "facebook large", class: "left" %>
-			 <%= t('devise.links.sign_in_with', provider: provider.to_s.titleize) %>
-			  <%= fa_icon "caret-right large", class: "right" %>
-    	<% end %><br />
-  <% end -%>
-<% end -%>

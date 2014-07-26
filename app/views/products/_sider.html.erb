@@ -1,9 +1,0 @@
-<div id="sidernav">
-<h1 id="title"><%= t('nav.rank.type') %></h1>
-<ul class="sider">
-  <li><a href="<%= top_products_path %>"><%= t('product.all') %></a></li>
-  <% TemplateCategory.all.each do |category| %>
-  <li><a href="<%= top_products_path(:product_category => category.name) %>"><%= category.description %></a></li>
-  <% end %>
-</ul>
-</div>

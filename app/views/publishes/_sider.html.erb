@@ -1,9 +1,0 @@
-<div id="sidernav">
-<h1 id="title"><%= t('nav.rank.type') %></h1>
-<ul class="sider">
-  <li><a href="<%= hot_publishes_path %>"><%= t('publish.all') %></a></li>
-  <% PublishCategory.all.each do |category| %>
-  <li><a href="<%= hot_publishes_path(:publish_category => category.name) %>"><%= category.description %></a></li>
-  <% end %>
-</ul>
-</div>
