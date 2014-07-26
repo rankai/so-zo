@@ -1,0 +1,40 @@
+<!--<%= @products.size() %>-->
+<!-- product generate grid template -->
+<% @products.each do |product| %>
+    <div class="col-sm-2">
+        <div class="graybox">
+            <div class="imgarea">
+                <a class="example-image-link" href="<%= product.product_images.first.product_image.url %>" data-lightbox="example-set"
+                title="<%= product.name %>">
+                    <%= image_tag product.product_images.first.product_image.url(:medium), alt: product.name %>
+                </a>
+            </div><!-- imgarea -->
+            <p class="itemtitle">
+                『<%= product.name %>』
+            </p>
+            <p class="describe">
+                <%= product.description %>
+            </p>
+            <div class="line-price">
+                <span><%= t('product.set_price') %>:</span>
+                 <div class="p_number">
+                    <div class="f_l add_chose" style="margin-top:7px; display:-webkit-inline-flex; display: -webkit-grid">
+                        <input type="hidden" value="<%= product.base_price %>" />
+                        <input type="number" pattern="\d+" id="product_price_<%= product.id %>" name="product[price]" value="<%= product.price.to_i %>" class="form-control text" onchange="validate_price(event)" onKeyUp="validate_price(event)"  style="width:75px" />
+                        <button role="button" id="btn_price_<%= product.id %>" class="btn-price btn btn-default" onclick="update_price(event, true);"  disabled="disabled" ><%= t('nav.ok') %></button>
+                    </div>
+                </div>
+            </div>
+            <div class="line-bottom">
+                <a href="#" class="product-delete button button-rounded button-flat-highlight button-small" id="del-<%= product.id %>" onclick="product_delete(event);"  disabled="disabled"><%= t('nav.delete') %></a>
+            </div>
+        </div><!-- graybox -->
+    </div><!-- col2 -->
+
+    <!-- test for all -->
+
+<% end %>
+
+<!-- below all tests, should be removed after that-->
+
+<!-- test end -->

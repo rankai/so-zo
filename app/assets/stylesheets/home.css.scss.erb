@@ -1,0 +1,303 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ----------------------------------- not update -------------------------------------- */
+
+.login-panel {
+	margin-top:10px;
+	margin-left:20px;
+	float:right
+}
+
+.button-panel a {
+	height:30px
+}
+
+.user-info {
+	width: 120px;
+	img {
+		float: left;
+	    margin-top: -10px;
+	    height: 32px;
+	    width: 32px;
+	}
+}
+
+.user-toggle {
+	margin-top:-8px;
+	a {
+		text-decoration: none;
+	}
+}
+
+/* ----------------------------------- not update -------------------------------------- */
+
+@import "common";
+
+/* ----------------------------------- new home ---------------------------------------- */
+@mixin siderbar-searchbox($height) {
+  input {
+    @if $height < 60px {
+      height: $baseSearchBoxHeight;
+      padding-top: 10px;
+    } @else {
+      height: $height;
+    }
+    @include naked-input;
+    background-color: darken($baseNavBackgroundColor, 10%);
+    padding-left: 50px;
+  }
+  i {
+      position: absolute;
+      top: 40%;
+      left: 20px;
+      color: gray;
+      z-index: 1000;
+  }
+  .input-group {
+    width: 100%;
+  }
+  
+}
+
+
+/* siderbar-bg => siderbar */
+.siderbar {
+  margin-top: 25px;
+  background-color: $baseBackgroundColor;
+  /* search box */
+  @include siderbar-searchbox(0px);
+  /* search box - split line - nav */
+  .siderbar-split-line {
+    border: $baseLine;
+  }
+  .siderbar-nav {
+    background-color: $baseNavBackgroundColor;
+    padding:0px $baseSiderbarNavPadding $baseSiderbarNavPadding;
+    li {
+      	a {
+	        /* bottom-line dashed */
+	        border-bottom: $baseSiderbarNavBottomLine;
+	        padding-left: 0px;
+	        padding-right: 0px;
+	        color: nth($linkColors, 1);
+      	}
+	  	/* siderbar-title-bg-a */
+	  	// &:first-child {
+	   //    	@include border-radius(0px);
+	   //    	color: $baseFontColor;
+	   //    	background-color: nth($baseSiderbarNavItemBackgroundColors, 2) !important;
+	   //    	a {
+				// border-bottom: none;
+				// padding-left: 15px;
+	   //      	padding-right: 15px;      	
+	   //    	}
+       // }
+	}
+	.active {
+      	padding-top: 15px;
+      	a {
+      		color: nth($linkColors, 3);
+      		@include border-radius(0px);
+			border-bottom: none;
+			padding-left: 15px;
+        	padding-right: 15px;
+        	background-color: nth($baseSiderbarNavItemBackgroundColors, 3) !important;
+   		}
+	}
+  }
+}
+
+// grid
+.grid-title {
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+
+
+/* ----------------------------------- header nav ------------------------------------ */
+
+@mixin position-logo($type: big) {
+	.navbar-brand img {
+		position: absolute;
+		top: 1px;
+		@if $type == big {
+			padding-left: 10px;
+		} @else {
+			height: 40px;
+			padding-left: -10px;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.navbar-nav {
+		float: default;
+	}
+	.loginbar {
+		padding-left: 0px;
+	}
+	@include position-logo(small);
+}
+@media screen and (min-width: 768px) {
+	.navbar-nav {
+		float: right;
+	}
+	.loginbar {
+		padding-left: 30px;
+	}
+	.navbar-nav>li>a {
+		height: 60px;
+		line-height: 30px;
+	}
+	@include position-logo(big);
+}
+
+// overwrite bootstrap nav default
+.navbar-tabs {
+  margin-bottom: 0px;
+  @include box-shadow(0 -1px 15px rgba(125,125,125,0.8));
+  background-color: $baseNavBackgroundColor;
+  border-top: $baseNavHeadLine;
+  .navbar-nav {
+  	.active {
+  		a { 
+			 &, &:hover, &:focus {
+				background-color: $baseNavItemBackgroundColor;
+			 	color: $baseFontColor;
+			}
+  		}
+  	}
+  	a {
+  		color: #777;
+  		&:hover, &:focus {
+  		  color: #333; 
+  		}
+  	}
+  }
+  #example-navbar-collapse li {
+  	margin-right: 20px;
+  }
+}
+
+.loginbar {
+  border-left: 1px solid black;
+}
+
+/* ----------------------------------- header nav ------------------------------------ */
+
+
+/* ----------------------------------- floater --------------------------------------- */
+
+#float{
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	width: 100%;
+	height: 800px;
+	padding: 50px;
+	text-align: center;
+	z-index: 999;
+	.float-smile {
+		text-align: center;
+		img {
+			width: 460px;
+			margin: 0 auto;
+		}
+	}
+	.float-intro {
+		padding: 50px;
+		li {
+			text-align: center;
+			font: $baseFont;
+			line-height: 40px;
+			font-weight: bold;
+			color: $baseFontColor;
+		}
+	}
+	.float-btns {
+		display: inline-block;
+		display: inline-flex;
+		li {
+			margin-left: 20px;
+		}
+		a {
+			/* width: 180px; */
+			/* padding: 0px 30px; */
+			/* height: 40px; */
+			padding: 30px;
+			background-color: rgba(0,0,0,0.2);
+			display: block;
+			border-top-width: 4px;
+			border-color: rgba(255,255,255,0.5);
+			color: #F1F1F1;
+			font-weight: bold;
+			font-size: 20px;
+			padding-left: 80px;
+			padding-right: 80px;
+			-moz-border-radius: 8px;
+			-webkit-border-radius: 8px;
+			border-radius: 8px;
+			&:hover {
+				color: white;
+			}
+		}
+	}
+
+}
+
+/* ----------------------------------- floater --------------------------------------- */
+
+
+/* ----------------------------------- footer ---------------------------------------- */
+#footer {
+	padding: 80px 40px 0px;
+	@include baseLink;
+	.footer-left {
+	    padding-top: 20px;
+	    div {
+	        padding-left: 0px;
+	        padding-right: 0px;  
+	    }
+	    .products {
+	        padding-right: 60px;
+	        .category-content {
+	            border-left: 1px solid #E6E6E6;
+	            padding-left: 20px;
+	            margin-left: -20px;
+	            height: 400px;
+	        }
+	    }
+	    .category-title {
+	        font-size: 24px;
+	        color: #666;
+	        padding-left: 0px;
+	        padding-bottom: 10px;
+	        font-weight: bold;
+	        border-bottom: 2px solid #E6E6E6;
+	    }
+	    .category-content {
+	        margin-top: 20px;
+	        font-size: 20px;
+	        li {
+	            line-height: 40px;
+	        }
+	    }
+	}
+	.footer-center {
+
+	}
+	.footer-right {
+	    padding: 180px;
+	}
+	.quick-links {
+	    padding-top: 40px;
+	    padding-bottom: 10px;
+	    span {
+	        color: #E6E6E6;
+	    }
+	}
+}
+/* ----------------------------------- footer ---------------------------------------- */

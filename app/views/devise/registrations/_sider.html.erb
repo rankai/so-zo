@@ -1,0 +1,15 @@
+<div id="sidernav">
+
+	<ul class="nav nav-pills nav-stacked">
+
+  		<li id="nav-a"><a href="<%= user_path(@user) %>"><%= t('nav.menu.personal_info') %></a></li>
+        <li id="nav-b"><a href="<%= user_publishes_path(@user) %>"><%= t('nav.menu.my_works') %></a></li>
+        <li id="nav-c"><a href="<%= user_products_path(@user) %>"><%= t('nav.menu.my_products') %></a></li>
+        <li id="nav-d"><a href="<%= user_collections_path(@user) %>"><%= t('favorites.my_collections') %></a></li> <!-- #79a2a7 -->
+        <li id="nav-e"><a href="<%= user_watches_path(@user)%>"><%= t('favorites.my_watches') %></a></li> <!-- #e96637 -->
+        <li id="nav-f"><a href="<%= user_orders_path(@user) %>"><%= t('nav.menu.my_orders') %></a></li>
+        <li id="nav-g"><a href="<%= edit_user_registration_path %>"><%= t('nav.menu.settings') %></a></li>
+	</ul>
+
+</div>
+<!--sidernav end-->

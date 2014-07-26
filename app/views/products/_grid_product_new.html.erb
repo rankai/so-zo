@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="new-product-page-header">
+        <span>
+            公開して売る
+        </span>
+        <button type="button" class="button new-product-submit-btn button-flat-highlight" onclick="confirm_publish(event)">
+            <%= t('product.confirm_tougao') %>
+        </button>
+        <button type="button" class="button new-product-cancel-btn button-flat-caution" onclick="reset_publish(event)">
+            <%= t('product.re_tougao') %>
+        </button>
+    </div>
+    <h3 class="new-product-section-header">
+        価格を決めて公開しましょう。販売したくないものは削除できます。
+    </h3>
+    <h3 class="new-product-section-header">
+        <small>
+            価格欄に最初に表示されている最低価格を下回る価格を設定することはできません
+        </small>
+    </h3>
+    <div class="row">
+      <% @products.each do |product| %>
+          <div class="col-sm-6 col-md-3">
+              <div class="thumbnail new-product-grid-item">
+                <div class="images">
+                     <%= image_tag product_image(product).product_image.url(:medium), class: "img-responsive" %>
+                     <%= image_tag "image_bottom.png", class: "img-responsive" %>
+                </div>
+                  <div class="caption">
+                      <h4 class="item-name">
+                          <%= product.name %>
+                      </h4>
+                      <h3 class="item-category">
+                          <b>
+                              <%= product.product_template.template_name %>
+                          </b>
+                      </h3>
+                      <div class="row item-price">
+                          <div class="col-xs-8">
+                              <input type="hidden" id="product-float-price-<%= product.id %>" value="<%= product.base_price.to_i %>" />
+                              <input class=" form-control new-product-price-input" type="number" pattern="\d+" id="product-price-<%= product.id %>" name="product[price]" placeholder="<%= product.price.to_i %>円" value="<%= product.price.to_i %>"/>
+                          </div>
+                          <div class="col-xs-4">
+                              <a href="#" class="button button-flat-primary new-product-price-btn" role="button" id="btn-price-<%= product.id %>" onclick="update_price(event, true);">
+                                  变更
+                              </a>
+                          </div>
+                      </div>
+                      <div>
+                          <a href="#" class="button button-flat new-product-delete-btn" role="button" id="del-<%= product.id %>" onclick="product_delete(event);">
+                              削除
+                          </a>
+                      </div>
+                  </div>
+                  <!-- caption end -->
+              </div>
+              <!-- grid item -->
+          </div>
+          <!-- col-3 end -->
+      <% end %>
+    </div>
+    <!-- row end -->
+</div>
+<!-- container-fluid end -->

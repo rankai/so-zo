@@ -1,0 +1,33 @@
+<style type="text/css">
+    .user-info {
+        width: auto;
+    }
+    .user-info img {
+        height: 48px;
+        margin-top: 8px;
+        width: 48px;
+    }
+</style>
+
+<div class="user-info"> 
+    <!-- 2014-04-06 22:19 change welcome string to user photo -->
+    <!--<span style="float:left"><= t('nav.hello', user: current_user.name) ></span>-->
+
+    <div class="user-toggle">
+        <div class="btn-group">
+            <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">
+                <%= image_tag(current_user.photo.url(:thumb), class: "img-thumnail img-rounded img-responsive") %>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="<%= new_user_publish_path(current_user) %>"><%= t('nav.publish_upload') %></a/</li>
+                <li><a href="<%= user_publishes_path(current_user) %>"><%= t('nav.my_publishes') %><span class="badge"><%= current_user.publishes.count %></span></a></li>
+                <li><a href="<%= user_orders_path(current_user) %>"><%= t('nav.my_orders') %><span class="badge"><%= current_user.orders.count %></span></a></li>
+                <li><a href="<%= user_path(current_user) %>"><%= t('nav.my_page')%></a></li>
+                <li class="divider"></li>
+                <li><!-- <a href="<%= destroy_user_session_path %>">退出</a> -->
+                    <%= link_to destroy_user_session_path, method: :delete, data: { confirm: t('errors.messages.exit_message') }, onclick: "clear_session()" do %><%= t('nav.exit') %><% end %>
+                </li>
+            </ul>
+        </div> <!-- btn-group -->
+    </div> <!-- user-toggle -->
+</div><!-- user-info -->

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--nobanner-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <%= stylesheet_link_tag "buttons", :cache => true %>
+
+        <style type="text/css">
+            /* for masonry*/
+            .col-sm-2 {
+                width: 20%;
+                margin-bottom: 10px
+            }
+
+            .line-bottom a{
+                color:white;
+            }
+
+            .line-bottom  a:hover{
+                text-decoration: none;
+            }
+        </style>
+
+
+        <script type="text/javascript">
+           $(function(){
+                /*$("#ill").masonry({
+                    itemSelector: ".col-sm-2"
+                });*/
+               var $container = $("#ill");
+               $container.imagesLoaded(function() {
+                    $container.masonry({
+                          itemSelector: '.col-sm-2',
+                          isAnimated: !Modernizr.csstransitions, 
+                          animationOptions: {
+                            duration: 700,
+                            easing: 'linear',
+                            queue: false
+                          }              
+                       });
+               });
+            });
+
+        </script>
+
+    </head>
+    <body id="top">
+        <div class="contents">
+            <%= render "home/nav" %>
+                <div style="height:76px">
+                </div>
+                <div class="container">
+                    <%= render "ranking" %>
+                    <div class="image-row">
+                        <div class="image-set">
+                           <div class="transitions-enabled row" id="ill"> <!-- p: data-masonry-options='{ "columnWidth": 200, "itemSelector": ".col-sm-2" }' -->
+                                <% @publishes.each do |publish| %>
+
+                                    <% if Product.where("products.publish_id = ?", publish.id).count > 0 %>
+
+                                            <div class="col-sm-2">
+                                                <div class="graybox">
+                                                    <div class="imgarea">
+                                                        <a class="example-image-link" href="<%= publish.publish_image.url %>" data-lightbox="example-set"
+                                                        title="『<%= publish.name %>』">
+                                                            <%= image_tag publish.publish_image.url(:medium), class: "example-image", alt: publish.name %>
+                                                        </a>
+                                                    </div>
+                                                    <!-- imgarea -->
+                                                    <p class="itemtitle">
+                                                        『<%= publish.name %>』
+                                                    </p>
+
+                                                    <div class="describe">
+                                                        <p>
+                                                           <%= publish.description %>
+                                                        </p>
+                                                    </div>
+                                                    <div class="line-price">
+                                                    </div>
+                                                    <div class="line-bottom">
+                                                        <!-- <span>
+                                                            250人相关购买
+                                                        </span> -->
+                                                         <!-- <button type="button" class="btn btn-default waterfall-btn-left" onclick='window.location.href="<%= publish_path(publish.id) %>"'>
+                                                        <span class="glyphicon glyphicon-eye-open">
+                                                        </span>
+                                                        <span class="waterfall-btn-title">浏览</span>
+                                                        </button> -->
+                                                        <!-- <button type="button" class="btn btn-default waterfall-btn-right">
+                                                                                                            <span class="waterfall-btn-title">收藏</span>
+                                                            <span class="glyphicon glyphicon-star">
+                                                            </span>
+                                                        </button> -->
+
+                                                        <a href="<%= publish_path(publish.id) %>" class="button button-rounded button-flat-highlight button-small"><%= t('publish.view') %></a>
+                                                    </div>
+
+                                                </div><!-- graybox -->
+                                            </div><!-- col-sm-2 -->
+                                        <% end %> <!-- has active products-->
+                                <% end %>
+                            </div><!-- row ill -->
+                        </div><!-- image set -->
+                    </div><!-- image row -->
+                </div><!-- container -->
+                <div class="clear">
+                </div>
+            <div class="container">
+               <%= render "home/bottom" %>
+           </div>
+    </body>
+</html>

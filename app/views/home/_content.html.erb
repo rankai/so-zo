@@ -1,0 +1,88 @@
+ <style type="text/css">
+    
+ </style>
+ <script type="text/javascript">
+  $(function(){
+    $("#search_filed").keyup(function(event){  
+      if(event.keyCode == 13){  
+        search();  
+      }  
+    });  
+  })
+
+  function search() {
+    $("#search-form").submit();
+  }
+ </script>
+ <div class="content">
+ <div class="row">        
+           <div class="col-md-3" > 
+           <div class="siderbar">  
+                        <form action="<%= search_path %>" method="get" id="search-form" autocomplete="off" class="bs-example bs-example-form" role="form">    
+                                  <div class="input-group">
+                                     <input type="text" class="form-control" placeholder="検索" id="search_field" name="search_field">
+                                     <input type="hidden" name="resource_type_code" value="p" >
+                                      <input type="hidden" name="resource_type" value="all" >
+                                    <i class="fa fa-search fa-flip-horizontal fa-lg"></i>
+                                  </div><!-- /input-group -->
+                                  <!-- <div class="global-line"></div> -->
+                         </form>
+                         <div class="siderbar-split-line"></div>
+                          <ul class="nav nav-pills nav-stacked siderbar-nav" role="tablist">
+                            <li class="active"><a class="" href="#" >商品から探す</a>
+                            </li>
+                            <% product_categories.each do |category| %>
+                              <li><%= link_to products_path(product_category: category.name), class: "" do %>
+                                      <span class="glyphicon glyphicon-play"></span> <%=  category.description %>
+                                <% end %>
+                              </li>
+                            <% end %>
+                          </ul>
+                          <ul class="nav nav-pills nav-stacked siderbar-nav" role="tablist">
+                            <li class="active"><a class="siderbar-title-bg-a"  href="#">作品から探す</a></li>
+                             <% publish_categories.each do |category| %>
+                                <li><%= link_to publishes_path(publish_category: category.name), class: "siderbar-line-dashed siderbar-title-second" do %>
+                                      <span class="glyphicon glyphicon-play"></span> <%= category.description %>
+                                  <% end %>
+                                </li>
+                            <% end %>
+                            <!-- <li><a class="siderbar-line-dashed siderbar-title-second" href="#"><span class="glyphicon glyphicon-play"></span> 写真</a></li>
+                            <li><a class="siderbar-line-dashed siderbar-title-second" href="#"><span class="glyphicon glyphicon-play"></span> イラスト</a></li>
+                            <div class="siderbar-margin-top"></div> -->
+                          </ul>
+         </div> 
+         </div>
+         <!-- col-md-3 end -->
+
+           <div class="col-md-9"> 
+              <h3 class="h3 grid-title"><span class="img-rounded glyphicon glyphicon-star"></span>Pick Up</h3>
+                <div class="row margin-top-20">
+                  <% @products.each do |product| %>
+                      <div class="col-sm-4 col-md-4">
+                          <div class="thumbnail grid-item">
+                               <div class="images">
+                                 <%= image_tag product_image(product).product_image.url(:medium), class: "img-responsive center-img" %>
+                               <%= image_tag "image_bottom.png", class: "img-responsive center-img-bottom" %>
+                               </div>
+                               <div class="caption">
+                                    <h5 class="h5 item-new-tag">NEW</h5>
+                                    <h4 class="h4 item-name"><%= product.name %></h4>
+                                    <h2 class="h2 item-price"><%= t('number.currency.JPY_SIGN')%><%= product.price.to_i %></h2>
+                                    <p class="item-description"><%= product.description %></p>
+                                    <p class="btn-buy img-rounded text-center">
+                                      <%= link_to "購入する", product_path(product.id), class: "siderbar-btn-a" %>
+                                    </p>
+                                     <div class="sns-share">
+                                      <a href="#"><%=  image_tag "freelancer_logo.png" %></a>
+                                      <a href="#"><%=  image_tag "pinterest_logo.png" %></a>
+                                      <a href="#"><%=  image_tag "twitter_logo.png" %></a>
+                                     </div>
+                               </div>
+                          </div>
+                     </div>
+                  <% end %>  
+                </div> <!-- row -->
+           </div>
+      </div>
+    </div>
+</div><!-- content -->

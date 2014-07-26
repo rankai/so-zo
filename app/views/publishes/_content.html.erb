@@ -1,0 +1,39 @@
+<div class="content">
+		<div class="row">
+			<ul class="page-links">
+				<li>商品から探す</li>
+				<span>|</span>
+				<li class="active">作品から探す</li>
+			</ul>
+		</div>
+		<div class="row">
+			<!-- Nav tabs -->
+			<% categories = publish_categories %>
+			<ul class="category-tabs nav nav-pills" role="tablist">
+
+			 	<% categories.each_with_index do |category, index| %>
+			 		<% if index == 0 %>
+			 			<li class="active"><a href="#category_<%= category.id %>" role="tab" data-toggle="tab" ><%= category.description %></a></li>
+			 		<% else %>
+			 			<li><a href="#category_<%= category.id %>" role="tab" data-toggle="tab" ><%= category.description %></a></li>
+			 		<% end %>
+            	<% end %>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<% categories.each_with_index do |category, index| %>
+					<% if index == 0 %>
+						<div class="tab-pane fade in active" id="category_<%= category.id %>"><%= render "grid", publishes: @publishes.where("publishes.publish_category_id = ?", category.id) %></div>
+						<% p "index == 0 #{category.id}" %>
+					<% else %>
+						<div class="tab-pane fade" id="category_<%= category.id %>">
+							<%= render "grid", publishes: @publishes.where("publishes.publish_category_id = ?", category.id) %>
+						</div>
+						<% p "else #{@publishes.where("publishes.publish_category_id = ?", category.id)}" %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+
+</div>

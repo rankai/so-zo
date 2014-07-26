@@ -683,6 +683,7 @@ zh-CN:
       input_email: "请填写您的邮箱"
       input_valid_email: "请填写正确的邮箱地址"
       input_password: "请填写密码"
+      input_current_password: "请填写当前的密码"
       input_motto: "请填写您的格言"
       input_description: "请填写您的自我介绍"
       confirm_password: "请输入相同的密码"

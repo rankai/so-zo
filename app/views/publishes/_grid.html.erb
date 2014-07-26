@@ -1,0 +1,27 @@
+<div class="row margin-top-20">
+  <% if not publishes.nil? %>
+  <% publishes.each do |publish| %>
+      <div class="col-sm-3 col-md-3">
+          <div class="thumbnail grid-item">
+               <div class="images">
+                 <%= image_tag publish.publish_image.url(:medium), class: "img-responsive center-img lazy" %>
+               <%= image_tag "image_bottom.png", class: "img-responsive center-img-bottom lazy" %>
+               </div>
+               <div class="caption">
+                    <h5 class="h5 item-new-tag">NEW</h5>
+                    <h4 class="h4 item-name"><%= publish.name %></h4>
+                    <p class="item-description"><%= publish.description %></p>
+                    <p class="btn-buy img-rounded text-center">
+                      <%= link_to "詳細ページ", publish_path(publish.id) %>
+                    </p>
+                     <div class="sns-share">
+                      <a href="#"><%=  image_tag "freelancer_logo.png" %></a>
+                      <a href="#"><%=  image_tag "pinterest_logo.png" %></a>
+                      <a href="#"><%=  image_tag "twitter_logo.png" %></a>
+                     </div>
+               </div>
+          </div>
+     </div>
+  <% end %>  
+  <% end %>
+</div> <!-- row -->

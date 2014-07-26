@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#nav").css("background-image", 'url("/assets/buy_bg3.png")');
+  });
+</script>
+
+<style type="text/css">
+  .prompt-info {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 200px;
+  }
+
+  .prompt-info div {
+    text-align: center
+  }
+
+  .prompt-info div a {
+    margin-left: 120px;
+    height: 40px;
+  }
+
+</style>
+
+<body>
+  <%= render "home/header" %>
+  <div class="content">
+      <div style="height:76px">
+      </div>
+
+      <div class="prompt-info" align="center"  >
+        <%= image_tag("Check.png") %>&nbsp;<%= t('order.order_submitted_msg') %></span>
+        <div> 
+          <a href="<%= url_for(:controller => "checkouts", :action => "checkout") %>&order_id=<%= @order.id %>" type="button" class="btn btn-danger btn-lg"><%= t('order.pay_order') %></a>
+          <a href="<%= user_orders_path(current_user) %>" type="button" class="btn btn-default btn-lg"><%= t('order.view_order') %></a>
+        </div>
+    </div>
+
+
+
+  </div> <!-- content -->
+  <%= render "home/footer" %>
+</body>

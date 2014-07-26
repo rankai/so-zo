@@ -213,7 +213,7 @@ ja:
   progress:
       deleting: "削除しています..."
       uploading: "アップロードしています..."
-      making_products: "商品が生成中..."
+      making_products: "商品の生成中..."
       making_products_progress: "総計%{total}件で、すでに%{current}件完了です"
       processing: "ただ今処理しています、少々お待ちください..."
       waiting_uploading: "作品を投稿してください"
@@ -400,7 +400,7 @@ ja:
       strip_insignificant_zeros: false
     currency:
       CNY: "元"
-      USD: "ドル"
+      USD: "円"
       JPY: "円"
       JPY_SIGN: "¥"
       format:
@@ -476,7 +476,7 @@ ja:
   activerecord:
     models:
       #here is for model name, for example, in rails_admin
-      identity: "omniAuth"
+      identity: "定義"
       statistic: "統計"  
       user: "ユーザー"
       publish: "作品"
@@ -506,12 +506,12 @@ ja:
     attributes:
       product_template:
         template_name: "名称"
-        sizes: "支持のサイズ"
-        colors: "支持の色"
+        sizes: "サイズ"
+        colors: "色"
         template_category: "テンプレートのカテゴリー"
         price: "価格"
         brief: "ブリーフィング"
-        description: "詳細に紹介し"
+        description: "商品詳細"
         head_image: "正面図"
         head_image_mask: "フロントマスク"
         back_image: "背面図"
@@ -563,7 +563,7 @@ ja:
         user:
           attributes:
             photo:
-              blank: "は空にできません"
+              blank: "入力してください"
       template: # ~ 2.3.5 backward compatible
         header:
           one:   "%{model}にエラーが発生しました。"
@@ -572,19 +572,19 @@ ja:
       full_messages:
         format: "%{attribute}%{message}"
       messages:
-        inclusion: "リストに含まれない"
+        inclusion: "リストに含まれていません"
         exclusion: "キーワードは保留"
         invalid: "無効"
-        confirmation: "と確認値の不一緻"
+        confirmation: "と確認値が不一緻"
         accepted: "は受け入れられなければならない"
         empty: "空欄に出来ません"
         blank: "空白に出来ません"
         too_long: "長すぎる（最長 %{count} 文字）"
         too_short: "短い（は最短 %{count} 文字）"
         wrong_length: "不法（長さなければならない %{count} 文字）"
-        not_a_number: "数字ではなく"
-        not_an_integer: "なくてはならない整数"
-        greater_than: "よりなければならない %{count}"
+        not_a_number: "数字ではありません"
+        not_an_integer: "整数で入力してください"
+        greater_than: "寄らなければならない %{count}"
         greater_than_or_equal_to: "大なりイコールなければならない %{count}"
         equal_to: "なければならないに等しい %{count}"
         less_than: "以下がなければならない %{count}"
@@ -598,44 +598,44 @@ ja:
     errors:
       template:
         header:
-          one: "ある1つのミスによる「%{model}」保存されない。"
-          other: " ある %{count} エラー発生による「%{model}」保存されない。"
+          one: "一つのエラーにより「%{model}」保存できませんでした。"
+          other: "%{count} のエラーが発生により、「%{model}」保存されませんでした。"
         body: "次のフィールドにミス："
 
   errors:
     format: "%{attribute} %{message}"
     messages:
-      delete_message: "ご確認を削除するか?"
-      exit_message: "あなたの終瞭を確認するか?"
-      select_none: "少なくとも1件の商品を選んでください"
-      inclusion: "リストに含まれない"
+      delete_message: "こちらを削除します。よろしいですか？"
+      exit_message: "これで終了いたします。よろしいですか？"
+      select_none: "1件以上の商品を選んでください"
+      inclusion: "リストに含まれていません"
       exclusion: "キーワードは保留"
       invalid: "無効"
-      confirmation: "と確認値の不一緻"
+      confirmation: "と確認値が不一緻"
       accepted: "は受け入れられなければならない"
-      empty: "留空できない"
-      blank: "できない空白文字"
+      empty: "入力してください"
+      blank: "何も入力しないでください"
       too_long: "長（最長 %{count} 文字）"
       too_short: "短い（は最短 %{count} 文字）"
-      wrong_length: "不法（長さなければならない %{count} 文字）"
-      not_a_number: "数字ではなく"
-      not_an_integer: "なくてはならない整数"
-      greater_than: "よりなければならない %{count}"
-      greater_than_or_equal_to: "大なりイコールなければならない %{count}"
-      equal_to: "なければならないに等しい %{count}"
-      less_than: "以下がなければならない %{count}"
-      less_than_or_equal_to: "小なりイコールなければならない %{count}"
-      odd: "奇数でなければならない"
-      even: "必ず偶数"
+      wrong_length: "間違えた（長さなければならない %{count} 文字）"
+      not_a_number: "数字ではありません"
+      not_an_integer: "整数ではありません"
+      greater_than: "寄らなければなりません %{count}"
+      greater_than_or_equal_to: "同じでなければなりません %{count}"
+      equal_to: "同じ %{count}でなければなりません"
+      less_than: " %{count}の以下でなければならない"
+      less_than_or_equal_to: " %{count}と同じ、またはその以下でなければなりません"
+      odd: "奇数のみ"
+      even: "偶数のみ"
       #for devise
-      already_confirmed: "確認しました、もう一度ログインして下さい。"
-      confirmation_period_expired: "してください%{period}内に登録確認, 再登録してください。"
-      expired: "メールで確認の有効期限が切れて、再登録してください。"
+      already_confirmed: "確認出来ました。もう一度ログインして下さい。"
+      confirmation_period_expired: "%{period}内に確認してください。"
+      expired: "メール確認の有効期限が切れましたため、改めて登録してください。"
       not_found: "見つからない。"
-      not_locked: "未ロック。"
+      not_locked: "ロックされていません。"
       not_saved:
-        one: "それから1つのミスによる%{resource}セーブに失敗し:"
-        other: "から%{count}つのミスによるこの%{resource}セーブに失敗し:"
+        one: "%{resource}：一つのエラーが発生しました。保存出来ませんでした。"
+        other: "%{resource}：%{count}つのミスが発生したことにより、保存出来ませんでした。"
 
   helpers:
     select:
@@ -648,47 +648,48 @@ ja:
 
   devise:
     confirmations:
-      confirmed: "あなたのアカウントは登録出来ました"
+      confirmed: "こちらのアカウントは登録出来ました"
       send_instructions: "数分後、登録したメールアドレスでご確認ください"
-      send_paranoid_instructions: "登録したアカウントの確認メールが登録したメールボックスに届くはずです"
+      send_paranoid_instructions: "ご登録したメールアドレスに、確認メールが届きます。"
     failure:
-      already_authenticated: "あなたはすでに登録しました"
-      inactive: "このアカウントはまだ確認出来ていません"
+      already_authenticated: "こちらのIDは既に登録されています。"
+      inactive: "こちらのアカウントはまだ確認出来ていません"
       invalid: "idまたはパスワードが間違ってます"
       locked: "あなたのアカウントがロックされました"
-      last_attempt: "あと１回、ミスするとあなたのアカウントはロックされます"
+      last_attempt: "あと１回、ミスするとこちらのアカウントはロックされます"
       not_found_in_database: "idまたはパスワードが間違ってます"
       timeout: "タイムアウトになりました。改めてログインして下さい"
-      unauthenticated: "この先はログインまたは登録してください"
-      unconfirmed: "引き続き操作の前に先にご確認のアカウント"
+      unauthenticated: "この先、ログインまたは登録してください"
+      unconfirmed: "引き続き操作は、先にご確認したください"
       upload_photo: "画像をアップロードしてください"
       select_occupation: "あなたの職業を選択してください"
-      select_sex: "あなたの性別を選択してください"
-      input_email: "あなたのメールアドレスを入力してください"
+      select_sex: "お客様の性別を選択してください"
+      input_email: "お客様のメールアドレスを入力してください"
       input_valid_email: "アドレスを入力してください"
       input_password: "パスワードを入力してください"
-      input_motto: "紹介を記入してください"
-      input_description: "记入してくださいあなたの自己绍介をします"
+      input_current_password: "パスワードを入力してください"
+      input_motto: "自己紹介を記入してください"
+      input_description: "お客様の自己紹介をご記入してください"
       confirm_password: "同じパスワードを入力してください"
-      input_name: "あなたの名前を書いてください"
+      input_name: "お名前を入力してください"
     mailer:
       confirmation_instructions:
         subject: "情報確認"
       reset_password_instructions:
-        subject: "リセットパスワード情報"
+        subject: "リセットパスワードの情報"
       unlock_instructions:
         subject: "ロックを解除する情報"
     omniauth_callbacks:
-      failure: "から%{reason}ので、あなたからない%{kind}獲得する"
-      success: "成功してから%{kind}獲得する"
+      failure: "%{reason}という理由で、お客様は%{kind}取得出来ませんでした。"
+      success: "%{kind}を取得成功しました。"
     passwords:
-      no_token: "これは暗証番号をリセットページです。"
+      no_token: "こちらは暗証番号のリセットページです。"
       send_instructions: "数分後、パスワードのメールが届きます"
       send_paranoid_instructions: "もしご登録したメールアドレスは正しければ、確認メールが届くはずです"
       updated: "パスワードが更新しました。今すぐログインを"
       updated_not_active: "パスワードが更新しました。"
     updates:
-      updated: "您的资料已更新あなたの資料が更新します"
+      updated: "資料が更新されました。"
     registrations:
       destroyed: "このアカウントは消し済みました。"
       signed_up: "ありがとうございます。登録成功しました。"
@@ -723,7 +724,7 @@ ja:
       at_registration: "無料会員登録"
       to_sign_in: "SO-ZO会員の方はこちら"
       finish_sign_up_email: "ご登録するIDはこちらになります、ご確認してください。"
-      last_step: "ご登録すぐ終ります"
+      last_step: "ご登録がすぐ終ります"
       registration_notice: "登録について"
       3rd_login_notice: "こちらのアカウントはすでに登録されております。"
       please_read_part1: "登録する前に、"

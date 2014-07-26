@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<style>
+    .person-cont { 
+      float:left; 
+      width:500px; 
+      padding-left:60px; 
+    } 
+
+    .person-cont-lable {
+      padding-right:0px; 
+    }
+
+    .well span {
+      top:10px; position:absolute;
+      left:10px;
+      width: 80px
+    }
+
+    .form-group label {
+
+      width: 30%
+    }
+
+    .form-group div {
+
+      width: 70%
+    }
+
+</style>
+
+<%= stylesheet_link_tag "devise" %>
+<script type="text/javascript"> 
+<!-- this would only work at chrome & firefox-->
+$(function() {
+
+    $("#nav-a").addClass("active");
+    $("#nav-a a").css("background-color", "#FC746D");
+
+    // input file display
+    $("input[type='file").change(function(evt) {
+      var images = evt.target.files;
+      for(var i=0, f; f=images[i]; i++) {
+        if(!f.type.match('image.*')) {
+          continue;
+        }
+        var reader = new FileReader();
+        reader.onload = (function(file) {
+          return function(e) {
+            $(".user-img img").attr("src", e.target.result);
+          }
+        })(f);
+        reader.readAsDataURL(f);
+      }
+    });
+  })
+</script> 
+<body>
+
+  <%= render "home/header" %>
+
+  <div class="content">
+      <div class="container">
+        <div style="height:50px">
+        </div>
+          <% if can? :manage, @user %>
+            <%= render "devise/registrations/sider", object: @user %>
+          <% else %>
+            <%= render "sider", object: @user %>
+          <% end %>
+        <div class="r-box">
+                    <div class="user-img">
+                        <%= image_tag @user.photo.url(:medium), class: "img-rounded" %>
+
+                        <% if cannot? :manage, @user %>
+                            <% if already_watched(@user)  %>         
+                                <button type="button" class="btn btn-success btn-lg" disabled="disabled"><%= t('favorites.already_followed') %></button>
+                            <% else %>
+                                <%= button_to t('favorites.follow'), {controller: "users", action: "watch", user_id: @user.id}, class: "btn btn-success btn-lg" %>
+                            <% end %> 
+                        <% end %>
+
+                    </div>
+                    <div class="person-cont">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <%= t(User.human_attribute_name("email")) %>：
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">
+                                        <%= @user.email %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <%= t(User.human_attribute_name("occupation")) %>：
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">
+                                        <%= @user.occupation.name %>
+                                    </p>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <%= t(User.human_attribute_name("name")) %>：
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">
+                                        <%= @user.name %>
+                                    </p>
+                                </div>
+                            </div>
+                           
+                    
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <%= t(User.human_attribute_name("description")) %>：
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">
+                                        <%= @user.description %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label person-cont-lable">
+                                    <a href="<%= user_publishes_path(@user) %>"><%= t('publish.total') %>：</a>
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">
+                                        <%= total_publishes(@user).count %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label person-cont-lable">
+                                    <a href="<%= user_orders_path(@user) %>"><%= t('order.orders') %>：</a>
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">
+                                        <%= @user.orders.count %>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label person-cont-lable">
+                                    <a href="<%= user_products_path(@user) %>"><%= t('product.total') %>：</a>
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">
+                                        <%= total_products(@user).count %>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <%= t('bonus.total') %>：
+                                </label>
+                                <div class="col-sm-10">
+                                      <span><%= t('number.currency.JPY_SIGN')%></span>
+                                        <div class="well well-sum"  style="width:100px; min-width:80px; height:40px; position:relative;display:-webkit-inline-flex; display:inline-flex; vertical-align:super; text-align:right">
+                                            <%
+                                                bonus = user_bonus(@user)
+                                                if bonus == 0.00
+                                              %>
+                                                <span style="color:#999"><%= t('bonus.no_bonus') %></span>
+
+                                              <% else %>
+                                                <span style=""><%= bonus %></span>
+                                              <% end %>
+
+                                          </span>
+                                      </div>
+                                </div>
+                            </div>
+                        </form><!-- form -->
+                    </div><!--person-cont end-->
+                </div><!-- r-box -->
+        </div><!-- container -->
+    </div><!-- content -->
+
+    <%= render "home/footer" %>
+</body>
+
+</html>

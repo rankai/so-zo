@@ -1,0 +1,67 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "common";
+
+.new-product-page-header{
+	padding-bottom: 20px;
+	margin: 40px 0 20px;
+	border-bottom: 1px solid #ccc;
+	span {
+		font-size: 36px;
+	}
+}
+.new-product-section-header {
+	margin-bottom: 10px;
+	&:first-child {
+		font-weight: bold;
+	}
+}
+.new-product-price-input {
+	height: 40px !important;
+	/*padding: 20px 12px !important;*/
+	font-size: 20px !important;
+}
+.new-product-price-btn {
+	@include base-button-styled(40px, 82px);
+	@include base-a;
+	line-height: 40px;
+	background-color: darken(#86b9d1, 10%) !important;
+	&:hover {
+		background-color: #86b9d1;
+	}
+	font-weight: bold;
+}
+
+.new-product-delete-btn{
+	@include base-button-styled(40px, auto, lighten(black, 20%));
+	@include base-a(lighten(black, 20%));
+	line-height: 40px;
+	font-weight: bold;
+}
+
+.new-product-grid-item {
+ 	@extend .grid-item;
+ 	margin-top: 20px;
+ 	.item-category {
+ 		font-size: 24px;
+ 		font-weight: bold;
+ 	}
+ 	.item-price {
+ 		padding: 10px 0px;
+ 	}
+}
+
+.new-product-submit-btn {
+	@include base-button-styled(40px, auto);
+	float: right !important;
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+.new-product-cancel-btn{
+	@include base-button-styled (40px, auto);
+	float: right !important;
+	font-weight: bold;
+}

@@ -1,0 +1,89 @@
+ <div class="modal fade bs-example-modal-lg" id="publish-upload-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="publish-upload-modal-content modal-content ">
+            <div class="modal-header publish-upload-modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="publish-upload-modal-section-header"><b>自分の作品をアップロードしてインテリアを作りましょう</b></h4>
+            </div>
+             <%= form_for :publish, url: user_publishes_path(current_user),
+                  remote: true, html: {display: 'none', id: 'upload_form'} do |f| %>
+            <div class="modal-body publish-upload-modal-body">
+              <div class="row">
+                <div class="col-md-6 col-lg-6">
+                     <div class="publish-image">
+                          <%= image_tag "upload_images.png", class: "img-responsive" %> 
+                      </div>
+                     <button class="btn publish-upload-modal-file-btn">
+                       <%= image_tag "upload-img.png" %>
+                       <span class=""><b>画像をアップロード</b></span>
+                       <%= f.file_field(:publish_image) %>
+                     </button>
+                     <div class="publish-upload-modal-file-requirement">
+                       投稿出来る作品の形式JPGとPNGのみです。<br>
+                       商品を作るには2000px以上が必要です。
+                     </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                     <H4 class="publish-upload-modal-section-header text-left"><b>作品の種類</b></H4>
+
+                     <%= f.hidden_field :publish_category_id %>
+                     <% 
+                        ill_category = PublishCategory.where("publish_categories.name = ?", "illustration").first
+                        photo_category = PublishCategory.where("publish_categories.name= ?", "photo").first
+                     %>
+
+                     <button class="publish-upload-modal-type-btn active" category-id="<%= ill_category.id %>">
+                      <%= image_tag "upload-type-zuopin.png", class: "img-responsive" %>
+                      <span class="">イラスト</span>
+                    </button>
+                     <button class="publish-upload-modal-type-btn" category-id="<%= photo_category.id %>" >
+                      <%= image_tag "upload-type-xiezhen.png", class: "img-responsive" %>
+                      <span class="">写真</span>          
+                    </button>
+                     <H4 class="publish-upload-modal-section-header text-left"><b>作品の名称</b></H4>
+                      <div class="form-group">
+                         <%= f.text_field :name, size:"40", maxlength:"60", placeholder: "例 ) 向日葵と少女", class: "form-control" %>
+                      </div>
+                    <H4 class="publish-upload-modal-section-header text-left"><b>作品の説明</b></H4>
+                      <div class="form-group">
+                        <%= f.text_area :description, rows: "5", style: "width: 100%", placeholder: "例 ) 夏と言えば麦わら白ワンピの少女に向日葵畑でしょってことで。とある田舎の一風景と少女のカット。", class: "form-controll" %>
+                      </div>
+                    <%= f.hidden_field :state_id, value: get_default_state() %>
+                </div>
+              </div>
+                      
+  
+                      
+            </div>
+            <div class="modal-footer publish-upload-modal-foot">
+              <div class="publish-upload-modal-agreement"><span><b>必ず</b>
+                <%= link_to "「利用規約」", static_pages_treaty_path, class: "", target: "_blank" %>
+                <b>を確認した上で投稿してください</b></span></div>
+                <%= f.hidden_field :isOriginal, value: 1 %>
+              <%= f.submit "利用規約に同意してアップロード", :id=>
+            "upload_pic", :class => "button button-flat-primary publish-upload-modal-submit-btn" do %>
+              <% end %>
+                 <button type="button" class="publish-upload-modal-direct-buy-btn button button-flat"><b>投稿せずに直接購入</b></button>
+            <% end %>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <script type="text/javascript">
+          $(function() {
+
+            // $("button.upload-img-imgType-button")[0].click();
+            // $.each("button.upload-img-imgType-button", function(index, value) {
+
+            $("input[name='publish[publish_category_id]'").val($("button.publish-upload-modal-type-btn.active").attr("category-id"));
+
+            $("button.publish-upload-modal-type-btn").click(function(e) {
+                $("input[name='publish[publish_category_id]'").val($(e.target).parent(".publish-upload-modal-type-btn").attr("category-id"));
+                $(".publish-upload-modal-type-btn").removeClass("active");
+                $(e.target).parent(".publish-upload-modal-type-btn").addClass("active");
+                  e.preventDefault();
+            });
+
+          }) 
+      </script>

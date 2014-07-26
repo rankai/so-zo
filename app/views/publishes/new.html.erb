@@ -1,0 +1,476 @@
+<%= include_gon(:init => true) %>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+       //$("#processing").hide();
+       $('#loading').hide(); 
+       //$('#uploading').hide();   
+       $('#timeout').hide();
+       $('#waiting').hide();
+       $(".circle-progress").hide();
+       $("#publish-upload-modal").modal('show');
+
+        $(".publish-upload-modal-direct-buy-btn").click(function(e){
+            $("#publish-upload-modal").modal('hide');
+            $("#custom-make-modal").modal('show');
+        });
+
+
+        // jquery validate
+        $("#upload_form").validate({
+            rules: {
+                "publish[name]": {
+                    required: true,
+                    maxlength:10,
+                    minlength:1
+                },
+                "publish[description]": {
+                    required: true,
+                    // maxlength:100,
+                    minlength:5
+                },
+                "publish[isOriginal]" : {
+                    required: true
+                },
+                "publish[publish_image]": {
+                    required: true,
+                    accept: "image/jpeg,image/png"
+                }
+
+            },
+
+            messages: {
+              "publish[publish_image]" : {
+                required: "<%= t('modal.upload.errors.upload_publish') %>",
+                accept: "<%= t('modal.upload.errors.publish_format_not_valid') %>"
+             },
+              "publish[name]": {
+                required: "<%= t('modal.upload.errors.input_name') %>",
+                maxlength: "<%= t('modal.upload.errors.name_too_long') %>",
+                minlength: "<%= t('modal.upload.errors.name_too_short') %>"
+              },
+              "publish[description]": {
+                // maxlength:  "<= t('modal.upload.errors.description_too_long') %>",
+                required: "<%= t('modal.upload.errors.input_description') %>",
+                minlength: "<%= t('modal.upload.errors.description_too_short') %>"
+              },
+              "publish[isOriginal]": {
+                    required: "<%= t('modal.upload.errors.agree_to_our_policy') %>"
+              }
+            },
+
+
+            highlight: function(element) {
+                $(element).closest(".form-group").addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function(error, element) {
+                console.log(element.parent());
+                if(element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    if($(element).attr('name') == "publish[isOriginal]") {
+                        error.insertAfter($("#agreement"));
+                    } else {
+                        error.insertAfter(element.parent());
+                    }
+                }
+            },
+            submitHandler: function(form) {
+                var options = {
+                    dataType: 'json',
+                    processData: false,
+                    success: function(data) {
+                        $("#processing").hide();     
+                        // set publish id to hidden input        
+                        $("#publish_id").val(data["publish_id"]);
+                        var templates = jQuery.parseJSON(data["templates"]);
+                        preview_products(templates);
+                    },
+                    xhr: function(){
+                        var xhr = $.ajaxSettings.xhr();
+                        if(xhr.upload) {
+                            //Upload progress
+                            xhr.upload.addEventListener("progress", function(e){
+                                if (e.lengthComputable) {
+                                      //Do something with upload progress
+                                      var percent = (e.loaded / e.total) * 100
+                                      /*
+                                      $("#uploading .progress .progress-bar").attr("aria-valuenow", percent);
+                                      $("#uploading .progress .progress-bar").css("width", percent + "%");
+                                      $("#uploading .progress .progress-bar span").text(percent + '%');
+                                      */
+                                      //$("#uploading span").text(percent.toFixed(0) + '%');
+                                      $(".circle-progress .progress-label").text("<%= t('progress.uploading') %>, " + percent.toFixed(0) + '%');
+                                      //console.log(percent.toFixed(0) + '%');
+                                }
+                             }, false);
+
+                            xhr.upload.addEventListener("load", function(e){
+                                $("#uploading").hide();
+                                //$("#processing").show();
+                                $(".circle-progress .progress-label").text("<%= t('progress.publish_processing') %>");
+                            }, false);
+                        }
+
+                        
+                        
+                        return xhr;
+                   }
+                };
+                jQuery(form).ajaxSubmit(options);
+                $("#pre").hide();
+                //$("#uploading").show();
+                $(".circle-progress").show();
+                $("#publish-upload-modal").modal('hide');
+            }
+        });
+
+
+
+        // view image that going to be uploaded
+        $("input[type='file']").change(function(event) {
+            var files = event.target.files;
+
+            for (var i = 0,
+            f; f = files[i]; i++) {
+
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+
+                var reader = new FileReader();
+
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        $(".publish-image img").attr("src", e.target.result); //预览图片的位置  
+                        //$("#pre").hide();               
+                    };
+                })(f);
+
+                reader.readAsDataURL(f);
+            }
+        });
+
+    });
+
+    var confirm_publish = function(event) {
+        //$("#loading").show();
+        $.ajax({
+            url: "/users/<%= current_user.id %>/publishes/commit",
+            method: "put",
+            dataType: "text",
+            data: {publish_id:$("#publish_id").val()},
+            success: function(data) {
+                $("#loading").hide();
+                //console.log("success");
+                //console.log(data);
+                flash(data);
+                location.href = "<%= user_publishes_path(current_user) %>";
+            },
+            error: function(data){
+                $("#loading").hide();
+                //console.log("error");
+                //console.log(data);
+                flash(data);
+            }
+        });
+    };
+
+
+        // cancel tougao
+    var reset_publish = function(event){
+        //$("#loading").show();
+        $.ajax({
+            url: "/users/<%= current_user.id %>/publishes/reset",
+            method: "delete",
+            dataType: "text",
+            data: {publish_id:$("#publish_id").val()},
+            success: function(data) {
+                $("#loading").hide();
+                //console.log("success");
+                //console.log(data);
+                flash(data);
+                location.href = "<%= new_user_publish_path(current_user) %>";
+            },
+            error: function(data){
+                $("#loading").hide();
+                //console.log("error");
+                //console.log(data);
+                flash(data);
+            }
+        });
+    };
+
+    var preview_products = function(templates) {
+
+        total = templates.length;
+        //var index = 1;
+
+        // $("#making #progress").text("<%= t('product.quantity') %>: " + total);
+        // $(".circle-progress").show();
+
+         // window.setTimeout(function() {
+         //    $("#waiting").show();
+         // }, 3000);
+
+         // window.setTimeout(function() {
+         //    $("#waiting").hide();
+         //    $("#timeout").show();
+         // }, 10000);
+
+        //$.each(templates,function(i,val){
+
+        var xmlhttp;
+        if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+        }else{// code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        var params = "publish_id=" + $("#publish_id").val();
+        var url = "/products/job?" + params;
+        xmlhttp.open("GET",url,true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.timeout = 10000;
+
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState == 4) {
+                setupSSEs(xmlhttp.responseText);
+            }
+        };
+        xmlhttp.ontimeout = function() {
+            console.log("timeout");
+        };
+        xmlhttp.send();
+    };
+
+    function setupSSEs(data) {
+        // Listening for SSEs
+        setTimeout(function(){
+
+            var params = "job_id=" + data.split(":")[1];
+            var source = new EventSource('/products/results?' + params);
+            // source.addEventListener('update', function(e) {
+            //     console.log(e);
+            // });
+            source.addEventListener('message', function(e) {
+              $("#products-view").append(e.data);
+            }, false);
+
+            source.addEventListener('update', function(e) {
+                // $("#products-view").append(e.data);
+                var json = jQuery.parseJSON(e.data);
+                var progress_str_array = json.data.split('/');
+                var total = progress_str_array[0];
+                var current = progress_str_array[1];
+
+                // for progress bar
+                // var progress_bar = $(".progress .progress-bar");
+                // var progress_bar_label = $(".progress .progress-bar .sr-only");
+                // console.log(json);
+                // if(current == total) {
+                //     $(progress_bar).css("width", "100%");
+                // } else {
+                //    var step_str = current/total*100 + "%";
+                //    $(progress_bar).css("width", step_str);
+                //    $(progress_bar_label).text(step_str + " complete");
+                // }
+
+                // for progress circle
+                var progress_circle = $(".circle-progress .loader");
+                var progress_circle_label = $(".circle-progress .progress-label");
+                $(progress_circle_label).text("<%= t('progress.making_products') %>" + current + "/" + total);
+
+            }, false);
+
+            source.addEventListener('open', function(e) {
+                // Connection was opened.
+            }, false);
+
+            source.addEventListener('error', function(e) {
+               if (e.readyState == EventSource.CLOSED) {
+                 // Connection was closed.
+                }
+            }, false);
+
+            source.addEventListener('finished', function(e){
+                source.close();
+                $(".circle-progress").hide();
+                // var $container = $("#products-view");
+                // $("#timeout").remove();
+                // $container.imagesLoaded(function() {
+                    // load_masonry($container, ".col-sm-2");           
+                // });
+                 //console.log("sliding up");
+
+                preview();
+
+                $('#nav').slideUp('slow'); 
+                //console.log("sliding down");
+                $('.product-op').slideDown('slow');
+
+
+                $('input[type="submit"]').removeAttr("disabled"); 
+                $('button').removeAttr("disabled");                
+                $('a').removeAttr("disabled");  
+            });
+            // source.onmessage = function(e) {
+            //     // console.log(e);
+            //     $("#products-view").append(e.data);
+            // };
+
+        }, 1);
+    }
+
+    var preview = function() {
+         var options = {
+                target: '#products-view',
+                url: '/products/preview',
+                data: {publish_id:$("#publish_id").val()},//template_id: val.id},
+                success: function(data) {
+                    var container = $("#products-view");
+                    container.html(data);
+                    // container.imagesLoaded(function() {
+                    //     load_masonry(container, ".col-sm-2");           
+                    // });
+
+                    $('input[type="submit"]').removeAttr("disabled"); 
+                    $('button').removeAttr("disabled");                
+                    $('a').removeAttr("disabled");  
+                   
+                },
+                // UNSENT = 0;  // 没有发送请求
+                // OPENED = 1;    // 已经打开http连接
+                // HEADERS_RECEIVED = 2; // 接收到response header
+                // LOADING = 3;          // 真正接收response body   
+                // DONE = 4;             // 请求接收完毕
+            };
+
+        $.ajax(options);
+    }
+
+    // function load_masonry(container, itemSelector) {
+    //     container.masonry({
+    //           itemSelector: itemSelector,
+    //           isAnimated: true, 
+    //           animationOptions: {
+    //             duration: 700,
+    //             easing: 'linear',
+    //             queue: false
+    //           }              
+    //     });
+    // }
+
+    function product_delete(event) {
+
+            $("#loading").show();
+            var id = $(event.target).attr('id');
+            $.ajax({
+                type: "delete",
+                url: "/users/<%= current_user.id %>/products/" + id.split("-")[1],
+                dataType: "text",
+                beforeSend: function(XMLHttpRequest) {
+                    this; //调用本次ajax请求时传递的options参数
+                },
+                success: function(data) {
+                    $("#loading").hide();
+                    flash(data);
+                    $("#"+id).parent().parent().parent().parent().remove();
+                    // var $container = $("#products-view");
+                    // load_masonry($container, ".col-sm-2");              
+                }, 
+                error: function(data) {
+                  console.log("error");
+                  console.log(data);
+                  $("#loading").hide();
+                  flash(data.responseText);
+                }
+            });
+
+    }
+
+    function validate_price(float_price, new_price) {
+        
+        if(float_price > new_price) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    function update_price(event) {
+        var options = {}
+
+        var id = $(event.target).attr("id").split('-')[2];
+
+        var price_input = $("#product-price-" + id);
+        var hidden_price_input = $("#product-float-price-" + id);
+
+        var new_price = price_input.val();
+        var float_price = Number(hidden_price_input.val());
+
+        if(!validate_price(float_price, new_price)) {
+            msg = "<%= t('product.base_price') %>" + float_price + "<%= t('product.price_too_low') %>";
+            popup('<div class="body"><p>' + msg + '</p></div>', price_input);
+            price_input.val(float_price);
+            return false;
+        }
+
+        options = {
+            method: 'patch',
+            dataType: "text",
+            url: "/users/<%= current_user.id %>/products/" + id,
+            data: {price:new_price},
+            success: function(data) {
+                $("#loading").hide();
+                flash(data, true); 
+                },
+            error: function(data) {
+                $("#loading").hide();
+                flash(data.responseText, false);
+            }
+        };
+    
+        $("#loading").show();
+        $.ajax(options);
+    };
+
+</script>
+
+    <!--
+    # upload file
+    # upload success - > request preview products
+    # load products
+    # confirm products
+    # backend - save and clean products-->
+
+<body>
+    <%= render "home/header" %>
+    <div class="content">
+
+        <%= render "upload" %>
+        <%= render "custom_make" %>
+
+        <div id="loading"><%= image_tag "loading.gif", style: "margin-right: 10px" %></div>
+
+        <input type="hidden" id="publish_id" />
+        <div id="products-view">
+            <div class="loading-view text-center col-sm-6" 
+            style="margin-left:25%; padding: 20px">
+                <%= render "loading" %>
+            </div>
+        </div>
+        <!--products-view-->
+
+    </div> <!-- content -->
+    <%= render "home/footer" %>
+</body>

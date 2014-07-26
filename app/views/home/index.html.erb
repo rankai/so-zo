@@ -1,0 +1,32 @@
+ <style type="text/css"> 
+    .graybox {
+      height: 400px
+    }
+
+    .graybox .imgarea {
+      height:300px
+    }
+
+ </style>
+
+ 
+<script type="text/javascript">   
+
+</script>
+
+  <body>
+    <%= render "header" %>
+    <div class="header">
+          <!-- <= render "home/nav" %> -->
+          <%= render "search_box" %>
+          <div id="mainvisual">
+            <%= render "float" %>
+            <%= render "carousel" %>
+          <!--<img src="/assets/mainvisual.gif" alt="aaaaaa" />
+          -->
+          </div>
+    </div>
+    
+  <%= render "content", object: get_latest_products(12) %>
+  <%= render "footer" %>
+</body>

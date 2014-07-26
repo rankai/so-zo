@@ -1,0 +1,65 @@
+<div class="row margin-top-20">
+  <% if current_page?(controller: "products", action: "index") %>
+    <% if not products.nil? %>
+          <% products.each do |product| %>
+              <div class="col-sm-3 col-md-3">
+                  <div class="thumbnail grid-item">
+                       <div class="images">
+                         <%= image_tag product_image(product).product_image.url(:medium), class: "img-responsive center-img" %>
+                        <%= image_tag "image_bottom.png", class: "img-responsive center-img-bottom" %>
+                       </div>
+                       <div class="caption">
+                            <h4 class="h5 item-new-tag">
+                              <% if product.created_at > 7.days.ago %>
+                                  NEW
+                              <% end %>
+                            </h4>
+                            <h4 class="h4 item-name"><%= product.name %></h4>
+                            <h2 class="h2 item-price"><%= t('number.currency.JPY_SIGN')%><%= product.price.to_i %></h2>
+                            <p class="item-description"><%= product.description %></p>
+                            <p class="btn-buy img-rounded text-center">
+                              <%= link_to "購入する", product_path(product.id), class: "siderbar-btn-a" %>
+                            </p>
+                             <div class="sns-share">
+                              <a href="#"><%=  image_tag "freelancer_logo.png" %></a>
+                              <a href="#"><%=  image_tag "pinterest_logo.png" %></a>
+                              <a href="#"><%=  image_tag "twitter_logo.png" %></a>
+                             </div>
+                       </div>
+                  </div>
+              </div>
+           <% end %>
+      <% end %>  
+  <% else %>
+      <% if not @products.nil? %>
+          <% @products.each do |product| %>
+              <div class="col-sm-4 col-md-4">
+                  <div class="thumbnail grid-item">
+                       <div class="images">
+                         <%= image_tag product_image(product).product_image.url(:medium), class: "img-responsive center-img lazy" %>
+                        <%= image_tag "image_bottom.png", class: "img-responsive center-img-bottom lazy" %>
+                       </div>
+                       <div class="caption">
+                            <h4 class="h5 item-new-tag">
+                              <% if product.created_at > 7.days.ago %>
+                                  NEW
+                              <% end %>
+                            </h4>
+                            <h4 class="h4 item-name"><%= product.name %></h4>
+                            <h2 class="h2 item-price"><%= t('number.currency.JPY_SIGN')%><%= product.price.to_i %></h2>
+                            <p class="item-description"><%= product.description %></p>
+                            <p class="btn-buy img-rounded text-center">
+                              <%= link_to "購入する", product_path(product.id), class: "siderbar-btn-a" %>
+                            </p>
+                             <div class="sns-share">
+                              <a href="#"><%=  image_tag "freelancer_logo.png" %></a>
+                              <a href="#"><%=  image_tag "pinterest_logo.png" %></a>
+                              <a href="#"><%=  image_tag "twitter_logo.png" %></a>
+                             </div>
+                       </div>
+                  </div>
+             </div>
+          <% end %>  
+      <% end %>  
+  <% end %>
+</div> <!-- row -->

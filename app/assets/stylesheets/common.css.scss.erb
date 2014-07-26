@@ -1,0 +1,319 @@
+// Place all the styles related to all controllers here and 
+// using @import to include it in other scss files.
+$baseFont:                                  16px/20px 幼圆 ヒラギノ角ゴ arial,sans-serif;
+$baseFontSize:    			                    16px/20px !default;
+$baseFontColor:   			                    #FFFFFF;
+$baseButtonFontColor: 		                  #FFFFFF;
+$baseBackgroundColor: 		                  #F1F1F1 !default;
+$baseNavBackgroundColor: 	                  #FFFFFF;
+$baseLinkColor: 			                      #777;
+$baseLineColor: 			                      #CCC;
+$baseActiveTabBackgroundColor:              #FF8085;
+$baseTabBackgroundColor:                    #B2B2B2;
+// head nav item
+$baseNavItemBackgroundColor:                black;
+$linkColors: 				                        $baseLinkColor darken($baseLinkColor, 20%) #FFF !default;
+
+/* body content padding */
+$basePadding: 				                      20px 35px;
+$contentPaddingBottom: 		                  120px;
+$baseLine:                                  1px solid $baseLineColor;
+$baseNavHeadLine:                           4px solid black;
+
+
+
+@mixin base-a($color: white) {
+  color: $color;
+  &:hover {
+    text-decoration: none;
+    color: lighten($color, 10%);
+  }
+}
+
+
+@mixin box-sizing($sizing) {
+  -webkit-box-sizing: $sizing;
+  -moz-box-sizing: $sizing;
+  box-sizing: $sizing;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius !important;
+  -moz-border-radius: $radius !important;
+  border-radius: $radius !important;
+}
+
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow !important;
+  -moz-box-shadow: $shadow !important;
+  box-shadow: $shadow !important;
+}
+
+
+@mixin naked-input {
+  border-color: transparent;
+  border: 0px;
+}
+
+
+// button
+
+.flat-button {
+  border: none !important;
+}
+
+
+.base-button {
+  @include border-radius(0px);
+}
+
+
+@mixin base-button-styled($height, $width, $color: white) {
+  @extend .base-button;
+  @extend .flat-button;
+  height: $height !important;
+  width: $width !important;
+  color: $color !important;
+}
+
+
+/* siderbar */
+$baseSiderbarNavBottomLine:                 1px dashed $baseLineColor;
+// default color, hover color, title color
+$baseSiderbarNavItemBackgroundColors:       $baseNavBackgroundColor #CCC #777;
+$baseSiderbarNavPadding:                    30px;
+$baseSearchBoxHeight:                       60px;
+
+/* grid */
+$singleGridItemPadding:                     20px;
+$gridItemCaptionColors:                     #FF8085, #29AAE1;
+
+
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+
+// fake shadow
+.fakeshadow {
+  border: {
+    style: solid;
+    left: {
+      width: 4px;
+      color: #888;
+    }
+    right: {
+      width: 2px;
+      color: #ccc;
+    }
+  }
+}
+
+@mixin baseLink {
+   a {
+      color: nth($linkColors,1 );
+      padding: 0px 5px;
+      &:hover {
+          color: nth($linkColors, 2);
+          text-decoration: none;
+      }
+  }
+}
+
+@mixin column-image-height($columnImageHeight: 269px) {
+  max-height: $columnImageHeight;
+  height: $columnImageHeight;
+  overflow: hidden;
+}
+
+@mixin grid-item-des-height($gridItemCaptionDesHeight: 80px) {
+  height: $gridItemCaptionDesHeight;
+  max-height: $gridItemCaptionDesHeight;
+  overflow: auto;
+}
+
+
+// common grid 
+.grid-item {
+  padding: $singleGridItemPadding !important;
+  .images {
+    img {  
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0px auto;
+      &:first-child {
+        @include column-image-height;
+        width: auto !important;
+        max-width: 100%;
+      }
+    }
+  }
+  .caption {
+    padding-bottom: 20px;
+    .item-price {
+      color: nth($gridItemCaptionColors, 1);
+    }
+    .item-new-tag {
+      color: nth($gridItemCaptionColors, 2);
+      height: 20px;
+    }
+    .item-description {
+      padding: 20px 10px 10px;
+      background-color: $baseBackgroundColor;
+      @include grid-item-des-height();
+    }
+    .btn-buy {
+      height: 50px;
+      background: url(<%= asset_path "btn_bg.jpg" %>) repeat-x;
+      a {
+          color: $baseButtonFontColor;
+          display: inline-block;
+          margin-bottom: 0;
+          font-weight: 400;
+          /* replace with text-center */
+          text-align: center;
+          vertical-align: middle;
+          border: 1px solid transparent;
+          white-space: nowrap;
+          padding: 10px 12px;
+          font: $baseFont;
+          line-height: 1.42857143;
+          @include border-radius(4px);
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          &:hover {
+            color: $baseButtonFontColor;
+            font-weight: bold;
+            text-decoration: none;
+          }
+      }
+    }
+  .sns-share {
+    margin-top: 20px;
+    a {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+  } 
+}
+
+// -------------------------- page links for publishes/products ------------------------ //
+
+.page-links {
+  display: inline-block;
+  display: inline-flex;
+  padding: 30px 15px;
+  color: lighten($baseLinkColor, 10%);
+  font-weight: bold;
+  span  {
+    padding: 0px 10px;
+  }
+  li {
+    font: $baseFont;
+    font-weight: bold;
+  }
+  .active {
+    color: #86b9d1;
+  }
+}
+
+// tabs
+.category-tabs {
+  display: inline-block;
+  display: inline-flex;
+  color: baseFontColor;
+  border-bottom: $baseLine;
+  width: 98%;
+  margin-left: 15px;
+  margin-right: 15px;
+  li {
+    font: $baseFont;
+    font-weight: bold;
+    width: auto;
+    margin-right: 5px;
+    min-width: 100px;
+    text-align: center;
+    a {
+      color: lighten($baseLinkColor, 40%);
+      background-color: $baseTabBackgroundColor;
+      @include border-radius(5px 5px 0px 0px);
+    }
+  }
+}
+
+.tab-content {
+  padding-top: 20px;
+  margin: 0px 15px;
+}
+
+
+
+// overwrite bootstrap nav-tabs, nav-pills default styles
+.nav-pills {
+  li.active {
+    a {
+      background-color: $baseActiveTabBackgroundColor;
+      color: $baseFontColor;
+      &:hover, &:focus {
+        background-color: $baseActiveTabBackgroundColor;
+        color: $baseFontColor;
+      }
+    }
+  }
+}
+
+.nav-pills {
+  li {
+    a {
+      &:hover, &:focus {
+        background-color: $baseTabBackgroundColor;
+        color: $baseFontColor;
+      }
+    }
+  }
+
+}
+
+
+// base modal
+.base-modal-content {
+  @include border-radius(0px);
+  width: 80%;
+  margin: 0px auto;
+}
+
+.base-modal-header {
+  border-bottom: none !important;
+}
+
+.base-modal-section-header {
+  padding-bottom: 9px;
+  margin: 20px 0 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.base-modal-body {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.base-modal-foot {
+    border:none !important ;
+}
+
+
+// global
+body {
+  font: $baseFont;
+  @include border-radius(0px);
+}
+
+.content {
+  padding: $basePadding;
+  padding-bottom: $contentPaddingBottom;
+  min-height: 500px;
+}

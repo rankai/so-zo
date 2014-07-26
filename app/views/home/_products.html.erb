@@ -1,0 +1,41 @@
+<div class="image-row">
+  <div class="image-set">
+    <div class="row" id="new">
+
+      <% @products.each do |product| %>
+
+      <% if product.product_images.count > 0 %>
+
+        <div class="col-sm-3">
+          <div class="graybox">
+            <p class="ribbon"><%= image_tag "new_ribbon.png" %></p>
+            <div class="imgarea">
+              <%= link_to product_path(product), class: "example-image-link", title: "『" + product.name + "』" do %>
+                <!--< image_tag product.product_images.first.product_image.url(:medium), 
+                class: "img-responsive example-image", alt: product.name %>-->
+                <img class="lazy img-responsive" data-original="<%= product_image(product).product_image.url(:medium) %>" alt="<%= product.name %>" />
+              <% end %>
+              <div class="price">
+                <%= t('number.currency.JPY_SIGN')%><%= product.price.to_i %>
+              </div>
+            </div>
+            <!-- imgarea -->
+            <p class="itemtitle">
+              『<%= product.name %>』
+            </p>
+            <p class="itemdetail">
+              <%= short_text(50, product.description) %>
+            </p>
+          </div><!-- graybox -->
+        </div><!-- col3 -->
+
+        <% end %>
+
+      <% end %>       
+
+    </div>
+    <!-- row new -->
+  </div>
+  <!-- image set -->
+</div>
+<!-- image row -->

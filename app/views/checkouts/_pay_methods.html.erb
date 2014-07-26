@@ -1,0 +1,89 @@
+    <div class="pay-page">
+        <h3 class="glyphicon glyphicon-euro title">
+            <%= t('checkout.online_pay') %>
+        </h3>
+        <div class="pay-height">
+        </div>
+        <form role="form">
+            <div class="form-group">
+                <div class="radio">
+                    <label>
+                        <input  style="margin-top:20px;" type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+                        checked>
+                        <%= image_tag "wepay.jpg" %>
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div class="col-xs-12 text-right">
+ <!--            <button type="button" class="btn btn-primary">
+                去付款
+            </button> -->
+            <a href="<%= url_for(:controller => "checkouts", :action => "wepay") %>&order_id=<%= @order.id %>" type="button" class="btn btn-primary btn-lg button-flat-action"><%= t("checkout.online_pay") %></a>
+        </div>
+
+        <h3 class="glyphicon glyphicon-euro title">
+            <%= t('checkout.transfer') %>
+        </h3>
+
+        <div class="pay-height">
+        </div>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">
+                    銀行名：
+                </label>
+                <div class="col-sm-5">
+                    <select class="form-control">
+                        <option>
+                            ゆうちょ銀行
+                        </option>
+  <!--                       <option>
+                            招商银行
+                        </option>
+                        <option>
+                            农业银行
+                        </option>
+                        <option>
+                            建设银行
+                        </option>
+                        <option>
+                            广发银行
+                        </option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">
+                    店番：
+                </label>
+                <div class="col-sm-5">
+                    <p class="form-control-static">０１８</p>
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="" class="col-sm-4 control-label">
+                    預金種目：
+                </label>
+                <div class="col-sm-5">
+                    <p class="form-control-static">普通</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">
+                    口座番号：
+                </label>
+                <div class="col-sm-5">
+                    <p class="form-control-static">7099179</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">
+                    名義：
+                </label>
+                <div class="col-sm-5">
+                    <p class="form-control-static">ソーゾー</p>
+                </div>
+            </div>
+    </form>
+</div>

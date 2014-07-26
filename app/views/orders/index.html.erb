@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<style>
+
+  .order-box {
+    border: none;
+    float:right;
+    width: 860px;
+    background-color: white;
+    padding: 10px;
+  }
+
+  .order-gathering-title {
+    border: 1px solid #e6e6e6;
+    border-bottom: 2px solid #9DCA6C;
+    height: 33px;
+    line-height: 33px;
+    margin-bottom: 10px
+  }
+
+  .order-gathering-title h4 {
+    color: #9DCA6C;
+    padding-left:  16px;
+    float: left
+  }
+
+  .order-gathering-info {
+    padding-left: 20px;
+    border: 1px solid #e6e6e6;
+    margin-top: -10px;
+    height: 60px
+  }
+
+  .order-gathering-info #order-prompt dl {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+  }
+
+
+
+  .order-gathering-info #order-prompt dt{
+    text-align: right;
+    float:left;
+    margin-right: 25px
+  }
+
+  .order-gathering-info #order-prompt dd {
+    margin-right: 25px;
+    float: left;
+  }
+
+  .order-quick-op {
+    padding-top: 10px;
+  }
+
+  .order-quick-op button {
+    float:right;
+    margin-left: 10px;
+  }
+
+  .order-quick-op span {
+    margin-right: 2px;
+    vertical-align: middle;
+  }
+
+  .order-quick-op input[type='text'] {
+    float: right;
+    width: 250px
+  }
+
+  .order-list {
+    margin-top: 55px;
+    padding: 10px;
+  }
+
+
+  .order-list .order-table thead tr {
+    background-color:  #9DCA6C;
+    color:white;
+  }
+
+  .order-list .order-table thead tr th {
+    border: none;
+    text-align: center;
+  }
+
+  .order-list .order-table tbody tr td {
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .order-list .order-table .order-number td {
+    text-align: left
+  }
+
+  .order-list .order-table .order-info {
+    text-align: left;
+    width: 320px
+  }
+
+  .order-content .product-images {
+    width: 300px;
+  }
+
+  .order-content .product-images img {
+    float: left;
+  }
+
+  #order-datetime, #order-state {
+    color: black;
+    font-weight: normal
+  }
+
+</style>
+
+<%= stylesheet_link_tag "devise" %>
+<script type="text/javascript"> 
+$(function() {
+
+    $("#nav-f").addClass("active");
+    $("#nav-f a").css("background-color", "#9DCA6C");
+
+    setSelect();
+    // select change
+    /*$("#order_created_at").change(function(){
+      
+    });
+
+    $("#order_state").change(function(){
+      
+    });*/
+    $('select').change(function() {
+      $('#select-form').submit();
+    });
+
+    // input file display
+    $("input[type='file").change(function(evt) {
+      var images = evt.target.files;
+      for(var i=0, f; f=images[i]; i++) {
+        if(!f.type.match('image.*')) {
+          continue;
+        }
+        var reader = new FileReader();
+        reader.onload = (function(file) {
+          return function(e) {
+            $(".user-img img").attr("src", e.target.result);
+          }
+        })(f);
+        reader.readAsDataURL(f);
+      }
+    });
+  })
+
+  function setSelect() {
+    var created_at = getUrlParameters("created_at", "", true);
+    var state = getUrlParameters("state", "", true);
+
+    if(created_at != false){
+        $('#order_created_at').val(created_at);
+    }
+
+    if(state != false) {
+        $('#order_state').val(state);
+    }
+
+  }
+
+  function getUrlParameters(parameter, staticURL, decode){
+     var currLocation = (staticURL.length)? staticURL : window.location.search,
+         parArr = currLocation.split("?")[1].split("&"),
+         returnBool = true;
+     
+     for(var i = 0; i < parArr.length; i++){
+          parr = parArr[i].split("=");
+          if(parr[0] == parameter){
+              return (decode) ? decodeURIComponent(parr[1]) : parr[1];
+              returnBool = true;
+          }else{
+              returnBool = false;            
+          }
+     }
+     
+     if(!returnBool) return false;  
+  }
+</script> 
+<body>
+
+  <%= render "home/header" %>
+  <div class="content">
+      <div class="container">
+        <div style="height:50px">
+        </div>
+        <%= render "devise/registrations/sider", object: @user %>
+          <div class="order-box">
+
+
+            <div class="order-gathering-title">
+              <h4><%= t('order.my_orders') %></h4>
+            </div>
+            <div class="order-gathering-info">
+              <div id="order-prompt">
+              <dl>
+                <dt><%= t('nav.inform') %>:</dt>
+                <dd>
+                  <% 
+                    unpaid_count = get_unpaid_count
+                    if unpaid_count == 0
+                   %>
+                      <span style="color:#999"><%= t('order.no_orders_need_to_pay') %></span>
+                   <% else %>
+                      <a href="#"><%= t('order.need_to_pay') %>(<%= unpaid_count %>)</a>
+                  <% end %>
+                </dd>
+                <dd>
+                    <% 
+                    shipped_count = get_shipped_count
+                    if shipped_count == 0
+                   %>
+                      <span style="color:#999"><%= t('order.no_orders_shipped') %></span>
+                   <% else %>
+                      <a href="#"><%= t('order.shipped') %>(<%= shipped_count %>)</a>
+                  <% end %>
+                 </dd>
+              </dl>
+            </div>
+            </div>
+            <div class="order-quick-op">
+              <form role="form" method="get" action="<%= user_orders_path(current_user)%>">
+                  <div class="form-group">
+                    <button role="button" class="btn btn-default" id="btn-search"><span class="glyphicon glyphicon-search"></span>查询</button>
+                    <input type="text" class="form-control" placeholder="<%= t('order.order_search_placeholder') %>" name="search" />
+                  </div>
+            </form>
+            </div>
+            <div class="order-list">
+              <!--<div class="panel panel-default">-->
+                <!-- Default panel contents -->
+                <!-- <div class="panel-heading">Panel heading</div>
+                <div class="panel-body">
+                  <p>...</p>
+                </div> -->
+
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="order-table table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th><%= t('order.col_info') %></th>
+                        <th><%= t('order.col_receiver') %></th> 
+                        <th><%= t('order.col_price') %></th>
+                        <form role="form" method="get" action="<%= user_orders_path(current_user)%>"  id="select-form">
+                        <th id="order-datetime">
+                          <select id="order_created_at" name="created_at"> 
+                            <option value='all'><%= t("order.col_created_at.options.all") %></option>
+                            <option value='7'><%= t("order.col_created_at.options.in_this_week") %></option>
+                            <option value='90'><%= t("order.col_created_at.options.last_3_months") %></option>
+                            <option value='365'><%= t("order.col_created_at.options.in_this_year") %></option>
+                          </select>
+                        </th>
+                        <th id="order-state">
+                          <select id="order_state" name="state">
+                            <option value="all"><%= t("order.col_state.options.all") %></option>
+                            <option value="confirmed"><%= t("order.col_state.options.need_to_pay") %></option>
+                            <option value="paid"><%= t("order.col_state.options.paid") %></option>
+                            <option value="shipped"><%= t("order.col_state.options.shipped") %></option>
+                            <option value="completed"><%= t("order.col_state.options.completed") %></option>
+                          </select>
+
+                        </th>
+                      </form>
+                        <th><%= t('order.col_op') %></th>
+
+                      </tr>
+                    </thead>
+
+                   <tbody class="order-content">
+                    <% @orders.each do |order| %>
+
+                      <% if order.order_items.count > 0  %>
+
+                      <tr class="order-number">
+                        <td colspan="6">
+                          <span><%= t('order.order_number') %>：<%= order.order_number %></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="product-images">
+                          <% order.order_items.each do |order_item| %>
+                            <% if not order_item.product.nil? %>
+                              <%= link_to product_path(order_item.product) do %>
+                                <%= image_tag order_item.product_image.url(:thumb), class: "img-rounded", width:"60px" %>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                          
+                        </td>
+                        <td><%= order.user.name %></td>
+                        <td><%= t('number.currency.JPY_SIGN')%><%= order.sum %></td>
+                        <td><%= order.created_at.strftime('%F') %></td>
+                        <td><%= order.state.description %></td>
+                        <td>
+                          <!-- <a href="#">查看</a> -->
+                          <% if order.state.name == 'confirmed' %>
+                          <!--<a href="<= url_for(:controller => "checkouts", :action => "wepay") %>&order_id=<%= order.id %>"><= t('order.pay_order') %></a>-->
+                          <a href="<%= url_for(:controller => "checkouts", :action => "checkout") %>&order_id=<%= order.id %>"><%= t('order.pay_order') %></a>
+                          <%= link_to user_order_path(current_user, order), method: :delete, data: { confirm: t('errors.messages.delete_message') } do %><%= t('order.cancel_order') %><% end %>
+                          <% elsif order.state.name == 'paid' %>
+                            <span><%= t('order.order_paid') %></span> 
+                          <% elsif order.state.name == 'shipped' %>
+                            <span><%= t('order.order_shipped') %></span> 
+                          <% elsif order.state.name == 'completed' %>
+                            <span><%= t('order.order_completed') %></span> 
+                          <% elsif order.state.name == 'deleted' %>
+                            <span>-</span> 
+                          <% end %>
+
+                          
+                        </td>
+                      </tr>
+                      <% end %> <!-- count > 0-->
+                    <% end %>
+
+                   </tbody>
+                 </table>
+               </div>
+              <!--</div>--> <!-- panel -->
+            </div><!-- order-lis -->
+          </div><!-- order-box -->
+      </div><!-- container -->
+  </div><!-- contents -->
+
+  <%= render "home/footer" %>
+</body>
+
+</html>

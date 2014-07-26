@@ -1,0 +1,48 @@
+<div id="footer">
+    <div class="row">
+        <div class="footer-left col-md-5">
+            <div class="works col-md-5">
+                <div class="category-title">作品から探す</div>
+                <ul class="category-content">
+                    <% publish_categories.each do |category| %>
+                        <li><%= link_to category.description, publishes_path(publish_category: category.name) %></li>
+                    <% end %>
+                </ul>
+                
+            </div>
+            <div class="products col-md-7">
+                <div class="category-title">商品から探す</div>
+                <ul class="category-content">
+                    <% product_categories.each do |category| %>
+                        <li><%= link_to category.description, products_path(product_category: category.name) %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>    
+        <div class="footer-center col-md-3">
+            <%= image_tag "footer-image.png" %>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="footer-right col-md-2">
+            <%= image_tag "new-logo-2.png" %>
+        </div>
+    </div><!-- row -->
+
+    <div class="row">
+        <div class="quick-links text-center">
+            <%= link_to "#{t('nav.bottom.home')}", root_path %> <span>|</span>
+            <%= link_to "#{t('nav.bottom.news')}", "http://so-zo.co/?p=4061" %> <span>|</span>
+           <!--  <= link_to "#{t('nav.bottom.customer_service')}", "mailto: info@so-zo.co?subject=#{t('nav.bottom.mail_subject')}" %> --> 
+            <%= link_to "#{t('nav.bottom.customer_service')}" ,"http://so-zo.co/?page_id=1167" %><span>|</span>
+            <%= link_to "#{t('nav.bottom.intro')}", static_pages_company_path %> <span>|</span>
+            <%= link_to "#{t('nav.bottom.info')}", "http://so-zo.co/?page_id=1212" %> <span>|</span>
+            <%= link_to "#{t('nav.bottom.question')}", "#" %> <span>|</span>
+            <%= link_to "#{t('nav.bottom.agreement')}", static_pages_treaty_path %> <span>|</span>
+            <%= link_to "#{t('nav.bottom.license')}", static_pages_license_path %>
+            <!--     <= link_to "#{t('nav.bottom.map')}", "#" %> -->
+            <div class="clear"></div>
+        </div><!-- quick-links -->
+    </div>
+</div>
+
+s

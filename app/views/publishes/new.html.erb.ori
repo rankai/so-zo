@@ -1,0 +1,61 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        // hide loading div
+        $("#loading").hide();
+
+        var options = {
+            target: '#illustration_view',
+            success: function(data) {
+                $("#loading_msg").text("upload successfully, creating products");
+                $("#illustration_view").html(data);
+                preview_products();
+            }
+        };
+
+        $('#upload_pic').click(function() {
+            $("#loading_msg").text("uploading your work");
+            // show loading dive
+            $("#loading").show();
+            $("#upload_form").ajaxForm(options).submit();
+            return false;
+        });
+    });
+
+    var preview_products = function() {
+        var options = {
+            target: '#products_view',
+            url: '/products/preview',
+            data: {ill_id:$("#ill_id").val()},
+            success: function(data) {
+                console.log(data);
+                $("#loading").hide();
+                $("#products_view").html(data);
+            }
+        };
+        $.ajax(options);
+    }
+    </script>
+
+    <!--
+    # upload file
+    # upload success - > request preview products
+    # load products
+    # confirm products
+    # backend - save and clean products-->
+
+<body id="top">
+    <div class="contents">
+        <%= render "home/nav" %>
+            <div style="height:76px"></div>
+            <div class="container">
+                    <%= render "upload" %>
+                    <%= render "loading" %>
+                     <!-- test -->
+                    <div id="illustration_view">
+                    </div>
+                    <div id="products_view">
+                    </div>
+                    <div class="clear">
+                    </div>
+            </div>
+</body>

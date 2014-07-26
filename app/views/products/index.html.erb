@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag "buttons" %>
+
+<script type="text/javascript">
+
+  $(window).bind("load", function() { 
+      var timeout = setTimeout(function() { $("img.lazy").trigger("sporty") }, 3000);
+  });         
+
+</script>
+
+<body>
+    <%= render "home/header" %>
+    <%= render "content", object: @products %>
+    <div class="page"> <%= paginate @products %> </div>
+    <%= render "home/footer" %>
+</body>
+
+

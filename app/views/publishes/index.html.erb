@@ -1,0 +1,6 @@
+<%= stylesheet_link_tag "buttons", :cache => true %>
+<%= render "home/header" %>
+<%= render "content", object: @publishes %>
+<div class="clear"></div>
+<div class="page"> <%= paginate @publishes %> </div>
+<%= render "home/footer" %>

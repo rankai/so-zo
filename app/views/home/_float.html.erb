@@ -1,0 +1,91 @@
+<style type="text/css">
+
+	#float{
+		background-color: rgba(0,0,0,0.5);
+		position: absolute;
+		width: 100%;
+		height: 800px;
+		padding: 50px;
+		text-align: center;
+		z-index: 999;
+	}
+	#float .float-smile {
+		text-align: center;
+	}
+	#float .float-smile img {
+		width: 460px;
+		margin: 0 auto;
+	}
+	#float .float-intro {
+		padding: 50px;
+	}
+	#float .float-intro li {
+		text-align: center;
+		font-size: 20px;
+		line-height: 40px;
+		font-weight: bold;
+		color: white;
+	}
+	#float .float-btns {
+		/*padding-left: 28%; */
+	}
+	#float .float-btns a {
+		/* width: 180px; */
+		/* padding: 0px 30px; */
+		/* height: 40px; */
+		padding: 30px;
+		background-color: rgba(0,0,0,0.2);
+		display: block;
+		border-top-width: 4px;
+		border-color: rgba(255,255,255,0.5);
+		color: #F1F1F1;
+		font-weight: bold;
+		font-size: 20px;
+		padding-left: 80px;
+		padding-right: 80px;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+		border-radius: 8px;
+	}
+	#float .float-btns a:hover {
+		color: white;
+	}
+	#float .float-btns {
+		display: inline-block;
+		display: inline-flex;
+	}
+	#float .float-btns li {
+		/*float: left;*/
+		margin-left: 20px;
+	}
+</style>
+<!-- <div class="row"> -->
+	<div id="float">
+		<div class="float-smile">
+			<%= image_tag "so-zo-smile-460.png" %>
+		</div>
+		<ul class="float-intro">
+			<li>痛部屋はその名の通り、痛部屋を創れるサービスです。</li>
+			<li>自分の作品を投稿すれば、</li>
+			<li>オリジナルのインテリアを創ることができ、</li>
+			<li>それを売ったり・買ったりすることができます。</li>
+			<li>痛部屋で自分だけの部屋を作って、</li>
+			<li>もっと“好き”に囲まれましょう</li>
+		</ul>
+		<!-- <div class="float-btns"> -->
+			<ul class="float-btns">
+				<li><%= link_to publishes_path, class: "btn inset", role: "button" do %>
+					<%= fa_icon "search flip-horizontal lg", class: "inset" %>痛インテリアを探す
+					<% end %>
+				</li>
+				<li>
+					<% if user_signed_in? %>
+						<%= link_to new_user_publish_path(current_user), class: "btn inset", role: "button" do %><%= fa_icon "star lg", class: "inset" %>痛インテリアを作る <% end %>
+					<% else %>
+						<%= link_to new_user_session_path, class: "btn inset", role: "button" do %><%= fa_icon "star lg", class: "inset" %>痛インテリアを作る <% end %>
+					<% end %>
+				</li>
+			</ul>
+		<!-- </div> -->
+	</div>
+<!-- </div> -->

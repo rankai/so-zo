@@ -1,0 +1,11 @@
+<div id="sidernav">
+
+	<ul class="nav nav-pills nav-stacked">
+
+  		<li id="nav-a"><a href="<%= user_path(@user) %>"><%= t('nav.menu.personal_info') %></a></li>
+        <li id="nav-b"><a href="<%= user_publishes_path(@user) %>"><%= t('nav.menu.my_works') %></a></li>
+        <li id="nav-c"><a href="<%= user_products_path(@user) %>"><%= t('nav.menu.my_products') %></a></li>
+	</ul>
+
+</div>
+<!--sidernav end-->

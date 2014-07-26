@@ -30,6 +30,15 @@ SoZo::Application.routes.draw do
     end
   end
 
+  resources :publishes, only:[:index, :show] do 
+    collection do
+      get 'hot'
+    end
+  end
+
+  #------------------------------- publishes ------------------------
+
+
   resources :users do
       get 'publishes', :to => 'publishes#works'
       get 'products',  :to => "products#products"
@@ -61,15 +70,6 @@ SoZo::Application.routes.draw do
   #get "users/:user_id/publishes", :to => "publishes#works"
   #get "users/:user_id/public",    :to => "users#public"
 
-  resources :publishes, only:[:index, :show] do 
-    collection do
-      get 'hot'
-    end
-  end
-
-  #------------------------------- publishes ------------------------
-
-
   #resources :publishes
 
   #resources :users do
@@ -90,14 +90,14 @@ SoZo::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-     resources :products do
-        collection do
-          get 'preview'
-          get 'job'
-          get 'top'
-          get 'results'
-        end
-     end
+   resources :products do
+      collection do
+        get 'preview'
+        get 'job'
+        get 'top'
+        get 'results'
+      end
+   end
      
      resources :authors
      resources :promtions
